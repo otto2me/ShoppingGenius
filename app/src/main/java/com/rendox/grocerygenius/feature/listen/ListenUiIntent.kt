@@ -1,0 +1,9 @@
+package com.rendox.grocerygenius.feature.listen
+
+sealed interface ListenUiIntent {
+    data class OnEditProductName(val productId: String, val newName: String) : ListenUiIntent
+    data class OnEditCategoryName(val categoryId: String, val newName: String) : ListenUiIntent
+    data class OnEditProductIcon(val productId: String) : ListenUiIntent
+    data object OnCancelEdit : ListenUiIntent
+}
+
