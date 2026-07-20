@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- GroceryListScreen -->
+    <string name="purchased_groceries_group_title">Récemment utilisé</string>
+    <string name="grocery_list_name_text_field_placeholder">Saisir le nom</string>
+    <string name="shopping_done_title">Courses terminées !</string>
+    <string name="empty_grocery_list_title">Ajouter le premier produit !</string>
+    <!-- AddGrocery -->
+    <string name="add_grocery_search_field_placeholder_collapsed">Ajouter un produit</string>
+    <string name="add_grocery_search_field_placeholder_expanded">ex : pain</string>
+    <string name="add_grocery_search_field_trailing_icon_description">Texte vide dans la recherche</string>
+    <string name="add_grocery_refine_item_options_title">Affiné «%s»</string>
+    <string name="add_grocery_edit_item_button_title">Saisir les détails du produit</string>
+    <!-- EditGrocery -->
+    <string name="edit_grocery_item_description_placeholder">Quantité, description</string>
+    <string name="edit_grocery_change_icon_button_title">Changer d\'icône</string>
+    <string name="edit_grocery_change_category_button_title">Changer de catégorie</string>
+    <string name="edit_grocery_remove_item_button_title">Supprimer le produit de la liste</string>
+    <string name="edit_grocery_delete_grocery_button_title">Supprimer ce produit personnalisé</string>
+    <string name="select_category_dialog_title">Choisir une catégorie</string>
+    <string name="select_icon_dialog_title">Choisir une icône</string>
+    <string name="delete_product_dialog_text">Ce produit sera supprimé de toutes les listes de course</string>
+    <string name="delete_grocery_list_dialog_text">Étes-vous sûr de vouloir supprimer ce produit ?</string>
+    <!-- GroceryListsDashboardScreen -->
+    <plurals name="dashboard_item_num_of_groceries_title">
+        <item quantity="one">%d produit</item>
+        <item quantity="other">%d produits</item>
+    </plurals>
+    <string name="add_grocery_list_button_description">Créer une nouvelle liste de course</string>
+    <!-- SettingsScreen -->
+    <string name="settings_dark_theme_config_system_default">Système</string>
+    <string name="settings_dark_theme_config_light">Clair</string>
+    <string name="settings_dark_theme_config_dark">Sombre</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_theme_mode">Mode du thème</string>
+    <string name="settings_use_system_accent_color">Utiliser les couleurs du système</string>
+    <string name="settings_preferences">Préférences</string>
+    <string name="settings_open_last_viewed_list">Ouvrir la dernière liste vue</string>
+    <string name="settings_default_list">Ouvrir la liste par défaut</string>
+    <string name="settings_default_list_unspecified">Non défini</string>
+    <string name="settings_reorder_categories_title">Réorganiser les catégories</string>
+    <string name="settings_reorder_categories_description">Grocery Genius trie les produits par catégories. Vous pouvez organiser les catégories pour correspondre à votre magasin.</string>
+    <string name="settings_dynamic_color_not_supported_message">Votre appareil n\'est pas compatible avec les couleurs dynamiques</string>
+    <string name="settings_feedback">Communautés</string>
+    <string name="github_link_description">Voir le code source, contribuer, signaler un problème ou proposer une fonctionnalité</string>
+    <string name="email_link_title">Envoyer un mail au développeur</string>
+    <string name="email_link_description">Contacter le développeur pour un retour amical, des suggestions ou tout ce que vous avez à l\'esprit.</string>
+    <string name="settings_credits">Crédits</string>
+    <string name="settings_image_by_freepik_title">Image par pch-vector sur Freepik</string>
+    <string name="settings_image_by_freepik_description">Les images des produits des listes de courses ont été créées par pch-vector</string>
+    <!-- IconPickerScreen -->
+    <string name="icon_picker_screen_title">Choisir une icône</string>
+    <string name="icon_picker_search_field_placeholder">Chercher une icône</string>
+    <!-- OnboardingSyncScreen -->
+    <string name="onboarding_sync_status_running_title">Un petit instant…</string>
+    <string name="onboarding_sync_status_succeeded_title">Tout est bon !</string>
+    <string name="onboarding_sync_status_failed_title">Erreur réseau</string>
+    <string name="onboarding_sync_status_offline_title">Pouvez-vous vous connecter à Internet ?</string>
+    <string name="onboarding_sync_description">Nous devons télécharger des produits prédéfinis pour que vous n\'ayez pas à les créer manuellement.</string>
+    <string name="onboarding_skip_sync_button_title">Continuer sans la récupération</string>
+    <!-- General -->
+    <string name="done">Terminé</string>
+    <string name="delete">Effacer</string>
+    <string name="edit">Éditer</string>
+    <string name="back">Retour</string>
+    <string name="settings">Paramètre</string>
+    <string name="forward">Avance</string>
+    <string name="close">Fermer</string>
+    <string name="reset">Remise à zéro</string>
+    <string name="retry">Re-essayer</string>
+    <!-- Components -->
+    <string name="custom_category_title">Produit personnalisé</string>
+    <string name="toggle_dropdown_menu_visibility">Afficher/Masquer le menu</string>
+    <string name="drag_handle">Poignée</string>
+    <!-- Notifications -->
+    <string name="sync_work_notification_channel_name">Synchronisation</string>
+    <string name="sync_work_notification_channel_description">Synchronisation régulière de la base de produits.</string>
+    <string name="sync_work_notification_title">Synchroniser les produits</string>
+</resources>

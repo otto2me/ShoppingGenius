@@ -1,0 +1,1038 @@
+[
+  {
+    "id": "default-product-almonds",
+    "name": "Badem",
+    "iconId": "nuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apple",
+    "name": "Elma",
+    "iconId": "apple.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apricots",
+    "name": "Kayısı",
+    "iconId": "apricots.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-avocado",
+    "name": "Avokado",
+    "iconId": "avocado.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bacon",
+    "name": "Pastırma",
+    "iconId": "bacon.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-baguette",
+    "name": "Baget Ekmek",
+    "iconId": "baguette.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bananas",
+    "name": "Muz",
+    "iconId": "bananas.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-bar",
+    "name": "Kalıp Sabun",
+    "iconId": "soap_bar.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-batteries",
+    "name": "Pil",
+    "iconId": "batteries.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-beef",
+    "name": "Dana Eti",
+    "iconId": "cow.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-beer",
+    "name": "Bira",
+    "iconId": "beer.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-beet",
+    "name": "Pancar",
+    "iconId": "beet.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepper",
+    "name": "Dolmalık Biber",
+    "iconId": "pepper.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-berries",
+    "name": "Çilek Türleri",
+    "iconId": "berries.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bread",
+    "name": "Ekmek",
+    "iconId": "bread.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-broccoli",
+    "name": "Brokoli",
+    "iconId": "broccoli.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-buns",
+    "name": "Çörek",
+    "iconId": "buns.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-butter",
+    "name": "Tereyağı",
+    "iconId": "butter.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cabbage",
+    "name": "Lahana",
+    "iconId": "cabbage.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cake",
+    "name": "Pasta",
+    "iconId": "cake.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-carrots",
+    "name": "Havuç",
+    "iconId": "carrots.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cat-food",
+    "name": "Kedi Maması",
+    "iconId": "cat.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cat-litter",
+    "name": "Kedi Kumu",
+    "iconId": "cat.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cat-treats",
+    "name": "Kedi Ödül Maması",
+    "iconId": "cat.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cereal",
+    "name": "Kahvaltılık Gevrek",
+    "iconId": "cereal.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cheese",
+    "name": "Peynir",
+    "iconId": "cheese.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cherries",
+    "name": "Kiraz",
+    "iconId": "cherries.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chicken",
+    "name": "Tavuk",
+    "iconId": "chicken.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chicken-legs",
+    "name": "Tavuk But",
+    "iconId": "chicken_legs.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chips",
+    "name": "Cips",
+    "iconId": "chips.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chocolate",
+    "name": "Çikolata",
+    "iconId": "chocolate.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cinnamon",
+    "name": "Tarçın",
+    "iconId": "cinnamon.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cleaner-spray",
+    "name": "Temizlik Spreyi",
+    "iconId": "cleaner_spray.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cola",
+    "name": "Kola",
+    "iconId": "can.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-condoms",
+    "name": "Prezervatif",
+    "iconId": "condoms.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cookies",
+    "name": "Kurabiye",
+    "iconId": "cookies.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cottage-cheese",
+    "name": "Lor Peyniri",
+    "iconId": "cottage_cheese.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cotton-swabs",
+    "name": "Kulak Çubuğu",
+    "iconId": "cotton_swabs.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cotton-pads",
+    "name": "Pamuk Ped",
+    "iconId": "cotton_pads.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cream",
+    "name": "Krem",
+    "iconId": "tube.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cucumber",
+    "name": "Salatalık",
+    "iconId": "cucumber.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-deodorant",
+    "name": "Deodorant",
+    "iconId": "deodorant.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-dishwashing-liquid",
+    "name": "Bulaşık Deterjanı",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-dog-food",
+    "name": "Köpek Maması",
+    "iconId": "dog.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-dog-treats",
+    "name": "Köpek Ödül Maması",
+    "iconId": "dog.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-drinks",
+    "name": "İçecekler",
+    "iconId": "drinks.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eggplant",
+    "name": "Patlıcan",
+    "iconId": "eggplant.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eggs",
+    "name": "Yumurta",
+    "iconId": "eggs.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-energy-drink",
+    "name": "Enerji İçeceği",
+    "iconId": "can.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fish",
+    "name": "Balık",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-flour",
+    "name": "Un",
+    "iconId": "flour.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruits",
+    "name": "Meyveler",
+    "iconId": "fruits.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-garlic",
+    "name": "Sarımsak",
+    "iconId": "garlic.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gift",
+    "name": "Hediye",
+    "iconId": "gift.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grain",
+    "name": "Tahıl",
+    "iconId": "grain.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grapes",
+    "name": "Üzüm",
+    "iconId": "grapes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-minced-meat",
+    "name": "Kıyma",
+    "iconId": "minced_meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hair-gel",
+    "name": "Saç Jeli",
+    "iconId": "cream.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-ham",
+    "name": "Jambon",
+    "iconId": "ham.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-honey",
+    "name": "Bal",
+    "iconId": "honey.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-ice-cream",
+    "name": "Dondurma",
+    "iconId": "ice_cream.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-jam",
+    "name": "Reçel",
+    "iconId": "jam.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-juice",
+    "name": "Meyve Suyu",
+    "iconId": "juice.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-ketchup",
+    "name": "Ketçap",
+    "iconId": "ketchup.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kiwi",
+    "name": "Kivi",
+    "iconId": "kiwi.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lamb",
+    "name": "Kuzu Eti",
+    "iconId": "sheep.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lemon",
+    "name": "Limon",
+    "iconId": "lemon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lipstick",
+    "name": "Ruj",
+    "iconId": "lipstick.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-liquid",
+    "name": "Sıvı Sabun",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mandarins",
+    "name": "Mandalina",
+    "iconId": "mandarins.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-margarine",
+    "name": "Margarin",
+    "iconId": "butter.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mayonnaise",
+    "name": "Mayonez",
+    "iconId": "sauce.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-meat",
+    "name": "Et",
+    "iconId": "meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-milk",
+    "name": "Süt",
+    "iconId": "milk.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muesli",
+    "name": "Müsli",
+    "iconId": "cereal.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mushroom",
+    "name": "Mantar",
+    "iconId": "mushroom.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mustard",
+    "name": "Hardal",
+    "iconId": "cream.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-napkins",
+    "name": "Peçete",
+    "iconId": "napkins.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-noodles",
+    "name": "Erişte",
+    "iconId": "pasta.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nuts",
+    "name": "Kuruyemiş",
+    "iconId": "nuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-oats",
+    "name": "Yulaf",
+    "iconId": "oats.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-oil",
+    "name": "Yağ",
+    "iconId": "bottle_narrow.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-onions",
+    "name": "Soğan",
+    "iconId": "onion.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-orange",
+    "name": "Portakal",
+    "iconId": "orange.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pads",
+    "name": "Hijyenik Ped",
+    "iconId": "pads.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-paper-towels",
+    "name": "Kağıt Havlu",
+    "iconId": "toilet_paper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-paprika",
+    "name": "Kırmızı Biber",
+    "iconId": "jar_spices.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-parsley",
+    "name": "Maydanoz",
+    "iconId": "parsley.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pasta",
+    "name": "Makarna",
+    "iconId": "pasta.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peach",
+    "name": "Şeftali",
+    "iconId": "peach.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peanuts",
+    "name": "Yer Fıstığı",
+    "iconId": "nuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pear",
+    "name": "Armut",
+    "iconId": "pear.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peas",
+    "name": "Bezelye",
+    "iconId": "peas.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peppercorns",
+    "name": "Karabiber",
+    "iconId": "jar_spices.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-perfume",
+    "name": "Parfüm",
+    "iconId": "perfume.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pills",
+    "name": "Hap",
+    "iconId": "pills.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pineapple",
+    "name": "Ananas",
+    "iconId": "pineapple.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pizza",
+    "name": "Pizza",
+    "iconId": "pizza.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-plums",
+    "name": "Erik",
+    "iconId": "plums.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-popcorn",
+    "name": "Patlamış Mısır",
+    "iconId": "popcorn.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pork",
+    "name": "Domuz Eti",
+    "iconId": "pork.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-potatoes",
+    "name": "Patates",
+    "iconId": "potatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pretzels",
+    "name": "Tuzlu Çubuk",
+    "iconId": "pretzels.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pumpkin",
+    "name": "Bal Kabağı",
+    "iconId": "pumpkin.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-raspberry",
+    "name": "Ahududu",
+    "iconId": "raspberry.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-razor",
+    "name": "Tıraş Bıçağı",
+    "iconId": "razor.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rice",
+    "name": "Pirinç",
+    "iconId": "rice.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rubbish-sacks",
+    "name": "Çöp Poşeti",
+    "iconId": "rubbish_sacks.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salami",
+    "name": "Salam",
+    "iconId": "salami.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salmon",
+    "name": "Somon",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salt",
+    "name": "Tuz",
+    "iconId": "salt.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sauce",
+    "name": "Sos",
+    "iconId": "ketchup.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sausages",
+    "name": "Sosis",
+    "iconId": "sausages.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shampoo",
+    "name": "Şampuan",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shaving-cream",
+    "name": "Tıraş Kremi",
+    "iconId": "tube.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shopping-bag",
+    "name": "Alışveriş Çantası",
+    "iconId": "shopping_bag.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shower-gel",
+    "name": "Duş Jeli",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shrimp",
+    "name": "Karides",
+    "iconId": "shrimp.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-smoothie",
+    "name": "Smoothie",
+    "iconId": "smoothie.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-snacks",
+    "name": "Atıştırmalıklar",
+    "iconId": "snacks.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soda",
+    "name": "Gazoz",
+    "iconId": "can.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sour-cream",
+    "name": "Ekşi Krema",
+    "iconId": "sauce.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soy-sauce",
+    "name": "Soya Sosu",
+    "iconId": "bottle_narrow.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spaghetti",
+    "name": "Spagetti",
+    "iconId": "pasta.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spices",
+    "name": "Baharatlar",
+    "iconId": "spices.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sponge",
+    "name": "Sünger",
+    "iconId": "sponge.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-strawberry",
+    "name": "Çilek",
+    "iconId": "strawberry.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sugar",
+    "name": "Şeker",
+    "iconId": "sugar_cubes.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sweet-corn",
+    "name": "Tatlı Mısır",
+    "iconId": "sweet_corn.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sweets",
+    "name": "Şekerlemeler",
+    "iconId": "sweets.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tangerines",
+    "name": "Mandalina",
+    "iconId": "tangerines.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tea",
+    "name": "Çay",
+    "iconId": "tea.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toast",
+    "name": "Tost Ekmeği",
+    "iconId": "toast.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toilet-paper",
+    "name": "Tuvalet Kağıdı",
+    "iconId": "toilet_paper.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomatoes",
+    "name": "Domates",
+    "iconId": "tomatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomato-paste",
+    "name": "Domates Salçası",
+    "iconId": "tomato_paste.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toothbrush",
+    "name": "Diş Fırçası",
+    "iconId": "toothbrush.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toothpaste",
+    "name": "Diş Macunu",
+    "iconId": "tube.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-trout",
+    "name": "Alabalık",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tuna",
+    "name": "Ton Balığı",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vegetables",
+    "name": "Sebzeler",
+    "iconId": "vegetables.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vinegar",
+    "name": "Sirke",
+    "iconId": "bottle_narrow.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-walnuts",
+    "name": "Ceviz",
+    "iconId": "walnuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-water",
+    "name": "Su",
+    "iconId": "bottle_plastic.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-watermelon",
+    "name": "Karpuz",
+    "iconId": "watermelon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wine",
+    "name": "Şarap",
+    "iconId": "wine.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-yogurt",
+    "name": "Yoğurt",
+    "iconId": "bottle_small.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zucchini",
+    "name": "Kabak",
+    "iconId": "zucchini.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  }
+]

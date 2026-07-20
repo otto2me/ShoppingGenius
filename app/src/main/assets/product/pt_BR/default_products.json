@@ -1,0 +1,1038 @@
+[
+  {
+    "id": "default-product-almonds",
+    "name": "Amêndoas",
+    "iconId": "nuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apple",
+    "name": "Maçãs",
+    "iconId": "apple.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apricots",
+    "name": "Damascos",
+    "iconId": "apricots.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-avocado",
+    "name": "Abacate",
+    "iconId": "avocado.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bacon",
+    "name": "Queijo",
+    "iconId": "bacon.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-baguette",
+    "name": "Baguete",
+    "iconId": "baguette.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bananas",
+    "name": "Bananas",
+    "iconId": "bananas.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-bar",
+    "name": "Sabonete em barra",
+    "iconId": "soap_bar.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-batteries",
+    "name": "Baterias",
+    "iconId": "batteries.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-beef",
+    "name": "Bife",
+    "iconId": "cow.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-beer",
+    "name": "Cerveja",
+    "iconId": "beer.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-beet",
+    "name": "Beterraba",
+    "iconId": "beet.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepper",
+    "name": "Pimentão",
+    "iconId": "pepper.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-berries",
+    "name": "Bagas",
+    "iconId": "berries.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bread",
+    "name": "Pão",
+    "iconId": "bread.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-broccoli",
+    "name": "Brócolis",
+    "iconId": "broccoli.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-buns",
+    "name": "Pães",
+    "iconId": "buns.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-butter",
+    "name": "Manteiga",
+    "iconId": "butter.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cabbage",
+    "name": "Repolho",
+    "iconId": "cabbage.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cake",
+    "name": "Bolo",
+    "iconId": "cake.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-carrots",
+    "name": "Cenouras",
+    "iconId": "carrots.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cat-food",
+    "name": "Comida de gato",
+    "iconId": "cat.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cat-litter",
+    "name": "Areia higiênica para gatos",
+    "iconId": "cat.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cat-treats",
+    "name": "Petiscos para gatos",
+    "iconId": "cat.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cereal",
+    "name": "Cereal",
+    "iconId": "cereal.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cheese",
+    "name": "Queijo",
+    "iconId": "cheese.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cherries",
+    "name": "Cerejas",
+    "iconId": "cherries.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chicken",
+    "name": "Galinha",
+    "iconId": "chicken.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chicken-legs",
+    "name": "Coxa de frango",
+    "iconId": "chicken_legs.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chips",
+    "name": "Salgadinhos",
+    "iconId": "chips.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-chocolate",
+    "name": "Chocolate",
+    "iconId": "chocolate.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cinnamon",
+    "name": "Canela",
+    "iconId": "cinnamon.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cleaner-spray",
+    "name": "Spray de Limpeza",
+    "iconId": "cleaner_spray.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cola",
+    "name": "Refrigerante",
+    "iconId": "can.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-condoms",
+    "name": "Preservativos",
+    "iconId": "condoms.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cookies",
+    "name": "Biscoitos",
+    "iconId": "cookies.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cottage-cheese",
+    "name": "Queijo cottage",
+    "iconId": "cottage_cheese.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cotton-swabs",
+    "name": "Cotonetes",
+    "iconId": "cotton_swabs.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cotton-pads",
+    "name": "Almofadas de algodão",
+    "iconId": "cotton_pads.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cream",
+    "name": "Creme",
+    "iconId": "tube.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cucumber",
+    "name": "Pepino",
+    "iconId": "cucumber.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-deodorant",
+    "name": "Desodorante",
+    "iconId": "deodorant.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-dishwashing-liquid",
+    "name": "Detergente líquido",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-dog-food",
+    "name": "Comida para cachorro",
+    "iconId": "dog.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-dog-treats",
+    "name": "Petiscos para cães",
+    "iconId": "dog.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-drinks",
+    "name": "Bebidas",
+    "iconId": "drinks.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eggplant",
+    "name": "Berinjela",
+    "iconId": "eggplant.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eggs",
+    "name": "Ovos",
+    "iconId": "eggs.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-energy-drink",
+    "name": "Bebida energética",
+    "iconId": "can.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fish",
+    "name": "Peixe",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-flour",
+    "name": "Farinha",
+    "iconId": "flour.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruits",
+    "name": "Frutas",
+    "iconId": "fruits.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-garlic",
+    "name": "Alho",
+    "iconId": "garlic.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gift",
+    "name": "Presente",
+    "iconId": "gift.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grain",
+    "name": "Grãos",
+    "iconId": "grain.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grapes",
+    "name": "Uvas",
+    "iconId": "grapes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-minced-meat",
+    "name": "Carne moída",
+    "iconId": "minced_meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hair-gel",
+    "name": "Gel de cabelo",
+    "iconId": "cream.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-ham",
+    "name": "Presunto",
+    "iconId": "ham.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-honey",
+    "name": "Mel",
+    "iconId": "honey.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-ice-cream",
+    "name": "Sorvete",
+    "iconId": "ice_cream.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-jam",
+    "name": "Geleia",
+    "iconId": "jam.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-juice",
+    "name": "Suco",
+    "iconId": "juice.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-ketchup",
+    "name": "Ketchup",
+    "iconId": "ketchup.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kiwi",
+    "name": "Kiwi",
+    "iconId": "kiwi.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lamb",
+    "name": "Cordeiro",
+    "iconId": "sheep.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lemon",
+    "name": "Limão",
+    "iconId": "lemon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lipstick",
+    "name": "Batom",
+    "iconId": "lipstick.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-liquid",
+    "name": "Sabão líquido",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mandarins",
+    "name": "Tangerinas",
+    "iconId": "mandarins.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-margarine",
+    "name": "Margarina",
+    "iconId": "butter.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mayonnaise",
+    "name": "Maionese",
+    "iconId": "sauce.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-meat",
+    "name": "Carne",
+    "iconId": "meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-milk",
+    "name": "Leite",
+    "iconId": "milk.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muesli",
+    "name": "Muesli",
+    "iconId": "cereal.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mushroom",
+    "name": "Cogumelo",
+    "iconId": "mushroom.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mustard",
+    "name": "Mostarda",
+    "iconId": "cream.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-napkins",
+    "name": "Guardanapos",
+    "iconId": "napkins.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-noodles",
+    "name": "Miojo",
+    "iconId": "pasta.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nuts",
+    "name": "Nozes",
+    "iconId": "nuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-oats",
+    "name": "Aveias",
+    "iconId": "oats.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-oil",
+    "name": "Óleo",
+    "iconId": "bottle_narrow.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-onions",
+    "name": "Cebolas",
+    "iconId": "onion.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-orange",
+    "name": "Laranja",
+    "iconId": "orange.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pads",
+    "name": "Absorventes",
+    "iconId": "pads.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-paper-towels",
+    "name": "Toalhas de papel",
+    "iconId": "toilet_paper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-paprika",
+    "name": "Páprica",
+    "iconId": "jar_spices.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-parsley",
+    "name": "Salsa",
+    "iconId": "parsley.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pasta",
+    "name": "Macarrão",
+    "iconId": "pasta.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peach",
+    "name": "Pêssegos",
+    "iconId": "peach.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peanuts",
+    "name": "Amendoins",
+    "iconId": "nuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pear",
+    "name": "Pera",
+    "iconId": "pear.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peas",
+    "name": "Ervilhas",
+    "iconId": "peas.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-peppercorns",
+    "name": "Grãos de pimenta",
+    "iconId": "jar_spices.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-perfume",
+    "name": "Perfume",
+    "iconId": "perfume.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pills",
+    "name": "Comprimidos",
+    "iconId": "pills.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pineapple",
+    "name": "Abacaxi",
+    "iconId": "pineapple.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pizza",
+    "name": "Pizza",
+    "iconId": "pizza.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-plums",
+    "name": "Ameixas",
+    "iconId": "plums.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-popcorn",
+    "name": "Pipoca",
+    "iconId": "popcorn.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pork",
+    "name": "Porco",
+    "iconId": "pork.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-potatoes",
+    "name": "Batatas",
+    "iconId": "potatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pretzels",
+    "name": "Pretzels",
+    "iconId": "pretzels.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pumpkin",
+    "name": "Abóbora",
+    "iconId": "pumpkin.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-raspberry",
+    "name": "Framboesa",
+    "iconId": "raspberry.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-razor",
+    "name": "Navalha",
+    "iconId": "razor.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rice",
+    "name": "Arroz",
+    "iconId": "rice.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rubbish-sacks",
+    "name": "Sacos de Lixo",
+    "iconId": "rubbish_sacks.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salami",
+    "name": "Salami",
+    "iconId": "salami.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salmon",
+    "name": "Salmão",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salt",
+    "name": "Sal",
+    "iconId": "salt.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sauce",
+    "name": "Molho",
+    "iconId": "ketchup.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sausages",
+    "name": "Linguiças",
+    "iconId": "sausages.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shampoo",
+    "name": "Shampoo",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shaving-cream",
+    "name": "Creme de barbear",
+    "iconId": "tube.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shopping-bag",
+    "name": "Sacola de Compras",
+    "iconId": "shopping_bag.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shower-gel",
+    "name": "Gel para banho",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-shrimp",
+    "name": "Camarão",
+    "iconId": "shrimp.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-smoothie",
+    "name": "Iogurte",
+    "iconId": "smoothie.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-snacks",
+    "name": "Lanches",
+    "iconId": "snacks.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soda",
+    "name": "Refrigerante",
+    "iconId": "can.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sour-cream",
+    "name": "Creme azedo",
+    "iconId": "sauce.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soy-sauce",
+    "name": "Molho Shoyu",
+    "iconId": "bottle_narrow.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spaghetti",
+    "name": "Espaguete",
+    "iconId": "pasta.png",
+    "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spices",
+    "name": "Temperos",
+    "iconId": "spices.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sponge",
+    "name": "Esponja",
+    "iconId": "sponge.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-strawberry",
+    "name": "Morango",
+    "iconId": "strawberry.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sugar",
+    "name": "Açúcar",
+    "iconId": "sugar_cubes.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sweet-corn",
+    "name": "Milho-doce",
+    "iconId": "sweet_corn.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sweets",
+    "name": "Doces",
+    "iconId": "sweets.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tangerines",
+    "name": "Tangerinas",
+    "iconId": "tangerines.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tea",
+    "name": "Chá",
+    "iconId": "tea.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toast",
+    "name": "Torrada",
+    "iconId": "toast.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toilet-paper",
+    "name": "Papel higiênico",
+    "iconId": "toilet_paper.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomatoes",
+    "name": "Tomates",
+    "iconId": "tomatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomato-paste",
+    "name": "Pasta de tomate",
+    "iconId": "tomato_paste.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toothbrush",
+    "name": "Escova de dentes",
+    "iconId": "toothbrush.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-toothpaste",
+    "name": "Pasta de dente",
+    "iconId": "tube.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-trout",
+    "name": "Truta",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tuna",
+    "name": "Atum",
+    "iconId": "fish.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vegetables",
+    "name": "Vegetais",
+    "iconId": "vegetables.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vinegar",
+    "name": "Vinagre",
+    "iconId": "bottle_narrow.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-walnuts",
+    "name": "Nozes",
+    "iconId": "walnuts.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-water",
+    "name": "Água",
+    "iconId": "bottle_plastic.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-watermelon",
+    "name": "Melancia",
+    "iconId": "watermelon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wine",
+    "name": "Vinho",
+    "iconId": "wine.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-yogurt",
+    "name": "Iogurte",
+    "iconId": "bottle_small.png",
+    "categoryId": "default-category-dairy-and-eggs",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zucchini",
+    "name": "Abobrinha",
+    "iconId": "zucchini.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  }
+]

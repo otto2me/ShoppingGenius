@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- GroceryListScreen -->
+    <string name="purchased_groceries_group_title">Zuletzt verwendet</string>
+    <string name="grocery_list_name_text_field_placeholder">Name eingeben</string>
+    <string name="shopping_done_title">Einkauf erledigt!</string>
+    <string name="empty_grocery_list_title">Füge deine ersten Lebensmittel hinzu!</string>
+    <!-- AddGrocery -->
+    <string name="add_grocery_search_field_placeholder_collapsed">Lebensmittel hinzufügen</string>
+    <string name="add_grocery_search_field_placeholder_expanded">z.B. Brot</string>
+    <string name="add_grocery_search_field_trailing_icon_description">Text in der Suchleiste löschen</string>
+    <string name="add_grocery_refine_item_options_title">Verfeinere «%s»</string>
+    <string name="add_grocery_edit_item_button_title">Details eingeben</string>
+    <!-- EditGrocery -->
+    <string name="edit_grocery_item_description_placeholder">Anzahl, Beschreibung</string>
+    <string name="edit_grocery_change_icon_button_title">Icon anpassen</string>
+    <string name="edit_grocery_change_category_button_title">Kategorie ändern</string>
+    <string name="edit_grocery_remove_item_button_title">Von Liste entfernen</string>
+    <string name="edit_grocery_delete_grocery_button_title">Benutzerdefinierte Einträge löschen</string>
+    <string name="select_category_dialog_title">Kategorie auswählen</string>
+    <string name="select_icon_dialog_title">Icon auswählen</string>
+    <string name="delete_product_dialog_text">Dieser Eintrag wird von all deinen Einkaufslisten entfernt</string>
+    <string name="delete_grocery_list_dialog_text">Bist du sicher, dass du diese Liste löschen möchtest?</string>
+    <!-- GroceryListsDashboardScreen -->
+    <plurals name="dashboard_item_num_of_groceries_title">
+        <item quantity="one">%d Eintrag</item>
+        <item quantity="other">%d Einträge</item>
+    </plurals>
+    <string name="add_grocery_list_button_description">Neue Einkaufsliste erstellen</string>
+    <!-- SettingsScreen -->
+    <string name="settings_dark_theme_config_system_default">System</string>
+    <string name="settings_dark_theme_config_light">Hell</string>
+    <string name="settings_dark_theme_config_dark">Dunkel</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_theme_mode">Farbthema</string>
+    <string name="settings_use_system_accent_color">Systemakzentfarbe verwenden</string>
+    <string name="settings_preferences">Voreinstellungen</string>
+    <string name="settings_open_last_viewed_list">Zuletzt angesehene Liste öffnen</string>
+    <string name="settings_default_list">Standardliste öffnen</string>
+    <string name="settings_default_list_unspecified">Undefiniert</string>
+    <string name="settings_reorder_categories_title">Kategorien neu sortieren</string>
+    <string name="settings_reorder_categories_description">Grocery Genius sortiert Artikel nach ihren Kategorien. Sie können sie so ordnen, dass sie Ihrem Lieblingsgeschäft entsprechen.</string>
+    <string name="settings_dynamic_color_not_supported_message">Dein Gerät unterstützt keine dynamischen Farben</string>
+    <string name="settings_feedback">Feedback</string>
+    <string name="github_link_description">Sieh dir den Quellcode an, trage bei, melde Fehler und schlage neue Funktionen vor.</string>
+    <string name="email_link_title">Entwickler kontaktieren</string>
+    <string name="email_link_description">Kontaktieren den Entwickler für freundliche Rückmeldungen, Vorschläge oder alle anderen Ideen, die du im Kopf hast.</string>
+    <string name="settings_credits">Credits</string>
+    <string name="settings_image_by_freepik_title">Bild von pch.vector auf Freepik</string>
+    <string name="settings_image_by_freepik_description">Das Bild, das auf der Einkaufsliste angezeigt wird, wurde von pch.vector erstellt</string>
+    <!-- IconPickerScreen -->
+    <string name="icon_picker_screen_title">Symbol wählen</string>
+    <string name="icon_picker_search_field_placeholder">Symbol suchen</string>
+    <!-- OnboardingSyncScreen -->
+    <string name="onboarding_sync_status_running_title">Nur eine Sekunde…</string>
+    <string name="onboarding_sync_status_succeeded_title">Fertig!</string>
+    <string name="onboarding_sync_status_failed_title">Netzwerkanfrage fehlgeschlagen</string>
+    <string name="onboarding_sync_status_offline_title">Kannst du dich mit dem Internet verbinden?</string>
+    <string name="onboarding_sync_description">Wir müssen einige vordefinierte Lebensmittel herunterladen, damit diese nicht manuell erstellt werden müssen.</string>
+    <string name="onboarding_skip_sync_button_title">Ohne Abruf fortfahren</string>
+    <!-- General -->
+    <string name="done">Fertig</string>
+    <string name="delete">Löschen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="back">Zurück</string>
+    <string name="settings">Einstellungen</string>
+    <string name="forward">Weiterleiten</string>
+    <string name="close">Schließen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="retry">Wiederholen</string>
+    <!-- Components -->
+    <string name="custom_category_title">Benutzerdefinierte Lebensmittel</string>
+    <string name="toggle_dropdown_menu_visibility">Dropdown-Menü ein-/ausblenden</string>
+    <string name="drag_handle">Griff ziehen</string>
+    <!-- Notifications -->
+    <string name="sync_work_notification_channel_name">Synchronisierung</string>
+    <string name="sync_work_notification_channel_description">Regelmäßige Synchronisierung der Lebensmitteldatenbank.</string>
+    <string name="sync_work_notification_title">Synchronisieren deiner Lebensmittel</string>
+</resources>

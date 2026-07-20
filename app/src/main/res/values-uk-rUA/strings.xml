@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- GroceryListScreen -->
+    <string name="purchased_groceries_group_title">Нещодавно використані</string>
+    <string name="grocery_list_name_text_field_placeholder">Введіть назву</string>
+    <string name="shopping_done_title">Покупки завершено!</string>
+    <string name="empty_grocery_list_title">Додайте свої перші продукти!</string>
+    <!-- AddGrocery -->
+    <string name="add_grocery_search_field_placeholder_collapsed">Додайте продукт</string>
+    <string name="add_grocery_search_field_placeholder_expanded">напр. хліб</string>
+    <string name="add_grocery_search_field_trailing_icon_description">Очистити текст у панелі пошуку</string>
+    <string name="add_grocery_refine_item_options_title">Уточнити «%s»</string>
+    <string name="add_grocery_edit_item_button_title">Ввести деталі про товар</string>
+    <!-- EditGrocery -->
+    <string name="edit_grocery_item_description_placeholder">Кількість, опис</string>
+    <string name="edit_grocery_change_icon_button_title">Змінити іконку</string>
+    <string name="edit_grocery_change_category_button_title">Змінити категорію</string>
+    <string name="edit_grocery_remove_item_button_title">Видалити елемент зі списку</string>
+    <string name="edit_grocery_delete_grocery_button_title">Видалити свій продукт</string>
+    <string name="select_category_dialog_title">Оберіть категорію</string>
+    <string name="select_icon_dialog_title">Виберіть іконку</string>
+    <string name="delete_product_dialog_text">Цей товар буде видалено з усіх ваших списків продуктів</string>
+    <string name="delete_grocery_list_dialog_text">Ви впевнені, що хочете видалити цей список?</string>
+    <!-- GroceryListsDashboardScreen -->
+    <plurals name="dashboard_item_num_of_groceries_title">
+        <item quantity="one">%d товар</item>
+        <item quantity="few">%d товари</item>
+        <item quantity="many">%d товарів</item>
+        <item quantity="other">%d товарів</item>
+    </plurals>
+    <string name="add_grocery_list_button_description">Створити новий список продуктів</string>
+    <!-- SettingsScreen -->
+    <string name="settings_dark_theme_config_system_default">Система</string>
+    <string name="settings_dark_theme_config_light">Світла</string>
+    <string name="settings_dark_theme_config_dark">Темна</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_theme_mode">Режим теми</string>
+    <string name="settings_use_system_accent_color">Використовувати акцентний колір системи</string>
+    <string name="settings_preferences">Налаштування</string>
+    <string name="settings_open_last_viewed_list">Відкривати останній переглянутий список</string>
+    <string name="settings_default_list">Відкривати список за замовчуванням</string>
+    <string name="settings_default_list_unspecified">Не вказаний</string>
+    <string name="settings_reorder_categories_title">Сортувати категорії</string>
+    <string name="settings_reorder_categories_description">Grocery Genius сортує товари за їхніми категоріями. Ви можете впорядкувати їх відповідно до вашого улюбленого магазину.</string>
+    <string name="settings_dynamic_color_not_supported_message">Ваш пристрій не підтримує динамічний колір</string>
+    <string name="settings_feedback">Зворотній зв\'язок</string>
+    <string name="github_link_description">Переглянути вихідний код, допомогти проєкту, повідомити про помилки або запропонувати функції.</string>
+    <string name="email_link_title">Надіслати листа розробнику</string>
+    <string name="email_link_description">Написати розробнику, щоб залишити відгук, запропонувати щось або поділитися своїми думками.</string>
+    <string name="settings_credits">Подяки</string>
+    <string name="settings_image_by_freepik_title">Зображення від pch.vector на Freepik</string>
+    <string name="settings_image_by_freepik_description">Зображення на екрані списку продуктів, було створено pch.vector</string>
+    <!-- IconPickerScreen -->
+    <string name="icon_picker_screen_title">Виберіть іконку</string>
+    <string name="icon_picker_search_field_placeholder">Шукати іконку</string>
+    <!-- OnboardingSyncScreen -->
+    <string name="onboarding_sync_status_running_title">Секунду …</string>
+    <string name="onboarding_sync_status_succeeded_title">Все готово!</string>
+    <string name="onboarding_sync_status_failed_title">Не вдалося виконати запит до мережі</string>
+    <string name="onboarding_sync_status_offline_title">Можете підключитися до інтернету?</string>
+    <string name="onboarding_sync_description">Потрібно завантажити деякі продукти, щоб вам не доводилося створювати їх вручну.</string>
+    <string name="onboarding_skip_sync_button_title">Продовжити без завантаження</string>
+    <!-- General -->
+    <string name="done">Готово</string>
+    <string name="delete">Видалити</string>
+    <string name="edit">Редагувати</string>
+    <string name="back">Назад</string>
+    <string name="settings">Налаштування</string>
+    <string name="forward">Вперед</string>
+    <string name="close">Закрити</string>
+    <string name="reset">Скинути</string>
+    <string name="retry">Повторити спробу</string>
+    <!-- Components -->
+    <string name="custom_category_title">Власні</string>
+    <string name="toggle_dropdown_menu_visibility">Показати/приховати випадне меню</string>
+    <string name="drag_handle">Елемент для перетягування</string>
+    <!-- Notifications -->
+    <string name="sync_work_notification_channel_name">Синхронізація</string>
+    <string name="sync_work_notification_channel_description">Періодична синхронізація бази продуктів.</string>
+    <string name="sync_work_notification_title">Синхронізуємо ваші продукти</string>
+</resources>
