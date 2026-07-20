@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlin) apply false
     alias(libs.plugins.hiltPlugin) apply false
     alias(libs.plugins.roomPlugin) apply false
+    alias(libs.plugins.ksp) apply false
     alias(libs.plugins.androidTest) apply false
     alias(libs.plugins.baselineprofile) apply false
     alias(libs.plugins.ktlint) apply false
