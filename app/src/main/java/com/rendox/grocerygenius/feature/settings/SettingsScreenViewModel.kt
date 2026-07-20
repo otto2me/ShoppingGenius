@@ -2,9 +2,15 @@ package com.rendox.grocerygenius.feature.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rendox.grocerygenius.data.Synchronizer
 import com.rendox.grocerygenius.data.category.CategoryRepository
 import com.rendox.grocerygenius.data.grocerylist.GroceryListRepository
+import com.rendox.grocerygenius.data.icons.IconRepository
+import com.rendox.grocerygenius.data.product.ProductRepository
 import com.rendox.grocerygenius.data.userpreferences.UserPreferencesRepository
+import com.rendox.grocerygenius.datastore.ChangeListVersionsDataSource
+import com.rendox.grocerygenius.locale.AppLocaleManager
+import com.rendox.grocerygenius.model.ChangeListVersions
 import com.rendox.grocerygenius.ui.helpers.UiEvent
 import com.rendox.grocerygenius.ui.theme.dynamicColorIsSupported
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +26,12 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class SettingsScreenViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository,
+    private val changeListVersionsDataSource: ChangeListVersionsDataSource,
+    private val appLocaleManager: AppLocaleManager,
     groceryListRepository: GroceryListRepository,
-    private val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository,
+    private val productRepository: ProductRepository,
+    private val iconRepository: IconRepository
 ) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(SettingsScreenState())
@@ -76,6 +86,15 @@ class SettingsScreenViewModel @Inject constructor(
                 }
             }
 
+            is SettingsScreenIntent.ChangeLanguage -> {
+                _uiStateFlow.update { it.copy(isLoading = true) }
+                appLocaleManager.applyLanguageTag(intent.languageTag)
+                userPreferencesRepository.updateSelectedLanguageTag(intent.languageTag)
+                changeListVersionsDataSource.updateChangeListVersion { ChangeListVersions() }
+                syncLocalizedData()
+                _uiStateFlow.update { it.copy(isLoading = false) }
+            }
+
             is SettingsScreenIntent.ChangeColorScheme ->
                 userPreferencesRepository.updateSelectedTheme(intent.scheme)
 
@@ -102,6 +121,25 @@ class SettingsScreenViewModel @Inject constructor(
                 _uiStateFlow.update { it.copy(categories = newCategories) }
                 categoryRepository.updateCategories(newCategories)
             }
+        }
+    }
+
+    private suspend fun syncLocalizedData() {
+        val synchronizer = object : Synchronizer {
+            override suspend fun getChangeListVersions(): ChangeListVersions =
+                changeListVersionsDataSource.getChangeListVersions()
+
+            override suspend fun updateChangeListVersions(
+                update: ChangeListVersions.() -> ChangeListVersions
+            ) {
+                changeListVersionsDataSource.updateChangeListVersion(update)
+            }
+        }
+
+        with(synchronizer) {
+            iconRepository.sync()
+            categoryRepository.sync()
+            productRepository.sync()
         }
     }
 }

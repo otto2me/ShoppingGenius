@@ -33,6 +33,8 @@
     <string name="settings_dark_theme_config_dark">Dunkel</string>
     <string name="settings_theme">Design</string>
     <string name="settings_theme_mode">Farbthema</string>
+    <string name="settings_language">Sprache</string>
+    <string name="settings_language_system_default">Systemstandard</string>
     <string name="settings_use_system_accent_color">Systemakzentfarbe verwenden</string>
     <string name="settings_preferences">Voreinstellungen</string>
     <string name="settings_open_last_viewed_list">Zuletzt angesehene Liste öffnen</string>

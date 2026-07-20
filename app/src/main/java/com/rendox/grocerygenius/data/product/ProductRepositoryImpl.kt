@@ -59,7 +59,7 @@ class ProductRepositoryImpl @Inject constructor(
     override suspend fun syncWith(synchronizer: Synchronizer) = synchronizer.changeListSync(
         prepopulateWithInitialData = {
             val products = productNetworkDataSource.getAllProducts()
-            productDao.insertProducts(products.map { it.asEntity() })
+            productDao.upsertProducts(products.map { it.asEntity() })
         },
         versionReader = { it.productVersion },
         changeListFetcher = { currentVersion ->

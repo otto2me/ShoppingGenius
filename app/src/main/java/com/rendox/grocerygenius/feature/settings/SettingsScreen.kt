@@ -71,6 +71,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rendox.grocerygenius.R
 import com.rendox.grocerygenius.feature.settings.categories.recyclerview.CategoriesRecyclerViewAdapter
+import com.rendox.grocerygenius.model.AppLanguage
 import com.rendox.grocerygenius.model.Category
 import com.rendox.grocerygenius.model.DarkThemeConfig
 import com.rendox.grocerygenius.model.GroceryGeniusColorScheme
@@ -119,6 +120,7 @@ private fun SettingsScreen(
     navigateBack: () -> Unit
 ) {
     var isThemeDropdownExpanded by remember { mutableStateOf(false) }
+    var isLanguageDropdownExpanded by remember { mutableStateOf(false) }
     var isDefaultListDropdownExpanded by remember { mutableStateOf(false) }
 
     val toolbarHeightRange = with(LocalDensity.current) {
@@ -242,6 +244,23 @@ private fun SettingsScreen(
                                 }
                             )
                         }
+                    }
+                    item {
+                        SettingsTitle(
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                            title = stringResource(R.string.settings_language)
+                        )
+                    }
+                    item {
+                        LanguageSetting(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            selectedLanguageTag = uiState.userPreferences.selectedLanguageTag,
+                            isLanguageDropdownExpanded = isLanguageDropdownExpanded,
+                            onChangeLanguage = { onIntent(SettingsScreenIntent.ChangeLanguage(it)) },
+                            onLanguageDropdownExpandedChanged = {
+                                isLanguageDropdownExpanded = it
+                            }
+                        )
                     }
                     item {
                         SettingsTitle(
@@ -380,6 +399,71 @@ fun DarkThemeConfigSetting(
                         textAlign = TextAlign.Center
                     )
                     DropDownMenuToggleIcon(expanded = isThemeDropdownExpanded)
+                }
+            }
+        }
+    )
+}
+
+@Composable
+fun LanguageSetting(
+    modifier: Modifier = Modifier,
+    selectedLanguageTag: String?,
+    isLanguageDropdownExpanded: Boolean,
+    onChangeLanguage: (String?) -> Unit,
+    onLanguageDropdownExpandedChanged: (Boolean) -> Unit
+) {
+    val languageOptions = remember {
+        listOf<String?>(null) + AppLanguage.supportedLanguageTags
+    }
+    val languageLabels = languageOptions.map { languageTag ->
+        when (languageTag) {
+            null -> stringResource(R.string.settings_language_system_default)
+            else -> AppLanguage.displayName(languageTag)
+        }
+    }
+    val selectedOptionIndex = remember(selectedLanguageTag, languageOptions) {
+        languageOptions.indexOf(selectedLanguageTag).let { index -> if (index >= 0) index else 0 }
+    }
+
+    CustomIconSetting(
+        modifier = modifier,
+        title = stringResource(R.string.settings_language),
+        icon = {
+            Icon(
+                painterResource(R.drawable.baseline_folder_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            TonalDataInput(
+                onClick = { onLanguageDropdownExpandedChanged(!isLanguageDropdownExpanded) },
+                indication = null,
+                dropDownMenu = {
+                    LazyDropdownMenu(
+                        expanded = isLanguageDropdownExpanded,
+                        onDismissRequest = { onLanguageDropdownExpandedChanged(false) },
+                        options = languageLabels,
+                        onOptionSelected = { index ->
+                            onChangeLanguage(languageOptions[index])
+                            onLanguageDropdownExpandedChanged(false)
+                        }
+                    )
+                }
+            ) {
+                Row(
+                    modifier = Modifier.padding(vertical = 6.dp, horizontal = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = Modifier.widthIn(min = 56.dp, max = 136.dp),
+                        text = languageLabels[selectedOptionIndex],
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center
+                    )
+                    DropDownMenuToggleIcon(expanded = isLanguageDropdownExpanded)
                 }
             }
         }

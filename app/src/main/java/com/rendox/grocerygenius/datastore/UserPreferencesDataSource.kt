@@ -38,7 +38,8 @@ class UserPreferencesDataSource @Inject constructor(
                 ?: DEFAULT_USER_PREFERENCES.openLastViewedList,
             selectedTheme = preferences[SELECTED_THEME_KEY]?.let {
                 GroceryGeniusColorScheme.entries[it]
-            } ?: DEFAULT_USER_PREFERENCES.selectedTheme
+            } ?: DEFAULT_USER_PREFERENCES.selectedTheme,
+            selectedLanguageTag = preferences[SELECTED_LANGUAGE_TAG_KEY].orEmpty().ifBlank { null }
         )
     }
 
@@ -78,6 +79,16 @@ class UserPreferencesDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateSelectedLanguageTag(selectedLanguageTag: String?) {
+        dataStore.edit { preferences ->
+            if (selectedLanguageTag.isNullOrBlank()) {
+                preferences.remove(SELECTED_LANGUAGE_TAG_KEY)
+            } else {
+                preferences[SELECTED_LANGUAGE_TAG_KEY] = selectedLanguageTag
+            }
+        }
+    }
+
     companion object {
         val DEFAULT_LIST_ID_KEY = stringPreferencesKey("default_list_id")
         val DARK_THEME_CONFIG_KEY = intPreferencesKey("dark_theme_config")
@@ -85,5 +96,6 @@ class UserPreferencesDataSource @Inject constructor(
         val OPEN_LAST_VIEWED_LIST_KEY = booleanPreferencesKey("open_last_viewed_list")
         val SELECTED_THEME_KEY = intPreferencesKey("selected_theme")
         val LAST_OPENED_LIST_ID_KEY = stringPreferencesKey("last_opened_list_id")
+        val SELECTED_LANGUAGE_TAG_KEY = stringPreferencesKey("selected_language_tag")
     }
 }

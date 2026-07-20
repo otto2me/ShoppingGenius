@@ -14,5 +14,6 @@ interface UserPreferencesRepository {
     suspend fun updateUseSystemAccentColor(useSystemAccentColor: Boolean)
     suspend fun updateOpenLastViewedList(openLastViewedList: Boolean)
     suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme)
+    suspend fun updateSelectedLanguageTag(selectedLanguageTag: String?)
     suspend fun getGroceryListIdToOpenOnStartup(): String?
 }

@@ -2,6 +2,7 @@ package com.rendox.grocerygenius.filestorage
 
 import android.content.Context
 import android.util.Log
+import com.rendox.grocerygenius.model.AppLanguage
 import com.rendox.grocerygenius.model.IconReference
 import com.rendox.grocerygenius.network.model.CategoryNetwork
 import com.rendox.grocerygenius.network.model.NetworkChangeList
@@ -18,22 +19,13 @@ class LocalAssetDataLoader @Inject constructor(
     @ApplicationContext private val appContext: Context,
     private val moshi: Moshi
 ) {
-    suspend fun loadCategoriesJson(languageCode: String = "en"): List<CategoryNetwork> = withContext(Dispatchers.IO) {
-        try {
-            val fileName = "category/categories_${languageCode}.json"
-            val json = appContext.assets
-                .open(fileName)
-                .bufferedReader()
-                .use { it.readText() }
-
-            val type = Types.newParameterizedType(List::class.java, CategoryNetwork::class.java)
-            val adapter: JsonAdapter<List<CategoryNetwork>> = moshi.adapter(type)
-            adapter.fromJson(json) ?: emptyList()
-        } catch (e: Exception) {
-            Log.e("LocalAssetDataLoader", "Error loading categories for language $languageCode: ${e.message}")
-            emptyList()
-        }
-    }
+    suspend fun loadCategoriesJson(languageTag: String? = null): List<CategoryNetwork> =
+        loadJsonListFromAssets(
+            assetPath = categoriesAssetPath(languageTag),
+            fallbackAssetPath = "category/categories_en.json",
+            itemClass = CategoryNetwork::class.java,
+            errorLabel = "categories"
+        )
 
     suspend fun loadCategoriesChangeList(): List<NetworkChangeList> = withContext(Dispatchers.IO) {
         try {
@@ -51,22 +43,13 @@ class LocalAssetDataLoader @Inject constructor(
         }
     }
 
-    suspend fun loadProductsJson(languageCode: String = "en"): List<ProductNetwork> = withContext(Dispatchers.IO) {
-        try {
-            val fileName = "product/default_products_${languageCode}.json"
-            val json = appContext.assets
-                .open(fileName)
-                .bufferedReader()
-                .use { it.readText() }
-
-            val type = Types.newParameterizedType(List::class.java, ProductNetwork::class.java)
-            val adapter: JsonAdapter<List<ProductNetwork>> = moshi.adapter(type)
-            adapter.fromJson(json) ?: emptyList()
-        } catch (e: Exception) {
-            Log.e("LocalAssetDataLoader", "Error loading products for language $languageCode: ${e.message}")
-            emptyList()
-        }
-    }
+    suspend fun loadProductsJson(languageTag: String? = null): List<ProductNetwork> =
+        loadJsonListFromAssets(
+            assetPath = productsAssetPath(languageTag),
+            fallbackAssetPath = "product/default_products_en.json",
+            itemClass = ProductNetwork::class.java,
+            errorLabel = "products"
+        )
 
     suspend fun loadProductsChangeList(): List<NetworkChangeList> = withContext(Dispatchers.IO) {
         try {
@@ -116,6 +99,57 @@ class LocalAssetDataLoader @Inject constructor(
         } catch (e: Exception) {
             Log.e("LocalAssetDataLoader", "Error loading icons from assets: ${e.message}")
             emptyList()
+        }
+    }
+
+    private suspend fun <T> loadJsonListFromAssets(
+        assetPath: String,
+        fallbackAssetPath: String,
+        itemClass: Class<T>,
+        errorLabel: String
+    ): List<T> = withContext(Dispatchers.IO) {
+        try {
+            readJsonList(assetPath, itemClass)
+        } catch (e: Exception) {
+            if (assetPath == fallbackAssetPath) {
+                Log.e("LocalAssetDataLoader", "Error loading $errorLabel from $assetPath: ${e.message}")
+                emptyList()
+            } else {
+                try {
+                    readJsonList(fallbackAssetPath, itemClass)
+                } catch (fallbackException: Exception) {
+                    Log.e("LocalAssetDataLoader", "Error loading $errorLabel from $assetPath and fallback $fallbackAssetPath: ${fallbackException.message}")
+                    emptyList()
+                }
+            }
+        }
+    }
+
+    private fun <T> readJsonList(assetPath: String, itemClass: Class<T>): List<T> {
+        val json = appContext.assets
+            .open(assetPath)
+            .bufferedReader()
+            .use { it.readText() }
+        val type = Types.newParameterizedType(List::class.java, itemClass)
+        val adapter: JsonAdapter<List<T>> = moshi.adapter(type)
+        return adapter.fromJson(json) ?: emptyList()
+    }
+
+    private fun categoriesAssetPath(languageTag: String?): String {
+        val resolvedLanguageTag = AppLanguage.resolveAssetLanguageTag(languageTag)
+        return if (resolvedLanguageTag == "en") {
+            "category/categories_en.json"
+        } else {
+            "category/${java.util.Locale.forLanguageTag(resolvedLanguageTag)}/categories.json"
+        }
+    }
+
+    private fun productsAssetPath(languageTag: String?): String {
+        val resolvedLanguageTag = AppLanguage.resolveAssetLanguageTag(languageTag)
+        return if (resolvedLanguageTag == "en") {
+            "product/default_products_en.json"
+        } else {
+            "product/${java.util.Locale.forLanguageTag(resolvedLanguageTag)}/default_products.json"
         }
     }
 }

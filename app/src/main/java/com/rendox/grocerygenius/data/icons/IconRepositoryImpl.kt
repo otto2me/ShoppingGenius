@@ -29,7 +29,7 @@ class IconRepositoryImpl @Inject constructor(
     override suspend fun syncWith(synchronizer: Synchronizer) = synchronizer.changeListSync(
         prepopulateWithInitialData = {
             val icons = iconNetworkDataSource.downloadIcons()
-            iconDao.insertGroceryIcons(icons.map { it.asEntity() })
+            iconDao.upsertGroceryIcons(icons.map { it.asEntity() })
         },
         versionReader = { it.iconVersion },
         changeListFetcher = { currentVersion ->
