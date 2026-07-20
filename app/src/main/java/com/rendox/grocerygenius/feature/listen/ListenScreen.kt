@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,7 +75,15 @@ fun ListenScreen(
 ) {
     var editProductDialogState by remember { mutableStateOf<EditDialogState?>(null) }
     var editCategoryDialogState by remember { mutableStateOf<EditDialogState?>(null) }
+    var searchQuery by rememberSaveable { mutableStateOf("") }
     val filesDir = LocalContext.current.filesDir
+    val normalizedQuery = searchQuery.trim()
+    val filteredProducts = uiState.products.filter {
+        normalizedQuery.isEmpty() || it.name.contains(normalizedQuery, ignoreCase = true)
+    }
+    val filteredCategories = uiState.categories.filter {
+        normalizedQuery.isEmpty() || it.name.contains(normalizedQuery, ignoreCase = true)
+    }
 
     Column(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
         // Top bar
@@ -84,7 +94,7 @@ fun ListenScreen(
             Box(modifier = Modifier.fillMaxSize()) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
-                    text = stringResource(R.string.listen),
+                    text = stringResource(R.string.list_editor),
                     style = MaterialTheme.typography.titleLarge,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -101,8 +111,28 @@ fun ListenScreen(
             }
         }
 
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            value = searchQuery,
+            onValueChange = { searchQuery = it },
+            singleLine = true,
+            label = { Text(text = stringResource(R.string.listen_search_field_placeholder)) },
+            trailingIcon = {
+                if (searchQuery.isNotEmpty()) {
+                    IconButton(onClick = { searchQuery = "" }) {
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(R.string.add_grocery_search_field_trailing_icon_description)
+                        )
+                    }
+                }
+            }
+        )
+
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(uiState.products) { product ->
+            items(filteredProducts) { product ->
                 ListenProductItem(product = product, filesDir = filesDir, onClick = {
                     editProductDialogState = EditDialogState(
                         id = product.id,
@@ -112,7 +142,7 @@ fun ListenScreen(
                     )
                 })
             }
-            items(uiState.categories) { category ->
+            items(filteredCategories) { category ->
                 ListenCategoryItem(category = category, filesDir = filesDir, onClick = {
                     editCategoryDialogState = EditDialogState(
                         id = category.id,

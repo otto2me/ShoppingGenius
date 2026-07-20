@@ -88,7 +88,7 @@ fun GroceryListsDashboardScreen(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.List,
-                        contentDescription = stringResource(R.string.listen)
+                        contentDescription = stringResource(R.string.list_editor)
                     )
                 }
                 IconButton(
