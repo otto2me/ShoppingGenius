@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GroceryListScreen -->
     <string name="purchased_groceries_group_title">Recently used</string>
@@ -9,7 +9,7 @@
     <string name="add_grocery_search_field_placeholder_collapsed">Add a grocery</string>
     <string name="add_grocery_search_field_placeholder_expanded">e.g. bread</string>
     <string name="add_grocery_search_field_trailing_icon_description">Clear text in search bar</string>
-    <string name="add_grocery_refine_item_options_title">Refine «%s»</string>
+    <string name="add_grocery_refine_item_options_title">Refine Â«%sÂ»</string>
     <string name="add_grocery_edit_item_button_title">Enter item details</string>
     <!-- EditGrocery -->
     <string name="edit_grocery_item_description_placeholder">Quantity, description</string>
@@ -54,12 +54,6 @@
     <string name="icon_picker_screen_title">Choose icon</string>
     <string name="icon_picker_search_field_placeholder">Search an icon</string>
     <!-- OnboardingSyncScreen -->
-    <string name="onboarding_sync_status_running_title">Just a second …</string>
-    <string name="onboarding_sync_status_succeeded_title">All set!</string>
-    <string name="onboarding_sync_status_failed_title">Network request failed</string>
-    <string name="onboarding_sync_status_offline_title">Can you connect to the internet?</string>
-    <string name="onboarding_sync_description">We need to download some predefined groceries so you don\'t have to create them manually.</string>
-    <string name="onboarding_skip_sync_button_title">Continue Without Fetching</string>
     <!-- General -->
     <string name="done">Done</string>
     <string name="delete">Delete</string>

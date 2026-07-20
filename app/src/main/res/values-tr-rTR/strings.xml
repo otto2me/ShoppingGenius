@@ -1,79 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GroceryListScreen -->
-    <string name="purchased_groceries_group_title">Son kullanılanlar</string>
+    <string name="purchased_groceries_group_title">Son kullanÄ±lanlar</string>
     <string name="grocery_list_name_text_field_placeholder">Bir ad girin</string>
-    <string name="shopping_done_title">Alışveriş tamam!</string>
-    <string name="empty_grocery_list_title">İlk alışveriş ürünlerinizi ekleyin!</string>
+    <string name="shopping_done_title">AlÄ±ÅŸveriÅŸ tamam!</string>
+    <string name="empty_grocery_list_title">Ä°lk alÄ±ÅŸveriÅŸ Ã¼rÃ¼nlerinizi ekleyin!</string>
     <!-- AddGrocery -->
-    <string name="add_grocery_search_field_placeholder_collapsed">Bir ürün ekleyin</string>
-    <string name="add_grocery_search_field_placeholder_expanded">örn. ekmek</string>
-    <string name="add_grocery_search_field_trailing_icon_description">Arama çubuğundaki metni temizle</string>
-    <string name="add_grocery_refine_item_options_title">«%s» seçeneğini düzenle</string>
-    <string name="add_grocery_edit_item_button_title">Ürün detaylarını girin</string>
+    <string name="add_grocery_search_field_placeholder_collapsed">Bir Ã¼rÃ¼n ekleyin</string>
+    <string name="add_grocery_search_field_placeholder_expanded">Ã¶rn. ekmek</string>
+    <string name="add_grocery_search_field_trailing_icon_description">Arama Ã§ubuÄŸundaki metni temizle</string>
+    <string name="add_grocery_refine_item_options_title">Â«%sÂ» seÃ§eneÄŸini dÃ¼zenle</string>
+    <string name="add_grocery_edit_item_button_title">ÃœrÃ¼n detaylarÄ±nÄ± girin</string>
     <!-- EditGrocery -->
-    <string name="edit_grocery_item_description_placeholder">Miktar, açıklama</string>
-    <string name="edit_grocery_change_icon_button_title">Simgeyi değiştir</string>
-    <string name="edit_grocery_change_category_button_title">Kategoriyi değiştir</string>
-    <string name="edit_grocery_remove_item_button_title">Ürünü listeden kaldır</string>
-    <string name="edit_grocery_delete_grocery_button_title">Özel ürünü sil</string>
-    <string name="select_category_dialog_title">Kategori seç</string>
-    <string name="select_icon_dialog_title">Simge seç</string>
-    <string name="delete_product_dialog_text">Bu ürün tüm alışveriş listelerinizden kaldırılacak</string>
-    <string name="delete_grocery_list_dialog_text">Bu listeyi silmek istediğinizden emin misiniz?</string>
+    <string name="edit_grocery_item_description_placeholder">Miktar, aÃ§Ä±klama</string>
+    <string name="edit_grocery_change_icon_button_title">Simgeyi deÄŸiÅŸtir</string>
+    <string name="edit_grocery_change_category_button_title">Kategoriyi deÄŸiÅŸtir</string>
+    <string name="edit_grocery_remove_item_button_title">ÃœrÃ¼nÃ¼ listeden kaldÄ±r</string>
+    <string name="edit_grocery_delete_grocery_button_title">Ã–zel Ã¼rÃ¼nÃ¼ sil</string>
+    <string name="select_category_dialog_title">Kategori seÃ§</string>
+    <string name="select_icon_dialog_title">Simge seÃ§</string>
+    <string name="delete_product_dialog_text">Bu Ã¼rÃ¼n tÃ¼m alÄ±ÅŸveriÅŸ listelerinizden kaldÄ±rÄ±lacak</string>
+    <string name="delete_grocery_list_dialog_text">Bu listeyi silmek istediÄŸinizden emin misiniz?</string>
     <!-- GroceryListsDashboardScreen -->
     <plurals name="dashboard_item_num_of_groceries_title">
-        <item quantity="one">%d ürün</item>
-        <item quantity="other">%d ürün</item>
+        <item quantity="one">%d Ã¼rÃ¼n</item>
+        <item quantity="other">%d Ã¼rÃ¼n</item>
     </plurals>
-    <string name="add_grocery_list_button_description">Yeni alışveriş listesi oluştur</string>
+    <string name="add_grocery_list_button_description">Yeni alÄ±ÅŸveriÅŸ listesi oluÅŸtur</string>
     <!-- SettingsScreen -->
     <string name="settings_dark_theme_config_system_default">Sistem</string>
-    <string name="settings_dark_theme_config_light">Açık</string>
+    <string name="settings_dark_theme_config_light">AÃ§Ä±k</string>
     <string name="settings_dark_theme_config_dark">Koyu</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_mode">Tema Modu</string>
     <string name="settings_use_system_accent_color">Sistem Vurgu Rengini Kullan</string>
     <string name="settings_preferences">Tercihler</string>
-    <string name="settings_open_last_viewed_list">Son Görülen Listeyi Aç</string>
-    <string name="settings_default_list">Varsayılan Listeyi Aç</string>
-    <string name="settings_default_list_unspecified">Tanımsız</string>
-    <string name="settings_reorder_categories_title">Kategorileri Yeniden Düzenle</string>
-    <string name="settings_reorder_categories_description">Grocery Genius, ürünleri kategorilerine göre sıralar. Bunları favori mağazanıza göre ayarlayabilirsiniz.</string>
-    <string name="settings_dynamic_color_not_supported_message">Cihazınız dinamik rengi desteklemiyor</string>
+    <string name="settings_open_last_viewed_list">Son GÃ¶rÃ¼len Listeyi AÃ§</string>
+    <string name="settings_default_list">VarsayÄ±lan Listeyi AÃ§</string>
+    <string name="settings_default_list_unspecified">TanÄ±msÄ±z</string>
+    <string name="settings_reorder_categories_title">Kategorileri Yeniden DÃ¼zenle</string>
+    <string name="settings_reorder_categories_description">Grocery Genius, Ã¼rÃ¼nleri kategorilerine gÃ¶re sÄ±ralar. BunlarÄ± favori maÄŸazanÄ±za gÃ¶re ayarlayabilirsiniz.</string>
+    <string name="settings_dynamic_color_not_supported_message">CihazÄ±nÄ±z dinamik rengi desteklemiyor</string>
     <string name="settings_feedback">Geri Bildirim</string>
-    <string name="github_link_description">Kaynak kodu görüntüleyin, katkıda bulunun, hataları bildirin ve özellik önerin.</string>
-    <string name="email_link_title">Geliştiriciye E-posta Gönder</string>
-    <string name="email_link_description">Geliştiriciyle dostça geri bildirim, öneriler veya aklınızdaki herhangi bir şey için iletişime geçin.</string>
-    <string name="settings_credits">Katkıda Bulunanlar</string>
-    <string name="settings_image_by_freepik_title">pch.vector tarafından Freepik\'ten görüntü</string>
-    <string name="settings_image_by_freepik_description">Alışveriş listesi ekranında görüntü pch.vector tarafından oluşturulmuştur</string>
+    <string name="github_link_description">Kaynak kodu gÃ¶rÃ¼ntÃ¼leyin, katkÄ±da bulunun, hatalarÄ± bildirin ve Ã¶zellik Ã¶nerin.</string>
+    <string name="email_link_title">GeliÅŸtiriciye E-posta GÃ¶nder</string>
+    <string name="email_link_description">GeliÅŸtiriciyle dostÃ§a geri bildirim, Ã¶neriler veya aklÄ±nÄ±zdaki herhangi bir ÅŸey iÃ§in iletiÅŸime geÃ§in.</string>
+    <string name="settings_credits">KatkÄ±da Bulunanlar</string>
+    <string name="settings_image_by_freepik_title">pch.vector tarafÄ±ndan Freepik\'ten gÃ¶rÃ¼ntÃ¼</string>
+    <string name="settings_image_by_freepik_description">AlÄ±ÅŸveriÅŸ listesi ekranÄ±nda gÃ¶rÃ¼ntÃ¼ pch.vector tarafÄ±ndan oluÅŸturulmuÅŸtur</string>
     <!-- IconPickerScreen -->
-    <string name="icon_picker_screen_title">Simge seç</string>
-    <string name="icon_picker_search_field_placeholder">Bir simge arayın</string>
+    <string name="icon_picker_screen_title">Simge seÃ§</string>
+    <string name="icon_picker_search_field_placeholder">Bir simge arayÄ±n</string>
     <!-- OnboardingSyncScreen -->
-    <string name="onboarding_sync_status_running_title">Bir saniye …</string>
-    <string name="onboarding_sync_status_succeeded_title">Her şey hazır!</string>
-    <string name="onboarding_sync_status_failed_title">Ağ isteği başarısız oldu</string>
-    <string name="onboarding_sync_status_offline_title">İnternete bağlanabilir misiniz?</string>
-    <string name="onboarding_sync_description">Önceden tanımlanmış bazı ürünleri indirmeniz gerekiyor, böylece bunları manuel olarak oluşturmanıza gerek kalmaz.</string>
-    <string name="onboarding_skip_sync_button_title">İndirmeden Devam Et</string>
     <!-- General -->
     <string name="done">Tamam</string>
     <string name="delete">Sil</string>
-    <string name="edit">Düzenle</string>
+    <string name="edit">DÃ¼zenle</string>
     <string name="back">Geri</string>
     <string name="settings">Ayarlar</string>
-    <string name="forward">İleri</string>
+    <string name="forward">Ä°leri</string>
     <string name="close">Kapat</string>
-    <string name="reset">Sıfırla</string>
+    <string name="reset">SÄ±fÄ±rla</string>
     <string name="retry">Tekrar Dene</string>
     <!-- Components -->
-    <string name="custom_category_title">Özel</string>
-    <string name="toggle_dropdown_menu_visibility">Açılır menüyü göster/gizle</string>
-    <string name="drag_handle">Sürükleme tutamacı</string>
+    <string name="custom_category_title">Ã–zel</string>
+    <string name="toggle_dropdown_menu_visibility">AÃ§Ä±lÄ±r menÃ¼yÃ¼ gÃ¶ster/gizle</string>
+    <string name="drag_handle">SÃ¼rÃ¼kleme tutamacÄ±</string>
     <!-- Notifications -->
     <string name="sync_work_notification_channel_name">Senkronizasyon</string>
-    <string name="sync_work_notification_channel_description">Market veritabanının periyodik senkronizasyonu.</string>
-    <string name="sync_work_notification_title">Ürünleriniz senkronize ediliyor</string>
+    <string name="sync_work_notification_channel_description">Market veritabanÄ±nÄ±n periyodik senkronizasyonu.</string>
+    <string name="sync_work_notification_title">ÃœrÃ¼nleriniz senkronize ediliyor</string>
 </resources>

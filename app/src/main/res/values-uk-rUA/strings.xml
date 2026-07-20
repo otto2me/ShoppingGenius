@@ -1,81 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GroceryListScreen -->
-    <string name="purchased_groceries_group_title">Нещодавно використані</string>
-    <string name="grocery_list_name_text_field_placeholder">Введіть назву</string>
-    <string name="shopping_done_title">Покупки завершено!</string>
-    <string name="empty_grocery_list_title">Додайте свої перші продукти!</string>
+    <string name="purchased_groceries_group_title">ÐÐµÑ‰Ð¾Ð´Ð°Ð²Ð½Ð¾ Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð°Ð½Ñ–</string>
+    <string name="grocery_list_name_text_field_placeholder">Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ð½Ð°Ð·Ð²Ñƒ</string>
+    <string name="shopping_done_title">ÐŸÐ¾ÐºÑƒÐ¿ÐºÐ¸ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¾!</string>
+    <string name="empty_grocery_list_title">Ð”Ð¾Ð´Ð°Ð¹Ñ‚Ðµ ÑÐ²Ð¾Ñ— Ð¿ÐµÑ€ÑˆÑ– Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ð¸!</string>
     <!-- AddGrocery -->
-    <string name="add_grocery_search_field_placeholder_collapsed">Додайте продукт</string>
-    <string name="add_grocery_search_field_placeholder_expanded">напр. хліб</string>
-    <string name="add_grocery_search_field_trailing_icon_description">Очистити текст у панелі пошуку</string>
-    <string name="add_grocery_refine_item_options_title">Уточнити «%s»</string>
-    <string name="add_grocery_edit_item_button_title">Ввести деталі про товар</string>
+    <string name="add_grocery_search_field_placeholder_collapsed">Ð”Ð¾Ð´Ð°Ð¹Ñ‚Ðµ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚</string>
+    <string name="add_grocery_search_field_placeholder_expanded">Ð½Ð°Ð¿Ñ€. Ñ…Ð»Ñ–Ð±</string>
+    <string name="add_grocery_search_field_trailing_icon_description">ÐžÑ‡Ð¸ÑÑ‚Ð¸Ñ‚Ð¸ Ñ‚ÐµÐºÑÑ‚ Ñƒ Ð¿Ð°Ð½ÐµÐ»Ñ– Ð¿Ð¾ÑˆÑƒÐºÑƒ</string>
+    <string name="add_grocery_refine_item_options_title">Ð£Ñ‚Ð¾Ñ‡Ð½Ð¸Ñ‚Ð¸ Â«%sÂ»</string>
+    <string name="add_grocery_edit_item_button_title">Ð’Ð²ÐµÑÑ‚Ð¸ Ð´ÐµÑ‚Ð°Ð»Ñ– Ð¿Ñ€Ð¾ Ñ‚Ð¾Ð²Ð°Ñ€</string>
     <!-- EditGrocery -->
-    <string name="edit_grocery_item_description_placeholder">Кількість, опис</string>
-    <string name="edit_grocery_change_icon_button_title">Змінити іконку</string>
-    <string name="edit_grocery_change_category_button_title">Змінити категорію</string>
-    <string name="edit_grocery_remove_item_button_title">Видалити елемент зі списку</string>
-    <string name="edit_grocery_delete_grocery_button_title">Видалити свій продукт</string>
-    <string name="select_category_dialog_title">Оберіть категорію</string>
-    <string name="select_icon_dialog_title">Виберіть іконку</string>
-    <string name="delete_product_dialog_text">Цей товар буде видалено з усіх ваших списків продуктів</string>
-    <string name="delete_grocery_list_dialog_text">Ви впевнені, що хочете видалити цей список?</string>
+    <string name="edit_grocery_item_description_placeholder">ÐšÑ–Ð»ÑŒÐºÑ–ÑÑ‚ÑŒ, Ð¾Ð¿Ð¸Ñ</string>
+    <string name="edit_grocery_change_icon_button_title">Ð—Ð¼Ñ–Ð½Ð¸Ñ‚Ð¸ Ñ–ÐºÐ¾Ð½ÐºÑƒ</string>
+    <string name="edit_grocery_change_category_button_title">Ð—Ð¼Ñ–Ð½Ð¸Ñ‚Ð¸ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–ÑŽ</string>
+    <string name="edit_grocery_remove_item_button_title">Ð’Ð¸Ð´Ð°Ð»Ð¸Ñ‚Ð¸ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð·Ñ– ÑÐ¿Ð¸ÑÐºÑƒ</string>
+    <string name="edit_grocery_delete_grocery_button_title">Ð’Ð¸Ð´Ð°Ð»Ð¸Ñ‚Ð¸ ÑÐ²Ñ–Ð¹ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚</string>
+    <string name="select_category_dialog_title">ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–ÑŽ</string>
+    <string name="select_icon_dialog_title">Ð’Ð¸Ð±ÐµÑ€Ñ–Ñ‚ÑŒ Ñ–ÐºÐ¾Ð½ÐºÑƒ</string>
+    <string name="delete_product_dialog_text">Ð¦ÐµÐ¹ Ñ‚Ð¾Ð²Ð°Ñ€ Ð±ÑƒÐ´Ðµ Ð²Ð¸Ð´Ð°Ð»ÐµÐ½Ð¾ Ð· ÑƒÑÑ–Ñ… Ð²Ð°ÑˆÐ¸Ñ… ÑÐ¿Ð¸ÑÐºÑ–Ð² Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ñ–Ð²</string>
+    <string name="delete_grocery_list_dialog_text">Ð’Ð¸ Ð²Ð¿ÐµÐ²Ð½ÐµÐ½Ñ–, Ñ‰Ð¾ Ñ…Ð¾Ñ‡ÐµÑ‚Ðµ Ð²Ð¸Ð´Ð°Ð»Ð¸Ñ‚Ð¸ Ñ†ÐµÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº?</string>
     <!-- GroceryListsDashboardScreen -->
     <plurals name="dashboard_item_num_of_groceries_title">
-        <item quantity="one">%d товар</item>
-        <item quantity="few">%d товари</item>
-        <item quantity="many">%d товарів</item>
-        <item quantity="other">%d товарів</item>
+        <item quantity="one">%d Ñ‚Ð¾Ð²Ð°Ñ€</item>
+        <item quantity="few">%d Ñ‚Ð¾Ð²Ð°Ñ€Ð¸</item>
+        <item quantity="many">%d Ñ‚Ð¾Ð²Ð°Ñ€Ñ–Ð²</item>
+        <item quantity="other">%d Ñ‚Ð¾Ð²Ð°Ñ€Ñ–Ð²</item>
     </plurals>
-    <string name="add_grocery_list_button_description">Створити новий список продуктів</string>
+    <string name="add_grocery_list_button_description">Ð¡Ñ‚Ð²Ð¾Ñ€Ð¸Ñ‚Ð¸ Ð½Ð¾Ð²Ð¸Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ñ–Ð²</string>
     <!-- SettingsScreen -->
-    <string name="settings_dark_theme_config_system_default">Система</string>
-    <string name="settings_dark_theme_config_light">Світла</string>
-    <string name="settings_dark_theme_config_dark">Темна</string>
-    <string name="settings_theme">Тема</string>
-    <string name="settings_theme_mode">Режим теми</string>
-    <string name="settings_use_system_accent_color">Використовувати акцентний колір системи</string>
-    <string name="settings_preferences">Налаштування</string>
-    <string name="settings_open_last_viewed_list">Відкривати останній переглянутий список</string>
-    <string name="settings_default_list">Відкривати список за замовчуванням</string>
-    <string name="settings_default_list_unspecified">Не вказаний</string>
-    <string name="settings_reorder_categories_title">Сортувати категорії</string>
-    <string name="settings_reorder_categories_description">Grocery Genius сортує товари за їхніми категоріями. Ви можете впорядкувати їх відповідно до вашого улюбленого магазину.</string>
-    <string name="settings_dynamic_color_not_supported_message">Ваш пристрій не підтримує динамічний колір</string>
-    <string name="settings_feedback">Зворотній зв\'язок</string>
-    <string name="github_link_description">Переглянути вихідний код, допомогти проєкту, повідомити про помилки або запропонувати функції.</string>
-    <string name="email_link_title">Надіслати листа розробнику</string>
-    <string name="email_link_description">Написати розробнику, щоб залишити відгук, запропонувати щось або поділитися своїми думками.</string>
-    <string name="settings_credits">Подяки</string>
-    <string name="settings_image_by_freepik_title">Зображення від pch.vector на Freepik</string>
-    <string name="settings_image_by_freepik_description">Зображення на екрані списку продуктів, було створено pch.vector</string>
+    <string name="settings_dark_theme_config_system_default">Ð¡Ð¸ÑÑ‚ÐµÐ¼Ð°</string>
+    <string name="settings_dark_theme_config_light">Ð¡Ð²Ñ–Ñ‚Ð»Ð°</string>
+    <string name="settings_dark_theme_config_dark">Ð¢ÐµÐ¼Ð½Ð°</string>
+    <string name="settings_theme">Ð¢ÐµÐ¼Ð°</string>
+    <string name="settings_theme_mode">Ð ÐµÐ¶Ð¸Ð¼ Ñ‚ÐµÐ¼Ð¸</string>
+    <string name="settings_use_system_accent_color">Ð’Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸ Ð°ÐºÑ†ÐµÐ½Ñ‚Ð½Ð¸Ð¹ ÐºÐ¾Ð»Ñ–Ñ€ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¸</string>
+    <string name="settings_preferences">ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ</string>
+    <string name="settings_open_last_viewed_list">Ð’Ñ–Ð´ÐºÑ€Ð¸Ð²Ð°Ñ‚Ð¸ Ð¾ÑÑ‚Ð°Ð½Ð½Ñ–Ð¹ Ð¿ÐµÑ€ÐµÐ³Ð»ÑÐ½ÑƒÑ‚Ð¸Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº</string>
+    <string name="settings_default_list">Ð’Ñ–Ð´ÐºÑ€Ð¸Ð²Ð°Ñ‚Ð¸ ÑÐ¿Ð¸ÑÐ¾Ðº Ð·Ð° Ð·Ð°Ð¼Ð¾Ð²Ñ‡ÑƒÐ²Ð°Ð½Ð½ÑÐ¼</string>
+    <string name="settings_default_list_unspecified">ÐÐµ Ð²ÐºÐ°Ð·Ð°Ð½Ð¸Ð¹</string>
+    <string name="settings_reorder_categories_title">Ð¡Ð¾Ñ€Ñ‚ÑƒÐ²Ð°Ñ‚Ð¸ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ñ—</string>
+    <string name="settings_reorder_categories_description">Grocery Genius ÑÐ¾Ñ€Ñ‚ÑƒÑ” Ñ‚Ð¾Ð²Ð°Ñ€Ð¸ Ð·Ð° Ñ—Ñ…Ð½Ñ–Ð¼Ð¸ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–ÑÐ¼Ð¸. Ð’Ð¸ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð²Ð¿Ð¾Ñ€ÑÐ´ÐºÑƒÐ²Ð°Ñ‚Ð¸ Ñ—Ñ… Ð²Ñ–Ð´Ð¿Ð¾Ð²Ñ–Ð´Ð½Ð¾ Ð´Ð¾ Ð²Ð°ÑˆÐ¾Ð³Ð¾ ÑƒÐ»ÑŽÐ±Ð»ÐµÐ½Ð¾Ð³Ð¾ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ñƒ.</string>
+    <string name="settings_dynamic_color_not_supported_message">Ð’Ð°Ñˆ Ð¿Ñ€Ð¸ÑÑ‚Ñ€Ñ–Ð¹ Ð½Ðµ Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÑƒÑ” Ð´Ð¸Ð½Ð°Ð¼Ñ–Ñ‡Ð½Ð¸Ð¹ ÐºÐ¾Ð»Ñ–Ñ€</string>
+    <string name="settings_feedback">Ð—Ð²Ð¾Ñ€Ð¾Ñ‚Ð½Ñ–Ð¹ Ð·Ð²\'ÑÐ·Ð¾Ðº</string>
+    <string name="github_link_description">ÐŸÐµÑ€ÐµÐ³Ð»ÑÐ½ÑƒÑ‚Ð¸ Ð²Ð¸Ñ…Ñ–Ð´Ð½Ð¸Ð¹ ÐºÐ¾Ð´, Ð´Ð¾Ð¿Ð¾Ð¼Ð¾Ð³Ñ‚Ð¸ Ð¿Ñ€Ð¾Ñ”ÐºÑ‚Ñƒ, Ð¿Ð¾Ð²Ñ–Ð´Ð¾Ð¼Ð¸Ñ‚Ð¸ Ð¿Ñ€Ð¾ Ð¿Ð¾Ð¼Ð¸Ð»ÐºÐ¸ Ð°Ð±Ð¾ Ð·Ð°Ð¿Ñ€Ð¾Ð¿Ð¾Ð½ÑƒÐ²Ð°Ñ‚Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ—.</string>
+    <string name="email_link_title">ÐÐ°Ð´Ñ–ÑÐ»Ð°Ñ‚Ð¸ Ð»Ð¸ÑÑ‚Ð° Ñ€Ð¾Ð·Ñ€Ð¾Ð±Ð½Ð¸ÐºÑƒ</string>
+    <string name="email_link_description">ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚Ð¸ Ñ€Ð¾Ð·Ñ€Ð¾Ð±Ð½Ð¸ÐºÑƒ, Ñ‰Ð¾Ð± Ð·Ð°Ð»Ð¸ÑˆÐ¸Ñ‚Ð¸ Ð²Ñ–Ð´Ð³ÑƒÐº, Ð·Ð°Ð¿Ñ€Ð¾Ð¿Ð¾Ð½ÑƒÐ²Ð°Ñ‚Ð¸ Ñ‰Ð¾ÑÑŒ Ð°Ð±Ð¾ Ð¿Ð¾Ð´Ñ–Ð»Ð¸Ñ‚Ð¸ÑÑ ÑÐ²Ð¾Ñ—Ð¼Ð¸ Ð´ÑƒÐ¼ÐºÐ°Ð¼Ð¸.</string>
+    <string name="settings_credits">ÐŸÐ¾Ð´ÑÐºÐ¸</string>
+    <string name="settings_image_by_freepik_title">Ð—Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ñ Ð²Ñ–Ð´ pch.vector Ð½Ð° Freepik</string>
+    <string name="settings_image_by_freepik_description">Ð—Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ñ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ñ– ÑÐ¿Ð¸ÑÐºÑƒ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ñ–Ð², Ð±ÑƒÐ»Ð¾ ÑÑ‚Ð²Ð¾Ñ€ÐµÐ½Ð¾ pch.vector</string>
     <!-- IconPickerScreen -->
-    <string name="icon_picker_screen_title">Виберіть іконку</string>
-    <string name="icon_picker_search_field_placeholder">Шукати іконку</string>
+    <string name="icon_picker_screen_title">Ð’Ð¸Ð±ÐµÑ€Ñ–Ñ‚ÑŒ Ñ–ÐºÐ¾Ð½ÐºÑƒ</string>
+    <string name="icon_picker_search_field_placeholder">Ð¨ÑƒÐºÐ°Ñ‚Ð¸ Ñ–ÐºÐ¾Ð½ÐºÑƒ</string>
     <!-- OnboardingSyncScreen -->
-    <string name="onboarding_sync_status_running_title">Секунду …</string>
-    <string name="onboarding_sync_status_succeeded_title">Все готово!</string>
-    <string name="onboarding_sync_status_failed_title">Не вдалося виконати запит до мережі</string>
-    <string name="onboarding_sync_status_offline_title">Можете підключитися до інтернету?</string>
-    <string name="onboarding_sync_description">Потрібно завантажити деякі продукти, щоб вам не доводилося створювати їх вручну.</string>
-    <string name="onboarding_skip_sync_button_title">Продовжити без завантаження</string>
     <!-- General -->
-    <string name="done">Готово</string>
-    <string name="delete">Видалити</string>
-    <string name="edit">Редагувати</string>
-    <string name="back">Назад</string>
-    <string name="settings">Налаштування</string>
-    <string name="forward">Вперед</string>
-    <string name="close">Закрити</string>
-    <string name="reset">Скинути</string>
-    <string name="retry">Повторити спробу</string>
+    <string name="done">Ð“Ð¾Ñ‚Ð¾Ð²Ð¾</string>
+    <string name="delete">Ð’Ð¸Ð´Ð°Ð»Ð¸Ñ‚Ð¸</string>
+    <string name="edit">Ð ÐµÐ´Ð°Ð³ÑƒÐ²Ð°Ñ‚Ð¸</string>
+    <string name="back">ÐÐ°Ð·Ð°Ð´</string>
+    <string name="settings">ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ</string>
+    <string name="forward">Ð’Ð¿ÐµÑ€ÐµÐ´</string>
+    <string name="close">Ð—Ð°ÐºÑ€Ð¸Ñ‚Ð¸</string>
+    <string name="reset">Ð¡ÐºÐ¸Ð½ÑƒÑ‚Ð¸</string>
+    <string name="retry">ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ð¸ ÑÐ¿Ñ€Ð¾Ð±Ñƒ</string>
     <!-- Components -->
-    <string name="custom_category_title">Власні</string>
-    <string name="toggle_dropdown_menu_visibility">Показати/приховати випадне меню</string>
-    <string name="drag_handle">Елемент для перетягування</string>
+    <string name="custom_category_title">Ð’Ð»Ð°ÑÐ½Ñ–</string>
+    <string name="toggle_dropdown_menu_visibility">ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚Ð¸/Ð¿Ñ€Ð¸Ñ…Ð¾Ð²Ð°Ñ‚Ð¸ Ð²Ð¸Ð¿Ð°Ð´Ð½Ðµ Ð¼ÐµÐ½ÑŽ</string>
+    <string name="drag_handle">Ð•Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ð´Ð»Ñ Ð¿ÐµÑ€ÐµÑ‚ÑÐ³ÑƒÐ²Ð°Ð½Ð½Ñ</string>
     <!-- Notifications -->
-    <string name="sync_work_notification_channel_name">Синхронізація</string>
-    <string name="sync_work_notification_channel_description">Періодична синхронізація бази продуктів.</string>
-    <string name="sync_work_notification_title">Синхронізуємо ваші продукти</string>
+    <string name="sync_work_notification_channel_name">Ð¡Ð¸Ð½Ñ…Ñ€Ð¾Ð½Ñ–Ð·Ð°Ñ†Ñ–Ñ</string>
+    <string name="sync_work_notification_channel_description">ÐŸÐµÑ€Ñ–Ð¾Ð´Ð¸Ñ‡Ð½Ð° ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ñ–Ð·Ð°Ñ†Ñ–Ñ Ð±Ð°Ð·Ð¸ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ñ–Ð².</string>
+    <string name="sync_work_notification_title">Ð¡Ð¸Ð½Ñ…Ñ€Ð¾Ð½Ñ–Ð·ÑƒÑ”Ð¼Ð¾ Ð²Ð°ÑˆÑ– Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ð¸</string>
 </resources>

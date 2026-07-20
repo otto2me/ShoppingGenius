@@ -1,83 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GroceryListScreen -->
-    <string name="purchased_groceries_group_title">مستخدم مؤخرا</string>
-    <string name="grocery_list_name_text_field_placeholder">أدخل اسم</string>
-    <string name="shopping_done_title">تم التسوق !</string>
-    <string name="empty_grocery_list_title">أضف بقالتك الأولى!</string>
+    <string name="purchased_groceries_group_title">Ù…Ø³ØªØ®Ø¯Ù… Ù…Ø¤Ø®Ø±Ø§</string>
+    <string name="grocery_list_name_text_field_placeholder">Ø£Ø¯Ø®Ù„ Ø§Ø³Ù…</string>
+    <string name="shopping_done_title">ØªÙ… Ø§Ù„ØªØ³ÙˆÙ‚ !</string>
+    <string name="empty_grocery_list_title">Ø£Ø¶Ù Ø¨Ù‚Ø§Ù„ØªÙƒ Ø§Ù„Ø£ÙˆÙ„Ù‰!</string>
     <!-- AddGrocery -->
-    <string name="add_grocery_search_field_placeholder_collapsed">إضافة بقالة</string>
-    <string name="add_grocery_search_field_placeholder_expanded">مثل الخبز</string>
-    <string name="add_grocery_search_field_trailing_icon_description">مسح النص في شريط البحث</string>
-    <string name="add_grocery_refine_item_options_title">تحسين «%s»</string>
-    <string name="add_grocery_edit_item_button_title">أدخل تفاصيل العنصر</string>
+    <string name="add_grocery_search_field_placeholder_collapsed">Ø¥Ø¶Ø§ÙØ© Ø¨Ù‚Ø§Ù„Ø©</string>
+    <string name="add_grocery_search_field_placeholder_expanded">Ù…Ø«Ù„ Ø§Ù„Ø®Ø¨Ø²</string>
+    <string name="add_grocery_search_field_trailing_icon_description">Ù…Ø³Ø­ Ø§Ù„Ù†Øµ ÙÙŠ Ø´Ø±ÙŠØ· Ø§Ù„Ø¨Ø­Ø«</string>
+    <string name="add_grocery_refine_item_options_title">ØªØ­Ø³ÙŠÙ† Â«%sÂ»</string>
+    <string name="add_grocery_edit_item_button_title">Ø£Ø¯Ø®Ù„ ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø¹Ù†ØµØ±</string>
     <!-- EditGrocery -->
-    <string name="edit_grocery_item_description_placeholder">الكمية، الوصف</string>
-    <string name="edit_grocery_change_icon_button_title">تغيير الأيقونة</string>
-    <string name="edit_grocery_change_category_button_title">تغيير التصنيف</string>
-    <string name="edit_grocery_remove_item_button_title">إزالة العنصر من القائمة</string>
-    <string name="edit_grocery_delete_grocery_button_title">حذف البقالة المخصصة</string>
-    <string name="select_category_dialog_title">اختر فئة</string>
-    <string name="select_icon_dialog_title">اختر أيقونة</string>
-    <string name="delete_product_dialog_text">سيتم إزالة هذا العنصر من جميع قوائم البقالة الخاصة بك</string>
-    <string name="delete_grocery_list_dialog_text">هل أنت متأكد أنك تريد حذف هذه القائمة؟</string>
+    <string name="edit_grocery_item_description_placeholder">Ø§Ù„ÙƒÙ…ÙŠØ©ØŒ Ø§Ù„ÙˆØµÙ</string>
+    <string name="edit_grocery_change_icon_button_title">ØªØºÙŠÙŠØ± Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
+    <string name="edit_grocery_change_category_button_title">ØªØºÙŠÙŠØ± Ø§Ù„ØªØµÙ†ÙŠÙ</string>
+    <string name="edit_grocery_remove_item_button_title">Ø¥Ø²Ø§Ù„Ø© Ø§Ù„Ø¹Ù†ØµØ± Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©</string>
+    <string name="edit_grocery_delete_grocery_button_title">Ø­Ø°Ù Ø§Ù„Ø¨Ù‚Ø§Ù„Ø© Ø§Ù„Ù…Ø®ØµØµØ©</string>
+    <string name="select_category_dialog_title">Ø§Ø®ØªØ± ÙØ¦Ø©</string>
+    <string name="select_icon_dialog_title">Ø§Ø®ØªØ± Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
+    <string name="delete_product_dialog_text">Ø³ÙŠØªÙ… Ø¥Ø²Ø§Ù„Ø© Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù†ØµØ± Ù…Ù† Ø¬Ù…ÙŠØ¹ Ù‚ÙˆØ§Ø¦Ù… Ø§Ù„Ø¨Ù‚Ø§Ù„Ø© Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ</string>
+    <string name="delete_grocery_list_dialog_text">Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ø£Ù†Ùƒ ØªØ±ÙŠØ¯ Ø­Ø°Ù Ù‡Ø°Ù‡ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©ØŸ</string>
     <!-- GroceryListsDashboardScreen -->
     <plurals name="dashboard_item_num_of_groceries_title">
-        <item quantity="zero">%d عنصر</item>
-        <item quantity="one">%d عنصر</item>
-        <item quantity="two">عنصران</item>
-        <item quantity="few">%d عناصر</item>
-        <item quantity="many">%d عناصر</item>
-        <item quantity="other">%d عناصر</item>
+        <item quantity="zero">%d Ø¹Ù†ØµØ±</item>
+        <item quantity="one">%d Ø¹Ù†ØµØ±</item>
+        <item quantity="two">Ø¹Ù†ØµØ±Ø§Ù†</item>
+        <item quantity="few">%d Ø¹Ù†Ø§ØµØ±</item>
+        <item quantity="many">%d Ø¹Ù†Ø§ØµØ±</item>
+        <item quantity="other">%d Ø¹Ù†Ø§ØµØ±</item>
     </plurals>
-    <string name="add_grocery_list_button_description">إنشاء قائمة بقالة جديدة</string>
+    <string name="add_grocery_list_button_description">Ø¥Ù†Ø´Ø§Ø¡ Ù‚Ø§Ø¦Ù…Ø© Ø¨Ù‚Ø§Ù„Ø© Ø¬Ø¯ÙŠØ¯Ø©</string>
     <!-- SettingsScreen -->
-    <string name="settings_dark_theme_config_system_default">النظام</string>
-    <string name="settings_dark_theme_config_light">فاتح</string>
-    <string name="settings_dark_theme_config_dark">داكن</string>
-    <string name="settings_theme">السمة</string>
-    <string name="settings_theme_mode">وضع السمة</string>
-    <string name="settings_use_system_accent_color">استخدم لون تمييز النظام</string>
-    <string name="settings_preferences">التفضيلات</string>
-    <string name="settings_open_last_viewed_list">فتح قائمة آخر العناصر المعروضة</string>
-    <string name="settings_default_list">فتح القائمة الافتراضية</string>
-    <string name="settings_default_list_unspecified">غير محدد</string>
-    <string name="settings_reorder_categories_title">إعادة ترتيب الفئات</string>
-    <string name="settings_reorder_categories_description">يقوم Grocery Genius بترتيب العناصر حسب فئاتها. يمكنك ترتيبها لتتناسب مع متجرك المفضل</string>
-    <string name="settings_dynamic_color_not_supported_message">جهازك لا يدعم اللون الديناميكي</string>
-    <string name="settings_feedback">ملاحظات</string>
-    <string name="github_link_description">عرض رمز المصدر، والمساهمة، والإبلاغ عن الأخطاء، واقتراح الميزات.</string>
-    <string name="email_link_title">إرسال بريد إلى المطور</string>
-    <string name="email_link_description">تواصل مع المطور لإعطاء ملاحظات ودية أو اقتراحات أو أي مدخلات أخرى في ذهنك.</string>
-    <string name="settings_credits">المساهمون</string>
-    <string name="settings_image_by_freepik_title">صورة بواسطة pch.vector على Freepik</string>
-    <string name="settings_image_by_freepik_description">الصورة المعروضة على شاشة قائمة البقالة تم إنشاؤها بواسطة pch.vector</string>
+    <string name="settings_dark_theme_config_system_default">Ø§Ù„Ù†Ø¸Ø§Ù…</string>
+    <string name="settings_dark_theme_config_light">ÙØ§ØªØ­</string>
+    <string name="settings_dark_theme_config_dark">Ø¯Ø§ÙƒÙ†</string>
+    <string name="settings_theme">Ø§Ù„Ø³Ù…Ø©</string>
+    <string name="settings_theme_mode">ÙˆØ¶Ø¹ Ø§Ù„Ø³Ù…Ø©</string>
+    <string name="settings_use_system_accent_color">Ø§Ø³ØªØ®Ø¯Ù… Ù„ÙˆÙ† ØªÙ…ÙŠÙŠØ² Ø§Ù„Ù†Ø¸Ø§Ù…</string>
+    <string name="settings_preferences">Ø§Ù„ØªÙØ¶ÙŠÙ„Ø§Øª</string>
+    <string name="settings_open_last_viewed_list">ÙØªØ­ Ù‚Ø§Ø¦Ù…Ø© Ø¢Ø®Ø± Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„Ù…Ø¹Ø±ÙˆØ¶Ø©</string>
+    <string name="settings_default_list">ÙØªØ­ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠØ©</string>
+    <string name="settings_default_list_unspecified">ØºÙŠØ± Ù…Ø­Ø¯Ø¯</string>
+    <string name="settings_reorder_categories_title">Ø¥Ø¹Ø§Ø¯Ø© ØªØ±ØªÙŠØ¨ Ø§Ù„ÙØ¦Ø§Øª</string>
+    <string name="settings_reorder_categories_description">ÙŠÙ‚ÙˆÙ… Grocery Genius Ø¨ØªØ±ØªÙŠØ¨ Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø­Ø³Ø¨ ÙØ¦Ø§ØªÙ‡Ø§. ÙŠÙ…ÙƒÙ†Ùƒ ØªØ±ØªÙŠØ¨Ù‡Ø§ Ù„ØªØªÙ†Ø§Ø³Ø¨ Ù…Ø¹ Ù…ØªØ¬Ø±Ùƒ Ø§Ù„Ù…ÙØ¶Ù„</string>
+    <string name="settings_dynamic_color_not_supported_message">Ø¬Ù‡Ø§Ø²Ùƒ Ù„Ø§ ÙŠØ¯Ø¹Ù… Ø§Ù„Ù„ÙˆÙ† Ø§Ù„Ø¯ÙŠÙ†Ø§Ù…ÙŠÙƒÙŠ</string>
+    <string name="settings_feedback">Ù…Ù„Ø§Ø­Ø¸Ø§Øª</string>
+    <string name="github_link_description">Ø¹Ø±Ø¶ Ø±Ù…Ø² Ø§Ù„Ù…ØµØ¯Ø±ØŒ ÙˆØ§Ù„Ù…Ø³Ø§Ù‡Ù…Ø©ØŒ ÙˆØ§Ù„Ø¥Ø¨Ù„Ø§Øº Ø¹Ù† Ø§Ù„Ø£Ø®Ø·Ø§Ø¡ØŒ ÙˆØ§Ù‚ØªØ±Ø§Ø­ Ø§Ù„Ù…ÙŠØ²Ø§Øª.</string>
+    <string name="email_link_title">Ø¥Ø±Ø³Ø§Ù„ Ø¨Ø±ÙŠØ¯ Ø¥Ù„Ù‰ Ø§Ù„Ù…Ø·ÙˆØ±</string>
+    <string name="email_link_description">ØªÙˆØ§ØµÙ„ Ù…Ø¹ Ø§Ù„Ù…Ø·ÙˆØ± Ù„Ø¥Ø¹Ø·Ø§Ø¡ Ù…Ù„Ø§Ø­Ø¸Ø§Øª ÙˆØ¯ÙŠØ© Ø£Ùˆ Ø§Ù‚ØªØ±Ø§Ø­Ø§Øª Ø£Ùˆ Ø£ÙŠ Ù…Ø¯Ø®Ù„Ø§Øª Ø£Ø®Ø±Ù‰ ÙÙŠ Ø°Ù‡Ù†Ùƒ.</string>
+    <string name="settings_credits">Ø§Ù„Ù…Ø³Ø§Ù‡Ù…ÙˆÙ†</string>
+    <string name="settings_image_by_freepik_title">ØµÙˆØ±Ø© Ø¨ÙˆØ§Ø³Ø·Ø© pch.vector Ø¹Ù„Ù‰ Freepik</string>
+    <string name="settings_image_by_freepik_description">Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„Ù…Ø¹Ø±ÙˆØ¶Ø© Ø¹Ù„Ù‰ Ø´Ø§Ø´Ø© Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø¨Ù‚Ø§Ù„Ø© ØªÙ… Ø¥Ù†Ø´Ø§Ø¤Ù‡Ø§ Ø¨ÙˆØ§Ø³Ø·Ø© pch.vector</string>
     <!-- IconPickerScreen -->
-    <string name="icon_picker_screen_title">اختيار أيقونة</string>
-    <string name="icon_picker_search_field_placeholder">البحث عن أيقونة</string>
+    <string name="icon_picker_screen_title">Ø§Ø®ØªÙŠØ§Ø± Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
+    <string name="icon_picker_search_field_placeholder">Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
     <!-- OnboardingSyncScreen -->
-    <string name="onboarding_sync_status_running_title">ثانية فقط …</string>
-    <string name="onboarding_sync_status_succeeded_title">تم ضبط الكل!</string>
-    <string name="onboarding_sync_status_failed_title">فشل طلب الشبكة</string>
-    <string name="onboarding_sync_status_offline_title">هل يمكنك الاتصال بالإنترنت؟</string>
-    <string name="onboarding_sync_description">نحن بحاجة إلى تنزيل بعض البقالة المحددة مسبقا حتى لا تضطر لإنشائها يدويا.</string>
-    <string name="onboarding_skip_sync_button_title">المتابعة بدون جلب</string>
     <!-- General -->
-    <string name="done">تم</string>
-    <string name="delete">حذف</string>
-    <string name="edit">تعديل</string>
-    <string name="back">عودة</string>
-    <string name="settings">إعدادات</string>
+    <string name="done">ØªÙ…</string>
+    <string name="delete">Ø­Ø°Ù</string>
+    <string name="edit">ØªØ¹Ø¯ÙŠÙ„</string>
+    <string name="back">Ø¹ÙˆØ¯Ø©</string>
+    <string name="settings">Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª</string>
     <string name="forward">Forward</string>
-    <string name="close">إغلاق</string>
-    <string name="reset">إعادة الضبط</string>
-    <string name="retry">إعادة المحاولة</string>
+    <string name="close">Ø¥ØºÙ„Ø§Ù‚</string>
+    <string name="reset">Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ø¶Ø¨Ø·</string>
+    <string name="retry">Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø©</string>
     <!-- Components -->
-    <string name="custom_category_title">بقالة مخصصة</string>
-    <string name="toggle_dropdown_menu_visibility">إظهار/إخفاء القائمة</string>
-    <string name="drag_handle">مقبض</string>
+    <string name="custom_category_title">Ø¨Ù‚Ø§Ù„Ø© Ù…Ø®ØµØµØ©</string>
+    <string name="toggle_dropdown_menu_visibility">Ø¥Ø¸Ù‡Ø§Ø±/Ø¥Ø®ÙØ§Ø¡ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©</string>
+    <string name="drag_handle">Ù…Ù‚Ø¨Ø¶</string>
     <!-- Notifications -->
-    <string name="sync_work_notification_channel_name">مزامنة</string>
-    <string name="sync_work_notification_channel_description">تزامن دوري لقاعدة بيانات البقالة.</string>
-    <string name="sync_work_notification_title">مزامنة بقالتك</string>
+    <string name="sync_work_notification_channel_name">Ù…Ø²Ø§Ù…Ù†Ø©</string>
+    <string name="sync_work_notification_channel_description">ØªØ²Ø§Ù…Ù† Ø¯ÙˆØ±ÙŠ Ù„Ù‚Ø§Ø¹Ø¯Ø© Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¨Ù‚Ø§Ù„Ø©.</string>
+    <string name="sync_work_notification_title">Ù…Ø²Ø§Ù…Ù†Ø© Ø¨Ù‚Ø§Ù„ØªÙƒ</string>
 </resources>
