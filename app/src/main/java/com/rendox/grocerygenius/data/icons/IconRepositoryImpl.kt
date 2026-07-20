@@ -5,6 +5,7 @@ import android.util.Log
 import com.rendox.grocerygenius.data.Synchronizer
 import com.rendox.grocerygenius.data.changeListSync
 import com.rendox.grocerygenius.data.model.asEntity
+import com.rendox.grocerygenius.data.model.asExternalModel
 import com.rendox.grocerygenius.database.groceryicon.IconDao
 import com.rendox.grocerygenius.model.Category
 import com.rendox.grocerygenius.model.IconReference
@@ -14,6 +15,7 @@ import java.io.File
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class IconRepositoryImpl @Inject constructor(
     @ApplicationContext private val appContext: Context,
@@ -22,7 +24,11 @@ class IconRepositoryImpl @Inject constructor(
 ) : IconRepository {
 
     override fun getIconsGroupedByCategory(): Flow<Map<Category, List<IconReference>>> =
-        iconDao.getIconsGroupedByCategory()
+        iconDao.getIconsGroupedByCategory().map { map ->
+            map.entries.associate { (combinedCategory, icons) ->
+                combinedCategory.asExternalModel() to icons
+            }
+        }
 
     override suspend fun getGroceryIconsByName(name: String): List<IconReference> = iconDao.getGroceryIconsByName(name)
 

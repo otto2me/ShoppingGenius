@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Upsert
-import com.rendox.grocerygenius.model.Category
+import com.rendox.grocerygenius.database.category.CombinedCategory
 import com.rendox.grocerygenius.model.IconReference
 import kotlinx.coroutines.flow.Flow
 
@@ -23,6 +23,8 @@ abstract class IconDao {
         c.name,
         c.sortingPriority,
         c.defaultSortingPriority,
+        null AS iconId,
+        null AS iconFilePath,
         i.uniqueFileName,
         i.filePath,
         p.name
@@ -33,7 +35,7 @@ abstract class IconDao {
         GROUP BY i.uniqueFileName
     """
     )
-    abstract fun getIconsGroupedByCategory(): Flow<Map<Category, List<IconReference>>>
+    abstract fun getIconsGroupedByCategory(): Flow<Map<CombinedCategory, List<IconReference>>>
 
     @Query(
         """

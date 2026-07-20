@@ -23,6 +23,10 @@ class ProductRepositoryImpl @Inject constructor(
         it?.asExternalModel()
     }
 
+    override fun getAllProducts(): Flow<List<Product>> = productDao.getAllProducts().map { products ->
+        products.map { it.asExternalModel() }
+    }
+
     override fun getProductsByCategory(categoryId: String?): Flow<List<Product>> =
         productDao.getProductsByCategory(categoryId).map { products ->
             products.map { it.asExternalModel() }
@@ -38,6 +42,13 @@ class ProductRepositoryImpl @Inject constructor(
         categoryId: String?
     ) {
         productDao.updateProductCategory(productId, categoryId)
+    }
+
+    override suspend fun updateProductName(
+        productId: String,
+        name: String
+    ) {
+        productDao.updateProductName(productId, name)
     }
 
     override suspend fun updateProductIcon(

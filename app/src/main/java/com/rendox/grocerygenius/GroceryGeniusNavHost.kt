@@ -14,6 +14,8 @@ import com.rendox.grocerygenius.feature.grocerylist.groceryListNestedNavigation
 import com.rendox.grocerygenius.feature.grocerylist.navigateToGroceryList
 import com.rendox.grocerygenius.feature.iconpicker.iconPickerScreen
 import com.rendox.grocerygenius.feature.iconpicker.navigateToIconPicker
+import com.rendox.grocerygenius.feature.listen.listenScreen
+import com.rendox.grocerygenius.feature.listen.navigateToListen
 import com.rendox.grocerygenius.feature.settings.navigateToSettings
 import com.rendox.grocerygenius.feature.settings.settingsScreen
 
@@ -38,6 +40,11 @@ fun GroceryGeniusNavHost(
             navigateToSettingsScreen = {
                 if (navController.currentDestination?.route == GROCERY_LISTS_DASHBOARD_ROUTE) {
                     navController.navigateToSettings()
+                }
+            },
+            navigateToListenScreen = {
+                if (navController.currentDestination?.route == GROCERY_LISTS_DASHBOARD_ROUTE) {
+                    navController.navigateToListen()
                 }
             }
         )
@@ -68,6 +75,9 @@ fun GroceryGeniusNavHost(
             navigateBack = { navController.popBackStack() }
         )
         iconPickerScreen(
+            navigateBack = { navController.popBackStack() }
+        )
+        listenScreen(
             navigateBack = { navController.popBackStack() }
         )
     }

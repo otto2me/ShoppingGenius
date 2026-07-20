@@ -18,5 +18,7 @@ object DatabaseModule {
         context,
         AppDatabase::class.java,
         "grocery-genius-database"
-    ).build()
+    )
+        .addMigrations(MIGRATION_1_2)
+        .build()
 }

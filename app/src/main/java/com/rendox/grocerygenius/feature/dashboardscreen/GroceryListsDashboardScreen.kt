@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,7 +40,8 @@ import androidx.compose.ui.unit.dp
 fun GroceryListsDashboardRoute(
     viewModel: GroceryListsDashboardViewModel = hiltViewModel(),
     navigateToGroceryListScreen: (String) -> Unit,
-    navigateToSettingsScreen: () -> Unit
+    navigateToSettingsScreen: () -> Unit,
+    navigateToListenScreen: () -> Unit
 ) {
     val screenState by viewModel.groceryListsFlow.collectAsStateWithLifecycle()
     val navigateToGroceryListEvent by viewModel.navigateToGroceryListEvent.collectAsStateWithLifecycle()
@@ -50,7 +53,8 @@ fun GroceryListsDashboardRoute(
         groceryLists = screenState,
         onIntent = viewModel::onIntent,
         navigateToSettingsScreen = navigateToSettingsScreen,
-        navigateToGroceryListScreen = navigateToGroceryListScreen
+        navigateToGroceryListScreen = navigateToGroceryListScreen,
+        navigateToListenScreen = navigateToListenScreen
     )
 }
 
@@ -59,7 +63,8 @@ fun GroceryListsDashboardScreen(
     groceryLists: List<GroceryList>,
     onIntent: (GroceryListsDashboardUiIntent) -> Unit = {},
     navigateToSettingsScreen: () -> Unit = {},
-    navigateToGroceryListScreen: (String) -> Unit = {}
+    navigateToGroceryListScreen: (String) -> Unit = {},
+    navigateToListenScreen: () -> Unit = {}
 ) {
     var scrollState by rememberSaveable { mutableIntStateOf(0) }
 
@@ -73,16 +78,27 @@ fun GroceryListsDashboardScreen(
                 .fillMaxWidth()
                 .padding(top = 4.dp)
         ) {
-            IconButton(
+            Row(
                 modifier = Modifier
+                    .align(Alignment.CenterEnd)
                     .padding(end = TopAppBarActionsHorizontalPadding)
-                    .align(Alignment.CenterEnd),
-                onClick = navigateToSettingsScreen
             ) {
-                Icon(
-                    imageVector = Icons.Default.Settings,
-                    contentDescription = stringResource(R.string.settings)
-                )
+                IconButton(
+                    onClick = navigateToListenScreen
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.List,
+                        contentDescription = stringResource(R.string.listen)
+                    )
+                }
+                IconButton(
+                    onClick = navigateToSettingsScreen
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = stringResource(R.string.settings)
+                    )
+                }
             }
         }
         AndroidViewBinding(

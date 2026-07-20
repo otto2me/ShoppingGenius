@@ -87,6 +87,25 @@ abstract class ProductDao {
 
     @Query(
         """
+        SELECT
+            product.id,
+            product.name,
+            icon.uniqueFileName as iconId,
+            icon.filePath as iconFilePath,
+            category.id as categoryId,
+            category.name as categoryName,
+            category.sortingPriority as categorySortingPriority,
+            product.isDefault
+        FROM ProductEntity product
+        LEFT JOIN CategoryEntity category ON product.categoryId = category.id
+        LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
+        ORDER BY category.sortingPriority ASC, LOWER(product.name) ASC
+    """
+    )
+    abstract fun getAllProducts(): Flow<List<CombinedProduct>>
+
+    @Query(
+        """
         SELECT 
             product.id,
             product.name,
@@ -158,6 +177,12 @@ abstract class ProductDao {
     abstract suspend fun updateProductIcon(
         productId: String,
         iconId: String?
+    )
+
+    @Query("UPDATE ProductEntity SET name = :name WHERE id = :productId")
+    abstract suspend fun updateProductName(
+        productId: String,
+        name: String
     )
 
     @Query("DELETE FROM ProductEntity WHERE id = :productId")

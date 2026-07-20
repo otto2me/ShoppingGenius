@@ -30,6 +30,14 @@ class CategoryRepositoryImpl @Inject constructor(
         categoryDao.updateCategories(categories.map { it.asEntity() })
     }
 
+    override suspend fun updateCategoryName(categoryId: String, name: String) {
+        categoryDao.updateCategoryName(categoryId = categoryId, name = name)
+    }
+
+    override suspend fun updateCategoryIcon(categoryId: String, iconId: String?) {
+        categoryDao.updateCategoryIcon(categoryId = categoryId, iconId = iconId)
+    }
+
     override suspend fun syncWith(synchronizer: Synchronizer) = synchronizer.changeListSync(
         prepopulateWithInitialData = {
             val categories = categoryNetworkDataSource.getAllCategories()
@@ -48,7 +56,14 @@ class CategoryRepositoryImpl @Inject constructor(
         modelUpdater = { changedIds ->
             val networkCategories =
                 categoryNetworkDataSource.getCategoriesByIds(ids = changedIds)
-            categoryDao.upsertCategories(networkCategories.map { it.asEntity() })
+            val localCategoriesById = categoryDao.getCategoriesByIds(changedIds).associateBy { it.id }
+            categoryDao.upsertCategories(
+                networkCategories.map { networkCategory ->
+                    networkCategory.asEntity(
+                        iconFileName = localCategoriesById[networkCategory.id]?.iconFileName
+                    )
+                }
+            )
         }
     )
 }
