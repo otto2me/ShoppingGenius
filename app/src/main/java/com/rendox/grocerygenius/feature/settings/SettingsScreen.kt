@@ -1,18 +1,17 @@
 package com.rendox.grocerygenius.feature.settings
 
 import android.content.Intent
-import android.net.Uri
 import android.view.ViewGroup
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement.SpaceEvenly
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -52,19 +52,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextMotion
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -82,14 +80,9 @@ import com.rendox.grocerygenius.ui.components.CustomIconSetting
 import com.rendox.grocerygenius.ui.components.DropDownMenuToggleIcon
 import com.rendox.grocerygenius.ui.components.LazyDropdownMenu
 import com.rendox.grocerygenius.ui.components.TonalDataInput
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.CollapsingToolbar
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.CollapsingToolbarScaffoldScrollableState
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.scrollbehavior.CollapsingToolbarNestedScrollConnection
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.scrollbehavior.rememberExitUntilCollapsedToolbarState
 import com.rendox.grocerygenius.ui.helpers.ObserveUiEvent
 import com.rendox.grocerygenius.ui.helpers.UiEvent
 import com.rendox.grocerygenius.ui.theme.GroceryGeniusTheme
-import com.rendox.grocerygenius.ui.theme.TopAppBarMediumHeight
 import com.rendox.grocerygenius.ui.theme.TopAppBarSmallHeight
 import com.rendox.grocerygenius.ui.theme.deriveColorScheme
 import kotlinx.coroutines.launch
@@ -123,29 +116,7 @@ private fun SettingsScreen(
     var isLanguageDropdownExpanded by remember { mutableStateOf(false) }
     var isDefaultListDropdownExpanded by remember { mutableStateOf(false) }
 
-    val toolbarHeightRange = with(LocalDensity.current) {
-        TopAppBarSmallHeight.roundToPx()..TopAppBarMediumHeight.roundToPx()
-    }
-    val toolbarState = rememberExitUntilCollapsedToolbarState(toolbarHeightRange)
     val lazyListState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
-
-    val scrollState: CollapsingToolbarScaffoldScrollableState = remember {
-        object : CollapsingToolbarScaffoldScrollableState, ScrollableState by lazyListState {
-            override val firstVisibleItemIndex: Int
-                get() = lazyListState.firstVisibleItemIndex
-            override val firstVisibleItemScrollOffset: Int
-                get() = lazyListState.firstVisibleItemScrollOffset
-        }
-    }
-
-    val nestedScrollConnection = remember {
-        CollapsingToolbarNestedScrollConnection(
-            toolbarState = toolbarState,
-            scrollState = scrollState,
-            coroutineScope = coroutineScope
-        )
-    }
 
     val snackbarHostState = remember { SnackbarHostState() }
     val dynamicColorNotSupportedMessage =
@@ -165,31 +136,35 @@ private fun SettingsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(contentPadding)
-                .nestedScroll(nestedScrollConnection)
+                .systemBarsPadding()
         ) {
-            val titleStyle = MaterialTheme.typography.headlineSmall
-            CollapsingToolbar(
-                toolbarState = toolbarState,
-                toolbarHeightRange = toolbarHeightRange,
-                titleExpanded = {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(TopAppBarSmallHeight),
+                color = MaterialTheme.colorScheme.surface
+            ) {
+                Box(modifier = Modifier.fillMaxSize()) {
                     Text(
+                        modifier = Modifier.align(Alignment.Center),
                         text = stringResource(R.string.settings),
-                        style = titleStyle.copy(textMotion = TextMotion.Animated),
+                        style = MaterialTheme.typography.titleLarge,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
-                },
-                expandedTitleFontSize = titleStyle.fontSize,
-                titleBottomPadding = 24.dp,
-                navigationIcon = {
-                    IconButton(onClick = navigateBack) {
+                    IconButton(
+                        modifier = Modifier
+                            .padding(start = 4.dp)
+                            .align(Alignment.CenterStart),
+                        onClick = navigateBack
+                    ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Default.ArrowBack,
                             contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
-            )
+            }
 
             if (!uiState.isLoading) {
                 LazyColumn(
@@ -753,7 +728,7 @@ private fun EmailLink(modifier: Modifier = Modifier) {
             .clickable {
                 val intent = Intent(
                     Intent.ACTION_SENDTO,
-                    Uri.parse("mailto:" + Uri.encode(developerEmail))
+                    "mailto:$developerEmail".toUri()
                 )
                 context.startActivity(Intent.createChooser(intent, title))
             },
@@ -791,7 +766,7 @@ private fun FreepikAttribution(modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true)
 @Composable
 fun PreviewSettingsScreen() {
     GroceryGeniusTheme {

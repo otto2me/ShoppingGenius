@@ -138,10 +138,8 @@ fun CollapsingToolbar(
 
             if (actions != null) {
                 Box(
-                    modifier = Modifier
-                        .height(collapsedHeight)
-                        .fillMaxWidth(),
-                    contentAlignment = Alignment.CenterEnd
+                    modifier = Modifier.height(collapsedHeight),
+                    contentAlignment = Alignment.CenterStart
                 ) {
                     Row(
                         modifier = Modifier.padding(end = TopAppBarActionsHorizontalPadding),
@@ -184,6 +182,8 @@ private fun CollapsingTextLayout(
                 ((constraints.maxHeight - compressedTextHeight) * 0.5F).roundToInt()
             val bottomTitlePosition =
                 constraints.maxHeight - title.height - titleBottomPadding.roundToPx()
+
+            // Place title first (will appear behind the icons)
             title.placeRelative(
                 x = lerp(
                     start = navigationIcon.width,
@@ -197,13 +197,14 @@ private fun CollapsingTextLayout(
                 )
             )
 
+            // Place navigation icon and actions last (so they appear on top)
             navigationIcon.placeRelative(
                 x = 0,
                 y = 0
             )
 
             actions.placeRelative(
-                x = 0,
+                x = constraints.maxWidth - actions.width,
                 y = 0
             )
         }
