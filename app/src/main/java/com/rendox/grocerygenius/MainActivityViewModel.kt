@@ -3,8 +3,8 @@ package com.rendox.grocerygenius
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rendox.grocerygenius.data.Synchronizer
-import com.rendox.grocerygenius.data.checkFirstTimeSync
 import com.rendox.grocerygenius.data.category.CategoryRepository
+import com.rendox.grocerygenius.data.checkFirstTimeSync
 import com.rendox.grocerygenius.data.icons.IconRepository
 import com.rendox.grocerygenius.data.product.ProductRepository
 import com.rendox.grocerygenius.data.userpreferences.UserPreferencesRepository
@@ -75,9 +75,7 @@ class MainActivityViewModel @Inject constructor(
             override suspend fun getChangeListVersions(): ChangeListVersions =
                 changeListVersionsDataSource.getChangeListVersions()
 
-            override suspend fun updateChangeListVersions(
-                update: ChangeListVersions.() -> ChangeListVersions
-            ) {
+            override suspend fun updateChangeListVersions(update: ChangeListVersions.() -> ChangeListVersions) {
                 changeListVersionsDataSource.updateChangeListVersion(update)
             }
         }

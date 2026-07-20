@@ -17,4 +17,3 @@ class AppLocaleManager @Inject constructor(
         AppCompatDelegate.setApplicationLocales(AppLanguage.toLocaleListCompat(languageTag))
     }
 }
-

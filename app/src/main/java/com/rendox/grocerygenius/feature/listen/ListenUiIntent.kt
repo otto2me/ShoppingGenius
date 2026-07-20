@@ -7,6 +7,3 @@ sealed interface ListenUiIntent {
     data class OnEditProductCategory(val productId: String, val categoryId: String?) : ListenUiIntent
     data object OnCancelEdit : ListenUiIntent
 }
-
-
-

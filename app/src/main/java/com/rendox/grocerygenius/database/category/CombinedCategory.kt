@@ -8,4 +8,3 @@ data class CombinedCategory(
     val iconId: String?,
     val iconFilePath: String?
 )
-

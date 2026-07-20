@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.roomPlugin)
     kotlin("kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.ktlint)
 }
@@ -42,11 +43,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -106,8 +107,7 @@ dependencies {
 
     implementation(libs.com.squareup.moshi)
     implementation(libs.com.squareup.moshi.kotlin)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.com.squareup.moshi.kotlin.codegen)
+    ksp(libs.com.squareup.moshi.kotlin.codegen)
 
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.io.coil.compose)

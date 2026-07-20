@@ -77,4 +77,3 @@ fun NavGraphBuilder.categoryIconPickerScreen(navigateBack: () -> Unit) {
         )
     }
 }
-

@@ -11,10 +11,9 @@ class OfflineFirstCategoryNetworkDataSource @Inject constructor(
     private val localAssetDataLoader: LocalAssetDataLoader,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : CategoryNetworkDataSource {
-    override suspend fun getAllCategories(): List<CategoryNetwork> =
-        localAssetDataLoader.loadCategoriesJson(
-            userPreferencesRepository.userPreferencesFlow.first().selectedLanguageTag
-        )
+    override suspend fun getAllCategories(): List<CategoryNetwork> = localAssetDataLoader.loadCategoriesJson(
+        userPreferencesRepository.userPreferencesFlow.first().selectedLanguageTag
+    )
 
     override suspend fun getCategoriesByIds(ids: List<String>): List<CategoryNetwork> =
         getAllCategories().filter { it.id in ids }

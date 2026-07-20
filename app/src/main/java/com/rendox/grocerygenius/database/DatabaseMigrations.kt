@@ -8,4 +8,3 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
         db.execSQL("ALTER TABLE CategoryEntity ADD COLUMN iconFileName TEXT")
     }
 }
-

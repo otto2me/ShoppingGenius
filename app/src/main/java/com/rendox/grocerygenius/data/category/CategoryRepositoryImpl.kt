@@ -30,11 +30,17 @@ class CategoryRepositoryImpl @Inject constructor(
         categoryDao.updateCategories(categories.map { it.asEntity() })
     }
 
-    override suspend fun updateCategoryName(categoryId: String, name: String) {
+    override suspend fun updateCategoryName(
+        categoryId: String,
+        name: String
+    ) {
         categoryDao.updateCategoryName(categoryId = categoryId, name = name)
     }
 
-    override suspend fun updateCategoryIcon(categoryId: String, iconId: String?) {
+    override suspend fun updateCategoryIcon(
+        categoryId: String,
+        iconId: String?
+    ) {
         categoryDao.updateCategoryIcon(categoryId = categoryId, iconId = iconId)
     }
 

@@ -11,10 +11,9 @@ class OfflineFirstProductNetworkDataSource @Inject constructor(
     private val localAssetDataLoader: LocalAssetDataLoader,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : ProductNetworkDataSource {
-    override suspend fun getAllProducts(): List<ProductNetwork> =
-        localAssetDataLoader.loadProductsJson(
-            userPreferencesRepository.userPreferencesFlow.first().selectedLanguageTag
-        )
+    override suspend fun getAllProducts(): List<ProductNetwork> = localAssetDataLoader.loadProductsJson(
+        userPreferencesRepository.userPreferencesFlow.first().selectedLanguageTag
+    )
 
     override suspend fun getProductsByIds(ids: List<String>): List<ProductNetwork> =
         getAllProducts().filter { it.id in ids }

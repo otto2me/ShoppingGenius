@@ -37,9 +37,11 @@ object AppLanguage {
         "zh-TW"
     )
 
-    fun toLocaleListCompat(languageTag: String?): LocaleListCompat =
-        if (languageTag.isNullOrBlank()) LocaleListCompat.getEmptyLocaleList()
-        else LocaleListCompat.forLanguageTags(languageTag)
+    fun toLocaleListCompat(languageTag: String?): LocaleListCompat = if (languageTag.isNullOrBlank()) {
+        LocaleListCompat.getEmptyLocaleList()
+    } else {
+        LocaleListCompat.forLanguageTags(languageTag)
+    }
 
     fun resolveAssetLanguageTag(languageTag: String?): String {
         val candidateLocale = normalizeLocale(languageTag) ?: Locale.getDefault()
@@ -53,7 +55,10 @@ object AppLanguage {
         } ?: "en"
     }
 
-    fun displayName(languageTag: String, displayLocale: Locale = Locale.getDefault()): String {
+    fun displayName(
+        languageTag: String,
+        displayLocale: Locale = Locale.getDefault()
+    ): String {
         val locale = Locale.forLanguageTag(languageTag)
         return locale.getDisplayName(displayLocale).replaceFirstChar { char ->
             if (char.isLowerCase()) char.titlecase(displayLocale) else char.toString()
@@ -65,4 +70,3 @@ object AppLanguage {
         return Locale.forLanguageTag(normalizedTag)
     }
 }
-

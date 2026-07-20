@@ -138,7 +138,10 @@ fun ListenScreen(
                 onIntent(ListenUiIntent.OnEditProductName(productId = state.id, newName = newName))
                 editProductDialogState = null
             },
-            onEditIcon = { editProductDialogState = null; navigateToProductIconPicker(state.id) },
+            onEditIcon = {
+                editProductDialogState = null
+                navigateToProductIconPicker(state.id)
+            },
             onCategorySelected = { categoryId ->
                 onIntent(ListenUiIntent.OnEditProductCategory(productId = state.id, categoryId = categoryId))
             }
@@ -158,14 +161,21 @@ fun ListenScreen(
                 onIntent(ListenUiIntent.OnEditCategoryName(categoryId = state.id, newName = newName))
                 editCategoryDialogState = null
             },
-            onEditIcon = { editCategoryDialogState = null; navigateToIconPickerForCategory(state.id) },
+            onEditIcon = {
+                editCategoryDialogState = null
+                navigateToIconPickerForCategory(state.id)
+            },
             onCategorySelected = null
         )
     }
 }
 
 @Composable
-private fun ListenProductItem(product: Product, filesDir: File, onClick: () -> Unit) {
+private fun ListenProductItem(
+    product: Product,
+    filesDir: File,
+    onClick: () -> Unit
+) {
     ListItem(
         modifier = Modifier.clickable(onClick = onClick),
         headlineContent = { Text(text = product.name) },
@@ -186,7 +196,11 @@ private fun ListenProductItem(product: Product, filesDir: File, onClick: () -> U
 }
 
 @Composable
-private fun ListenCategoryItem(category: Category, filesDir: File, onClick: () -> Unit) {
+private fun ListenCategoryItem(
+    category: Category,
+    filesDir: File,
+    onClick: () -> Unit
+) {
     ListItem(
         modifier = Modifier.clickable(onClick = onClick),
         headlineContent = { Text(text = category.name) },
@@ -279,7 +293,10 @@ private fun EditDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = { val t = name.trim(); if (t.isNotEmpty()) onSaveName(t) }) {
+            TextButton(onClick = {
+                val t = name.trim()
+                if (t.isNotEmpty()) onSaveName(t)
+            }) {
                 Text(text = stringResource(R.string.done))
             }
         },
@@ -301,4 +318,3 @@ private data class EditDialogState(
 private fun PreviewListenScreen() {
     GroceryGeniusTheme { ListenScreen(uiState = ListenUiState()) }
 }
-

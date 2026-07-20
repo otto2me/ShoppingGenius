@@ -129,9 +129,7 @@ class SettingsScreenViewModel @Inject constructor(
             override suspend fun getChangeListVersions(): ChangeListVersions =
                 changeListVersionsDataSource.getChangeListVersions()
 
-            override suspend fun updateChangeListVersions(
-                update: ChangeListVersions.() -> ChangeListVersions
-            ) {
+            override suspend fun updateChangeListVersions(update: ChangeListVersions.() -> ChangeListVersions) {
                 changeListVersionsDataSource.updateChangeListVersion(update)
             }
         }

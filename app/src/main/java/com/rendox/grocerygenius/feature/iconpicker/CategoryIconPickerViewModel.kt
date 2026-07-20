@@ -81,4 +81,3 @@ class CategoryIconPickerViewModel @Inject constructor(
         }
     }
 }
-

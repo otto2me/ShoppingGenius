@@ -8,6 +8,12 @@ interface CategoryRepository : Syncable {
     fun getAllCategories(): Flow<List<Category>>
     fun getCategoryById(id: String): Flow<Category?>
     suspend fun updateCategories(categories: List<Category>)
-    suspend fun updateCategoryName(categoryId: String, name: String)
-    suspend fun updateCategoryIcon(categoryId: String, iconId: String?)
+    suspend fun updateCategoryName(
+        categoryId: String,
+        name: String
+    )
+    suspend fun updateCategoryIcon(
+        categoryId: String,
+        iconId: String?
+    )
 }
