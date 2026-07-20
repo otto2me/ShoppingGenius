@@ -15,14 +15,20 @@ fun NavController.navigateToListen(navOptions: (NavOptionsBuilder.() -> Unit) = 
     )
 }
 
-fun NavGraphBuilder.listenScreen(navigateBack: () -> Unit) {
+fun NavGraphBuilder.listenScreen(
+    navigateBack: () -> Unit,
+    navigateToProductIconPicker: (productId: String) -> Unit,
+    navigateToIconPickerForCategory: (categoryId: String) -> Unit
+) {
     composable(
         route = LISTEN_ROUTE,
         enterTransition = { GroceryGeniusTransition.SlideInVertically },
         exitTransition = { GroceryGeniusTransition.SlideOutVertically }
     ) {
         ListenRoute(
-            navigateBack = navigateBack
+            navigateBack = navigateBack,
+            navigateToProductIconPicker = navigateToProductIconPicker,
+            navigateToIconPickerForCategory = navigateToIconPickerForCategory
         )
     }
 }

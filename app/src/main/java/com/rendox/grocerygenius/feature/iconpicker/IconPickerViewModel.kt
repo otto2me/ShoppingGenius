@@ -103,6 +103,13 @@ class IconPickerViewModel @Inject constructor(
 
     private suspend fun onPickIcon(iconId: String?) {
         val editProductId = editProductIdFlow.value ?: return
+
+        // Called from Listen screen — no grocery list context, update product icon directly.
+        if (groceryListId == LISTEN_NO_LIST_ID) {
+            productRepository.updateProductIcon(productId = editProductId, iconId = iconId)
+            return
+        }
+
         val grocery = groceryRepository.getGroceryById(
             productId = editProductId,
             listId = groceryListId

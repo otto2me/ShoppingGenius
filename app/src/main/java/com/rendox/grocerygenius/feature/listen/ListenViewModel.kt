@@ -73,6 +73,14 @@ class ListenViewModel @Inject constructor(
             is ListenUiIntent.OnEditProductIcon -> {
                 _uiStateFlow.update { it.copy(editingProductId = intent.productId) }
             }
+            is ListenUiIntent.OnEditProductCategory -> {
+                viewModelScope.launch {
+                    productRepository.updateProductCategory(
+                        intent.productId,
+                        intent.categoryId
+                    )
+                }
+            }
             is ListenUiIntent.OnCancelEdit -> {
                 _uiStateFlow.update {
                     it.copy(
