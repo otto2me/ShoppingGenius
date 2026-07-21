@@ -19,11 +19,8 @@ internal suspend fun resolveActiveWidgetListData(
 ): ActiveWidgetListData {
     val preferences = userPreferencesDataSource.userPreferencesFlow.first()
 
-    var listId = if (preferences.openLastViewedList) {
-        preferences.lastOpenedListId
-    } else {
-        preferences.defaultListId
-    }
+    // "Aktive" Liste = zuletzt geoeffnete Liste; falls nicht vorhanden, auf Default/Fallback gehen.
+    var listId = preferences.lastOpenedListId ?: preferences.defaultListId
 
     if (listId != null && groceryListDao.getGroceryListNameById(listId) == null) {
         listId = null

@@ -212,8 +212,14 @@ class GroceryListViewModel @AssistedInject constructor(
         is GroceryListsUiIntent.OnGroceryItemClick ->
             toggleItemPurchased(intent.item)
 
-        is GroceryListsUiIntent.UpdateGroceryListName ->
+        is GroceryListsUiIntent.UpdateGroceryListName -> {
             openedGroceryListName = intent.name
+            val trimmedName = intent.name.text.trim()
+            if (trimmedName.isNotEmpty()) {
+                saveGroceryListNameImmediately(trimmedName)
+            }
+            Unit
+        }
 
         is GroceryListsUiIntent.OnDeleteGroceryList ->
             deleteGroceryList()

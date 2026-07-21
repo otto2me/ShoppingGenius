@@ -67,7 +67,12 @@ class ActiveGroceryListRemoteViewsFactory(
             }
 
             setFloat(R.id.widget_item_root, "setAlpha", if (item.purchased) 0.6f else 1f)
-            setOnClickFillInIntent(R.id.widget_item_root, Intent())
+            setOnClickFillInIntent(
+                R.id.widget_item_root,
+                Intent(Intent.ACTION_VIEW).setData(
+                    android.net.Uri.parse("grocerygenius://widget/item/${item.productId}")
+                )
+            )
         }
     }
 
