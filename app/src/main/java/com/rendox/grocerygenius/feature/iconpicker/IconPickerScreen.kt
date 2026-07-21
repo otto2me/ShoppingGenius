@@ -1,6 +1,7 @@
 package com.rendox.grocerygenius.feature.iconpicker
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,6 +28,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.CircularProgressIndicator
@@ -35,10 +37,13 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.Modifier
@@ -221,6 +226,32 @@ private fun IconGrid(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(8.dp),
     onIntent: (IconPickerIntent) -> Unit
 ) {
+    var iconPendingDelete by remember { mutableStateOf<IconReference?>(null) }
+
+    if (iconPendingDelete != null) {
+        AlertDialog(
+            onDismissRequest = { iconPendingDelete = null },
+            title = { Text(stringResource(R.string.icon_picker_delete_dialog_title)) },
+            text = { Text(stringResource(R.string.icon_picker_delete_dialog_message)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    onIntent(IconPickerIntent.OnDeleteIcon(iconPendingDelete!!))
+                    iconPendingDelete = null
+                }) {
+                    Text(
+                        text = stringResource(R.string.icon_picker_delete_confirm),
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { iconPendingDelete = null }) {
+                    Text(stringResource(R.string.icon_picker_delete_cancel))
+                }
+            }
+        )
+    }
+
     Box(modifier = modifier) {
         val itemsAvailable = remember(uiState.groupedIcons) {
             val numOfTitles = uiState.groupedIcons.size
@@ -248,6 +279,7 @@ private fun IconGrid(
                         onIconClick = { icon ->
                             if (icon != null) onIntent(IconPickerIntent.OnPickIcon(icon))
                         },
+                        onIconLongClick = { icon -> iconPendingDelete = icon },
                         isSelected = iconRef.uniqueFileName == uiState.product?.icon?.uniqueFileName
                     )
                 }
@@ -279,6 +311,7 @@ private fun IconGrid(
                             onIconClick = { icon ->
                                 if (icon != null) onIntent(IconPickerIntent.OnPickIcon(icon))
                             },
+                            onIconLongClick = { icon -> iconPendingDelete = icon },
                             isSelected = iconRef.uniqueFileName == uiState.product?.icon?.uniqueFileName
                         )
                     }
@@ -380,13 +413,15 @@ private fun DuckDuckGoImageResults(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun IconPickerItem(
     modifier: Modifier = Modifier,
     iconRef: IconReference?,
     iconName: String = iconRef?.name ?: "",
     isSelected: Boolean,
-    onIconClick: (IconReference?) -> Unit = {}
+    onIconClick: (IconReference?) -> Unit = {},
+    onIconLongClick: (IconReference) -> Unit = {}
 ) {
     val context = LocalContext.current
     Surface(
@@ -396,12 +431,15 @@ private fun IconPickerItem(
         } else {
             MaterialTheme.colorScheme.surfaceContainer
         },
-        shape = RoundedCornerShape(GroceryItemRounding),
-        onClick = { onIconClick(iconRef) }
+        shape = RoundedCornerShape(GroceryItemRounding)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .combinedClickable(
+                    onClick = { onIconClick(iconRef) },
+                    onLongClick = { if (iconRef != null) onIconLongClick(iconRef) }
+                )
                 .padding(4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly

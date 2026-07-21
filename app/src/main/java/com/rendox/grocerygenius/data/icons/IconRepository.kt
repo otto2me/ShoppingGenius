@@ -12,4 +12,5 @@ interface IconRepository : Syncable {
         imageUrl: String,
         fallbackImageUrl: String? = null
     ): IconReference?
+    suspend fun deleteIcon(uniqueFileName: String)
 }

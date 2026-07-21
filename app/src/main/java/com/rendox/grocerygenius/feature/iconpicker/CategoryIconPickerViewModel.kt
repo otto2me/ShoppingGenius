@@ -62,12 +62,14 @@ class CategoryIconPickerViewModel @Inject constructor(
             }
         }
         viewModelScope.launch {
-            _uiStateFlow.update {
-                it.copy(
-                    groupedIcons = iconRepository.getIconsGroupedByCategory().first().toSortedMap(
-                        compareBy { category -> category.sortingPriority }
+            iconRepository.getIconsGroupedByCategory().collectLatest { groupedIcons ->
+                _uiStateFlow.update {
+                    it.copy(
+                        groupedIcons = groupedIcons.toSortedMap(
+                            compareBy { category -> category.sortingPriority }
+                        )
                     )
-                )
+                }
             }
         }
     }
@@ -82,6 +84,9 @@ class CategoryIconPickerViewModel @Inject constructor(
                 searchQuery = intent.query
             is IconPickerIntent.OnClearSearchQuery ->
                 searchQuery = ""
+            is IconPickerIntent.OnDeleteIcon -> {
+                iconRepository.deleteIcon(intent.iconReference.uniqueFileName)
+            }
             is IconPickerIntent.OnPickRemoteImage -> {
                 _uiStateFlow.update {
                     it.copy(

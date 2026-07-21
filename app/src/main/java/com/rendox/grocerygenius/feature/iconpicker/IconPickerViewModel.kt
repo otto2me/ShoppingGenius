@@ -72,12 +72,14 @@ class IconPickerViewModel @Inject constructor(
             }
         }
         viewModelScope.launch {
-            _uiStateFlow.update { uiState ->
-                uiState.copy(
-                    groupedIcons = iconRepository.getIconsGroupedByCategory().first().toSortedMap(
-                        comparator = compareBy { category -> category.sortingPriority }
+            iconRepository.getIconsGroupedByCategory().collectLatest { groupedIcons ->
+                _uiStateFlow.update { uiState ->
+                    uiState.copy(
+                        groupedIcons = groupedIcons.toSortedMap(
+                            comparator = compareBy { category -> category.sortingPriority }
+                        )
                     )
-                )
+                }
             }
         }
         viewModelScope.launch {
@@ -113,6 +115,9 @@ class IconPickerViewModel @Inject constructor(
             is IconPickerIntent.OnRemoveIcon -> {
                 _uiStateFlow.update { it.copy(previewIcon = null) }
                 onPickIcon(null)
+            }
+            is IconPickerIntent.OnDeleteIcon -> {
+                iconRepository.deleteIcon(intent.iconReference.uniqueFileName)
             }
             is IconPickerIntent.OnPickRemoteImage -> {
                 _uiStateFlow.update {

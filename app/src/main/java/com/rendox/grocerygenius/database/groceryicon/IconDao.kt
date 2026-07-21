@@ -22,19 +22,18 @@ abstract class IconDao {
     @Query(
         """
         SELECT 
-        c.id,
-        c.name,
-        c.sortingPriority,
-        c.defaultSortingPriority,
+        COALESCE(MIN(c.id), 'uncategorized') AS id,
+        COALESCE(MIN(c.name), 'Uncategorized') AS name,
+        COALESCE(MIN(c.sortingPriority), 9223372036854775807) AS sortingPriority,
+        COALESCE(MIN(c.defaultSortingPriority), 9223372036854775807) AS defaultSortingPriority,
         null AS iconId,
         null AS iconFilePath,
         i.uniqueFileName,
         i.filePath,
-        p.name
+        COALESCE(MIN(p.name), i.uniqueFileName) AS name
         FROM IconEntity i
-        INNER JOIN ProductEntity p ON i.uniqueFileName = p.iconFileName
-        INNER JOIN CategoryEntity c ON p.categoryId = c.id
-        WHERE p.isDefault IS 1
+        LEFT JOIN ProductEntity p ON i.uniqueFileName = p.iconFileName AND p.isDefault IS 1
+        LEFT JOIN CategoryEntity c ON p.categoryId = c.id
         GROUP BY i.uniqueFileName
     """
     )
@@ -45,11 +44,11 @@ abstract class IconDao {
         SELECT 
         i.uniqueFileName,
         i.filePath,
-        p.name
+        COALESCE(MIN(p.name), i.uniqueFileName) AS name
         FROM IconEntity i
         LEFT JOIN ProductEntity p ON i.uniqueFileName = p.iconFileName
-        WHERE LOWER(p.name) LIKE LOWER(:name)
-        GROUP BY i.uniqueFileName
+        WHERE LOWER(COALESCE(p.name, i.uniqueFileName)) LIKE LOWER(:name)
+        GROUP BY i.uniqueFileName, i.filePath
         """
     )
     abstract suspend fun getGroceryIconsByName(name: String): List<IconReference>

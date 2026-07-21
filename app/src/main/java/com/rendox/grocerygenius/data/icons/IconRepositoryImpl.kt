@@ -38,6 +38,20 @@ class IconRepositoryImpl @Inject constructor(
 
     override suspend fun getGroceryIconsByName(name: String): List<IconReference> = iconDao.getGroceryIconsByName(name)
 
+    override suspend fun deleteIcon(uniqueFileName: String) {
+        withContext(Dispatchers.IO) {
+            iconDao.deleteIcons(listOf(uniqueFileName))
+            val iconFile = File(appContext.filesDir, "icons/$uniqueFileName")
+            if (iconFile.exists()) {
+                try {
+                    iconFile.delete()
+                } catch (e: IOException) {
+                    Log.w("IconRepository", "Failed to delete icon file: ${iconFile.absolutePath}; ${e.message}")
+                }
+            }
+        }
+    }
+
     override suspend fun importCustomIconFromUrl(
         imageUrl: String,
         fallbackImageUrl: String?

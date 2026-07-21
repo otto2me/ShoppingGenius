@@ -11,4 +11,5 @@ sealed interface IconPickerIntent {
     data class OnUpdateSearchQuery(val query: String) : IconPickerIntent
     data object OnClearSearchQuery : IconPickerIntent
     data object OnRemoveIcon : IconPickerIntent
+    data class OnDeleteIcon(val iconReference: IconReference) : IconPickerIntent
 }

@@ -62,6 +62,10 @@
     <string name="icon_picker_duckduckgo_images_section_title">DuckDuckGo-Bildtreffer</string>
     <string name="icon_picker_import_success">Icon aktualisiert.</string>
     <string name="icon_picker_import_failed">Dieses Bild konnte nicht importiert werden.</string>
+    <string name="icon_picker_delete_dialog_title">Symbol löschen?</string>
+    <string name="icon_picker_delete_dialog_message">Dieses Symbol wird dauerhaft entfernt.</string>
+    <string name="icon_picker_delete_confirm">Löschen</string>
+    <string name="icon_picker_delete_cancel">Abbrechen</string>
     <!-- General -->
     <string name="done">Fertig</string>
     <string name="delete">Löschen</string>

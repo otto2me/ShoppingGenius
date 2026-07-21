@@ -64,6 +64,10 @@
     <string name="icon_picker_duckduckgo_images_section_title">DuckDuckGo image results</string>
     <string name="icon_picker_import_success">Icon updated.</string>
     <string name="icon_picker_import_failed">Could not import this image.</string>
+    <string name="icon_picker_delete_dialog_title">Delete icon?</string>
+    <string name="icon_picker_delete_dialog_message">This icon will be permanently removed.</string>
+    <string name="icon_picker_delete_confirm">Delete</string>
+    <string name="icon_picker_delete_cancel">Cancel</string>
     <!-- General -->
     <string name="done">Done</string>
     <string name="delete">Delete</string>
