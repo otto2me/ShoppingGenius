@@ -2,4 +2,12 @@
 <resources>
     <color name="ic_launcher_background">#06335C</color>
     <color name="status_bar_light_scrim">#60000000</color>
+
+    <!-- Widget palette aligned with the app icon blue -->
+    <color name="widget_surface">#06335C</color>
+    <color name="widget_divider">#2F6A9E</color>
+    <color name="widget_title">#FFFFFFFF</color>
+    <color name="widget_primary_text">#F2F7FF</color>
+    <color name="widget_secondary_text">#B9D3EE</color>
+    <color name="widget_icon_chip">#D6E5F5</color>
 </resources>

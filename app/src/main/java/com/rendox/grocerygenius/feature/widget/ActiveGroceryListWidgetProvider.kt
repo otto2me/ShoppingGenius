@@ -92,7 +92,7 @@ class ActiveGroceryListWidgetProvider : AppWidgetProvider() {
             }
 
             val alpha = (widgetData.backgroundOpacityPercent.coerceIn(0, 100) * 255) / 100
-            views.setInt(R.id.widget_root, "setBackgroundColor", Color.argb(alpha, 255, 255, 255))
+            views.setInt(R.id.widget_root, "setBackgroundColor", Color.argb(alpha, 0x06, 0x33, 0x5C))
 
             views.setTextViewText(
                 R.id.widget_title,
@@ -104,4 +104,3 @@ class ActiveGroceryListWidgetProvider : AppWidgetProvider() {
         }
     }
 }
-

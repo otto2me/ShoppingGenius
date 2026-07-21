@@ -5,30 +5,43 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:minHeight="48dp"
-    android:paddingHorizontal="4dp"
-    android:paddingVertical="6dp">
+    android:minHeight="52dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:background="@drawable/widget_item_background">
 
-    <ImageView
-        android:id="@+id/widget_item_icon"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:contentDescription=""
-        android:scaleType="centerInside"
-        android:tint="@android:color/darker_gray" />
+    <FrameLayout
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/widget_icon_chip_background"
+        android:foregroundGravity="center">
+
+        <ImageView
+            android:id="@+id/widget_item_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:scaleType="centerInside" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingStart="8dp">
+        android:paddingStart="10dp">
 
         <TextView
             android:id="@+id/widget_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:textColor="@color/widget_primary_text"
+            android:textStyle="bold"
             android:textSize="13sp"
             android:maxLines="1"
             android:ellipsize="end" />
@@ -37,7 +50,7 @@
             android:id="@+id/widget_item_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/widget_secondary_text"
             android:textSize="11sp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -45,4 +58,3 @@
     </LinearLayout>
 
 </LinearLayout>
-
