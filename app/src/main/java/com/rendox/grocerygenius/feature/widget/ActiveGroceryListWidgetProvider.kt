@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.widget.RemoteViews
 import com.rendox.grocerygenius.MainActivity
@@ -78,22 +79,24 @@ class ActiveGroceryListWidgetProvider : AppWidgetProvider() {
             views.setOnClickPendingIntent(R.id.widget_header_container, launchPendingIntent)
             views.setPendingIntentTemplate(R.id.widget_grocery_list, launchPendingIntent)
 
-            val listTitle = runBlocking {
+            val widgetData = runBlocking {
                 val entryPoint = EntryPointAccessors.fromApplication(
                     context.applicationContext,
                     WidgetEntryPoint::class.java
                 )
-                val data = resolveActiveWidgetListData(
+                resolveActiveWidgetListData(
                     userPreferencesDataSource = entryPoint.userPreferencesDataSource(),
                     groceryListDao = entryPoint.groceryListDao(),
                     groceryDao = entryPoint.groceryDao()
                 )
-                data.listName
             }
+
+            val alpha = (widgetData.backgroundOpacityPercent.coerceIn(0, 100) * 255) / 100
+            views.setInt(R.id.widget_root, "setBackgroundColor", Color.argb(alpha, 255, 255, 255))
 
             views.setTextViewText(
                 R.id.widget_title,
-                listTitle ?: context.getString(R.string.widget_active_list_fallback_title)
+                widgetData.listName ?: context.getString(R.string.widget_active_list_fallback_title)
             )
             views.setEmptyView(R.id.widget_grocery_list, R.id.widget_empty_text)
 

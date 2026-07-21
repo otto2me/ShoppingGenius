@@ -11,6 +11,7 @@ sealed interface SettingsScreenIntent {
     data class OnChangeDefaultList(val listId: String?) : SettingsScreenIntent
     data class ChangeOpenLastViewedListConfig(val openLastViewedList: Boolean) : SettingsScreenIntent
     data class ChangeUseListViewForGroceries(val useListViewForGroceries: Boolean) : SettingsScreenIntent
+    data class ChangeWidgetBackgroundOpacityPercent(val opacityPercent: Int) : SettingsScreenIntent
     data class ChangeColorScheme(val scheme: GroceryGeniusColorScheme) : SettingsScreenIntent
     data object OnTestDuckDuckGoImageSearchConnection : SettingsScreenIntent
     data class OnUpdateCategories(val categories: List<Category>) : SettingsScreenIntent

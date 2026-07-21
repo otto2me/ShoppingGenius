@@ -42,6 +42,10 @@ class UserPreferencesDataSource @Inject constructor(
                 ?: DEFAULT_USER_PREFERENCES.openLastViewedList,
             useListViewForGroceries = preferences[USE_LIST_VIEW_FOR_GROCERIES_KEY]
                 ?: DEFAULT_USER_PREFERENCES.useListViewForGroceries,
+            widgetBackgroundOpacityPercent =
+                (preferences[WIDGET_BACKGROUND_OPACITY_PERCENT_KEY]
+                    ?: DEFAULT_USER_PREFERENCES.widgetBackgroundOpacityPercent)
+                    .coerceIn(0, 100),
             selectedTheme = preferences[SELECTED_THEME_KEY]?.let {
                 GroceryGeniusColorScheme.entries[it]
             } ?: DEFAULT_USER_PREFERENCES.selectedTheme,
@@ -88,6 +92,13 @@ class UserPreferencesDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int) {
+        dataStore.edit { preferences ->
+            preferences[WIDGET_BACKGROUND_OPACITY_PERCENT_KEY] = opacityPercent.coerceIn(0, 100)
+        }
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
+    }
+
     suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme) {
         dataStore.edit { preferences ->
             preferences[SELECTED_THEME_KEY] = selectedTheme.ordinal
@@ -110,6 +121,8 @@ class UserPreferencesDataSource @Inject constructor(
         val USE_SYSTEM_ACCENT_COLOR_KEY = booleanPreferencesKey("use_system_accent_color")
         val OPEN_LAST_VIEWED_LIST_KEY = booleanPreferencesKey("open_last_viewed_list")
         val USE_LIST_VIEW_FOR_GROCERIES_KEY = booleanPreferencesKey("use_list_view_for_groceries")
+        val WIDGET_BACKGROUND_OPACITY_PERCENT_KEY =
+            intPreferencesKey("widget_background_opacity_percent")
         val SELECTED_THEME_KEY = intPreferencesKey("selected_theme")
         val LAST_OPENED_LIST_ID_KEY = stringPreferencesKey("last_opened_list_id")
         val SELECTED_LANGUAGE_TAG_KEY = stringPreferencesKey("selected_language_tag")

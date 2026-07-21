@@ -38,6 +38,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -258,6 +259,14 @@ private fun SettingsScreen(
                             useListViewForGroceries = uiState.userPreferences.useListViewForGroceries,
                             onUseListViewForGroceriesChanged = {
                                 onIntent(SettingsScreenIntent.ChangeUseListViewForGroceries(it))
+                            }
+                        )
+                    }
+                    item {
+                        WidgetBackgroundOpacitySetting(
+                            opacityPercent = uiState.userPreferences.widgetBackgroundOpacityPercent,
+                            onOpacityPercentChanged = {
+                                onIntent(SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent(it))
                             }
                         )
                     }
@@ -629,6 +638,48 @@ private fun GroceryListViewModeSetting(
                 checked = useListViewForGroceries,
                 onCheckedChange = onUseListViewForGroceriesChanged
             )
+        }
+    )
+}
+
+@Composable
+private fun WidgetBackgroundOpacitySetting(
+    modifier: Modifier = Modifier,
+    opacityPercent: Int,
+    onOpacityPercentChanged: (Int) -> Unit
+) {
+    var sliderValue by remember(opacityPercent) { mutableStateOf(opacityPercent.toFloat()) }
+
+    CustomIconSetting(
+        modifier = modifier.padding(vertical = 6.dp),
+        title = stringResource(R.string.settings_widget_background_opacity_title),
+        description = stringResource(
+            R.string.settings_widget_background_opacity_description,
+            opacityPercent
+        ),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_palette_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            Text(
+                text = "$opacityPercent%",
+                style = MaterialTheme.typography.labelMedium
+            )
+        }
+    )
+
+    Slider(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 56.dp, end = 16.dp, bottom = 8.dp),
+        value = sliderValue,
+        onValueChange = { sliderValue = it },
+        valueRange = 0f..100f,
+        onValueChangeFinished = {
+            onOpacityPercentChanged(sliderValue.toInt().coerceIn(0, 100))
         }
     )
 }

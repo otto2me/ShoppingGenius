@@ -127,6 +127,10 @@ class SettingsScreenViewModel @Inject constructor(
                 userPreferencesRepository.updateUseListViewForGroceries(intent.useListViewForGroceries)
             }
 
+            is SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent -> {
+                userPreferencesRepository.updateWidgetBackgroundOpacityPercent(intent.opacityPercent)
+            }
+
             is SettingsScreenIntent.OnUpdateCategories -> {
                 _uiStateFlow.update { it.copy(categories = intent.categories) }
                 categoryRepository.updateCategories(

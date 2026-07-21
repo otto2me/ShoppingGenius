@@ -41,6 +41,8 @@
     <string name="settings_open_last_viewed_list">Open Last Viewed List</string>
     <string name="settings_grocery_list_list_mode_title">List View for Grocery Items</string>
     <string name="settings_grocery_list_list_mode_description">Show groceries in a compact list with icon, name, and checkbox.</string>
+    <string name="settings_widget_background_opacity_title">Widget Background Opacity</string>
+    <string name="settings_widget_background_opacity_description">Adjust widget transparency (%1$d%% opacity).</string>
     <string name="settings_default_list">Open Default List</string>
     <string name="settings_default_list_unspecified">Undefined</string>
     <string name="settings_reorder_categories_title">Reorder Categories</string>

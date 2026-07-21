@@ -40,6 +40,8 @@
     <string name="settings_open_last_viewed_list">Zuletzt angesehene Liste öffnen</string>
     <string name="settings_grocery_list_list_mode_title">Listenansicht für Einkaufseinträge</string>
     <string name="settings_grocery_list_list_mode_description">Zeigt Einträge kompakt als Liste mit Icon, Name und Checkbox.</string>
+    <string name="settings_widget_background_opacity_title">Widget-Hintergrund Deckkraft</string>
+    <string name="settings_widget_background_opacity_description">Widget-Transparenz anpassen (%1$d%% Deckkraft).</string>
     <string name="settings_default_list">Standardliste öffnen</string>
     <string name="settings_default_list_unspecified">Undefiniert</string>
     <string name="settings_reorder_categories_title">Kategorien neu sortieren</string>

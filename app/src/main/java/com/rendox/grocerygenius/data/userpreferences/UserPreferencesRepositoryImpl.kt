@@ -56,6 +56,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         userPreferencesDataSource.updateUseListViewForGroceries(useListViewForGroceries)
     }
 
+    override suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int) {
+        userPreferencesDataSource.updateWidgetBackgroundOpacityPercent(opacityPercent)
+    }
+
     override suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme) {
         userPreferencesDataSource.updateSelectedTheme(selectedTheme)
     }
