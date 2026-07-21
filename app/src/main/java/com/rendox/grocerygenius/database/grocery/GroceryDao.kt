@@ -110,7 +110,7 @@ interface GroceryDao {
         INNER JOIN ProductEntity product ON grocery.productId = product.id
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
-        WHERE grocery.groceryListId = :listId
+        WHERE grocery.groceryListId = :listId AND grocery.purchased = 0
         ORDER BY grocery.purchased ASC, category.sortingPriority ASC, product.name COLLATE NOCASE ASC
     """
     )
