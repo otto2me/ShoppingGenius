@@ -13,6 +13,7 @@ interface UserPreferencesRepository {
     suspend fun updateDarkThemeConfig(darkThemeConfig: DarkThemeConfig)
     suspend fun updateUseSystemAccentColor(useSystemAccentColor: Boolean)
     suspend fun updateOpenLastViewedList(openLastViewedList: Boolean)
+    suspend fun updateUseListViewForGroceries(useListViewForGroceries: Boolean)
     suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme)
     suspend fun updateSelectedLanguageTag(selectedLanguageTag: String?)
     suspend fun getGroceryListIdToOpenOnStartup(): String?

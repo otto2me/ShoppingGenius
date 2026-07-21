@@ -36,6 +36,8 @@ class UserPreferencesDataSource @Inject constructor(
                 ?: DEFAULT_USER_PREFERENCES.useSystemAccentColor,
             openLastViewedList = preferences[OPEN_LAST_VIEWED_LIST_KEY]
                 ?: DEFAULT_USER_PREFERENCES.openLastViewedList,
+            useListViewForGroceries = preferences[USE_LIST_VIEW_FOR_GROCERIES_KEY]
+                ?: DEFAULT_USER_PREFERENCES.useListViewForGroceries,
             selectedTheme = preferences[SELECTED_THEME_KEY]?.let {
                 GroceryGeniusColorScheme.entries[it]
             } ?: DEFAULT_USER_PREFERENCES.selectedTheme,
@@ -73,6 +75,12 @@ class UserPreferencesDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateUseListViewForGroceries(useListViewForGroceries: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[USE_LIST_VIEW_FOR_GROCERIES_KEY] = useListViewForGroceries
+        }
+    }
+
     suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme) {
         dataStore.edit { preferences ->
             preferences[SELECTED_THEME_KEY] = selectedTheme.ordinal
@@ -94,6 +102,7 @@ class UserPreferencesDataSource @Inject constructor(
         val DARK_THEME_CONFIG_KEY = intPreferencesKey("dark_theme_config")
         val USE_SYSTEM_ACCENT_COLOR_KEY = booleanPreferencesKey("use_system_accent_color")
         val OPEN_LAST_VIEWED_LIST_KEY = booleanPreferencesKey("open_last_viewed_list")
+        val USE_LIST_VIEW_FOR_GROCERIES_KEY = booleanPreferencesKey("use_list_view_for_groceries")
         val SELECTED_THEME_KEY = intPreferencesKey("selected_theme")
         val LAST_OPENED_LIST_ID_KEY = stringPreferencesKey("last_opened_list_id")
         val SELECTED_LANGUAGE_TAG_KEY = stringPreferencesKey("selected_language_tag")

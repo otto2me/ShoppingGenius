@@ -12,6 +12,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -30,12 +31,16 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
@@ -46,9 +51,11 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
@@ -102,6 +109,7 @@ import com.rendox.grocerygenius.model.Grocery
 import com.rendox.grocerygenius.model.GroceryGeniusColorScheme
 import com.rendox.grocerygenius.ui.components.BottomSheetDragHandle
 import com.rendox.grocerygenius.ui.components.DeleteConfirmationDialog
+import com.rendox.grocerygenius.ui.components.GroceryIcon
 import com.rendox.grocerygenius.ui.components.Scrim
 import com.rendox.grocerygenius.ui.components.collapsingtoolbar.CollapsingToolbar
 import com.rendox.grocerygenius.ui.components.collapsingtoolbar.CollapsingToolbarScaffoldScrollableState
@@ -140,6 +148,7 @@ fun GroceryListRoute(
         .collectAsStateWithLifecycle()
     val groceryListPurchaseState by groceryListViewModel.groceryListPurchaseStateFlow.collectAsStateWithLifecycle()
     val scrollUpEvent by groceryListViewModel.scrollUpEventFlow.collectAsStateWithLifecycle()
+    val useListViewForGroceries by groceryListViewModel.useListViewForGroceriesFlow.collectAsStateWithLifecycle()
 
     ObserveUiEvent(closeGroceryListScreenEvent) {
         navigateBack()
@@ -199,7 +208,8 @@ fun GroceryListRoute(
                 GroceryListsUiIntent.OnNavigateToCategoryScreen(categoryId)
             )
         },
-        groceryListPurchaseState = groceryListPurchaseState
+        groceryListPurchaseState = groceryListPurchaseState,
+        useListViewForGroceries = useListViewForGroceries
     )
 
     val editGroceryId = editGroceryIdState.value
@@ -247,6 +257,7 @@ private fun GroceryListScreen(
     toolbarIsHidden: Boolean = false,
     categories: List<Category>? = emptyList(),
     groceryListPurchaseState: GroceryListPurchaseState,
+    useListViewForGroceries: Boolean = false,
     scrollUpEvent: UiEvent<Unit>? = null,
     navigateBack: () -> Unit = {},
     onGroceryListUiIntent: (GroceryListsUiIntent) -> Unit = {},
@@ -375,23 +386,40 @@ private fun GroceryListScreen(
             )
 
             if (groceryGroups != null && categories != null) {
-                GroceryGrid(
-                    modifier = Modifier.fillMaxSize(),
-                    groceryGroups = groceryGroups,
-                    onGroceryClick = {
-                        onGroceryListUiIntent(
-                            GroceryListsUiIntent.OnGroceryItemClick(it)
-                        )
-                    },
-                    categories = categories,
-                    onGroceryLongClick = {
-                        showEditGroceryBottomSheet(it.productId)
-                    },
-                    lazyGridState = lazyGridState,
-                    onCategoryItemClick = navigateToCategoryScreen,
-                    groceryListPurchaseState = groceryListPurchaseState,
-                    scrollUpEvent = scrollUpEvent
-                )
+                if (useListViewForGroceries) {
+                    GroceryListItemsList(
+                        modifier = Modifier.fillMaxSize(),
+                        groceryGroups = groceryGroups,
+                        categories = categories,
+                        groceryListPurchaseState = groceryListPurchaseState,
+                        scrollUpEvent = scrollUpEvent,
+                        onGroceryClick = {
+                            onGroceryListUiIntent(GroceryListsUiIntent.OnGroceryItemClick(it))
+                        },
+                        onGroceryLongClick = {
+                            showEditGroceryBottomSheet(it.productId)
+                        },
+                        onCategoryItemClick = navigateToCategoryScreen
+                    )
+                } else {
+                    GroceryGrid(
+                        modifier = Modifier.fillMaxSize(),
+                        groceryGroups = groceryGroups,
+                        onGroceryClick = {
+                            onGroceryListUiIntent(
+                                GroceryListsUiIntent.OnGroceryItemClick(it)
+                            )
+                        },
+                        categories = categories,
+                        onGroceryLongClick = {
+                            showEditGroceryBottomSheet(it.productId)
+                        },
+                        lazyGridState = lazyGridState,
+                        onCategoryItemClick = navigateToCategoryScreen,
+                        groceryListPurchaseState = groceryListPurchaseState,
+                        scrollUpEvent = scrollUpEvent
+                    )
+                }
             }
         }
 
@@ -663,6 +691,199 @@ private fun GroceryGrid(
             }
         }
     )
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun GroceryListItemsList(
+    modifier: Modifier = Modifier,
+    groceryGroups: List<GroceryGroup>,
+    categories: List<Category>,
+    groceryListPurchaseState: GroceryListPurchaseState,
+    scrollUpEvent: UiEvent<Unit>?,
+    onGroceryClick: (Grocery) -> Unit,
+    onGroceryLongClick: (Grocery) -> Unit,
+    onCategoryItemClick: (String?) -> Unit
+) {
+    val context = LocalContext.current
+    val lazyListState = rememberLazyListState()
+
+    ObserveUiEvent(scrollUpEvent) {
+        lazyListState.animateScrollToItem(0)
+    }
+
+    LazyColumn(
+        modifier = modifier,
+        state = lazyListState,
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        // Workaround: verhindert unerwartetes Verhalten beim ersten klickbaren Listen-Element.
+        item(key = "DummyListHeader", contentType = "Dummy") {
+            Spacer(modifier = Modifier.height(0.dp))
+        }
+
+        when (groceryListPurchaseState) {
+            GroceryListPurchaseState.SHOPPING_DONE,
+            GroceryListPurchaseState.LIST_IS_EMPTY -> item(key = "EmptyListState", contentType = "EmptyListState") {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    androidx.compose.foundation.Image(
+                        modifier = Modifier.padding(top = 8.dp),
+                        painter = androidx.compose.ui.res.painterResource(R.drawable.empty_grocery_list_illustration),
+                        contentDescription = null
+                    )
+                    Text(
+                        modifier = Modifier.padding(16.dp),
+                        text = stringResource(
+                            id = when (groceryListPurchaseState) {
+                                GroceryListPurchaseState.SHOPPING_DONE -> R.string.shopping_done_title
+                                GroceryListPurchaseState.LIST_IS_EMPTY -> R.string.empty_grocery_list_title
+                                else -> throw IllegalStateException()
+                            }
+                        ),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                }
+            }
+
+            else -> {}
+        }
+
+        groceryGroups.forEachIndexed { groupIndex, group ->
+            if (group.titleId != null) {
+                item(
+                    key = "ListTitle$groupIndex",
+                    contentType = "Title"
+                ) {
+                    Text(
+                        modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
+                        text = stringResource(id = R.string.purchased_groceries_group_title),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                }
+            }
+
+            items(
+                items = group.groceries,
+                key = { it.productId },
+                contentType = { "ListGrocery" }
+            ) { grocery ->
+                GroceryListRowItem(
+                    grocery = grocery,
+                    iconFile = remember(grocery.icon?.filePath) {
+                        grocery.icon?.filePath?.let { filePath ->
+                            File(context.filesDir, filePath)
+                        }
+                    },
+                    onClick = { onGroceryClick(grocery) },
+                    onCheckedChange = { isChecked ->
+                        if (isChecked != grocery.purchased) onGroceryClick(grocery)
+                    },
+                    onLongClick = { onGroceryLongClick(grocery) }
+                )
+            }
+        }
+
+        item(key = "SpacerBetweenListAndCategories", contentType = "SpacerBetweenListAndCategories") {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+        items(
+            count = categories.size,
+            key = { index -> categories[index].id },
+            contentType = { "Category" }
+        ) { index ->
+            CategoryItem(
+                modifier = Modifier
+                    .clip(
+                        shape = RoundedCornerShape(
+                            topStart = if (index == 0) GroceryItemRounding else 0.dp,
+                            topEnd = if (index == 0) GroceryItemRounding else 0.dp
+                        )
+                    )
+                    .clickable { onCategoryItemClick(categories[index].id) },
+                name = categories[index].name
+            )
+        }
+        item(key = "CustomCategory", contentType = "Category") {
+            CategoryItem(
+                modifier = Modifier
+                    .clip(
+                        shape = RoundedCornerShape(
+                            bottomStart = GroceryItemRounding,
+                            bottomEnd = GroceryItemRounding
+                        )
+                    )
+                    .clickable { onCategoryItemClick(null) },
+                name = stringResource(R.string.custom_category_title)
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun GroceryListRowItem(
+    grocery: Grocery,
+    iconFile: File?,
+    onClick: () -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
+    onLongClick: () -> Unit
+) {
+    Surface(
+        color = if (grocery.purchased) {
+            MaterialTheme.colorScheme.groceryListItemColors.purchasedBackgroundColor
+        } else {
+            MaterialTheme.colorScheme.groceryListItemColors.defaultBackgroundColor
+        },
+        shape = RoundedCornerShape(GroceryItemRounding)
+    ) {
+        ListItem(
+            modifier = Modifier.combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongClick
+            ),
+            headlineContent = {
+                Text(
+                    text = grocery.name,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            supportingContent = {
+                grocery.description?.takeIf { it.isNotBlank() }?.let {
+                    Text(
+                        text = it,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            },
+            leadingContent = {
+                Surface(
+                    modifier = Modifier
+                        .padding(end = 4.dp)
+                        .size(36.dp),
+                    color = MaterialTheme.colorScheme.surfaceContainer,
+                    shape = MaterialTheme.shapes.small
+                ) {
+                    GroceryIcon(
+                        modifier = Modifier.padding(4.dp),
+                        groceryName = grocery.name,
+                        iconFile = iconFile
+                    )
+                }
+            },
+            trailingContent = {
+                Checkbox(
+                    checked = grocery.purchased,
+                    onCheckedChange = onCheckedChange
+                )
+            }
+        )
+    }
 }
 
 val sampleGroceryGroups = listOf(

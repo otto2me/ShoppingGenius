@@ -52,6 +52,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         userPreferencesDataSource.updateOpenLastViewedList(openLastViewedList)
     }
 
+    override suspend fun updateUseListViewForGroceries(useListViewForGroceries: Boolean) {
+        userPreferencesDataSource.updateUseListViewForGroceries(useListViewForGroceries)
+    }
+
     override suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme) {
         userPreferencesDataSource.updateSelectedTheme(selectedTheme)
     }

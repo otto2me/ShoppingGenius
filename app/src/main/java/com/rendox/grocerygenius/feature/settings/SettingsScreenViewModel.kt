@@ -123,6 +123,10 @@ class SettingsScreenViewModel @Inject constructor(
                 }
             }
 
+            is SettingsScreenIntent.ChangeUseListViewForGroceries -> {
+                userPreferencesRepository.updateUseListViewForGroceries(intent.useListViewForGroceries)
+            }
+
             is SettingsScreenIntent.OnUpdateCategories -> {
                 _uiStateFlow.update { it.copy(categories = intent.categories) }
                 categoryRepository.updateCategories(

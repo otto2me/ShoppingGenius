@@ -109,6 +109,14 @@ class GroceryListViewModel @AssistedInject constructor(
     private val _scrollUpEventFlow = MutableStateFlow<UiEvent<Unit>?>(null)
     val scrollUpEventFlow = _scrollUpEventFlow.asStateFlow()
 
+    val useListViewForGroceriesFlow = userPreferencesRepository.userPreferencesFlow
+        .map { it.useListViewForGroceries }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
+
     init {
         viewModelScope.launch {
             categoryProductsFlow

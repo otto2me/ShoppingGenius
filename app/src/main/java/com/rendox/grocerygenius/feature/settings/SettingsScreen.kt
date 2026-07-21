@@ -254,6 +254,14 @@ private fun SettingsScreen(
                         )
                     }
                     item {
+                        GroceryListViewModeSetting(
+                            useListViewForGroceries = uiState.userPreferences.useListViewForGroceries,
+                            onUseListViewForGroceriesChanged = {
+                                onIntent(SettingsScreenIntent.ChangeUseListViewForGroceries(it))
+                            }
+                        )
+                    }
+                    item {
                         AnimatedVisibility(visible = !uiState.userPreferences.openLastViewedList) {
                             DefaultListSetting(
                                 groceryLists = uiState.groceryLists,
@@ -593,6 +601,33 @@ private fun OpenLastViewedListSetting(
             Switch(
                 checked = openLastViewedList,
                 onCheckedChange = onChangeOpenLastViewedListConfig
+            )
+        }
+    )
+}
+
+@Composable
+private fun GroceryListViewModeSetting(
+    modifier: Modifier = Modifier,
+    useListViewForGroceries: Boolean,
+    onUseListViewForGroceriesChanged: (Boolean) -> Unit
+) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(vertical = 6.dp)
+            .clickable { onUseListViewForGroceriesChanged(!useListViewForGroceries) },
+        title = stringResource(R.string.settings_grocery_list_list_mode_title),
+        description = stringResource(R.string.settings_grocery_list_list_mode_description),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_history_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            Switch(
+                checked = useListViewForGroceries,
+                onCheckedChange = onUseListViewForGroceriesChanged
             )
         }
     )
