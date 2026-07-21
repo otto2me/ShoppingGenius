@@ -25,7 +25,8 @@ import kotlinx.coroutines.launch
 class CategoryIconPickerViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val iconRepository: IconRepository,
-    private val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository,
+    private val duckDuckGoImageSearchService: DuckDuckGoImageSearchService
 ) : ViewModel() {
 
     private val categoryId: String = checkNotNull(savedStateHandle[CATEGORY_ID_ARG])
@@ -55,6 +56,9 @@ class CategoryIconPickerViewModel @Inject constructor(
                         )
                     )
                 _uiStateFlow.update { it.copy(searchResults = results) }
+
+                val duckDuckGoResults = duckDuckGoImageSearchService.searchImages(trimmed)
+                _uiStateFlow.update { it.copy(duckDuckGoImageResults = duckDuckGoResults) }
             }
         }
         viewModelScope.launch {
@@ -78,6 +82,38 @@ class CategoryIconPickerViewModel @Inject constructor(
                 searchQuery = intent.query
             is IconPickerIntent.OnClearSearchQuery ->
                 searchQuery = ""
+            is IconPickerIntent.OnPickRemoteImage -> {
+                _uiStateFlow.update {
+                    it.copy(
+                        remoteImportInProgress = true,
+                        importingImageUrl = intent.imageUrl
+                    )
+                }
+                val iconRef = iconRepository.importCustomIconFromUrl(
+                    imageUrl = intent.imageUrl,
+                    fallbackImageUrl = intent.fallbackImageUrl
+                )
+                if (iconRef != null) {
+                    categoryRepository.updateCategoryIcon(categoryId, iconRef.uniqueFileName)
+                    _uiStateFlow.update {
+                        it.copy(
+                            remoteImportInProgress = false,
+                            importingImageUrl = null,
+                            remoteImportSucceeded = true,
+                            remoteImportEventId = it.remoteImportEventId + 1
+                        )
+                    }
+                } else {
+                    _uiStateFlow.update {
+                        it.copy(
+                            remoteImportInProgress = false,
+                            importingImageUrl = null,
+                            remoteImportSucceeded = false,
+                            remoteImportEventId = it.remoteImportEventId + 1
+                        )
+                    }
+                }
+            }
         }
     }
 }

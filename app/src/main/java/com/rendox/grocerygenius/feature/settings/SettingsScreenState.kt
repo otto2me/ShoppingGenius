@@ -9,5 +9,7 @@ data class SettingsScreenState(
     val userPreferences: UserPreferences = DEFAULT_USER_PREFERENCES,
     val groceryLists: List<GroceryList> = emptyList(),
     val categories: List<Category> = emptyList(),
+    val duckDuckGoImageSearchTestInProgress: Boolean = false,
+    val duckDuckGoImageSearchTestSucceeded: Boolean? = null,
     val isLoading: Boolean = true
 )

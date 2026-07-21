@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridState
@@ -27,7 +29,10 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +40,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -44,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil.compose.AsyncImage
 import com.rendox.grocerygenius.R
 import com.rendox.grocerygenius.model.IconReference
 import com.rendox.grocerygenius.ui.components.GroceryIcon
@@ -78,6 +85,19 @@ fun IconPickerScreen(
     onIntent: (IconPickerIntent) -> Unit,
     navigateBack: () -> Unit
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val importSuccessMessage = stringResource(R.string.icon_picker_import_success)
+    val importFailedMessage = stringResource(R.string.icon_picker_import_failed)
+
+    LaunchedEffect(uiState.remoteImportEventId) {
+        if (uiState.remoteImportEventId <= 0L) return@LaunchedEffect
+        val succeeded = uiState.remoteImportSucceeded ?: return@LaunchedEffect
+        snackbarHostState.showSnackbar(
+            message = if (succeeded) importSuccessMessage else importFailedMessage
+        )
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -97,12 +117,13 @@ fun IconPickerScreen(
             onTrailingIconClick = { onIntent(IconPickerIntent.OnRemoveIcon) }
         )
         uiState.product?.let { product ->
+            val overviewIcon = uiState.previewIcon ?: product.icon
             IconPickerItem(
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .size(104.dp)
                     .align(Alignment.CenterHorizontally),
-                iconRef = product.icon,
+                iconRef = overviewIcon,
                 iconName = product.name,
                 isSelected = true
             )
@@ -118,6 +139,19 @@ fun IconPickerScreen(
                 onIntent(IconPickerIntent.OnClearSearchQuery)
             }
         )
+        DuckDuckGoImageResults(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            uiState = uiState,
+            searchQuery = searchQuery,
+            onImageClick = { image ->
+                onIntent(
+                    IconPickerIntent.OnPickRemoteImage(
+                        imageUrl = image.thumbnailUrl,
+                        fallbackImageUrl = image.imageUrl
+                    )
+                )
+            }
+        )
         IconGrid(
             modifier = Modifier.fillMaxSize(),
             uiState = uiState,
@@ -125,6 +159,12 @@ fun IconPickerScreen(
             gridCells = gridCells,
             horizontalArrangement = horizontalArrangement,
             lazyGridState = lazyGridState
+        )
+    }
+
+        SnackbarHost(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            hostState = snackbarHostState
         )
     }
 }
@@ -280,6 +320,64 @@ private fun IconPickerSearchField(
             )
         }
     )
+}
+
+@Composable
+private fun DuckDuckGoImageResults(
+    modifier: Modifier = Modifier,
+    uiState: IconPickerUiState,
+    searchQuery: String,
+    onImageClick: (DuckDuckGoImageSearchResult) -> Unit
+) {
+    val queryIsNotBlank = searchQuery.trim().isNotEmpty()
+    if (!queryIsNotBlank) return
+
+    if (uiState.duckDuckGoImageResults.isEmpty()) return
+
+    Text(
+        modifier = modifier.padding(bottom = 8.dp),
+        text = stringResource(R.string.icon_picker_duckduckgo_images_section_title),
+        style = MaterialTheme.typography.titleSmall
+    )
+    LazyRow(
+        modifier = modifier.padding(bottom = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        items(
+            items = uiState.duckDuckGoImageResults,
+            key = { it.imageUrl }
+        ) { image ->
+            val isImportingThisImage =
+                uiState.remoteImportInProgress && uiState.importingImageUrl == image.thumbnailUrl
+            Surface(
+                modifier = Modifier.size(84.dp),
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                shape = RoundedCornerShape(GroceryItemRounding),
+                onClick = {
+                    if (!uiState.remoteImportInProgress) onImageClick(image)
+                }
+            ) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    AsyncImage(
+                        modifier = Modifier.fillMaxSize(),
+                        model = image.thumbnailUrl,
+                        contentDescription = image.title,
+                        contentScale = ContentScale.Crop
+                    )
+                    if (isImportingThisImage) {
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.55f)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                CircularProgressIndicator()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable

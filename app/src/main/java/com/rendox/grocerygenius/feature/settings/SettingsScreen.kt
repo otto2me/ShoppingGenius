@@ -32,6 +32,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -67,6 +68,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rendox.grocerygenius.BuildConfig
 import com.rendox.grocerygenius.R
 import com.rendox.grocerygenius.feature.settings.categories.recyclerview.CategoriesRecyclerViewAdapter
 import com.rendox.grocerygenius.model.AppLanguage
@@ -277,6 +279,23 @@ private fun SettingsScreen(
                             }
                         )
                     }
+                    if (BuildConfig.DEBUG) {
+                        item {
+                            SettingsTitle(
+                                modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                                title = stringResource(R.string.settings_duckduckgo_image_search_title)
+                            )
+                        }
+                        item {
+                            DebugDuckDuckGoImageSearchSetting(
+                                testInProgress = uiState.duckDuckGoImageSearchTestInProgress,
+                                testSucceeded = uiState.duckDuckGoImageSearchTestSucceeded,
+                                onTestConnection = {
+                                    onIntent(SettingsScreenIntent.OnTestDuckDuckGoImageSearchConnection)
+                                }
+                            )
+                        }
+                    }
                     item {
                         SettingsTitle(
                             modifier = Modifier.padding(start = 16.dp, top = 16.dp),
@@ -300,6 +319,55 @@ private fun SettingsScreen(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun DebugDuckDuckGoImageSearchSetting(
+    modifier: Modifier = Modifier,
+    testInProgress: Boolean,
+    testSucceeded: Boolean?,
+    onTestConnection: () -> Unit
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        Text(
+            text = stringResource(R.string.settings_duckduckgo_image_search_description),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Button(
+            modifier = Modifier.padding(top = 8.dp),
+            onClick = onTestConnection,
+            enabled = !testInProgress
+        ) {
+            Text(
+                text = if (testInProgress) {
+                    stringResource(R.string.settings_duckduckgo_connection_testing)
+                } else {
+                    stringResource(R.string.settings_duckduckgo_connection_test_button)
+                }
+            )
+        }
+        if (testSucceeded != null) {
+            Text(
+                modifier = Modifier.padding(top = 8.dp),
+                text = if (testSucceeded) {
+                    stringResource(R.string.settings_duckduckgo_connection_test_success)
+                } else {
+                    stringResource(R.string.settings_duckduckgo_connection_test_failed)
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = if (testSucceeded) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.error
+                }
+            )
         }
     }
 }

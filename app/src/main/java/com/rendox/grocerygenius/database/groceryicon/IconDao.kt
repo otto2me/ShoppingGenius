@@ -16,6 +16,9 @@ abstract class IconDao {
     @Upsert
     abstract suspend fun upsertGroceryIcons(groceryIconEntities: List<IconEntity>)
 
+    @Upsert
+    abstract suspend fun upsertGroceryIcon(groceryIconEntity: IconEntity)
+
     @Query(
         """
         SELECT 

@@ -45,6 +45,12 @@
     <string name="settings_reorder_categories_description">Grocery Genius sorts items by their categories. You can arrange them to match your favorite store.</string>
     <string name="settings_dynamic_color_not_supported_message">Your device does not support dynamic color</string>
     <string name="settings_feedback">Feedback</string>
+    <string name="settings_duckduckgo_image_search_title">DuckDuckGo image search</string>
+    <string name="settings_duckduckgo_image_search_description">Test whether DuckDuckGo image results can currently be loaded in the app.</string>
+    <string name="settings_duckduckgo_connection_test_button">Test connection</string>
+    <string name="settings_duckduckgo_connection_testing">Testing...</string>
+    <string name="settings_duckduckgo_connection_test_success">Connection successful.</string>
+    <string name="settings_duckduckgo_connection_test_failed">Connection failed. DuckDuckGo may be temporarily blocking requests or there may be no internet connection.</string>
     <string name="github_link_title" translatable="false">GitHub</string>
     <string name="github_link_description">View the source code, contribute, report bugs, and suggest features.</string>
     <string name="email_link_title">Email Developer</string>
@@ -55,6 +61,9 @@
     <!-- IconPickerScreen -->
     <string name="icon_picker_screen_title">Choose icon</string>
     <string name="icon_picker_search_field_placeholder">Search an icon</string>
+    <string name="icon_picker_duckduckgo_images_section_title">DuckDuckGo image results</string>
+    <string name="icon_picker_import_success">Icon updated.</string>
+    <string name="icon_picker_import_failed">Could not import this image.</string>
     <!-- General -->
     <string name="done">Done</string>
     <string name="delete">Delete</string>

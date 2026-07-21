@@ -44,6 +44,12 @@
     <string name="settings_reorder_categories_description">Grocery Genius sortiert Artikel nach ihren Kategorien. Sie können sie so ordnen, dass sie Ihrem Lieblingsgeschäft entsprechen.</string>
     <string name="settings_dynamic_color_not_supported_message">Dein Gerät unterstützt keine dynamischen Farben</string>
     <string name="settings_feedback">Feedback</string>
+    <string name="settings_duckduckgo_image_search_title">DuckDuckGo-Bildsuche</string>
+    <string name="settings_duckduckgo_image_search_description">Teste, ob DuckDuckGo-Bildtreffer aktuell in der App geladen werden können.</string>
+    <string name="settings_duckduckgo_connection_test_button">Verbindung testen</string>
+    <string name="settings_duckduckgo_connection_testing">Teste Verbindung...</string>
+    <string name="settings_duckduckgo_connection_test_success">Verbindung erfolgreich.</string>
+    <string name="settings_duckduckgo_connection_test_failed">Verbindung fehlgeschlagen. DuckDuckGo blockiert Anfragen eventuell gerade oder es besteht keine Internetverbindung.</string>
     <string name="github_link_description">Sieh dir den Quellcode an, trage bei, melde Fehler und schlage neue Funktionen vor.</string>
     <string name="email_link_title">Entwickler kontaktieren</string>
     <string name="email_link_description">Kontaktieren den Entwickler für freundliche Rückmeldungen, Vorschläge oder alle anderen Ideen, die du im Kopf hast.</string>
@@ -53,6 +59,9 @@
     <!-- IconPickerScreen -->
     <string name="icon_picker_screen_title">Symbol wählen</string>
     <string name="icon_picker_search_field_placeholder">Symbol suchen</string>
+    <string name="icon_picker_duckduckgo_images_section_title">DuckDuckGo-Bildtreffer</string>
+    <string name="icon_picker_import_success">Icon aktualisiert.</string>
+    <string name="icon_picker_import_failed">Dieses Bild konnte nicht importiert werden.</string>
     <!-- General -->
     <string name="done">Fertig</string>
     <string name="delete">Löschen</string>

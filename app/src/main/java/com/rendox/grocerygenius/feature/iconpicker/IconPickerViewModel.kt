@@ -28,9 +28,10 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class IconPickerViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    iconRepository: IconRepository,
+    private val iconRepository: IconRepository,
     private val productRepository: ProductRepository,
-    private val groceryRepository: GroceryRepository
+    private val groceryRepository: GroceryRepository,
+    private val duckDuckGoImageSearchService: DuckDuckGoImageSearchService
 ) : ViewModel() {
 
     private val editProductIdFlow: StateFlow<String?> = savedStateHandle.getStateFlow(
@@ -65,6 +66,9 @@ class IconPickerViewModel @Inject constructor(
                         )
                     )
                 _uiStateFlow.update { it.copy(searchResults = searchResults) }
+
+                val duckDuckGoResults = duckDuckGoImageSearchService.searchImages(trimmedQuery)
+                _uiStateFlow.update { it.copy(duckDuckGoImageResults = duckDuckGoResults) }
             }
         }
         viewModelScope.launch {
@@ -83,21 +87,66 @@ class IconPickerViewModel @Inject constructor(
                     productRepository.getProductById(productId)
                 }
                 .collectLatest { product ->
-                    _uiStateFlow.update { it.copy(product = product) }
+                    _uiStateFlow.update { state ->
+                        state.copy(
+                            product = product,
+                            previewIcon = state.previewIcon?.takeUnless {
+                                it.uniqueFileName == product?.icon?.uniqueFileName
+                            }
+                        )
+                    }
                 }
         }
     }
 
     fun onIntent(intent: IconPickerIntent) = viewModelScope.launch {
         when (intent) {
-            is IconPickerIntent.OnPickIcon ->
+            is IconPickerIntent.OnPickIcon -> {
+                _uiStateFlow.update { it.copy(previewIcon = intent.iconReference) }
                 onPickIcon(intent.iconReference.uniqueFileName)
+            }
 
             is IconPickerIntent.OnUpdateSearchQuery ->
                 searchQuery = intent.query
 
             is IconPickerIntent.OnClearSearchQuery -> searchQuery = ""
-            is IconPickerIntent.OnRemoveIcon -> onPickIcon(null)
+            is IconPickerIntent.OnRemoveIcon -> {
+                _uiStateFlow.update { it.copy(previewIcon = null) }
+                onPickIcon(null)
+            }
+            is IconPickerIntent.OnPickRemoteImage -> {
+                _uiStateFlow.update {
+                    it.copy(
+                        remoteImportInProgress = true,
+                        importingImageUrl = intent.imageUrl
+                    )
+                }
+                val iconRef = iconRepository.importCustomIconFromUrl(
+                    imageUrl = intent.imageUrl,
+                    fallbackImageUrl = intent.fallbackImageUrl
+                )
+                if (iconRef != null) {
+                    _uiStateFlow.update {
+                        it.copy(
+                            previewIcon = iconRef,
+                            remoteImportInProgress = false,
+                            importingImageUrl = null,
+                            remoteImportSucceeded = true,
+                            remoteImportEventId = it.remoteImportEventId + 1
+                        )
+                    }
+                    onPickIcon(iconRef.uniqueFileName)
+                } else {
+                    _uiStateFlow.update {
+                        it.copy(
+                            remoteImportInProgress = false,
+                            importingImageUrl = null,
+                            remoteImportSucceeded = false,
+                            remoteImportEventId = it.remoteImportEventId + 1
+                        )
+                    }
+                }
+            }
         }
     }
 

@@ -26,12 +26,13 @@ fun GroceryIcon(
     groceryName: String,
     iconFile: File?
 ) {
+    val tintIcon = iconFile?.name?.startsWith("custom_") != true
     if (iconFile != null) {
         SubcomposeAsyncImage(
             modifier = modifier,
             model = iconFile,
             contentDescription = null,
-            colorFilter = ColorFilter.tint(color = LocalContentColor.current)
+            colorFilter = if (tintIcon) ColorFilter.tint(color = LocalContentColor.current) else null
         ) {
             if (painter.state is AsyncImagePainter.State.Error) {
                 TextIcon(title = groceryName)

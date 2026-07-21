@@ -60,6 +60,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         userPreferencesDataSource.updateSelectedLanguageTag(selectedLanguageTag)
     }
 
+
     override suspend fun getGroceryListIdToOpenOnStartup(): String? {
         val userPreferences = userPreferencesFlow.first()
         val lastOpenedListId =

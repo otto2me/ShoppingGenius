@@ -9,6 +9,7 @@ import com.rendox.grocerygenius.data.icons.IconRepository
 import com.rendox.grocerygenius.data.product.ProductRepository
 import com.rendox.grocerygenius.data.userpreferences.UserPreferencesRepository
 import com.rendox.grocerygenius.datastore.ChangeListVersionsDataSource
+import com.rendox.grocerygenius.feature.iconpicker.DuckDuckGoImageSearchService
 import com.rendox.grocerygenius.locale.AppLocaleManager
 import com.rendox.grocerygenius.model.ChangeListVersions
 import com.rendox.grocerygenius.ui.helpers.UiEvent
@@ -31,7 +32,8 @@ class SettingsScreenViewModel @Inject constructor(
     groceryListRepository: GroceryListRepository,
     private val categoryRepository: CategoryRepository,
     private val productRepository: ProductRepository,
-    private val iconRepository: IconRepository
+    private val iconRepository: IconRepository,
+    private val duckDuckGoImageSearchService: DuckDuckGoImageSearchService
 ) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(SettingsScreenState())
@@ -97,6 +99,22 @@ class SettingsScreenViewModel @Inject constructor(
 
             is SettingsScreenIntent.ChangeColorScheme ->
                 userPreferencesRepository.updateSelectedTheme(intent.scheme)
+
+            is SettingsScreenIntent.OnTestDuckDuckGoImageSearchConnection -> {
+                _uiStateFlow.update {
+                    it.copy(
+                        duckDuckGoImageSearchTestInProgress = true,
+                        duckDuckGoImageSearchTestSucceeded = null
+                    )
+                }
+                val testSucceeded = duckDuckGoImageSearchService.testConnection()
+                _uiStateFlow.update {
+                    it.copy(
+                        duckDuckGoImageSearchTestInProgress = false,
+                        duckDuckGoImageSearchTestSucceeded = testSucceeded
+                    )
+                }
+            }
 
             is SettingsScreenIntent.ChangeOpenLastViewedListConfig -> {
                 userPreferencesRepository.updateOpenLastViewedList(intent.openLastViewedList)
