@@ -68,6 +68,11 @@
     <string name="icon_picker_delete_dialog_message">Dieses Symbol wird dauerhaft entfernt.</string>
     <string name="icon_picker_delete_confirm">Löschen</string>
     <string name="icon_picker_delete_cancel">Abbrechen</string>
+    <!-- ActiveGroceryListWidget -->
+    <string name="widget_active_list_name">Aktive Einkaufsliste</string>
+    <string name="widget_active_list_description">Zeigt die aktuell aktive Einkaufsliste als kompakte Liste.</string>
+    <string name="widget_active_list_fallback_title">Aktuelle Liste</string>
+    <string name="widget_no_items">Keine Einträge in dieser Liste</string>
     <!-- General -->
     <string name="done">Fertig</string>
     <string name="delete">Löschen</string>

@@ -97,4 +97,22 @@ interface GroceryDao {
 
     @Query("SELECT COUNT(productId) FROM GroceryEntity WHERE groceryListId = :listId")
     fun getNumOfGroceriesInList(listId: String): Flow<Int>
+
+    @Query(
+        """
+        SELECT
+            product.id AS productId,
+            product.name AS name,
+            grocery.description AS description,
+            grocery.purchased AS purchased,
+            icon.filePath AS iconFilePath
+        FROM GroceryEntity grocery
+        INNER JOIN ProductEntity product ON grocery.productId = product.id
+        LEFT JOIN CategoryEntity category ON product.categoryId = category.id
+        LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
+        WHERE grocery.groceryListId = :listId
+        ORDER BY grocery.purchased ASC, category.sortingPriority ASC, product.name COLLATE NOCASE ASC
+    """
+    )
+    suspend fun getGroceriesForWidget(listId: String): List<WidgetGroceryItem>
 }

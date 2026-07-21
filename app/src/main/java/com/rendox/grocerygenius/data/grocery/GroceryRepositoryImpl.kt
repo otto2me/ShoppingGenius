@@ -1,16 +1,20 @@
 package com.rendox.grocerygenius.data.grocery
 
+import android.content.Context
 import com.rendox.grocerygenius.data.model.asExternalModel
 import com.rendox.grocerygenius.database.grocery.GroceryDao
 import com.rendox.grocerygenius.database.grocery.GroceryEntity
 import com.rendox.grocerygenius.database.product.ProductDao
 import com.rendox.grocerygenius.database.product.ProductEntity
+import com.rendox.grocerygenius.feature.widget.ActiveGroceryListWidgetProvider
 import com.rendox.grocerygenius.model.Grocery
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class GroceryRepositoryImpl @Inject constructor(
+    @ApplicationContext private val appContext: Context,
     private val groceryDao: GroceryDao,
     private val productDao: ProductDao
 ) : GroceryRepository {
@@ -30,6 +34,7 @@ class GroceryRepositoryImpl @Inject constructor(
                 purchasedLastModified = purchasedLastModified
             )
         )
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun insertProductAndGrocery(
@@ -59,6 +64,7 @@ class GroceryRepositoryImpl @Inject constructor(
         )
         productDao.insertProduct(product)
         groceryDao.insertGrocery(grocery)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override fun getGroceriesFromList(listId: String): Flow<List<Grocery>> {
@@ -88,6 +94,7 @@ class GroceryRepositoryImpl @Inject constructor(
             purchased,
             purchasedLastModified
         )
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun updateDescription(
@@ -96,6 +103,7 @@ class GroceryRepositoryImpl @Inject constructor(
         description: String?
     ) {
         groceryDao.updateDescription(productId, listId, description)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun removeGroceryFromList(
@@ -103,5 +111,6 @@ class GroceryRepositoryImpl @Inject constructor(
         listId: String
     ) {
         groceryDao.deleteGrocery(productId, listId)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 }

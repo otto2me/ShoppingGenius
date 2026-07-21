@@ -1,19 +1,23 @@
 package com.rendox.grocerygenius.datastore
 
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.rendox.grocerygenius.feature.widget.ActiveGroceryListWidgetProvider
 import com.rendox.grocerygenius.model.DEFAULT_USER_PREFERENCES
 import com.rendox.grocerygenius.model.DarkThemeConfig
 import com.rendox.grocerygenius.model.GroceryGeniusColorScheme
 import com.rendox.grocerygenius.model.UserPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlinx.coroutines.flow.map
 
 class UserPreferencesDataSource @Inject constructor(
+    @ApplicationContext private val appContext: Context,
     private val dataStore: DataStore<Preferences>
 ) {
 
@@ -49,12 +53,14 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { preferences ->
             preferences[DEFAULT_LIST_ID_KEY] = listId ?: ""
         }
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     suspend fun updateLastOpenedListId(listId: String) {
         dataStore.edit { preferences ->
             preferences[LAST_OPENED_LIST_ID_KEY] = listId
         }
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     suspend fun updateDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
@@ -73,6 +79,7 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { preferences ->
             preferences[OPEN_LAST_VIEWED_LIST_KEY] = openLastViewedList
         }
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     suspend fun updateUseListViewForGroceries(useListViewForGroceries: Boolean) {

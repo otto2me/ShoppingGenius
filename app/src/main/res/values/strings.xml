@@ -70,6 +70,11 @@
     <string name="icon_picker_delete_dialog_message">This icon will be permanently removed.</string>
     <string name="icon_picker_delete_confirm">Delete</string>
     <string name="icon_picker_delete_cancel">Cancel</string>
+    <!-- ActiveGroceryListWidget -->
+    <string name="widget_active_list_name">Active grocery list</string>
+    <string name="widget_active_list_description">Shows the currently active grocery list as a compact list.</string>
+    <string name="widget_active_list_fallback_title">Current list</string>
+    <string name="widget_no_items">No items in this list</string>
     <!-- General -->
     <string name="done">Done</string>
     <string name="delete">Delete</string>

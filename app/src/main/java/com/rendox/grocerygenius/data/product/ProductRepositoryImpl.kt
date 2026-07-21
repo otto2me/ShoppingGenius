@@ -1,22 +1,27 @@
 package com.rendox.grocerygenius.data.product
 
+import android.content.Context
 import com.rendox.grocerygenius.data.Synchronizer
 import com.rendox.grocerygenius.data.changeListSync
 import com.rendox.grocerygenius.data.model.asEntity
 import com.rendox.grocerygenius.data.model.asExternalModel
 import com.rendox.grocerygenius.database.product.ProductDao
+import com.rendox.grocerygenius.feature.widget.ActiveGroceryListWidgetProvider
 import com.rendox.grocerygenius.model.Product
 import com.rendox.grocerygenius.network.data.sources.product.ProductNetworkDataSource
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class ProductRepositoryImpl @Inject constructor(
+    @ApplicationContext private val appContext: Context,
     private val productDao: ProductDao,
     private val productNetworkDataSource: ProductNetworkDataSource
 ) : ProductRepository {
     override suspend fun insertProduct(product: Product) {
         productDao.insertProduct(product.asEntity())
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override fun getProductById(productId: String): Flow<Product?> = productDao.getProductById(productId).map {
@@ -42,6 +47,7 @@ class ProductRepositoryImpl @Inject constructor(
         categoryId: String?
     ) {
         productDao.updateProductCategory(productId, categoryId)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun updateProductName(
@@ -49,6 +55,7 @@ class ProductRepositoryImpl @Inject constructor(
         name: String
     ) {
         productDao.updateProductName(productId, name)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun updateProductIcon(
@@ -56,10 +63,12 @@ class ProductRepositoryImpl @Inject constructor(
         iconId: String?
     ) {
         productDao.updateProductIcon(productId, iconId)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun deleteProductById(productId: String) {
         productDao.deleteProductById(productId)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun getProductsByKeywords(keywords: List<String>): List<Product> =

@@ -8,6 +8,7 @@ import com.rendox.grocerygenius.data.model.asEntity
 import com.rendox.grocerygenius.data.model.asExternalModel
 import com.rendox.grocerygenius.database.groceryicon.IconDao
 import com.rendox.grocerygenius.database.groceryicon.IconEntity
+import com.rendox.grocerygenius.feature.widget.ActiveGroceryListWidgetProvider
 import com.rendox.grocerygenius.model.Category
 import com.rendox.grocerygenius.model.IconReference
 import com.rendox.grocerygenius.network.data.sources.icon.IconNetworkDataSource
@@ -49,6 +50,7 @@ class IconRepositoryImpl @Inject constructor(
                     Log.w("IconRepository", "Failed to delete icon file: ${iconFile.absolutePath}; ${e.message}")
                 }
             }
+            ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
         }
     }
 
@@ -117,6 +119,7 @@ class IconRepositoryImpl @Inject constructor(
                     filePath = "icons/$fileName"
                 )
                 iconDao.upsertGroceryIcon(iconEntity)
+                ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
                 IconReference(
                     uniqueFileName = iconEntity.uniqueFileName,
                     filePath = iconEntity.filePath
@@ -170,10 +173,12 @@ class IconRepositoryImpl @Inject constructor(
                     )
                 }
             }
+            ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
         },
         modelUpdater = { changedIds ->
             val networkIcons = iconNetworkDataSource.downloadIconsByIds(ids = changedIds)
             iconDao.upsertGroceryIcons(networkIcons.map { it.asEntity() })
+            ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
         }
     )
 }

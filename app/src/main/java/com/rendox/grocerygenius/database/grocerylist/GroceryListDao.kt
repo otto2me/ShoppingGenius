@@ -56,4 +56,10 @@ interface GroceryListDao {
 
     @Query("DELETE FROM GroceryListEntity WHERE id = :groceryListId")
     suspend fun deleteGroceryListById(groceryListId: String)
+
+    @Query("SELECT id FROM GroceryListEntity ORDER BY sortingPriority ASC LIMIT 1")
+    suspend fun getFirstGroceryListId(): String?
+
+    @Query("SELECT name FROM GroceryListEntity WHERE id = :id LIMIT 1")
+    suspend fun getGroceryListNameById(id: String): String?
 }
