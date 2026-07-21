@@ -55,6 +55,8 @@ class GroceryListViewModel @AssistedInject constructor(
     @Dispatcher(GroceryGeniusDispatchers.Default) private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
+    private var lastPersistedListName: String? = null
+
     var openedGroceryListName by mutableStateOf<TextFieldValue?>(null)
         private set
 
@@ -142,18 +144,17 @@ class GroceryListViewModel @AssistedInject constructor(
                 groceryListRepository.getGroceryListById(openedGroceryListId).first()
             if (openedGroceryList != null && openedGroceryList.name.isNotEmpty()) {
                 openedGroceryListName = TextFieldValue(openedGroceryList.name)
+                lastPersistedListName = openedGroceryList.name
             } else {
                 openedGroceryListName = TextFieldValue("")
+                lastPersistedListName = ""
                 _groceryListEditModeIsEnabledFlow.update { true }
             }
 
             openedGroceryListNameFlow
                 .debounce(800)
                 .collect { listName ->
-                    groceryListRepository.updateGroceryListName(
-                        listId = openedGroceryListId,
-                        name = listName.trim()
-                    )
+                    persistListNameIfChanged(listName.trim())
                 }
         }
         viewModelScope.launch {
@@ -261,7 +262,9 @@ class GroceryListViewModel @AssistedInject constructor(
     private fun onKeyboardHidden() {
         val name = openedGroceryListName?.text
         if (name?.isNotEmpty() == true) {
-            openedGroceryListName = TextFieldValue(name.trim())
+            val trimmedName = name.trim()
+            openedGroceryListName = TextFieldValue(trimmedName)
+            saveGroceryListNameImmediately(trimmedName)
             _groceryListEditModeIsEnabledFlow.update { false }
         }
     }
@@ -287,8 +290,29 @@ class GroceryListViewModel @AssistedInject constructor(
             openedGroceryListName = listName.copy(
                 selection = TextRange(nameLength, nameLength)
             )
+        } else if (!editModeIsEnabled) {
+            val trimmedName = listName?.text?.trim().orEmpty()
+            openedGroceryListName = listName?.copy(text = trimmedName)
+            if (trimmedName.isNotEmpty()) {
+                saveGroceryListNameImmediately(trimmedName)
+            }
         }
         _groceryListEditModeIsEnabledFlow.update { editModeIsEnabled }
+    }
+
+    private fun saveGroceryListNameImmediately(name: String) {
+        viewModelScope.launch {
+            persistListNameIfChanged(name)
+        }
+    }
+
+    private suspend fun persistListNameIfChanged(name: String) {
+        if (lastPersistedListName == name) return
+        groceryListRepository.updateGroceryListName(
+            listId = openedGroceryListId,
+            name = name
+        )
+        lastPersistedListName = name
     }
 
     private fun onNavigateToCategoryScreen(categoryId: String?) {
