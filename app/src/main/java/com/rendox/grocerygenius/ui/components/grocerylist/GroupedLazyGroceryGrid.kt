@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -144,10 +145,11 @@ fun GroupedLazyGroceryGrid(
                     }
                 }
                 items(
-                    count = group.groceries.size,
-                    key = { index -> group.groceries[index].productId },
+                    items = group.groceries,
+                    key = { grocery -> grocery.productId },
                     contentType = { "Grocery" }
-                ) { index ->
+                ) { grocery ->
+                    val index = group.groceries.indexOfFirst { it.productId == grocery.productId }
                     BoxWithConstraints(
                         modifier = Modifier
                             .aspectRatio(1F)
@@ -164,7 +166,7 @@ fun GroupedLazyGroceryGrid(
                                 lastIndex = group.groceries.lastIndex
                             )
                         ) {
-                            groceryItem(group.groceries[index])
+                            groceryItem(grocery)
                         }
                     }
                 }

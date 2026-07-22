@@ -67,6 +67,7 @@ import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -269,8 +270,6 @@ private fun GroceryListScreen(
         TopAppBarSmallHeight.roundToPx()..TopAppBarSmallHeight.roundToPx()
     }
     var selectedTab by rememberSaveable { mutableStateOf(GroceryListTab.ITEMS) }
-    val itemsTabLazyGridState = rememberLazyGridState()
-    val favoritesTabLazyGridState = rememberLazyGridState()
 
     val imeIsVisible = WindowInsets.isImeVisible
     LaunchedEffect(imeIsVisible) {
@@ -371,55 +370,55 @@ private fun GroceryListScreen(
             )
 
             if (groceryGroups != null && categories != null) {
-                when (selectedTab) {
-                    GroceryListTab.ITEMS -> {
-                        if (useListViewForGroceries) {
-                            GroceryListItemsList(
+                key(selectedTab) {
+                    when (selectedTab) {
+                        GroceryListTab.ITEMS -> {
+                            if (useListViewForGroceries) {
+                                GroceryListItemsList(
+                                    modifier = Modifier.fillMaxSize(),
+                                    groceryGroups = groceryGroups,
+                                    groceryListPurchaseState = groceryListPurchaseState,
+                                    scrollUpEvent = scrollUpEvent,
+                                    onGroceryClick = {
+                                        onGroceryListUiIntent(GroceryListsUiIntent.OnGroceryItemClick(it))
+                                    },
+                                    onGroceryLongClick = {
+                                        showEditGroceryBottomSheet(it.productId)
+                                    }
+                                )
+                            } else {
+                                GroceryGrid(
+                                    modifier = Modifier.fillMaxSize(),
+                                    groceryGroups = groceryGroups,
+                                    onGroceryClick = {
+                                        onGroceryListUiIntent(
+                                            GroceryListsUiIntent.OnGroceryItemClick(it)
+                                        )
+                                    },
+                                    onGroceryLongClick = {
+                                        showEditGroceryBottomSheet(it.productId)
+                                    },
+                                    groceryListPurchaseState = groceryListPurchaseState,
+                                    scrollUpEvent = scrollUpEvent
+                                )
+                            }
+                        }
+
+                        GroceryListTab.CATEGORIES -> {
+                            CategoriesList(
                                 modifier = Modifier.fillMaxSize(),
-                                groceryGroups = groceryGroups,
-                                groceryListPurchaseState = groceryListPurchaseState,
-                                scrollUpEvent = scrollUpEvent,
-                                onGroceryClick = {
-                                    onGroceryListUiIntent(GroceryListsUiIntent.OnGroceryItemClick(it))
-                                },
-                                onGroceryLongClick = {
-                                    showEditGroceryBottomSheet(it.productId)
-                                }
-                            )
-                        } else {
-                            GroceryGrid(
-                                modifier = Modifier.fillMaxSize(),
-                                groceryGroups = groceryGroups,
-                                onGroceryClick = {
-                                    onGroceryListUiIntent(
-                                        GroceryListsUiIntent.OnGroceryItemClick(it)
-                                    )
-                                },
-                                onGroceryLongClick = {
-                                    showEditGroceryBottomSheet(it.productId)
-                                },
-                                lazyGridState = itemsTabLazyGridState,
-                                groceryListPurchaseState = groceryListPurchaseState,
-                                scrollUpEvent = scrollUpEvent
+                                categories = categories,
+                                onCategoryItemClick = navigateToCategoryScreen
                             )
                         }
-                    }
 
-                    GroceryListTab.CATEGORIES -> {
-                        CategoriesList(
-                            modifier = Modifier.fillMaxSize(),
-                            categories = categories,
-                            onCategoryItemClick = navigateToCategoryScreen
-                        )
-                    }
-
-                    GroceryListTab.FAVORITES -> {
-                        FavoriteGroceriesGrid(
-                            modifier = Modifier.fillMaxSize(),
-                            groceries = favoriteGroceries,
-                            onGroceryClick = onFavoriteGroceryClick,
-                            lazyGridState = favoritesTabLazyGridState
-                        )
+                        GroceryListTab.FAVORITES -> {
+                            FavoriteGroceriesGrid(
+                                modifier = Modifier.fillMaxSize(),
+                                groceries = favoriteGroceries,
+                                onGroceryClick = onFavoriteGroceryClick
+                            )
+                        }
                     }
                 }
             }
@@ -557,7 +556,7 @@ private fun GroceryListTopBar(
 private fun GroceryGrid(
     modifier: Modifier = Modifier,
     groceryGroups: List<GroceryGroup>,
-    lazyGridState: LazyGridState,
+    lazyGridState: LazyGridState = rememberLazyGridState(),
     groceryListPurchaseState: GroceryListPurchaseState,
     scrollUpEvent: UiEvent<Unit>? = null,
     onGroceryClick: (Grocery) -> Unit,
@@ -776,13 +775,11 @@ private enum class GroceryListTab {
 private fun FavoriteGroceriesGrid(
     modifier: Modifier = Modifier,
     groceries: List<Grocery>,
-    onGroceryClick: (Grocery) -> Unit,
-    lazyGridState: LazyGridState = rememberLazyGridState()
+    onGroceryClick: (Grocery) -> Unit
 ) {
     val context = LocalContext.current
     LazyGroceryGrid(
         modifier = modifier,
-        lazyGridState = lazyGridState,
         groceries = groceries,
         contentPadding = PaddingValues(
             start = 16.dp,
