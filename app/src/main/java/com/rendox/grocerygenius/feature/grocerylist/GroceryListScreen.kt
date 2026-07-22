@@ -37,7 +37,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -59,6 +58,8 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -119,6 +120,7 @@ import com.rendox.grocerygenius.ui.components.collapsingtoolbar.scrollbehavior.r
 import com.rendox.grocerygenius.ui.components.grocerylist.GroceryGridItem
 import com.rendox.grocerygenius.ui.components.grocerylist.GroceryGroup
 import com.rendox.grocerygenius.ui.components.grocerylist.GroupedLazyGroceryGrid
+import com.rendox.grocerygenius.ui.components.grocerylist.LazyGroceryGrid
 import com.rendox.grocerygenius.ui.components.grocerylist.groceryListItemColors
 import com.rendox.grocerygenius.ui.helpers.ObserveUiEvent
 import com.rendox.grocerygenius.ui.helpers.UiEvent
@@ -149,6 +151,7 @@ fun GroceryListRoute(
     val groceryListPurchaseState by groceryListViewModel.groceryListPurchaseStateFlow.collectAsStateWithLifecycle()
     val scrollUpEvent by groceryListViewModel.scrollUpEventFlow.collectAsStateWithLifecycle()
     val useListViewForGroceries by groceryListViewModel.useListViewForGroceriesFlow.collectAsStateWithLifecycle()
+    val favoriteGroceries by groceryListViewModel.favoriteGroceriesFlow.collectAsStateWithLifecycle()
 
     ObserveUiEvent(closeGroceryListScreenEvent) {
         navigateBack()
@@ -210,6 +213,9 @@ fun GroceryListRoute(
         },
         groceryListPurchaseState = groceryListPurchaseState,
         useListViewForGroceries = useListViewForGroceries
+        ,
+        favoriteGroceries = favoriteGroceries,
+        onFavoriteGroceryClick = groceryListViewModel::onCategoryScreenGroceryClick
     )
 
     val editGroceryId = editGroceryIdState.value
@@ -258,16 +264,19 @@ private fun GroceryListScreen(
     categories: List<Category>? = emptyList(),
     groceryListPurchaseState: GroceryListPurchaseState,
     useListViewForGroceries: Boolean = false,
+    favoriteGroceries: List<Grocery> = emptyList(),
     scrollUpEvent: UiEvent<Unit>? = null,
     navigateBack: () -> Unit = {},
     onGroceryListUiIntent: (GroceryListsUiIntent) -> Unit = {},
     onAddGroceryUiIntent: (AddGroceryUiIntent) -> Unit = {},
     showEditGroceryBottomSheet: (String) -> Unit = {},
-    navigateToCategoryScreen: (String?) -> Unit = {}
+    navigateToCategoryScreen: (String?) -> Unit = {},
+    onFavoriteGroceryClick: (Grocery) -> Unit = {}
 ) {
     val toolbarHeightRange = with(LocalDensity.current) {
         TopAppBarSmallHeight.roundToPx()..TopAppBarMediumHeight.roundToPx()
     }
+    var selectedTab by rememberSaveable { mutableStateOf(GroceryListTab.ITEMS) }
     val toolbarState = rememberExitUntilCollapsedToolbarState(toolbarHeightRange)
     val lazyGridState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
@@ -385,40 +394,61 @@ private fun GroceryListScreen(
                 }
             )
 
+            GroceryListTabs(
+                selectedTab = selectedTab,
+                onTabSelected = { selectedTab = it }
+            )
+
             if (groceryGroups != null && categories != null) {
-                if (useListViewForGroceries) {
-                    GroceryListItemsList(
-                        modifier = Modifier.fillMaxSize(),
-                        groceryGroups = groceryGroups,
-                        categories = categories,
-                        groceryListPurchaseState = groceryListPurchaseState,
-                        scrollUpEvent = scrollUpEvent,
-                        onGroceryClick = {
-                            onGroceryListUiIntent(GroceryListsUiIntent.OnGroceryItemClick(it))
-                        },
-                        onGroceryLongClick = {
-                            showEditGroceryBottomSheet(it.productId)
-                        },
-                        onCategoryItemClick = navigateToCategoryScreen
-                    )
-                } else {
-                    GroceryGrid(
-                        modifier = Modifier.fillMaxSize(),
-                        groceryGroups = groceryGroups,
-                        onGroceryClick = {
-                            onGroceryListUiIntent(
-                                GroceryListsUiIntent.OnGroceryItemClick(it)
+                when (selectedTab) {
+                    GroceryListTab.ITEMS -> {
+                        if (useListViewForGroceries) {
+                            GroceryListItemsList(
+                                modifier = Modifier.fillMaxSize(),
+                                groceryGroups = groceryGroups,
+                                groceryListPurchaseState = groceryListPurchaseState,
+                                scrollUpEvent = scrollUpEvent,
+                                onGroceryClick = {
+                                    onGroceryListUiIntent(GroceryListsUiIntent.OnGroceryItemClick(it))
+                                },
+                                onGroceryLongClick = {
+                                    showEditGroceryBottomSheet(it.productId)
+                                }
                             )
-                        },
-                        categories = categories,
-                        onGroceryLongClick = {
-                            showEditGroceryBottomSheet(it.productId)
-                        },
-                        lazyGridState = lazyGridState,
-                        onCategoryItemClick = navigateToCategoryScreen,
-                        groceryListPurchaseState = groceryListPurchaseState,
-                        scrollUpEvent = scrollUpEvent
-                    )
+                        } else {
+                            GroceryGrid(
+                                modifier = Modifier.fillMaxSize(),
+                                groceryGroups = groceryGroups,
+                                onGroceryClick = {
+                                    onGroceryListUiIntent(
+                                        GroceryListsUiIntent.OnGroceryItemClick(it)
+                                    )
+                                },
+                                onGroceryLongClick = {
+                                    showEditGroceryBottomSheet(it.productId)
+                                },
+                                lazyGridState = lazyGridState,
+                                groceryListPurchaseState = groceryListPurchaseState,
+                                scrollUpEvent = scrollUpEvent
+                            )
+                        }
+                    }
+
+                    GroceryListTab.CATEGORIES -> {
+                        CategoriesList(
+                            modifier = Modifier.fillMaxSize(),
+                            categories = categories,
+                            onCategoryItemClick = navigateToCategoryScreen
+                        )
+                    }
+
+                    GroceryListTab.FAVORITES -> {
+                        FavoriteGroceriesGrid(
+                            modifier = Modifier.fillMaxSize(),
+                            groceries = favoriteGroceries,
+                            onGroceryClick = onFavoriteGroceryClick
+                        )
+                    }
                 }
             }
         }
@@ -598,12 +628,10 @@ private fun GroceryGrid(
     modifier: Modifier = Modifier,
     groceryGroups: List<GroceryGroup>,
     lazyGridState: LazyGridState,
-    categories: List<Category>,
     groceryListPurchaseState: GroceryListPurchaseState,
-    scrollUpEvent: UiEvent<Unit>?,
+    scrollUpEvent: UiEvent<Unit>? = null,
     onGroceryClick: (Grocery) -> Unit,
-    onGroceryLongClick: (Grocery) -> Unit,
-    onCategoryItemClick: (String?) -> Unit
+    onGroceryLongClick: (Grocery) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -642,54 +670,7 @@ private fun GroceryGrid(
             bottom = 16.dp
         ),
         lazyGridState = lazyGridState,
-        numOfAdditionalItems = categories.size + 1,
-        groceryListPurchaseState = groceryListPurchaseState,
-        additionalItems = {
-            val categoryContentType = "Category"
-            val spacerContentType = "SpacerBetweenListAndCategories"
-            item(
-                key = spacerContentType,
-                contentType = spacerContentType,
-                span = { GridItemSpan(maxLineSpan) }
-            ) {
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-            items(
-                count = categories.size,
-                key = { index -> categories[index].id },
-                contentType = { categoryContentType },
-                span = { GridItemSpan(maxLineSpan) }
-            ) { index ->
-                CategoryItem(
-                    modifier = Modifier
-                        .clip(
-                            shape = RoundedCornerShape(
-                                topStart = if (index == 0) GroceryItemRounding else 0.dp,
-                                topEnd = if (index == 0) GroceryItemRounding else 0.dp
-                            )
-                        )
-                        .clickable { onCategoryItemClick(categories[index].id) },
-                    name = categories[index].name
-                )
-            }
-            item(
-                key = "CustomCategory",
-                span = { GridItemSpan(maxLineSpan) },
-                contentType = { categoryContentType }
-            ) {
-                CategoryItem(
-                    modifier = Modifier
-                        .clip(
-                            shape = RoundedCornerShape(
-                                bottomStart = GroceryItemRounding,
-                                bottomEnd = GroceryItemRounding
-                            )
-                        )
-                        .clickable { onCategoryItemClick(null) },
-                    name = stringResource(R.string.custom_category_title)
-                )
-            }
-        }
+        groceryListPurchaseState = groceryListPurchaseState
     )
 }
 
@@ -698,12 +679,10 @@ private fun GroceryGrid(
 private fun GroceryListItemsList(
     modifier: Modifier = Modifier,
     groceryGroups: List<GroceryGroup>,
-    categories: List<Category>,
     groceryListPurchaseState: GroceryListPurchaseState,
-    scrollUpEvent: UiEvent<Unit>?,
+    scrollUpEvent: UiEvent<Unit>? = null,
     onGroceryClick: (Grocery) -> Unit,
-    onGroceryLongClick: (Grocery) -> Unit,
-    onCategoryItemClick: (String?) -> Unit
+    onGroceryLongClick: (Grocery) -> Unit
 ) {
     val context = LocalContext.current
     val lazyListState = rememberLazyListState()
@@ -787,9 +766,41 @@ private fun GroceryListItemsList(
             }
         }
 
-        item(key = "SpacerBetweenListAndCategories", contentType = "SpacerBetweenListAndCategories") {
-            Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+private fun GroceryListTabs(
+    selectedTab: GroceryListTab,
+    onTabSelected: (GroceryListTab) -> Unit
+) {
+    val tabs = listOf(
+        GroceryListTab.ITEMS to stringResource(R.string.grocery_list_tab_items),
+        GroceryListTab.CATEGORIES to stringResource(R.string.grocery_list_tab_categories),
+        GroceryListTab.FAVORITES to stringResource(R.string.grocery_list_tab_favorites)
+    )
+    TabRow(selectedTabIndex = tabs.indexOfFirst { it.first == selectedTab }) {
+        tabs.forEach { (tab, title) ->
+            Tab(
+                selected = selectedTab == tab,
+                onClick = { onTabSelected(tab) },
+                text = { Text(text = title) }
+            )
         }
+    }
+}
+
+@Composable
+private fun CategoriesList(
+    modifier: Modifier = Modifier,
+    categories: List<Category>,
+    onCategoryItemClick: (String?) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
         items(
             count = categories.size,
             key = { index -> categories[index].id },
@@ -812,6 +823,8 @@ private fun GroceryListItemsList(
                 modifier = Modifier
                     .clip(
                         shape = RoundedCornerShape(
+                            topStart = if (categories.isEmpty()) GroceryItemRounding else 0.dp,
+                            topEnd = if (categories.isEmpty()) GroceryItemRounding else 0.dp,
                             bottomStart = GroceryItemRounding,
                             bottomEnd = GroceryItemRounding
                         )
@@ -821,6 +834,49 @@ private fun GroceryListItemsList(
             )
         }
     }
+}
+
+private enum class GroceryListTab {
+    ITEMS,
+    CATEGORIES,
+    FAVORITES
+}
+
+@Composable
+private fun FavoriteGroceriesGrid(
+    modifier: Modifier = Modifier,
+    groceries: List<Grocery>,
+    onGroceryClick: (Grocery) -> Unit
+) {
+    val context = LocalContext.current
+    LazyGroceryGrid(
+        modifier = modifier,
+        groceries = groceries,
+        contentPadding = PaddingValues(
+            start = 16.dp,
+            end = 16.dp,
+            bottom = 16.dp
+        ),
+        groceryItem = { grocery ->
+            GroceryGridItem(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable { onGroceryClick(grocery) },
+                groceryName = grocery.name,
+                groceryDescription = grocery.description,
+                color = if (grocery.purchased) {
+                    MaterialTheme.colorScheme.groceryListItemColors.purchasedBackgroundColor
+                } else {
+                    MaterialTheme.colorScheme.groceryListItemColors.defaultBackgroundColor
+                },
+                iconFile = remember(grocery.icon?.filePath) {
+                    grocery.icon?.filePath?.let { filePath ->
+                        File(context.filesDir, filePath)
+                    }
+                }
+            )
+        }
+    )
 }
 
 @OptIn(ExperimentalFoundationApi::class)

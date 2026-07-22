@@ -79,6 +79,9 @@ class EditGroceryViewModel @Inject constructor(
         is EditGroceryUiIntent.OnCustomCategorySelected ->
             onCategorySelected(null)
 
+        is EditGroceryUiIntent.OnToggleFavorite ->
+            onToggleFavorite()
+
         is EditGroceryUiIntent.OnRemoveGroceryFromList ->
             onRemoveGroceryFromList()
 
@@ -111,6 +114,10 @@ class EditGroceryViewModel @Inject constructor(
                         purchasedLastModified = grocery.purchasedLastModified,
                         isDefault = false
                     )
+                    productRepository.updateProductFavorite(
+                        productId = newProductId,
+                        isFavorite = grocery.isFavorite
+                    )
                     groceryRepository.removeGroceryFromList(
                         productId = compoundGroceryId.productId,
                         listId = compoundGroceryId.groceryListId
@@ -141,6 +148,20 @@ class EditGroceryViewModel @Inject constructor(
                     productId = productId,
                     listId = groceryListId
                 )
+            }
+        }
+    }
+
+    private fun onToggleFavorite() {
+        viewModelScope.launch {
+            val currentGrocery = _uiStateFlow.value.editGrocery ?: return@launch
+            val newFavoriteState = !currentGrocery.isFavorite
+            productRepository.updateProductFavorite(
+                productId = currentGrocery.productId,
+                isFavorite = newFavoriteState
+            )
+            _uiStateFlow.update { uiState ->
+                uiState.copy(editGrocery = uiState.editGrocery?.copy(isFavorite = newFavoriteState))
             }
         }
     }

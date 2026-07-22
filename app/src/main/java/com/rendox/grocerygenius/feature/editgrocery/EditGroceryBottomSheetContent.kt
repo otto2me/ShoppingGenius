@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -45,6 +47,8 @@ fun EditGroceryBottomSheetContent(
     onKeyboardDone: () -> Unit,
     onChangeCategoryClick: () -> Unit,
     onChangeIconClick: () -> Unit,
+    onToggleFavoriteClick: () -> Unit,
+    isFavorite: Boolean,
     onRemoveGrocery: () -> Unit,
     onDeleteProduct: () -> Unit,
     itemDescriptionFocusRequester: FocusRequester
@@ -89,7 +93,9 @@ fun EditGroceryBottomSheetContent(
         GrocerySettings(
             modifier = Modifier.padding(top = 32.dp),
             onChangeCategoryClick = onChangeCategoryClick,
-            onChangeIconClick = onChangeIconClick
+            onChangeIconClick = onChangeIconClick,
+            onToggleFavoriteClick = onToggleFavoriteClick,
+            isFavorite = isFavorite
         )
 
         FilledTonalButton(
@@ -130,7 +136,9 @@ fun EditGroceryBottomSheetContent(
 private fun GrocerySettings(
     modifier: Modifier = Modifier,
     onChangeCategoryClick: () -> Unit,
-    onChangeIconClick: () -> Unit
+    onChangeIconClick: () -> Unit,
+    onToggleFavoriteClick: () -> Unit,
+    isFavorite: Boolean
 ) {
     Column(modifier = modifier) {
         Text(
@@ -162,6 +170,21 @@ private fun GrocerySettings(
                 },
                 title = stringResource(R.string.edit_grocery_change_icon_button_title),
                 onClick = onChangeIconClick
+            )
+            SettingButton(
+                modifier = Modifier.weight(1F),
+                icon = {
+                    Icon(
+                        imageVector = if (isFavorite) {
+                            Icons.Default.Favorite
+                        } else {
+                            Icons.Default.FavoriteBorder
+                        },
+                        contentDescription = null
+                    )
+                },
+                title = stringResource(R.string.edit_grocery_toggle_favorite_button_title),
+                onClick = onToggleFavoriteClick
             )
         }
     }

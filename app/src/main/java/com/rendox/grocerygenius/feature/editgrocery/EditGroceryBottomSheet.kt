@@ -99,6 +99,10 @@ fun EditGroceryBottomSheet(
                         }
                 }
             },
+            onToggleFavoriteClick = {
+                onIntent(EditGroceryUiIntent.OnToggleFavorite)
+            },
+            isFavorite = screenState.editGrocery?.isFavorite == true,
             productCanBeModified = screenState.editGrocery?.productIsDefault == false,
             onRemoveGrocery = {
                 onIntent(EditGroceryUiIntent.OnRemoveGroceryFromList)
@@ -165,6 +169,8 @@ private fun EditGroceryBottomSheetContentPreview(
                 itemDescriptionFocusRequester = remember { FocusRequester() },
                 onChangeCategoryClick = {},
                 onChangeIconClick = {},
+                onToggleFavoriteClick = {},
+                isFavorite = false,
                 productCanBeModified = productCanBeModified,
                 onRemoveGrocery = {},
                 onDeleteProduct = {}

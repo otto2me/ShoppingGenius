@@ -21,7 +21,7 @@ import com.rendox.grocerygenius.database.product.ProductEntity
         ProductEntity::class,
         IconEntity::class
     ],
-    version = 2
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao

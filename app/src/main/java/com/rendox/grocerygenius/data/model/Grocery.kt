@@ -13,7 +13,8 @@ fun CombinedGrocery.asExternalModel() = Grocery(
     icon = icon,
     category = category,
     purchasedLastModified = purchasedLastModified,
-    productIsDefault = productIsDefault
+    productIsDefault = productIsDefault,
+    isFavorite = productIsFavorite
 )
 
 val CombinedGrocery.icon

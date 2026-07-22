@@ -66,6 +66,14 @@ class ProductRepositoryImpl @Inject constructor(
         ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
+    override suspend fun updateProductFavorite(
+        productId: String,
+        isFavorite: Boolean
+    ) {
+        productDao.updateProductFavorite(productId, isFavorite)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
+    }
+
     override suspend fun deleteProductById(productId: String) {
         productDao.deleteProductById(productId)
         ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)

@@ -94,7 +94,12 @@ class GroceryListViewModel @AssistedInject constructor(
     private val _openedCategoryGroceriesFlow = MutableStateFlow(emptyList<Grocery>())
     val openedCategoryGroceriesFlow = _openedCategoryGroceriesFlow.asStateFlow()
 
+    private val _favoriteGroceriesFlow = MutableStateFlow(emptyList<Grocery>())
+    val favoriteGroceriesFlow = _favoriteGroceriesFlow.asStateFlow()
+
     private val groceriesInList = groceryRepository.getGroceriesFromList(openedGroceryListId)
+    private val allProductsFlow = productRepository.getAllProducts()
+        .map { products -> products.sortedBy { product -> product.name } }
     private val categoryProductsFlow = openedCategoryIdFlow
         .flatMapLatest { categoryId ->
             productRepository.getProductsByCategory(categoryId)
@@ -121,6 +126,28 @@ class GroceryListViewModel @AssistedInject constructor(
 
     init {
         viewModelScope.launch {
+            allProductsFlow
+                .combine(groceriesInList) { products, groceriesFromList ->
+                    products
+                        .filter { it.isFavorite }
+                        .map { product ->
+                            val groceryFromList = groceriesFromList.find { it.productId == product.id }
+                            Grocery(
+                                productId = product.id,
+                                name = product.name,
+                                purchased = groceryFromList?.purchased ?: true,
+                                icon = product.icon,
+                                category = product.category,
+                                productIsDefault = product.isDefault,
+                                isFavorite = product.isFavorite
+                            )
+                        }
+                }
+                .collectLatest { groceries ->
+                    _favoriteGroceriesFlow.update { groceries }
+                }
+        }
+        viewModelScope.launch {
             categoryProductsFlow
                 .combine(groceriesInList) { products, groceriesFromList ->
                     products.map { product ->
@@ -131,7 +158,8 @@ class GroceryListViewModel @AssistedInject constructor(
                             purchased = groceryFromList?.purchased ?: true,
                             icon = product.icon,
                             category = product.category,
-                            productIsDefault = product.isDefault
+                            productIsDefault = product.isDefault,
+                            isFavorite = product.isFavorite
                         )
                     }
                 }.collectLatest { groceries ->

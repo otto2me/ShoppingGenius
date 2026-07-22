@@ -23,5 +23,9 @@ interface ProductRepository : Syncable {
         productId: String,
         iconId: String?
     )
+    suspend fun updateProductFavorite(
+        productId: String,
+        isFavorite: Boolean
+    )
     suspend fun deleteProductById(productId: String)
 }

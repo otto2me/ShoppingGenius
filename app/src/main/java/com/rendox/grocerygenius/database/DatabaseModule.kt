@@ -20,5 +20,6 @@ object DatabaseModule {
         "grocery-genius-database"
     )
         .addMigrations(MIGRATION_1_2)
+        .addMigrations(MIGRATION_2_3)
         .build()
 }

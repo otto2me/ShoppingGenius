@@ -26,7 +26,8 @@ interface GroceryDao {
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
             grocery.purchasedLastModified,
-            product.isDefault as productIsDefault
+            product.isDefault as productIsDefault,
+            product.isFavorite as productIsFavorite
         FROM GroceryEntity grocery
         INNER JOIN ProductEntity product ON grocery.productId = product.id
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
@@ -49,7 +50,8 @@ interface GroceryDao {
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
             grocery.purchasedLastModified,
-            product.isDefault as productIsDefault
+            product.isDefault as productIsDefault,
+            product.isFavorite as productIsFavorite
         FROM GroceryEntity grocery
         INNER JOIN ProductEntity product ON grocery.productId = product.id
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id

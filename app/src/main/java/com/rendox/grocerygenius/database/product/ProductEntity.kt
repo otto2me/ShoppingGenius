@@ -33,6 +33,7 @@ data class ProductEntity(
     @PrimaryKey val id: String,
     val name: String,
     val isDefault: Boolean,
+    val isFavorite: Boolean,
     val iconFileName: String?,
     val categoryId: String?
 )

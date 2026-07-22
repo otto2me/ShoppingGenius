@@ -7,5 +7,6 @@ data class Product(
     val name: String,
     val icon: IconReference? = null,
     val category: Category? = null,
-    val isDefault: Boolean = false
+    val isDefault: Boolean = false,
+    val isFavorite: Boolean = false
 )

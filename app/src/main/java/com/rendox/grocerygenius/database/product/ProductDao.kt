@@ -30,7 +30,8 @@ abstract class ProductDao {
         category.id as categoryId,
         category.name as categoryName,
         category.sortingPriority as categorySortingPriority,
-        product.isDefault
+        product.isDefault,
+        product.isFavorite
         FROM ProductEntity product
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
@@ -49,7 +50,8 @@ abstract class ProductDao {
             category.id as categoryId,
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
-            product.isDefault
+            product.isDefault,
+            product.isFavorite
         FROM ProductEntity product
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
@@ -68,7 +70,8 @@ abstract class ProductDao {
             category.id as categoryId,
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
-            product.isDefault
+            product.isDefault,
+            product.isFavorite
         FROM ProductEntity product
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
@@ -95,7 +98,8 @@ abstract class ProductDao {
             category.id as categoryId,
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
-            product.isDefault
+            product.isDefault,
+            product.isFavorite
         FROM ProductEntity product
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
@@ -114,7 +118,8 @@ abstract class ProductDao {
             category.id as categoryId,
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
-            product.isDefault
+            product.isDefault,
+            product.isFavorite
         FROM ProductEntity product
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
@@ -153,7 +158,8 @@ abstract class ProductDao {
             category.id as categoryId,
             category.name as categoryName,
             category.sortingPriority as categorySortingPriority,
-            product.isDefault
+            product.isDefault,
+            product.isFavorite
             FROM ProductEntity product
             LEFT JOIN CategoryEntity category ON product.categoryId = category.id
             LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
@@ -183,6 +189,12 @@ abstract class ProductDao {
     abstract suspend fun updateProductName(
         productId: String,
         name: String
+    )
+
+    @Query("UPDATE ProductEntity SET isFavorite = :isFavorite WHERE id = :productId")
+    abstract suspend fun updateProductFavorite(
+        productId: String,
+        isFavorite: Boolean
     )
 
     @Query("DELETE FROM ProductEntity WHERE id = :productId")

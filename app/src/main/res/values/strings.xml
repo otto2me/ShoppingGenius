@@ -88,6 +88,10 @@
     <string name="settings">Settings</string>
     <string name="list_editor">List Editor</string>
     <string name="listen_search_field_placeholder">Search entries</string>
+    <string name="grocery_list_tab_items" translatable="false">Items</string>
+    <string name="grocery_list_tab_categories" translatable="false">Categories</string>
+    <string name="grocery_list_tab_favorites" translatable="false">Favorites</string>
+    <string name="edit_grocery_toggle_favorite_button_title" translatable="false">Favorite</string>
     <string name="forward">Forward</string>
     <string name="close">Close</string>
     <string name="reset">Reset</string>

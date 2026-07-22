@@ -12,7 +12,8 @@ fun Product.asEntity() = ProductEntity(
     name = name,
     categoryId = category?.id,
     iconFileName = icon?.uniqueFileName,
-    isDefault = isDefault
+    isDefault = isDefault,
+    isFavorite = isFavorite
 )
 
 fun CombinedProduct.asExternalModel() = Product(
@@ -20,7 +21,8 @@ fun CombinedProduct.asExternalModel() = Product(
     name = name,
     icon = icon,
     category = category,
-    isDefault = isDefault
+    isDefault = isDefault,
+    isFavorite = isFavorite
 )
 
 val CombinedProduct.icon
@@ -52,5 +54,6 @@ fun ProductNetwork.asEntity() = ProductEntity(
     name = name,
     categoryId = categoryId,
     iconFileName = iconId,
-    isDefault = isDefault
+    isDefault = isDefault,
+    isFavorite = false
 )
