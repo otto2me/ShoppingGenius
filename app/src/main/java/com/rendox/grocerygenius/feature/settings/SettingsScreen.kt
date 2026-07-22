@@ -324,20 +324,11 @@ private fun SettingsScreen(
                     item {
                         SettingsTitle(
                             modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                            title = stringResource(R.string.settings_feedback)
+                            title = stringResource(R.string.settings_credits)
                         )
                     }
                     item {
                         GitHubLink()
-                    }
-                    item {
-                        EmailLink()
-                    }
-                    item {
-                        SettingsTitle(
-                            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                            title = stringResource(R.string.settings_credits)
-                        )
                     }
                     item {
                         FreepikAttribution()

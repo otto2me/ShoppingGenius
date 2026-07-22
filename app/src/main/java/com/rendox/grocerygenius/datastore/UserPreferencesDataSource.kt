@@ -52,7 +52,7 @@ class UserPreferencesDataSource @Inject constructor(
             selectedLanguageTag = preferences[SELECTED_LANGUAGE_TAG_KEY].orEmpty().ifBlank { null },
             autoDeleteCompletedAfterHours = (preferences[AUTO_DELETE_COMPLETED_AFTER_HOURS_KEY]
                 ?: DEFAULT_USER_PREFERENCES.autoDeleteCompletedAfterHours)
-                .coerceIn(1, 720)
+                .coerceIn(1, 120)
         )
     }
 
@@ -120,7 +120,7 @@ class UserPreferencesDataSource @Inject constructor(
 
     suspend fun updateAutoDeleteCompletedAfterHours(hours: Int) {
         dataStore.edit { preferences ->
-            preferences[AUTO_DELETE_COMPLETED_AFTER_HOURS_KEY] = hours.coerceIn(1, 720)
+            preferences[AUTO_DELETE_COMPLETED_AFTER_HOURS_KEY] = hours.coerceIn(1, 120)
         }
     }
 
