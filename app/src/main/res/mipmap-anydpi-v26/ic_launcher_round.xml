@@ -5,6 +5,6 @@
         <inset
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:drawable="@mipmap/ic_launcher_foreground"
-            android:inset="10%" />
+            android:inset="18%" />
     </foreground>
 </adaptive-icon>
