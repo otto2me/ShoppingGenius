@@ -70,4 +70,8 @@
     <string name="sync_work_notification_channel_name">SincronizaÃ§Ã£o</string>
     <string name="sync_work_notification_channel_description">SincronizaÃ§Ã£o periÃ³dica do banco de dados de compras.</string>
     <string name="sync_work_notification_title">Sincronizando suas compras</string>
+    <string name="grocery_list_tab_items">Itens</string>
+    <string name="grocery_list_tab_categories">Categorias</string>
+    <string name="grocery_list_tab_favorites">Favoritos</string>
+    <string name="edit_grocery_toggle_favorite_button_title">Favorito</string>
 </resources>

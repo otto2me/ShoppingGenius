@@ -71,4 +71,9 @@
     <string name="sync_work_notification_channel_name">Synchronization</string>
     <string name="sync_work_notification_channel_description">Periodic synchronization of grocery database.</string>
     <string name="sync_work_notification_title">Syncing your groceries</string>
+    <!-- Tab Titles -->
+    <string name="grocery_list_tab_items">Stavke</string>
+    <string name="grocery_list_tab_categories">Kategorije</string>
+    <string name="grocery_list_tab_favorites">Omiljeni</string>
+    <string name="edit_grocery_toggle_favorite_button_title">Omiljeno</string>
 </resources>

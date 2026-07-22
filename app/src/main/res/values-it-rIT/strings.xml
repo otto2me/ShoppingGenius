@@ -70,4 +70,8 @@
     <string name="sync_work_notification_channel_name">Sincronizzazione</string>
     <string name="sync_work_notification_channel_description">Sincronizzazione periodica del database dei prodotti.</string>
     <string name="sync_work_notification_title">Sincronizzazione dei tuoi prodotti</string>
+    <string name="grocery_list_tab_items">Articoli</string>
+    <string name="grocery_list_tab_categories">Categorie</string>
+    <string name="grocery_list_tab_favorites">Preferiti</string>
+    <string name="edit_grocery_toggle_favorite_button_title">Preferito</string>
 </resources>

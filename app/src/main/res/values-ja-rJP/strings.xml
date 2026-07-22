@@ -69,4 +69,9 @@
     <string name="sync_work_notification_channel_name">Synchronization</string>
     <string name="sync_work_notification_channel_description">Periodic synchronization of grocery database.</string>
     <string name="sync_work_notification_title">Syncing your groceries</string>
+    <!-- Grocery List Tabs -->
+    <string name="grocery_list_tab_items">アイテム</string>
+    <string name="grocery_list_tab_categories">カテゴリ</string>
+    <string name="grocery_list_tab_favorites">お気に入り</string>
+    <string name="edit_grocery_toggle_favorite_button_title">お気に入り</string>
 </resources>

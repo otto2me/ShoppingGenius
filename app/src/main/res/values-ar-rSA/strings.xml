@@ -39,7 +39,7 @@
     <string name="settings_theme_mode">ÙˆØ¶Ø¹ Ø§Ù„Ø³Ù…Ø©</string>
     <string name="settings_use_system_accent_color">Ø§Ø³ØªØ®Ø¯Ù… Ù„ÙˆÙ† ØªÙ…ÙŠÙŠØ² Ø§Ù„Ù†Ø¸Ø§Ù…</string>
     <string name="settings_preferences">Ø§Ù„ØªÙØ¶ÙŠÙ„Ø§Øª</string>
-    <string name="settings_open_last_viewed_list">ÙØªØ­ Ù‚Ø§Ø¦Ù…Ø© Ø¢Ø®Ø± Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„Ù…Ø¹Ø±ÙˆØ¶Ø©</string>
+    <string name="settings_open_last_viewed_list">ÙØªØ­ Ù‚Ø§��¦Ù…Ø© Ø¢Ø®Ø± Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„Ù…Ø¹Ø±ÙˆØ¶Ø©</string>
     <string name="settings_default_list">ÙØªØ­ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠØ©</string>
     <string name="settings_default_list_unspecified">ØºÙŠØ± Ù…Ø­Ø¯Ø¯</string>
     <string name="settings_reorder_categories_title">Ø¥Ø¹Ø§Ø¯Ø© ØªØ±ØªÙŠØ¨ Ø§Ù„ÙØ¦Ø§Øª</string>
@@ -74,4 +74,8 @@
     <string name="sync_work_notification_channel_name">Ù…Ø²Ø§Ù…Ù†Ø©</string>
     <string name="sync_work_notification_channel_description">ØªØ²Ø§Ù…Ù† Ø¯ÙˆØ±ÙŠ Ù„Ù‚Ø§Ø¹Ø¯Ø© Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¨Ù‚Ø§Ù„Ø©.</string>
     <string name="sync_work_notification_title">Ù…Ø²Ø§Ù…Ù†Ø© Ø¨Ù‚Ø§Ù„ØªÙƒ</string>
+    <string name="grocery_list_tab_items">العناصر</string>
+    <string name="grocery_list_tab_categories">الفئات</string>
+    <string name="grocery_list_tab_favorites">المفضلة</string>
+    <string name="edit_grocery_toggle_favorite_button_title">مفضل</string>
 </resources>

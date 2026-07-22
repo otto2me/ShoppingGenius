@@ -96,4 +96,8 @@
     <string name="sync_work_notification_channel_name">Synchronisierung</string>
     <string name="sync_work_notification_channel_description">Regelmäßige Synchronisierung der Lebensmitteldatenbank.</string>
     <string name="sync_work_notification_title">Synchronisieren deiner Lebensmittel</string>
+    <string name="grocery_list_tab_items">Einträge</string>
+    <string name="grocery_list_tab_categories">Kategorien</string>
+    <string name="grocery_list_tab_favorites">Favoriten</string>
+    <string name="edit_grocery_toggle_favorite_button_title">Favorit</string>
 </resources>
