@@ -54,6 +54,7 @@
     <string name="settings_duckduckgo_connection_testing">Teste Verbindung...</string>
     <string name="settings_duckduckgo_connection_test_success">Verbindung erfolgreich.</string>
     <string name="settings_duckduckgo_connection_test_failed">Verbindung fehlgeschlagen. DuckDuckGo blockiert Anfragen eventuell gerade oder es besteht keine Internetverbindung.</string>
+    <string name="github_link_title">Basiert auf GitHub</string>
     <string name="github_link_description">Sieh dir den Quellcode an, trage bei, melde Fehler und schlage neue Funktionen vor.</string>
     <string name="email_link_title">Entwickler kontaktieren</string>
     <string name="email_link_description">Kontaktieren den Entwickler für freundliche Rückmeldungen, Vorschläge oder alle anderen Ideen, die du im Kopf hast.</string>
