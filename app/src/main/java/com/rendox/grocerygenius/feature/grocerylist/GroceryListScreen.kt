@@ -10,7 +10,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -50,6 +49,7 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -78,7 +78,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -112,11 +111,6 @@ import com.rendox.grocerygenius.ui.components.BottomSheetDragHandle
 import com.rendox.grocerygenius.ui.components.DeleteConfirmationDialog
 import com.rendox.grocerygenius.ui.components.GroceryIcon
 import com.rendox.grocerygenius.ui.components.Scrim
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.CollapsingToolbar
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.CollapsingToolbarScaffoldScrollableState
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.scrollbehavior.CollapsingToolbarNestedScrollConnection
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.scrollbehavior.ToolbarState
-import com.rendox.grocerygenius.ui.components.collapsingtoolbar.scrollbehavior.rememberExitUntilCollapsedToolbarState
 import com.rendox.grocerygenius.ui.components.grocerylist.GroceryGridItem
 import com.rendox.grocerygenius.ui.components.grocerylist.GroceryGroup
 import com.rendox.grocerygenius.ui.components.grocerylist.GroupedLazyGroceryGrid
@@ -126,7 +120,6 @@ import com.rendox.grocerygenius.ui.helpers.ObserveUiEvent
 import com.rendox.grocerygenius.ui.helpers.UiEvent
 import com.rendox.grocerygenius.ui.theme.GroceryGeniusTheme
 import com.rendox.grocerygenius.ui.theme.GroceryItemRounding
-import com.rendox.grocerygenius.ui.theme.TopAppBarMediumHeight
 import com.rendox.grocerygenius.ui.theme.TopAppBarSmallHeight
 import java.io.File
 
@@ -274,29 +267,11 @@ private fun GroceryListScreen(
     onFavoriteGroceryClick: (Grocery) -> Unit = {}
 ) {
     val toolbarHeightRange = with(LocalDensity.current) {
-        TopAppBarSmallHeight.roundToPx()..TopAppBarMediumHeight.roundToPx()
+        TopAppBarSmallHeight.roundToPx()..TopAppBarSmallHeight.roundToPx()
     }
     var selectedTab by rememberSaveable { mutableStateOf(GroceryListTab.ITEMS) }
-    val toolbarState = rememberExitUntilCollapsedToolbarState(toolbarHeightRange)
     val lazyGridState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
-
-    val scrollState: CollapsingToolbarScaffoldScrollableState = remember {
-        object : CollapsingToolbarScaffoldScrollableState, ScrollableState by lazyGridState {
-            override val firstVisibleItemIndex: Int
-                get() = lazyGridState.firstVisibleItemIndex
-            override val firstVisibleItemScrollOffset: Int
-                get() = lazyGridState.firstVisibleItemScrollOffset
-        }
-    }
-
-    val nestedScrollConnection = remember {
-        CollapsingToolbarNestedScrollConnection(
-            toolbarState = toolbarState,
-            scrollState = scrollState,
-            coroutineScope = coroutineScope
-        )
-    }
 
     val imeIsVisible = WindowInsets.isImeVisible
     LaunchedEffect(imeIsVisible) {
@@ -374,12 +349,9 @@ private fun GroceryListScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .nestedScroll(nestedScrollConnection)
         ) {
-            GroceryListCollapsingToolbar(
+            GroceryListTopBar(
                 listName = groceryListName,
-                toolbarHeightRange = toolbarHeightRange,
-                toolbarState = toolbarState,
                 toolbarIsHidden = toolbarIsHidden,
                 onUpdateGroceryListName = {
                     onGroceryListUiIntent(GroceryListsUiIntent.UpdateGroceryListName(it))
@@ -466,14 +438,13 @@ private fun GroceryListScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun GroceryListCollapsingToolbar(
+private fun GroceryListTopBar(
     modifier: Modifier = Modifier,
     listName: TextFieldValue?,
     editModeIsEnabled: Boolean,
     toolbarIsHidden: Boolean,
-    toolbarHeightRange: IntRange,
-    toolbarState: ToolbarState,
     onUpdateGroceryListName: (TextFieldValue) -> Unit,
     onNavigationIconClicked: () -> Unit = {},
     onDeleteGroceryList: () -> Unit = {},
@@ -481,20 +452,10 @@ private fun GroceryListCollapsingToolbar(
 ) {
     Column(modifier = modifier) {
         val toolbarEnterTransition = remember {
-            expandVertically(
-                animationSpec = tween(
-                    durationMillis = 150,
-                    easing = LinearEasing
-                )
-            )
+            expandVertically(animationSpec = tween(durationMillis = 150, easing = LinearEasing))
         }
         val toolbarExitTransition = remember {
-            shrinkVertically(
-                animationSpec = tween(
-                    durationMillis = 150,
-                    easing = LinearEasing
-                )
-            )
+            shrinkVertically(animationSpec = tween(durationMillis = 150, easing = LinearEasing))
         }
 
         AnimatedVisibility(
@@ -502,9 +463,7 @@ private fun GroceryListCollapsingToolbar(
             enter = toolbarEnterTransition,
             exit = toolbarExitTransition
         ) {
-            Spacer(
-                modifier = Modifier.windowInsetsTopHeight(WindowInsets.statusBars)
-            )
+            Spacer(modifier = Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
         }
 
         val listNameFieldFocusRequester = remember(editModeIsEnabled) {
@@ -519,26 +478,46 @@ private fun GroceryListCollapsingToolbar(
             enter = toolbarEnterTransition,
             exit = toolbarExitTransition
         ) {
-            val expandedTitleStyle = MaterialTheme.typography.headlineSmall
-            CollapsingToolbar(
-                modifier = Modifier.graphicsLayer {
-                    translationY = toolbarState.offset
-                },
-                titleExpanded = {
-                    if (listName != null) {
-                        GroceryListTitleField(
-                            listName = listName,
-                            listNameFieldFocusRequester = listNameFieldFocusRequester,
-                            listNameFieldIsEditable = editModeIsEnabled,
-                            textStyle = expandedTitleStyle,
-                            onUpdateGroceryListName = onUpdateGroceryListName
-                        )
+            CenterAlignedTopAppBar(
+                title = {
+                    Box {
+                        if (listName != null) {
+                            val textColor = MaterialTheme.colorScheme.onSurface
+                            val titleStyle = MaterialTheme.typography.titleLarge.copy(
+                                textMotion = TextMotion.Animated,
+                                color = textColor
+                            )
+                            if (editModeIsEnabled) {
+                                BasicTextField(
+                                    modifier = Modifier
+                                        .testTag("GroceryListNameField")
+                                        .focusRequester(listNameFieldFocusRequester!!),
+                                    value = listName,
+                                    onValueChange = onUpdateGroceryListName,
+                                    singleLine = true,
+                                    textStyle = titleStyle,
+                                    cursorBrush = SolidColor(textColor)
+                                )
+                            } else {
+                                Text(
+                                    text = listName.text,
+                                    style = titleStyle,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            if (listName.text.isEmpty()) {
+                                Text(
+                                    text = stringResource(R.string.grocery_list_name_text_field_placeholder),
+                                    style = MaterialTheme.typography.titleLarge.copy(
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    ),
+                                    maxLines = 1
+                                )
+                            }
+                        }
                     }
                 },
-                expandedTitleFontSize = expandedTitleStyle.fontSize,
-                titleBottomPadding = 24.dp,
-                toolbarState = toolbarState,
-                toolbarHeightRange = toolbarHeightRange,
                 navigationIcon = {
                     IconButton(onClick = onNavigationIconClicked) {
                         Icon(
@@ -568,55 +547,6 @@ private fun GroceryListCollapsingToolbar(
                         }
                     }
                 }
-            )
-        }
-    }
-}
-
-@Composable
-private fun GroceryListTitleField(
-    modifier: Modifier = Modifier,
-    listName: TextFieldValue,
-    listNameFieldFocusRequester: FocusRequester?,
-    listNameFieldIsEditable: Boolean,
-    textStyle: TextStyle,
-    onUpdateGroceryListName: (TextFieldValue) -> Unit
-) {
-    Box(modifier = modifier.padding(end = 16.dp)) {
-        val textColor = MaterialTheme.colorScheme.onSurface
-        if (listNameFieldIsEditable) {
-            BasicTextField(
-                modifier = Modifier
-                    .testTag("GroceryListNameField")
-                    .focusRequester(listNameFieldFocusRequester!!),
-                value = listName,
-                onValueChange = onUpdateGroceryListName,
-                singleLine = true,
-                textStyle = textStyle.copy(
-                    textMotion = TextMotion.Animated,
-                    color = textColor
-                ),
-                cursorBrush = SolidColor(textColor)
-            )
-        } else {
-            Text(
-                text = listName.text,
-                style = textStyle.copy(
-                    textMotion = TextMotion.Animated,
-                    color = textColor
-                ),
-                maxLines = 1,
-                color = textColor,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-        if (listName.text.isEmpty()) {
-            Text(
-                text = stringResource(R.string.grocery_list_name_text_field_placeholder),
-                style = textStyle.copy(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                ),
-                maxLines = 1
             )
         }
     }
