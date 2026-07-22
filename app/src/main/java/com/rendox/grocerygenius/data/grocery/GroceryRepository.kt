@@ -48,4 +48,6 @@ interface GroceryRepository {
         productId: String,
         listId: String
     )
+
+    suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long): Int
 }

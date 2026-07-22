@@ -2,6 +2,7 @@ package com.rendox.grocerygenius
 
 import android.app.Application
 import com.rendox.grocerygenius.locale.AppLocaleManager
+import com.rendox.grocerygenius.sync.work.initializers.AutoDeleteCompletedGroceriesInitializer
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -17,5 +18,6 @@ class GroceryGeniusApp : Application() {
         runBlocking(Dispatchers.IO) {
             appLocaleManager.applySavedLanguage()
         }
+        AutoDeleteCompletedGroceriesInitializer.initialize(this)
     }
 }

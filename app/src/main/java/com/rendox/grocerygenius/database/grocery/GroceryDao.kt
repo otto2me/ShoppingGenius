@@ -122,5 +122,5 @@ interface GroceryDao {
         WHERE purchased = 1 AND purchasedLastModified < :beforeTimestampMs
     """
     )
-    suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long)
+    suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long): Int
 }
