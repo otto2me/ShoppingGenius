@@ -2,6 +2,7 @@ package com.rendox.grocerygenius.feature.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rendox.grocerygenius.backup.BackupRestoreManager
 import com.rendox.grocerygenius.data.Synchronizer
 import com.rendox.grocerygenius.data.category.CategoryRepository
 import com.rendox.grocerygenius.data.grocerylist.GroceryListRepository
@@ -33,7 +34,8 @@ class SettingsScreenViewModel @Inject constructor(
     private val categoryRepository: CategoryRepository,
     private val productRepository: ProductRepository,
     private val iconRepository: IconRepository,
-    private val duckDuckGoImageSearchService: DuckDuckGoImageSearchService
+    private val duckDuckGoImageSearchService: DuckDuckGoImageSearchService,
+    private val backupRestoreManager: BackupRestoreManager
 ) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(SettingsScreenState())
@@ -123,17 +125,14 @@ class SettingsScreenViewModel @Inject constructor(
                 }
             }
 
-            is SettingsScreenIntent.ChangeUseListViewForGroceries -> {
+            is SettingsScreenIntent.ChangeUseListViewForGroceries ->
                 userPreferencesRepository.updateUseListViewForGroceries(intent.useListViewForGroceries)
-            }
 
-            is SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent -> {
+            is SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent ->
                 userPreferencesRepository.updateWidgetBackgroundOpacityPercent(intent.opacityPercent)
-            }
 
-            is SettingsScreenIntent.ChangeAutoDeleteCompletedAfterHours -> {
+            is SettingsScreenIntent.ChangeAutoDeleteCompletedAfterHours ->
                 userPreferencesRepository.updateAutoDeleteCompletedAfterHours(intent.hours)
-            }
 
             is SettingsScreenIntent.OnUpdateCategories -> {
                 _uiStateFlow.update { it.copy(categories = intent.categories) }
@@ -151,6 +150,41 @@ class SettingsScreenViewModel @Inject constructor(
                 _uiStateFlow.update { it.copy(categories = newCategories) }
                 categoryRepository.updateCategories(newCategories)
             }
+
+            is SettingsScreenIntent.OnExportData -> {
+                _uiStateFlow.update { it.copy(exportInProgress = true) }
+                val result = backupRestoreManager.exportBackup(intent.uri)
+                _uiStateFlow.update { state ->
+                    state.copy(
+                        exportInProgress = false,
+                        backupMessageEvent = result.fold(
+                            onSuccess = { makeEvent("export_success") },
+                            onFailure = { makeEvent("export_error:${it.message}") }
+                        )
+                    )
+                }
+            }
+
+            is SettingsScreenIntent.OnImportData -> {
+                _uiStateFlow.update { it.copy(importInProgress = true) }
+                val result = backupRestoreManager.importBackup(intent.uri)
+                _uiStateFlow.update { state ->
+                    state.copy(
+                        importInProgress = false,
+                        backupMessageEvent = result.fold(
+                            onSuccess = { makeEvent("import_success") },
+                            onFailure = { makeEvent("import_error:${it.message}") }
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    private fun makeEvent(key: String): UiEvent<String> = object : UiEvent<String> {
+        override val data = key
+        override fun onConsumed() {
+            _uiStateFlow.update { it.copy(backupMessageEvent = null) }
         }
     }
 

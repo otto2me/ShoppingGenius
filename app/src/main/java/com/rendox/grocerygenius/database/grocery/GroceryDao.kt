@@ -3,6 +3,7 @@ package com.rendox.grocerygenius.database.grocery
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -125,4 +126,10 @@ interface GroceryDao {
     """
     )
     suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long): Int
+
+    @Upsert
+    suspend fun upsertGroceries(groceries: List<GroceryEntity>)
+
+    @Query("SELECT * FROM GroceryEntity")
+    suspend fun getAllGroceryEntities(): List<GroceryEntity>
 }

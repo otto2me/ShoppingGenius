@@ -1,7 +1,10 @@
 package com.rendox.grocerygenius.feature.settings
 
 import android.content.Intent
+import android.net.Uri
 import android.view.ViewGroup
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,6 +32,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -98,11 +102,42 @@ fun SettingsRoute(
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val showDynamicColorNotSupportedMessage by viewModel.showDynamicColorNotSupportedMessage
         .collectAsStateWithLifecycle()
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val exportSuccessMsg = stringResource(R.string.settings_backup_export_success)
+    val exportErrorMsg = stringResource(R.string.settings_backup_export_error)
+    val importSuccessMsg = stringResource(R.string.settings_backup_import_success)
+    val importErrorMsg = stringResource(R.string.settings_backup_import_error)
+
+    ObserveUiEvent(uiState.backupMessageEvent) { key ->
+        val message = when {
+            key.startsWith("export_success") -> exportSuccessMsg
+            key.startsWith("export_error") -> exportErrorMsg
+            key.startsWith("import_success") -> importSuccessMsg
+            else -> importErrorMsg
+        }
+        snackbarHostState.showSnackbar(message)
+    }
+
+    val exportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/zip")
+    ) { uri: Uri? ->
+        uri?.let { viewModel.onIntent(SettingsScreenIntent.OnExportData(it)) }
+    }
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        uri?.let { viewModel.onIntent(SettingsScreenIntent.OnImportData(it)) }
+    }
+
     SettingsScreen(
         modifier = Modifier.fillMaxSize(),
         uiState = uiState,
         showDynamicColorNotSupportedMessage = showDynamicColorNotSupportedMessage,
+        snackbarHostState = snackbarHostState,
         onIntent = viewModel::onIntent,
+        onExportClick = { exportLauncher.launch("grocerygenius_backup.zip") },
+        onImportClick = { importLauncher.launch(arrayOf("application/zip", "*/*")) },
         navigateBack = navigateBack
     )
 }
@@ -112,7 +147,10 @@ private fun SettingsScreen(
     modifier: Modifier = Modifier,
     uiState: SettingsScreenState,
     showDynamicColorNotSupportedMessage: UiEvent<Unit>?,
+    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     onIntent: (SettingsScreenIntent) -> Unit,
+    onExportClick: () -> Unit = {},
+    onImportClick: () -> Unit = {},
     navigateBack: () -> Unit
 ) {
     var isThemeDropdownExpanded by remember { mutableStateOf(false) }
@@ -121,7 +159,6 @@ private fun SettingsScreen(
 
     val lazyListState = rememberLazyListState()
 
-    val snackbarHostState = remember { SnackbarHostState() }
     val dynamicColorNotSupportedMessage =
         stringResource(R.string.settings_dynamic_color_not_supported_message)
     ObserveUiEvent(showDynamicColorNotSupportedMessage) {
@@ -320,6 +357,24 @@ private fun SettingsScreen(
                                 }
                             )
                         }
+                    }
+                    item {
+                        SettingsTitle(
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                            title = stringResource(R.string.settings_backup_title)
+                        )
+                    }
+                    item {
+                        BackupExportSetting(
+                            inProgress = uiState.exportInProgress,
+                            onClick = onExportClick
+                        )
+                    }
+                    item {
+                        BackupImportSetting(
+                            inProgress = uiState.importInProgress,
+                            onClick = onImportClick
+                        )
                     }
                     item {
                         SettingsTitle(
@@ -896,6 +951,60 @@ private fun CategoriesOrderSetting(
 }
 
 @Composable
+private fun BackupExportSetting(
+    modifier: Modifier = Modifier,
+    inProgress: Boolean,
+    onClick: () -> Unit
+) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(vertical = 6.dp)
+            .fillMaxWidth()
+            .clickable(enabled = !inProgress, onClick = onClick),
+        title = stringResource(R.string.settings_backup_export_title),
+        description = stringResource(R.string.settings_backup_export_description),
+        icon = {
+            Icon(
+                painter = painterResource(R.drawable.baseline_folder_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            if (inProgress) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
+            }
+        }
+    )
+}
+
+@Composable
+private fun BackupImportSetting(
+    modifier: Modifier = Modifier,
+    inProgress: Boolean,
+    onClick: () -> Unit
+) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(vertical = 6.dp)
+            .fillMaxWidth()
+            .clickable(enabled = !inProgress, onClick = onClick),
+        title = stringResource(R.string.settings_backup_import_title),
+        description = stringResource(R.string.settings_backup_import_description),
+        icon = {
+            Icon(
+                painter = painterResource(R.drawable.baseline_folder_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            if (inProgress) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
+            }
+        }
+    )
+}
+
+@Composable
 private fun GitHubLink(modifier: Modifier = Modifier) {
     val uriHandler = LocalUriHandler.current
     CustomIconSetting(
@@ -979,6 +1088,8 @@ fun PreviewSettingsScreen() {
                     )
                 },
                 onIntent = {},
+                onExportClick = {},
+                onImportClick = {},
                 navigateBack = {},
                 showDynamicColorNotSupportedMessage = null
             )

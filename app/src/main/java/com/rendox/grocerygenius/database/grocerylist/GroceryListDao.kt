@@ -62,4 +62,7 @@ interface GroceryListDao {
 
     @Query("SELECT name FROM GroceryListEntity WHERE id = :id LIMIT 1")
     suspend fun getGroceryListNameById(id: String): String?
+
+    @Query("SELECT * FROM GroceryListEntity")
+    suspend fun getAllGroceryListEntities(): List<GroceryListEntity>
 }

@@ -207,4 +207,19 @@ abstract class ProductDao {
         """
     )
     abstract suspend fun deleteProductsByIds(ids: List<String>)
+
+    /**
+     * Returns products eligible for backup:
+     * - All custom (non-default) products
+     * - Default products where isFavorite is set or a custom icon is assigned
+     */
+    @Query(
+        """
+        SELECT * FROM ProductEntity
+        WHERE isDefault = 0
+           OR isFavorite = 1
+           OR (iconFileName IS NOT NULL AND iconFileName LIKE 'custom_%')
+        """
+    )
+    abstract suspend fun getProductEntitiesForBackup(): List<ProductEntity>
 }

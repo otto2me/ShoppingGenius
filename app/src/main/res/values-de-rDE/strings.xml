@@ -100,4 +100,14 @@
     <string name="grocery_list_tab_categories">Kategorien</string>
     <string name="grocery_list_tab_favorites">Favoriten</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorit</string>
+    <string name="settings_backup_title">Backup</string>
+    <string name="settings_backup_export_title">Daten exportieren</string>
+    <string name="settings_backup_export_description">Alle Listen und eigene Icons als ZIP-Datei speichern</string>
+    <string name="settings_backup_import_title">Daten importieren</string>
+    <string name="settings_backup_import_description">Listen und Icons aus einer Backup-ZIP wiederherstellen</string>
+    <string name="settings_backup_export_success">Backup erfolgreich exportiert</string>
+    <string name="settings_backup_export_error">Export fehlgeschlagen</string>
+    <string name="settings_backup_import_success">Backup erfolgreich importiert</string>
+    <string name="settings_backup_import_error">Import fehlgeschlagen</string>
+    <string name="settings_backup_in_progress">Läuft\u2026</string>
 </resources>

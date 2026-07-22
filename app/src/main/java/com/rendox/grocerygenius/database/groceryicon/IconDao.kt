@@ -60,4 +60,8 @@ abstract class IconDao {
         """
     )
     abstract suspend fun deleteIcons(ids: List<String>)
+
+    /** Returns only user-uploaded icons (filename starts with "custom_"). */
+    @Query("SELECT * FROM IconEntity WHERE uniqueFileName LIKE 'custom_%'")
+    abstract suspend fun getCustomIconEntities(): List<IconEntity>
 }

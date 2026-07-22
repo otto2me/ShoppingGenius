@@ -92,6 +92,16 @@
     <string name="grocery_list_tab_categories">Categories</string>
     <string name="grocery_list_tab_favorites">Favorites</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorite</string>
+    <string name="settings_backup_title">Backup</string>
+    <string name="settings_backup_export_title">Export data</string>
+    <string name="settings_backup_export_description">Save all lists and custom icons as a ZIP file</string>
+    <string name="settings_backup_import_title">Import data</string>
+    <string name="settings_backup_import_description">Restore lists and icons from a backup ZIP</string>
+    <string name="settings_backup_export_success">Backup exported successfully</string>
+    <string name="settings_backup_export_error">Export failed</string>
+    <string name="settings_backup_import_success">Backup imported successfully</string>
+    <string name="settings_backup_import_error">Import failed</string>
+    <string name="settings_backup_in_progress">In progress\u2026</string>
     <string name="forward">Forward</string>
     <string name="close">Close</string>
     <string name="reset">Reset</string>

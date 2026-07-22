@@ -69,7 +69,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -270,8 +269,8 @@ private fun GroceryListScreen(
         TopAppBarSmallHeight.roundToPx()..TopAppBarSmallHeight.roundToPx()
     }
     var selectedTab by rememberSaveable { mutableStateOf(GroceryListTab.ITEMS) }
-    val lazyGridState = rememberLazyGridState()
-    val coroutineScope = rememberCoroutineScope()
+    val itemsTabLazyGridState = rememberLazyGridState()
+    val favoritesTabLazyGridState = rememberLazyGridState()
 
     val imeIsVisible = WindowInsets.isImeVisible
     LaunchedEffect(imeIsVisible) {
@@ -399,7 +398,7 @@ private fun GroceryListScreen(
                                 onGroceryLongClick = {
                                     showEditGroceryBottomSheet(it.productId)
                                 },
-                                lazyGridState = lazyGridState,
+                                lazyGridState = itemsTabLazyGridState,
                                 groceryListPurchaseState = groceryListPurchaseState,
                                 scrollUpEvent = scrollUpEvent
                             )
@@ -418,7 +417,8 @@ private fun GroceryListScreen(
                         FavoriteGroceriesGrid(
                             modifier = Modifier.fillMaxSize(),
                             groceries = favoriteGroceries,
-                            onGroceryClick = onFavoriteGroceryClick
+                            onGroceryClick = onFavoriteGroceryClick,
+                            lazyGridState = favoritesTabLazyGridState
                         )
                     }
                 }
@@ -776,11 +776,13 @@ private enum class GroceryListTab {
 private fun FavoriteGroceriesGrid(
     modifier: Modifier = Modifier,
     groceries: List<Grocery>,
-    onGroceryClick: (Grocery) -> Unit
+    onGroceryClick: (Grocery) -> Unit,
+    lazyGridState: LazyGridState = rememberLazyGridState()
 ) {
     val context = LocalContext.current
     LazyGroceryGrid(
         modifier = modifier,
+        lazyGridState = lazyGridState,
         groceries = groceries,
         contentPadding = PaddingValues(
             start = 16.dp,
