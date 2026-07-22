@@ -68,6 +68,9 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         userPreferencesDataSource.updateSelectedLanguageTag(selectedLanguageTag)
     }
 
+    override suspend fun updateAutoDeleteCompletedAfterHours(hours: Int) {
+        userPreferencesDataSource.updateAutoDeleteCompletedAfterHours(hours)
+    }
 
     override suspend fun getGroceryListIdToOpenOnStartup(): String? {
         val userPreferences = userPreferencesFlow.first()

@@ -43,6 +43,9 @@
     <string name="settings_grocery_list_list_mode_description">Show groceries in a compact list with icon, name, and checkbox.</string>
     <string name="settings_widget_background_opacity_title">Widget Background Opacity</string>
     <string name="settings_widget_background_opacity_description">Adjust widget transparency (%1$d%% opacity).</string>
+    <string name="settings_auto_delete_completed_title">Auto-Delete Completed Items</string>
+    <string name="settings_auto_delete_completed_description">Automatically remove completed items after %1$d hours.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d hours</string>
     <string name="settings_default_list">Open Default List</string>
     <string name="settings_default_list_unspecified">Undefined</string>
     <string name="settings_reorder_categories_title">Reorder Categories</string>

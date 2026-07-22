@@ -115,4 +115,12 @@ interface GroceryDao {
     """
     )
     suspend fun getGroceriesForWidget(listId: String): List<WidgetGroceryItem>
+
+    @Query(
+        """
+        DELETE FROM GroceryEntity
+        WHERE purchased = 1 AND purchasedLastModified < :beforeTimestampMs
+    """
+    )
+    suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long)
 }

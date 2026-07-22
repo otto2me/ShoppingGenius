@@ -131,6 +131,10 @@ class SettingsScreenViewModel @Inject constructor(
                 userPreferencesRepository.updateWidgetBackgroundOpacityPercent(intent.opacityPercent)
             }
 
+            is SettingsScreenIntent.ChangeAutoDeleteCompletedAfterHours -> {
+                userPreferencesRepository.updateAutoDeleteCompletedAfterHours(intent.hours)
+            }
+
             is SettingsScreenIntent.OnUpdateCategories -> {
                 _uiStateFlow.update { it.copy(categories = intent.categories) }
                 categoryRepository.updateCategories(

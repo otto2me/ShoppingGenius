@@ -17,5 +17,6 @@ interface UserPreferencesRepository {
     suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int)
     suspend fun updateSelectedTheme(selectedTheme: GroceryGeniusColorScheme)
     suspend fun updateSelectedLanguageTag(selectedLanguageTag: String?)
+    suspend fun updateAutoDeleteCompletedAfterHours(hours: Int)
     suspend fun getGroceryListIdToOpenOnStartup(): String?
 }

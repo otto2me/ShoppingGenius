@@ -9,7 +9,8 @@ data class UserPreferences(
     val useListViewForGroceries: Boolean = DEFAULT_USER_PREFERENCES.useListViewForGroceries,
     val widgetBackgroundOpacityPercent: Int = DEFAULT_USER_PREFERENCES.widgetBackgroundOpacityPercent,
     val selectedTheme: GroceryGeniusColorScheme = DEFAULT_USER_PREFERENCES.selectedTheme,
-    val selectedLanguageTag: String? = DEFAULT_USER_PREFERENCES.selectedLanguageTag
+    val selectedLanguageTag: String? = DEFAULT_USER_PREFERENCES.selectedLanguageTag,
+    val autoDeleteCompletedAfterHours: Int = DEFAULT_USER_PREFERENCES.autoDeleteCompletedAfterHours
 )
 
 val DEFAULT_USER_PREFERENCES = UserPreferences(
@@ -21,5 +22,6 @@ val DEFAULT_USER_PREFERENCES = UserPreferences(
     useListViewForGroceries = false,
     widgetBackgroundOpacityPercent = 30,
     selectedTheme = GroceryGeniusColorScheme.CyanColorScheme,
-    selectedLanguageTag = null
+    selectedLanguageTag = null,
+    autoDeleteCompletedAfterHours = 24
 )

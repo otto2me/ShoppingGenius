@@ -271,6 +271,14 @@ private fun SettingsScreen(
                         )
                     }
                     item {
+                        AutoDeleteCompletedSetting(
+                            hours = uiState.userPreferences.autoDeleteCompletedAfterHours,
+                            onHoursChanged = {
+                                onIntent(SettingsScreenIntent.ChangeAutoDeleteCompletedAfterHours(it))
+                            }
+                        )
+                    }
+                    item {
                         AnimatedVisibility(visible = !uiState.userPreferences.openLastViewedList) {
                             DefaultListSetting(
                                 groceryLists = uiState.groceryLists,
@@ -680,6 +688,49 @@ private fun WidgetBackgroundOpacitySetting(
         valueRange = 0f..100f,
         onValueChangeFinished = {
             onOpacityPercentChanged(sliderValue.toInt().coerceIn(0, 100))
+        }
+    )
+}
+
+@Composable
+private fun AutoDeleteCompletedSetting(
+    modifier: Modifier = Modifier,
+    hours: Int,
+    onHoursChanged: (Int) -> Unit
+) {
+    var sliderValue by remember(hours) { mutableStateOf(hours.toFloat()) }
+
+    CustomIconSetting(
+        modifier = modifier.padding(vertical = 6.dp),
+        title = stringResource(R.string.settings_auto_delete_completed_title),
+        description = stringResource(
+            R.string.settings_auto_delete_completed_description,
+            hours
+        ),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_history_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            Text(
+                text = stringResource(R.string.settings_auto_delete_completed_hours, hours),
+                style = MaterialTheme.typography.labelMedium
+            )
+        }
+    )
+
+    Slider(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 56.dp, end = 16.dp, bottom = 8.dp),
+        value = sliderValue,
+        onValueChange = { sliderValue = it },
+        valueRange = 1f..120f,
+        steps = 118,
+        onValueChangeFinished = {
+            onHoursChanged(sliderValue.toInt().coerceIn(1, 120))
         }
     )
 }

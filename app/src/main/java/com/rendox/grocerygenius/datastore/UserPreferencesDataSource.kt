@@ -49,7 +49,10 @@ class UserPreferencesDataSource @Inject constructor(
             selectedTheme = preferences[SELECTED_THEME_KEY]?.let {
                 GroceryGeniusColorScheme.entries[it]
             } ?: DEFAULT_USER_PREFERENCES.selectedTheme,
-            selectedLanguageTag = preferences[SELECTED_LANGUAGE_TAG_KEY].orEmpty().ifBlank { null }
+            selectedLanguageTag = preferences[SELECTED_LANGUAGE_TAG_KEY].orEmpty().ifBlank { null },
+            autoDeleteCompletedAfterHours = (preferences[AUTO_DELETE_COMPLETED_AFTER_HOURS_KEY]
+                ?: DEFAULT_USER_PREFERENCES.autoDeleteCompletedAfterHours)
+                .coerceIn(1, 720)
         )
     }
 
@@ -115,6 +118,12 @@ class UserPreferencesDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateAutoDeleteCompletedAfterHours(hours: Int) {
+        dataStore.edit { preferences ->
+            preferences[AUTO_DELETE_COMPLETED_AFTER_HOURS_KEY] = hours.coerceIn(1, 720)
+        }
+    }
+
     companion object {
         val DEFAULT_LIST_ID_KEY = stringPreferencesKey("default_list_id")
         val DARK_THEME_CONFIG_KEY = intPreferencesKey("dark_theme_config")
@@ -126,5 +135,6 @@ class UserPreferencesDataSource @Inject constructor(
         val SELECTED_THEME_KEY = intPreferencesKey("selected_theme")
         val LAST_OPENED_LIST_ID_KEY = stringPreferencesKey("last_opened_list_id")
         val SELECTED_LANGUAGE_TAG_KEY = stringPreferencesKey("selected_language_tag")
+        val AUTO_DELETE_COMPLETED_AFTER_HOURS_KEY = intPreferencesKey("auto_delete_completed_after_hours")
     }
 }
