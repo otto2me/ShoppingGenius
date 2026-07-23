@@ -25,6 +25,7 @@ class ListenViewModel @Inject constructor(
         loadData()
     }
 
+
     private fun loadData() {
         viewModelScope.launch {
             _uiStateFlow.update { it.copy(isLoading = true) }
@@ -79,6 +80,26 @@ class ListenViewModel @Inject constructor(
                         intent.productId,
                         intent.categoryId
                     )
+                }
+            }
+            is ListenUiIntent.OnToggleProductFavorite -> {
+                viewModelScope.launch {
+                    productRepository.updateProductFavorite(
+                        productId = intent.productId,
+                        isFavorite = intent.isFavorite
+                    )
+                }
+            }
+            is ListenUiIntent.OnDeleteProduct -> {
+                viewModelScope.launch {
+                    productRepository.deleteProductById(intent.productId)
+                }
+            }
+            is ListenUiIntent.OnCreateCategory -> {
+                val name = intent.name.trim()
+                if (name.isEmpty()) return
+                viewModelScope.launch {
+                    categoryRepository.createCategory(name)
                 }
             }
             is ListenUiIntent.OnCancelEdit -> {

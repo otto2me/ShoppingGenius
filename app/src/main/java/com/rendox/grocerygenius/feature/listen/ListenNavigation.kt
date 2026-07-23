@@ -27,7 +27,9 @@ fun NavGraphBuilder.listenScreen(
     ) {
         ListenRoute(
             navigateBack = navigateBack,
-            navigateToProductIconPicker = navigateToProductIconPicker,
+            navigateToProductIconPicker = { productId ->
+                navigateToProductIconPicker(productId)
+            },
             navigateToIconPickerForCategory = navigateToIconPickerForCategory
         )
     }

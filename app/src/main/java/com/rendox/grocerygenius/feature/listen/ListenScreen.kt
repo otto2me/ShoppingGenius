@@ -1,6 +1,7 @@
 package com.rendox.grocerygenius.feature.listen
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
@@ -24,6 +26,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,7 +42,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rendox.grocerygenius.R
-import com.rendox.grocerygenius.feature.editgrocery.dialogs.CategoryPickerDialog
+import com.rendox.grocerygenius.feature.editgrocery.EditGroceryBottomSheet
+import com.rendox.grocerygenius.feature.editgrocery.EditGroceryUiIntent
+import com.rendox.grocerygenius.feature.editgrocery.EditGroceryViewModel
 import com.rendox.grocerygenius.model.Category
 import com.rendox.grocerygenius.model.IconReference
 import com.rendox.grocerygenius.model.Product
@@ -65,6 +70,7 @@ fun ListenRoute(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListenScreen(
     uiState: ListenUiState,
@@ -73,8 +79,10 @@ fun ListenScreen(
     navigateToProductIconPicker: (productId: String) -> Unit = {},
     navigateToIconPickerForCategory: (categoryId: String) -> Unit = {}
 ) {
-    var editProductDialogState by remember { mutableStateOf<EditDialogState?>(null) }
+    var editProductIdState by remember { mutableStateOf<String?>(null) }
     var editCategoryDialogState by remember { mutableStateOf<EditDialogState?>(null) }
+    var createCategoryDialogIsVisible by remember { mutableStateOf(false) }
+    var newCategoryName by remember { mutableStateOf("") }
     var searchQuery by rememberSaveable { mutableStateOf("") }
     val filesDir = LocalContext.current.filesDir
     val normalizedQuery = searchQuery.trim()
@@ -131,60 +139,80 @@ fun ListenScreen(
             }
         )
 
+        TextButton(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+            onClick = { createCategoryDialogIsVisible = true }
+        ) {
+            Text(text = stringResource(R.string.category_create_title))
+        }
+
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(filteredProducts) { product ->
-                ListenProductItem(product = product, filesDir = filesDir, onClick = {
-                    editProductDialogState = EditDialogState(
-                        id = product.id,
-                        name = product.name,
-                        iconRef = product.icon,
-                        categoryId = product.category?.id
-                    )
-                })
+                ListenProductItem(
+                    product = product,
+                    filesDir = filesDir,
+                    onClick = {
+                        editProductIdState = product.id
+                    },
+                    onLongClick = {
+                        editProductIdState = product.id
+                    }
+                )
             }
             items(filteredCategories) { category ->
-                ListenCategoryItem(category = category, filesDir = filesDir, onClick = {
-                    editCategoryDialogState = EditDialogState(
-                        id = category.id,
-                        name = category.name,
-                        iconRef = category.icon,
-                        categoryId = null
-                    )
-                })
+                ListenCategoryItem(
+                    category = category,
+                    filesDir = filesDir,
+                    onClick = {
+                        editCategoryDialogState = EditDialogState(
+                            id = category.id,
+                            name = category.name,
+                            iconRef = category.icon
+                        )
+                    },
+                    onLongClick = {
+                        editCategoryDialogState = EditDialogState(
+                            id = category.id,
+                            name = category.name,
+                            iconRef = category.icon
+                        )
+                    }
+                )
             }
         }
     }
 
-    editProductDialogState?.let { state ->
-        EditDialog(
-            title = state.name,
-            initialName = state.name,
-            iconRef = state.iconRef,
-            selectedCategoryId = state.categoryId,
-            allCategories = uiState.categories,
-            filesDir = filesDir,
-            onDismiss = { editProductDialogState = null },
-            onSaveName = { newName ->
-                onIntent(ListenUiIntent.OnEditProductName(productId = state.id, newName = newName))
-                editProductDialogState = null
+    val editProductId = editProductIdState
+    if (editProductId != null) {
+        val editGroceryViewModel: EditGroceryViewModel = hiltViewModel()
+        val editGroceryUiState by editGroceryViewModel.uiStateFlow.collectAsStateWithLifecycle()
+
+        LaunchedEffect(editProductId) {
+            editGroceryViewModel.onIntent(
+                EditGroceryUiIntent.OnEditProduct(productId = editProductId)
+            )
+        }
+
+        EditGroceryBottomSheet(
+            modifier = Modifier.fillMaxSize(),
+            screenState = editGroceryUiState,
+            editGroceryDescription = editGroceryViewModel.editGroceryDescription,
+            hideBottomSheetOnCompletion = {
+                editProductIdState = null
             },
-            onEditIcon = {
-                editProductDialogState = null
-                navigateToProductIconPicker(state.id)
-            },
-            onCategorySelected = { categoryId ->
-                onIntent(ListenUiIntent.OnEditProductCategory(productId = state.id, categoryId = categoryId))
+            onIntent = editGroceryViewModel::onIntent,
+            navigateToIconPicker = { productId ->
+                editProductIdState = null
+                navigateToProductIconPicker(productId)
             }
         )
     }
 
     editCategoryDialogState?.let { state ->
-        EditDialog(
+        EditCategoryDialog(
             title = state.name,
             initialName = state.name,
             iconRef = state.iconRef,
-            selectedCategoryId = null,
-            allCategories = emptyList(),
             filesDir = filesDir,
             onDismiss = { editCategoryDialogState = null },
             onSaveName = { newName ->
@@ -194,20 +222,67 @@ fun ListenScreen(
             onEditIcon = {
                 editCategoryDialogState = null
                 navigateToIconPickerForCategory(state.id)
+            }
+        )
+    }
+
+    if (createCategoryDialogIsVisible) {
+        AlertDialog(
+            onDismissRequest = {
+                createCategoryDialogIsVisible = false
+                newCategoryName = ""
             },
-            onCategorySelected = null
+            title = { Text(text = stringResource(R.string.category_create_title)) },
+            text = {
+                OutlinedTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = newCategoryName,
+                    onValueChange = { newCategoryName = it },
+                    singleLine = true,
+                    label = { Text(stringResource(R.string.category_create_field_label)) }
+                )
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        val trimmed = newCategoryName.trim()
+                        if (trimmed.isNotEmpty()) {
+                            onIntent(ListenUiIntent.OnCreateCategory(trimmed))
+                            createCategoryDialogIsVisible = false
+                            newCategoryName = ""
+                        }
+                    }
+                ) {
+                    Text(text = stringResource(R.string.category_create_button))
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        createCategoryDialogIsVisible = false
+                        newCategoryName = ""
+                    }
+                ) {
+                    Text(text = stringResource(R.string.close))
+                }
+            }
         )
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun ListenProductItem(
     product: Product,
     filesDir: File,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onLongClick: () -> Unit = {}
 ) {
     ListItem(
-        modifier = Modifier.clickable(onClick = onClick),
+        modifier = Modifier.combinedClickable(
+            onClick = onClick,
+            onLongClick = onLongClick
+        ),
         headlineContent = { Text(text = product.name) },
         leadingContent = {
             Surface(
@@ -225,14 +300,19 @@ private fun ListenProductItem(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun ListenCategoryItem(
     category: Category,
     filesDir: File,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onLongClick: () -> Unit = {}
 ) {
     ListItem(
-        modifier = Modifier.clickable(onClick = onClick),
+        modifier = Modifier.combinedClickable(
+            onClick = onClick,
+            onLongClick = onLongClick
+        ),
         headlineContent = { Text(text = category.name) },
         leadingContent = {
             Surface(
@@ -251,37 +331,16 @@ private fun ListenCategoryItem(
 }
 
 @Composable
-private fun EditDialog(
+private fun EditCategoryDialog(
     title: String,
     initialName: String,
     iconRef: IconReference?,
-    selectedCategoryId: String?,
-    allCategories: List<Category>,
     filesDir: File,
     onDismiss: () -> Unit,
     onSaveName: (String) -> Unit,
     onEditIcon: () -> Unit,
-    onCategorySelected: ((categoryId: String?) -> Unit)?
 ) {
     var name by remember(initialName) { mutableStateOf(initialName) }
-    var showCategoryPicker by remember { mutableStateOf(false) }
-
-    if (showCategoryPicker) {
-        CategoryPickerDialog(
-            selectedCategoryId = selectedCategoryId,
-            categories = allCategories,
-            onCategorySelected = { category ->
-                onCategorySelected?.invoke(category.id)
-                showCategoryPicker = false
-            },
-            onCustomCategorySelected = {
-                onCategorySelected?.invoke(null)
-                showCategoryPicker = false
-            },
-            onDismissRequest = { showCategoryPicker = false }
-        )
-        return
-    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -312,20 +371,12 @@ private fun EditDialog(
                     singleLine = true,
                     label = { Text(text = stringResource(R.string.edit)) }
                 )
-                if (onCategorySelected != null) {
-                    TextButton(
-                        modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 8.dp),
-                        onClick = { showCategoryPicker = true }
-                    ) {
-                        Text(text = stringResource(R.string.edit_grocery_change_category_button_title))
-                    }
-                }
             }
         },
         confirmButton = {
             TextButton(onClick = {
-                val t = name.trim()
-                if (t.isNotEmpty()) onSaveName(t)
+                val trimmedName = name.trim()
+                if (trimmedName.isNotEmpty()) onSaveName(trimmedName)
             }) {
                 Text(text = stringResource(R.string.done))
             }
@@ -339,8 +390,7 @@ private fun EditDialog(
 private data class EditDialogState(
     val id: String,
     val name: String,
-    val iconRef: IconReference?,
-    val categoryId: String?
+    val iconRef: IconReference?
 )
 
 @Preview

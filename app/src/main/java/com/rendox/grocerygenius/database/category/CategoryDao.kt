@@ -12,6 +12,9 @@ interface CategoryDao {
     @Insert
     suspend fun insertCategories(categories: List<CategoryEntity>)
 
+    @Query("SELECT COALESCE(MAX(sortingPriority), -1) + 1 FROM CategoryEntity")
+    suspend fun getNextSortingPriority(): Long
+
     @Upsert
     suspend fun upsertCategories(categories: List<CategoryEntity>)
 

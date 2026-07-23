@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rendox.grocerygenius.R
 import com.rendox.grocerygenius.data.category.CategoryRepository
+import com.rendox.grocerygenius.data.grocery.CompletedGroceriesAutoDeletePolicy
 import com.rendox.grocerygenius.data.grocery.GroceryRepository
 import com.rendox.grocerygenius.data.grocerylist.GroceryListRepository
 import com.rendox.grocerygenius.data.product.ProductRepository
@@ -26,12 +27,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
@@ -145,6 +148,21 @@ class GroceryListViewModel @AssistedInject constructor(
                 }
                 .collectLatest { groceries ->
                     _favoriteGroceriesFlow.update { groceries }
+                }
+        }
+        viewModelScope.launch {
+            userPreferencesRepository.userPreferencesFlow
+                .map { it.autoDeleteCompletedAfterHours }
+                .distinctUntilChanged()
+                .collectLatest { autoDeleteAfterHours ->
+                    while (true) {
+                        val cutoffTimestampMs = CompletedGroceriesAutoDeletePolicy.cutoffTimestampMs(
+                            nowMs = System.currentTimeMillis(),
+                            autoDeleteAfterHours = autoDeleteAfterHours
+                        )
+                        groceryRepository.deleteOldCompletedGroceries(cutoffTimestampMs)
+                        delay(60_000L)
+                    }
                 }
         }
         viewModelScope.launch {

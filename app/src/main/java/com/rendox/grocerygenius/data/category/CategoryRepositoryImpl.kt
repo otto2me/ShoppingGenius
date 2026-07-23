@@ -4,9 +4,11 @@ import com.rendox.grocerygenius.data.Synchronizer
 import com.rendox.grocerygenius.data.changeListSync
 import com.rendox.grocerygenius.data.model.asEntity
 import com.rendox.grocerygenius.data.model.asExternalModel
+import com.rendox.grocerygenius.database.category.CategoryEntity
 import com.rendox.grocerygenius.database.category.CategoryDao
 import com.rendox.grocerygenius.model.Category
 import com.rendox.grocerygenius.network.data.sources.category.CategoryNetworkDataSource
+import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -24,6 +26,29 @@ class CategoryRepositoryImpl @Inject constructor(
 
     override fun getCategoryById(id: String): Flow<Category?> = categoryDao.getCategoryById(id).map { categoryEntity ->
         categoryEntity?.asExternalModel()
+    }
+
+    override suspend fun createCategory(name: String): Category {
+        val sortingPriority = categoryDao.getNextSortingPriority()
+        val category = Category(
+            id = UUID.randomUUID().toString(),
+            name = name,
+            sortingPriority = sortingPriority,
+            defaultSortingPriority = sortingPriority,
+            icon = null
+        )
+        categoryDao.insertCategories(
+            listOf(
+                CategoryEntity(
+                    id = category.id,
+                    name = category.name,
+                    defaultSortingPriority = category.defaultSortingPriority,
+                    sortingPriority = category.sortingPriority,
+                    iconFileName = null
+                )
+            )
+        )
+        return category
     }
 
     override suspend fun updateCategories(categories: List<Category>) {

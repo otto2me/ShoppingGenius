@@ -78,13 +78,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextMotion
 import androidx.compose.ui.text.style.TextOverflow
@@ -266,9 +264,6 @@ private fun GroceryListScreen(
     navigateToCategoryScreen: (String?) -> Unit = {},
     onFavoriteGroceryClick: (Grocery) -> Unit = {}
 ) {
-    val toolbarHeightRange = with(LocalDensity.current) {
-        TopAppBarSmallHeight.roundToPx()..TopAppBarSmallHeight.roundToPx()
-    }
     var selectedTab by rememberSaveable { mutableStateOf(GroceryListTab.ITEMS) }
 
     val imeIsVisible = WindowInsets.isImeVisible
@@ -416,7 +411,10 @@ private fun GroceryListScreen(
                             FavoriteGroceriesGrid(
                                 modifier = Modifier.fillMaxSize(),
                                 groceries = favoriteGroceries,
-                                onGroceryClick = onFavoriteGroceryClick
+                                    onGroceryClick = onFavoriteGroceryClick,
+                                    onGroceryLongClick = { grocery ->
+                                        showEditGroceryBottomSheet(grocery.productId)
+                                    }
                             )
                         }
                     }
@@ -771,11 +769,13 @@ private enum class GroceryListTab {
     FAVORITES
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun FavoriteGroceriesGrid(
     modifier: Modifier = Modifier,
     groceries: List<Grocery>,
-    onGroceryClick: (Grocery) -> Unit
+    onGroceryClick: (Grocery) -> Unit,
+    onGroceryLongClick: (Grocery) -> Unit = {}
 ) {
     val context = LocalContext.current
     LazyGroceryGrid(
@@ -790,7 +790,10 @@ private fun FavoriteGroceriesGrid(
             GroceryGridItem(
                 modifier = Modifier
                     .fillMaxSize()
-                    .clickable { onGroceryClick(grocery) },
+                    .combinedClickable(
+                        onClick = { onGroceryClick(grocery) },
+                        onLongClick = { onGroceryLongClick(grocery) }
+                    ),
                 groceryName = grocery.name,
                 groceryDescription = grocery.description,
                 color = if (grocery.purchased) {

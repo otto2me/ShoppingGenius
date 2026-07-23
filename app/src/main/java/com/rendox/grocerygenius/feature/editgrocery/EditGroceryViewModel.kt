@@ -13,6 +13,7 @@ import com.rendox.grocerygenius.data.grocery.GroceryRepository
 import com.rendox.grocerygenius.data.product.ProductRepository
 import com.rendox.grocerygenius.model.Category
 import com.rendox.grocerygenius.model.CompoundGroceryId
+import com.rendox.grocerygenius.model.Grocery
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
 import javax.inject.Inject
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 @OptIn(FlowPreview::class)
 @HiltViewModel
 class EditGroceryViewModel @Inject constructor(
-    categoryRepository: CategoryRepository,
+    private val categoryRepository: CategoryRepository,
     private val groceryRepository: GroceryRepository,
     private val productRepository: ProductRepository
 ) : ViewModel() {
@@ -79,6 +80,9 @@ class EditGroceryViewModel @Inject constructor(
         is EditGroceryUiIntent.OnCustomCategorySelected ->
             onCategorySelected(null)
 
+        is EditGroceryUiIntent.OnCreateCategory ->
+            onCreateCategory(intent.name)
+
         is EditGroceryUiIntent.OnToggleFavorite ->
             onToggleFavorite()
 
@@ -88,13 +92,17 @@ class EditGroceryViewModel @Inject constructor(
         is EditGroceryUiIntent.OnDeleteProduct ->
             onDeleteProduct()
 
+        is EditGroceryUiIntent.OnEditProduct ->
+            onEditProduct(intent.productId)
+
         is EditGroceryUiIntent.OnEditOtherGrocery ->
             onEditOtherGrocery(intent.productId, intent.groceryListId)
     }
 
     private fun onCategorySelected(category: Category?) {
         viewModelScope.launch {
-            compoundGroceryIdFlow.value?.let { compoundGroceryId ->
+            val compoundGroceryId = compoundGroceryIdFlow.value
+            if (compoundGroceryId != null) {
                 val grocery = groceryRepository.getGroceryById(
                     productId = compoundGroceryId.productId,
                     listId = compoundGroceryId.groceryListId
@@ -132,12 +140,27 @@ class EditGroceryViewModel @Inject constructor(
                         categoryId = category?.id
                     )
                 }
+            } else {
+                val productId = _uiStateFlow.value.editGrocery?.productId ?: return@launch
+                productRepository.updateProductCategory(
+                    productId = productId,
+                    categoryId = category?.id
+                )
             }
             _uiStateFlow.update { uiState ->
                 uiState.copy(
                     editGrocery = uiState.editGrocery?.copy(category = category)
                 )
             }
+        }
+    }
+
+    private fun onCreateCategory(name: String) {
+        val trimmedName = name.trim()
+        if (trimmedName.isEmpty()) return
+        viewModelScope.launch {
+            val category = categoryRepository.createCategory(trimmedName)
+            onCategorySelected(category)
         }
     }
 
@@ -168,8 +191,34 @@ class EditGroceryViewModel @Inject constructor(
 
     private fun onDeleteProduct() {
         viewModelScope.launch {
-            compoundGroceryIdFlow.value?.productId?.let {
-                productRepository.deleteProductById(it)
+            val productId =
+                compoundGroceryIdFlow.value?.productId ?: _uiStateFlow.value.editGrocery?.productId
+            productId?.let { productRepository.deleteProductById(it) }
+        }
+    }
+
+    private fun onEditProduct(productId: String) {
+        compoundGroceryIdFlow.value = null
+        updateGroceryJob?.cancel()
+        updateGroceryJob = null
+        viewModelScope.launch {
+            val product = productRepository.getProductById(productId).first() ?: return@launch
+            editGroceryDescription = TextFieldValue("")
+            _uiStateFlow.update {
+                it.copy(
+                    editGrocery = Grocery(
+                        productId = product.id,
+                        name = product.name,
+                        purchased = false,
+                        description = null,
+                        icon = product.icon,
+                        category = product.category,
+                        productIsDefault = product.isDefault,
+                        isFavorite = product.isFavorite
+                    ),
+                    clearEditGroceryDescriptionButtonIsShown = false,
+                    showRemoveFromListButton = false
+                )
             }
         }
     }
@@ -195,7 +244,12 @@ class EditGroceryViewModel @Inject constructor(
                 text = grocery.description ?: "",
                 selection = TextRange(nameLength, nameLength)
             )
-            _uiStateFlow.update { it.copy(editGrocery = grocery) }
+            _uiStateFlow.update {
+                it.copy(
+                    editGrocery = grocery,
+                    showRemoveFromListButton = true
+                )
+            }
             editGroceryDescriptionFlow
                 .debounce(800)
                 .collectLatest { description ->

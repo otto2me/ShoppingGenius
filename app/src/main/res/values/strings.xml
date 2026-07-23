@@ -92,6 +92,9 @@
     <string name="grocery_list_tab_categories">Categories</string>
     <string name="grocery_list_tab_favorites">Favorites</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorite</string>
+    <string name="category_create_title">Create category</string>
+    <string name="category_create_field_label">Category name</string>
+    <string name="category_create_button">Create</string>
     <string name="settings_backup_title">Backup</string>
     <string name="settings_backup_export_title">Export data</string>
     <string name="settings_backup_export_description">Save all lists and custom icons as a ZIP file</string>

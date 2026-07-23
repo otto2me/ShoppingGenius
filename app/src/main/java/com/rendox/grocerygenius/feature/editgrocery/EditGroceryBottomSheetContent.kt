@@ -39,6 +39,7 @@ fun EditGroceryBottomSheetContent(
     modifier: Modifier = Modifier,
     groceryName: String,
     groceryDescription: TextFieldValue,
+    groceryCategoryName: String?,
     clearGroceryDescriptionButtonIsShown: Boolean,
     productCanBeModified: Boolean,
     onGroceryDescriptionChanged: (TextFieldValue) -> Unit,
@@ -49,6 +50,7 @@ fun EditGroceryBottomSheetContent(
     onChangeIconClick: () -> Unit,
     onToggleFavoriteClick: () -> Unit,
     isFavorite: Boolean,
+    showRemoveFromListButton: Boolean = true,
     onRemoveGrocery: () -> Unit,
     onDeleteProduct: () -> Unit,
     itemDescriptionFocusRequester: FocusRequester
@@ -92,26 +94,29 @@ fun EditGroceryBottomSheetContent(
 
         GrocerySettings(
             modifier = Modifier.padding(top = 32.dp),
+            groceryCategoryName = groceryCategoryName,
             onChangeCategoryClick = onChangeCategoryClick,
             onChangeIconClick = onChangeIconClick,
             onToggleFavoriteClick = onToggleFavoriteClick,
             isFavorite = isFavorite
         )
 
-        FilledTonalButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            onClick = onRemoveGrocery,
-            shape = CornerRoundingDefault,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            )
-        ) {
-            Text(
-                text = stringResource(R.string.edit_grocery_remove_item_button_title),
-                color = MaterialTheme.colorScheme.onSurface
-            )
+        if (showRemoveFromListButton) {
+            FilledTonalButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                onClick = onRemoveGrocery,
+                shape = CornerRoundingDefault,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                )
+            ) {
+                Text(
+                    text = stringResource(R.string.edit_grocery_remove_item_button_title),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
         }
 
         if (productCanBeModified) {
@@ -135,6 +140,7 @@ fun EditGroceryBottomSheetContent(
 @Composable
 private fun GrocerySettings(
     modifier: Modifier = Modifier,
+    groceryCategoryName: String?,
     onChangeCategoryClick: () -> Unit,
     onChangeIconClick: () -> Unit,
     onToggleFavoriteClick: () -> Unit,
@@ -144,6 +150,12 @@ private fun GrocerySettings(
         Text(
             text = stringResource(R.string.settings),
             style = MaterialTheme.typography.titleMedium
+        )
+        Text(
+            modifier = Modifier.padding(top = 4.dp),
+            text = "${stringResource(R.string.edit_grocery_change_category_button_title)}: " +
+                (groceryCategoryName ?: stringResource(R.string.custom_category_title)),
+            style = MaterialTheme.typography.bodyMedium
         )
         Row(
             modifier = Modifier.padding(top = 8.dp),

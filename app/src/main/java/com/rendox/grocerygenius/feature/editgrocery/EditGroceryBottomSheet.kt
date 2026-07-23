@@ -73,6 +73,7 @@ fun EditGroceryBottomSheet(
                 .fillMaxSize(),
             groceryName = screenState.editGrocery?.name ?: "",
             groceryDescription = editGroceryDescription,
+            groceryCategoryName = screenState.editGrocery?.category?.name,
             clearGroceryDescriptionButtonIsShown = screenState.clearEditGroceryDescriptionButtonIsShown,
             onGroceryDescriptionChanged = {
                 onIntent(EditGroceryUiIntent.OnDescriptionChanged(it))
@@ -104,6 +105,7 @@ fun EditGroceryBottomSheet(
             },
             isFavorite = screenState.editGrocery?.isFavorite == true,
             productCanBeModified = screenState.editGrocery?.productIsDefault == false,
+            showRemoveFromListButton = screenState.showRemoveFromListButton,
             onRemoveGrocery = {
                 onIntent(EditGroceryUiIntent.OnRemoveGroceryFromList)
                 hideBottomSheet()
@@ -126,6 +128,10 @@ fun EditGroceryBottomSheet(
             onDismissRequest = { categoryPickerIsVisible = false },
             onCustomCategorySelected = {
                 onIntent(EditGroceryUiIntent.OnCustomCategorySelected)
+                categoryPickerIsVisible = false
+            },
+            onCreateCategory = { name ->
+                onIntent(EditGroceryUiIntent.OnCreateCategory(name))
                 categoryPickerIsVisible = false
             }
         )
@@ -161,6 +167,7 @@ private fun EditGroceryBottomSheetContentPreview(
                 modifier = Modifier.padding(16.dp),
                 groceryName = "Tea",
                 groceryDescription = TextFieldValue("Green, 32 bags"),
+                groceryCategoryName = "Drinks",
                 clearGroceryDescriptionButtonIsShown = false,
                 onGroceryDescriptionChanged = {},
                 onClearGroceryDescription = {},
