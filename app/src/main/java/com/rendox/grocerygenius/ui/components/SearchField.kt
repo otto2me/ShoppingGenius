@@ -56,6 +56,11 @@ fun SearchField(
             textFieldValue.composition != searchQueryTextFieldValue.composition
         ) {
             searchQueryTextFieldValue = textFieldValue
+        } else if (textFieldValue.text != searchQueryTextFieldValue.text) {
+            // Text changed externally (e.g. pre-filled from outside) → move cursor to end
+            searchQueryTextFieldValue = textFieldValue.copy(
+                selection = TextRange(textFieldValue.text.length)
+            )
         }
     }
 

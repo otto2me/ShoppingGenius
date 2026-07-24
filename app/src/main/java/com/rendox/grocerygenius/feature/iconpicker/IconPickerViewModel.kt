@@ -43,6 +43,7 @@ class IconPickerViewModel @Inject constructor(
 
     var searchQuery by mutableStateOf("")
         private set
+    private var hasInitializedSearchQuery = false
     private val searchQueryFlow = snapshotFlow { searchQuery }
 
     private val _uiStateFlow = MutableStateFlow(IconPickerUiState())
@@ -89,6 +90,13 @@ class IconPickerViewModel @Inject constructor(
                     productRepository.getProductById(productId)
                 }
                 .collectLatest { product ->
+                    if (!hasInitializedSearchQuery) {
+                        val initialSearchQuery = product?.name?.trim().orEmpty()
+                        if (initialSearchQuery.isNotEmpty()) {
+                            searchQuery = initialSearchQuery
+                        }
+                        hasInitializedSearchQuery = true
+                    }
                     _uiStateFlow.update { state ->
                         state.copy(
                             product = product,
