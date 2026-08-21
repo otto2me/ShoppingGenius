@@ -1,0 +1,68 @@
+package com.rendox.shoppinggenius.database.grocerylist
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+import androidx.room.Upsert
+import com.rendox.shoppinggenius.model.GroceryList
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface GroceryListDao {
+    @Upsert
+    suspend fun upsertGroceryLists(groceryLists: List<GroceryListEntity>)
+
+    @Insert
+    suspend fun insertGroceryList(groceryList: GroceryListEntity)
+
+    @Query(
+        """
+         SELECT 
+             groceryList.id, 
+             groceryList.name, 
+             groceryList.sortingPriority, 
+             COUNT(grocery.productId) as numOfGroceries
+         FROM GroceryListEntity groceryList
+         LEFT JOIN GroceryEntity grocery ON grocery.groceryListId = groceryList.id AND grocery.purchased = 0
+         WHERE groceryList.id = :id
+         GROUP BY groceryList.id HAVING groceryList.id IS NOT NULL
+    """
+    )
+    fun getGroceryListById(id: String): Flow<GroceryList?>
+
+    @Query(
+        """
+        SELECT 
+            groceryList.id, 
+            groceryList.name, 
+            groceryList.sortingPriority, 
+            COUNT(grocery.productId) as numOfGroceries
+        FROM GroceryListEntity groceryList
+        LEFT JOIN GroceryEntity grocery ON grocery.groceryListId = groceryList.id AND grocery.purchased = 0
+        GROUP BY groceryList.id HAVING groceryList.id IS NOT NULL
+    """
+    )
+    fun getAllGroceryLists(): Flow<List<GroceryList>>
+
+    @Query("UPDATE GroceryListEntity SET name = :name WHERE id = :listId")
+    suspend fun updateGroceryListName(
+        listId: String,
+        name: String
+    )
+
+    @Update
+    suspend fun updateGroceryLists(groceryLists: List<GroceryListEntity>)
+
+    @Query("DELETE FROM GroceryListEntity WHERE id = :groceryListId")
+    suspend fun deleteGroceryListById(groceryListId: String)
+
+    @Query("SELECT id FROM GroceryListEntity ORDER BY sortingPriority ASC LIMIT 1")
+    suspend fun getFirstGroceryListId(): String?
+
+    @Query("SELECT name FROM GroceryListEntity WHERE id = :id LIMIT 1")
+    suspend fun getGroceryListNameById(id: String): String?
+
+    @Query("SELECT * FROM GroceryListEntity")
+    suspend fun getAllGroceryListEntities(): List<GroceryListEntity>
+}

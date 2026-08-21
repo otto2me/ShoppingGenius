@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Grocery Genius</string>
+    <string name="app_name" translatable="false">Shopping Genius</string>
     <!-- GroceryListScreen -->
     <string name="purchased_groceries_group_title">Recently used</string>
     <string name="grocery_list_name_text_field_placeholder">Enter a name</string>

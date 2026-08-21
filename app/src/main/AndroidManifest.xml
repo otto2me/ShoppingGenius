@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".GroceryGeniusApp"
+        android:name=".ShoppingGeniusApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +14,7 @@
         android:localeConfig="@xml/locale_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GroceryGenius.Splash"
+        android:theme="@style/Theme.ShoppingGenius.Splash"
         tools:targetApi="31">
         <profileable
             android:shell="true"
@@ -27,7 +27,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.GroceryGenius.Splash"
+            android:theme="@style/Theme.ShoppingGenius.Splash"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +42,7 @@
             android:label="@string/widget_active_list_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.rendox.grocerygenius.widget.REFRESH" />
+                <action android:name="com.rendox.shoppinggenius.widget.REFRESH" />
             </intent-filter>
 
             <meta-data

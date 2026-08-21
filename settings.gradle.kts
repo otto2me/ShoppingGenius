@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Grocery Genius"
+rootProject.name = "Shopping Genius"
 include(":app")
 include(":baselineprofile")

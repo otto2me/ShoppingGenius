@@ -1,0 +1,13 @@
+package com.rendox.shoppinggenius.database.product
+
+data class CombinedProduct(
+    val id: String,
+    val name: String,
+    val iconId: String?,
+    val iconFilePath: String?,
+    val categoryId: String?,
+    val categoryName: String?,
+    val categorySortingPriority: Long?,
+    val isDefault: Boolean,
+    val isFavorite: Boolean
+)

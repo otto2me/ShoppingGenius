@@ -1,7 +1,7 @@
-<h1 align="center" style="font-size:28px; line-height:1"><b>Grocery Genius</b></h1>
+<h1 align="center" style="font-size:28px; line-height:1"><b>Shopping Genius</b></h1>
 
 <div align="center">
-  <img alt="Grocery Genius logo" src="images/app_logo_rounded_corners.svg" height="150px">
+  <img alt="Shopping Genius logo" src="images/app_logo_rounded_corners.svg" height="150px">
 </div>
 
 <br />
@@ -10,13 +10,13 @@
 
 [<img src="images/banners/banner_github.png"
       alt="Get it on GitHub"
-      height="80">](https://github.com/DanielRendox/GroceryGenius/releases)
+      height="80">](https://github.com/DanielRendox/ShoppingGenius/releases)
 [<img src="images/banners/banner_izzy_on_droid.png"
       alt="Get it on IzzyOnDroid"
-      height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.rendox.grocerygenius)
+      height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.rendox.ShoppingGenius)
 [<img src="images/banners/banner_google_play.png" 
       alt="Get it on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=com.rendox.grocerygenius)
+      height="80">](https://play.google.com/store/apps/details?id=com.rendox.ShoppingGenius)
 
 </div>
 
@@ -29,18 +29,18 @@
 |-------------------------------------------------|-----------------------------------------------|----------------------------------------------|
 | ![](images/readme/feature_search_groceries.png) | ![](images/readme/feature_separate_lists.png) | ![](images/readme/feature_customization.png) |
 
-Grocery Genius is a free, customizable shopping list app with a modern design, autocomplete suggestions, offline capabilities, and feature-rich functionality.
+Shopping Genius is a free, customizable shopping list app with a modern design, autocomplete suggestions, offline capabilities, and feature-rich functionality.
 
 ## Features
 
 - **Add groceries with a few clicks.** The app has a database of over 130 predefined groceries, each with its own icon. Type as few as two letters, and the best matching items will quickly appear.
 - **Add, Edit, and Delete Groceries.** If your grocery item isn’t in the database, it will be created automatically. You can then categorize it, assign an icon, remove it from the list, or delete it entirely.
-- **Modern Design.** Unlike many shopping list apps that use a list view, Grocery Genius features a grid view with attractive icons and color-coded separation for purchased and unpurchased items. Groceries are sorted by category, mirroring their placement in stores. The app’s design follows Material You practices, offering dynamic color, dark and light modes, and six color schemes to choose from.
+- **Modern Design.** Unlike many shopping list apps that use a list view, Shopping Genius features a grid view with attractive icons and color-coded separation for purchased and unpurchased items. Groceries are sorted by category, mirroring their placement in stores. The app’s design follows Material You practices, offering dynamic color, dark and light modes, and six color schemes to choose from.
 - **Manage Separate Lists.** Create multiple grocery lists and easily reorder them on the main screen with drag-and-drop functionality.
 - **Customization.** You can choose a default grocery list, reorder categories, switch between dark and light modes, and choose a different color scheme in the settings.
 - **Offline Mode.** The predefined groceries, categories, and icons are bundled with the app, so you can use it fully offline from the first start.
-- **Completely Free.** Grocery Genius is free and open source, with no limitations. Add as many grocery lists as you want. All features available now will remain free forever.
-- **Respects Your Privacy.** Your confidential data always remains on your device.  Neither the developers nor any third parties have access to your information. For more details, see the [Privacy Policy](https://github.com/DanielRendox/GroceryGenius/blob/develop/PRIVACY_POLICY.md).
+- **Completely Free.** Shopping Genius is free and open source, with no limitations. Add as many grocery lists as you want. All features available now will remain free forever.
+- **Respects Your Privacy.** Your confidential data always remains on your device.  Neither the developers nor any third parties have access to your information. For more details, see the [Privacy Policy](https://github.com/DanielRendox/ShoppingGenius/blob/develop/PRIVACY_POLICY.md).
 
 ## Roadmap
 
@@ -52,7 +52,7 @@ These features may or may not be implemented in the long term.
 
 ## Get the app
 
-You can install the app from the [GitHub releases](https://github.com/DanielRendox/GroceryGenius/releases) page or build it yourself by [cloning the project](https://docs.github.com/articles/cloning-a-repository) and launching it in the latest version of [Android Studio](https://developer.android.com/studio).
+You can install the app from the [GitHub releases](https://github.com/DanielRendox/ShoppingGenius/releases) page or build it yourself by [cloning the project](https://docs.github.com/articles/cloning-a-repository) and launching it in the latest version of [Android Studio](https://developer.android.com/studio).
 
 ## Tech stack
 
@@ -79,10 +79,10 @@ You can install the app from the [GitHub releases](https://github.com/DanielRend
 
 ## Let’s work together!
 
-Grocery Genius is an open-source project that welcomes contributions! If you're inclined to offer support in any of the following areas:
+Shopping Genius is an open-source project that welcomes contributions! If you're inclined to offer support in any of the following areas:
 
 - Building a backend for this app to introduce real-time grocery list-sharing
-- Developing features in the [Roadmap](https://github.com/DanielRendox/GroceryGenius/tree/develop#roadmap)
+- Developing features in the [Roadmap](https://github.com/DanielRendox/ShoppingGenius/tree/develop#roadmap)
 - Porting to iOS
 - Design enhancements,
 - Translation to different languages,
@@ -102,6 +102,7 @@ If you’d like to help translate the app into different languages, please join 
 
 ## License
 
-The project is licensed under the GPL, which means that you can freely build on top of it for commercial and non-commercial purposes alike. But should you choose to incorporate its code, you must open-source your project and apply the GPL license to it as well. Check out the [LICENSE](https://github.com/DanielRendox/GroceryGenius/blob/develop/LICENSE) file for more details.
+The project is licensed under the GPL, which means that you can freely build on top of it for commercial and non-commercial purposes alike. But should you choose to incorporate its code, you must open-source your project and apply the GPL license to it as well. Check out the [LICENSE](https://github.com/DanielRendox/ShoppingGenius/blob/develop/LICENSE) file for more details.
 
 However, it does not apply to grocery icons contained in the top-level `assets/icons` folder, and its duplicates inside `app/src/debug/assets/icons`. They were generated by Bing Image Creator and Recraft AI and are owned by the companies behind these services respectively. No commercial use of these icons is allowed.
+

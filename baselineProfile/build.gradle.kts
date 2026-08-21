@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rendox.grocerygenius.baselineprofile"
+    namespace = "com.rendox.shoppinggenius.baselineprofile"
     compileSdk = 34
 
     compileOptions {

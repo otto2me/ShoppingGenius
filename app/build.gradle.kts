@@ -10,17 +10,17 @@ plugins {
 }
 
 android {
-    namespace = "com.rendox.grocerygenius"
+    namespace = "com.rendox.shoppinggenius"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.rendox.grocerygenius"
+        applicationId = "com.rendox.shoppinggenius"
         minSdk = 21
         targetSdk = 34
         versionCode = 6
         versionName = "0.1.3"
 
-        testInstrumentationRunner = "com.rendox.grocerygenius.testing.GroceryGeniusTestRunner"
+        testInstrumentationRunner = "com.rendox.shoppinggenius.testing.ShoppingGeniusTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
