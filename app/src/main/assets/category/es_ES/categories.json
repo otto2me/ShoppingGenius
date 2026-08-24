@@ -5,9 +5,19 @@
     "sortingPriority": 2
   },
   {
+    "id": "default-category-diverses",
+    "name": "Varios",
+    "sortingPriority": 11
+  },
+  {
     "id": "default-category-drinks",
     "name": "Bebidas",
     "sortingPriority": 7
+  },
+  {
+    "id": "default-category-fruehstueck",
+    "name": "Desayuno",
+    "sortingPriority": 12
   },
   {
     "id": "default-category-fruits-and-vegetables",
@@ -30,9 +40,19 @@
     "sortingPriority": 8
   },
   {
+    "id": "default-category-lebensmittelgeschaeft",
+    "name": "tienda de comestibles",
+    "sortingPriority": 13
+  },
+  {
     "id": "default-category-meat-and-fish",
     "name": "Carne y Pescado",
     "sortingPriority": 3
+  },
+  {
+    "id": "default-category-molkereiprodukte",
+    "name": "productos lácteos",
+    "sortingPriority": 14
   },
   {
     "id": "default-category-pet-supplies",
@@ -48,5 +68,10 @@
     "id": "default-category-snacks-and-bakery",
     "name": "Panadería y Aperitivos",
     "sortingPriority": 6
+  },
+  {
+    "id": "default-category-tiefkuehlwaren",
+    "name": "productos congelados",
+    "sortingPriority": 15
   }
 ]

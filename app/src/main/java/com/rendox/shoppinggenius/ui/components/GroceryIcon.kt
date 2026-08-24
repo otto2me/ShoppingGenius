@@ -27,6 +27,7 @@ fun GroceryIcon(
     iconFile: File?
 ) {
     val tintIcon = iconFile?.name?.startsWith("custom_") != true
+            && iconFile?.name?.startsWith("ms_") != true
     if (iconFile != null) {
         SubcomposeAsyncImage(
             modifier = modifier,

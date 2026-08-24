@@ -1,9 +1,51 @@
 [
   {
+    "id": "default-product-abgepacktes-fleisch",
+    "name": "packaged meat",
+    "iconId": "ms_abgepacktes_fleisch.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-abzieher",
+    "name": "puller",
+    "iconId": "ms_abzieher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-almonds",
     "name": "Almonds",
     "iconId": "nuts.png",
     "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-aluminiumfolie",
+    "name": "Aluminum foil",
+    "iconId": "ms_aluminiumfolie.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apfel",
+    "name": "Apple",
+    "iconId": "ms_apfel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apfelsaft",
+    "name": "Apple juice",
+    "iconId": "ms_apfelsaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apotheke",
+    "name": "Pharmacy",
+    "iconId": "ms_apotheke.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -21,6 +63,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-artischocke",
+    "name": "Artichoke",
+    "iconId": "ms_artischocke.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-avocado",
     "name": "Avocado",
     "iconId": "avocado.png",
@@ -28,10 +77,38 @@
     "isDefault": true
   },
   {
+    "id": "default-product-babynahrung",
+    "name": "baby food",
+    "iconId": "ms_babynahrung.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-backofen-reiniger",
+    "name": "Oven cleaner",
+    "iconId": "ms_backofen_reiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-backpapier",
+    "name": "baking paper",
+    "iconId": "ms_backpapier.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-bacon",
     "name": "Bacon",
     "iconId": "bacon.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bagles",
+    "name": "Bagles",
+    "iconId": "ms_bagles.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -49,9 +126,16 @@
     "isDefault": true
   },
   {
-    "id": "default-product-soap-bar",
-    "name": "Bar soap",
-    "iconId": "soap_bar.png",
+    "id": "default-product-banane",
+    "name": "Banana",
+    "iconId": "ms_banane.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-batterie",
+    "name": "Battery",
+    "iconId": "ms_batterie.png",
     "categoryId": "default-category-household",
     "isDefault": true
   },
@@ -84,10 +168,10 @@
     "isDefault": true
   },
   {
-    "id": "default-product-pepper",
-    "name": "Bell pepper",
-    "iconId": "pepper.png",
-    "categoryId": "default-category-fruits-and-vegetables",
+    "id": "default-product-bergkaese",
+    "name": "Mountain cheese",
+    "iconId": "ms_bergkaese.png",
+    "categoryId": "default-category-molkereiprodukte",
     "isDefault": true
   },
   {
@@ -98,6 +182,48 @@
     "isDefault": true
   },
   {
+    "id": "default-product-besen",
+    "name": "Broom",
+    "iconId": "ms_besen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-blaubeeren",
+    "name": "Blueberries",
+    "iconId": "ms_blaubeeren.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bleichmittel",
+    "name": "Bleach",
+    "iconId": "ms_bleichmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-blumenkohl",
+    "name": "Cauliflower",
+    "iconId": "ms_blumenkohl.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bodenreiniger",
+    "name": "Floor cleaner",
+    "iconId": "ms_bodenreiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bouillon",
+    "name": "Bouillon",
+    "iconId": "ms_bouillon.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-bread",
     "name": "Bread",
     "iconId": "bread.png",
@@ -105,9 +231,23 @@
     "isDefault": true
   },
   {
+    "id": "default-product-briefumschlaege",
+    "name": "Envelopes",
+    "iconId": "ms_briefumschlaege.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-broccoli",
     "name": "Broccoli",
     "iconId": "broccoli.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-brombeeren",
+    "name": "Blackberries",
+    "iconId": "ms_brombeeren.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
@@ -168,10 +308,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-cd",
+    "name": "CD",
+    "iconId": "ms_cd.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cereal",
     "name": "Cereal",
     "iconId": "cereal.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cerealien",
+    "name": "Cereals",
+    "iconId": "ms_cerealien.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-champignon",
+    "name": "Mushroom",
+    "iconId": "ms_champignon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -252,17 +413,17 @@
     "isDefault": true
   },
   {
+    "id": "default-product-corn-beef",
+    "name": "Corn beef",
+    "iconId": "ms_corn_beef.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cottage-cheese",
     "name": "Cottage Cheese",
     "iconId": "cottage_cheese.png",
     "categoryId": "default-category-dairy-and-eggs",
-    "isDefault": true
-  },
-  {
-    "id": "default-product-cotton-swabs",
-    "name": "Cotton swabs",
-    "iconId": "cotton_swabs.png",
-    "categoryId": "default-category-health-and-beauty",
     "isDefault": true
   },
   {
@@ -273,10 +434,38 @@
     "isDefault": true
   },
   {
+    "id": "default-product-cotton-swabs",
+    "name": "Cotton swabs",
+    "iconId": "cotton_swabs.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cracker",
+    "name": "Crackers",
+    "iconId": "ms_cracker.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cream",
     "name": "Cream",
     "iconId": "tube.png",
     "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-croissants",
+    "name": "Croissants",
+    "iconId": "ms_croissants.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-croutons",
+    "name": "croutons",
+    "iconId": "ms_croutons.png",
+    "categoryId": "default-category-sauces-and-spices",
     "isDefault": true
   },
   {
@@ -291,6 +480,27 @@
     "name": "Deodorant",
     "iconId": "deodorant.png",
     "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-desinfektionsmittel",
+    "name": "Disinfectant",
+    "iconId": "ms_desinfektionsmittel.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-desserts",
+    "name": "Desserts",
+    "iconId": "ms_desserts.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-diet-7-up",
+    "name": "Diet 7-Up",
+    "iconId": "ms_diet_7_up.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -322,6 +532,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-duschbad",
+    "name": "shower room",
+    "iconId": "ms_duschbad.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-eggplant",
     "name": "Eggplant",
     "iconId": "eggplant.png",
@@ -336,10 +553,87 @@
     "isDefault": true
   },
   {
+    "id": "default-product-eimer",
+    "name": "bucket",
+    "iconId": "ms_eimer.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eis",
+    "name": "Ice cream",
+    "iconId": "ms_eis.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
     "id": "default-product-energy-drink",
     "name": "Energy drink",
     "iconId": "can.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-entkalker",
+    "name": "Descaler",
+    "iconId": "ms_entkalker.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erdbeeren",
+    "name": "Strawberries",
+    "iconId": "ms_erdbeeren.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erdnussbutter",
+    "name": "Peanut butter",
+    "iconId": "ms_erdnussbutter.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erfrischer",
+    "name": "Refresher",
+    "iconId": "ms_erfrischer.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-etiketten",
+    "name": "Labels",
+    "iconId": "ms_etiketten.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuchtetuch",
+    "name": "Wet wipe",
+    "iconId": "ms_feuchtetuch.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuchttuecher",
+    "name": "wet wipes",
+    "iconId": "ms_feuchttuecher.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuerzeug",
+    "name": "lighter",
+    "iconId": "ms_feuerzeug.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fischfutter",
+    "name": "Fish food",
+    "iconId": "ms_fischfutter.png",
+    "categoryId": "default-category-pet-supplies",
     "isDefault": true
   },
   {
@@ -350,10 +644,45 @@
     "isDefault": true
   },
   {
+    "id": "default-product-fleischbaellchen",
+    "name": "Meatballs",
+    "iconId": "ms_fleischbaellchen.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
     "id": "default-product-flour",
     "name": "Flour",
     "iconId": "flour.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fluessigwaschmittel",
+    "name": "Liquid detergent",
+    "iconId": "ms_fluessigwaschmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-frittieroel",
+    "name": "frying oil",
+    "iconId": "ms_frittieroel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruchtjoghurt",
+    "name": "Fruit yogurt",
+    "iconId": "ms_fruchtjoghurt.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruehlingszwiebel",
+    "name": "Spring onion",
+    "iconId": "ms_fruehlingszwiebel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -371,10 +700,66 @@
     "isDefault": true
   },
   {
+    "id": "default-product-garnele",
+    "name": "Shrimp",
+    "iconId": "ms_garnele.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gemischte-fruechte",
+    "name": "Mixed fruits",
+    "iconId": "ms_gemischte_fruechte.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-geriebener-kaese",
+    "name": "Grated cheese",
+    "iconId": "ms_geriebener_kaese.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-geschenkpapier",
+    "name": "Wrapping paper",
+    "iconId": "ms_geschenkpapier.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-gift",
     "name": "Gift",
     "iconId": "gift.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gin",
+    "name": "Gin",
+    "iconId": "ms_gin.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-glasreiniger",
+    "name": "Glass cleaner",
+    "iconId": "ms_glasreiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gluehlampe",
+    "name": "Incandescent bulb",
+    "iconId": "ms_gluehlampe.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gnogi",
+    "name": "Gnogi",
+    "iconId": "ms_gnogi.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -385,6 +770,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-grapefruit",
+    "name": "Grapefruit",
+    "iconId": "ms_grapefruit.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grapefruitsaft",
+    "name": "Grapefruit juice",
+    "iconId": "ms_grapefruitsaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-grapes",
     "name": "Grapes",
     "iconId": "grapes.png",
@@ -392,10 +791,17 @@
     "isDefault": true
   },
   {
-    "id": "default-product-minced-meat",
-    "name": "Minced meat",
-    "iconId": "minced_meat.png",
-    "categoryId": "default-category-meat-and-fish",
+    "id": "default-product-gruene-bohnen",
+    "name": "Green beans",
+    "iconId": "ms_gruene_bohnen.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gruene-oliven",
+    "name": "Green olives",
+    "iconId": "ms_gruene_oliven.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -413,6 +819,69 @@
     "isDefault": true
   },
   {
+    "id": "default-product-hamburger",
+    "name": "Hamburgers",
+    "iconId": "ms_hamburger.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hamburgers",
+    "name": "Hamburgers",
+    "iconId": "ms_hamburgers.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hamburgersbroetchen",
+    "name": "Hamburger buns",
+    "iconId": "ms_hamburgersbroetchen.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handcreme",
+    "name": "Hand cream",
+    "iconId": "ms_handcreme.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handfeger",
+    "name": "Hand brush",
+    "iconId": "ms_handfeger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handseife",
+    "name": "Hand soap",
+    "iconId": "ms_handseife.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handtuecher",
+    "name": "Towels",
+    "iconId": "ms_handtuecher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hefe",
+    "name": "Yeast",
+    "iconId": "ms_hefe.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hoeschen",
+    "name": "panties",
+    "iconId": "ms_hoeschen.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-honey",
     "name": "Honey",
     "iconId": "honey.png",
@@ -420,9 +889,44 @@
     "isDefault": true
   },
   {
+    "id": "default-product-hot-sauce",
+    "name": "Hot sauce",
+    "iconId": "ms_hot_sauce.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hotdog",
+    "name": "Hot dog",
+    "iconId": "ms_hotdog.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-huhn",
+    "name": "chicken",
+    "iconId": "ms_huhn.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
     "id": "default-product-ice-cream",
     "name": "Ice Cream",
     "iconId": "ice_cream.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-itunes-karte",
+    "name": "iTunes card",
+    "iconId": "ms_itunes_karte.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-jalopenos",
+    "name": "Jalopenos",
+    "iconId": "ms_jalopenos.png",
     "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
@@ -441,10 +945,87 @@
     "isDefault": true
   },
   {
+    "id": "default-product-kaffee",
+    "name": "Coffee",
+    "iconId": "ms_kaffee.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaffeefilter",
+    "name": "Coffee filter",
+    "iconId": "ms_kaffeefilter.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kakao",
+    "name": "Cocoa",
+    "iconId": "ms_kakao.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kalbfleisch",
+    "name": "Veal",
+    "iconId": "ms_kalbfleisch.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaninchen",
+    "name": "Rabbit",
+    "iconId": "ms_kaninchen.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kartoffelpueree",
+    "name": "Mashed potatoes",
+    "iconId": "ms_kartoffelpueree.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaugummi",
+    "name": "Chewing gum",
+    "iconId": "ms_kaugummi.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kerzen",
+    "name": "Candles",
+    "iconId": "ms_kerzen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-ketchup",
     "name": "Ketchup",
     "iconId": "ketchup.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kinder",
+    "name": "Children",
+    "iconId": "ms_kinder.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kinderduschgel",
+    "name": "Children's shower gel",
+    "iconId": "ms_kinderduschgel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kirschtomate",
+    "name": "Cherry tomato",
+    "iconId": "ms_kirschtomate.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -455,9 +1036,51 @@
     "isDefault": true
   },
   {
+    "id": "default-product-koerper",
+    "name": "body",
+    "iconId": "ms_koerper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-koerperlotion",
+    "name": "Body lotion",
+    "iconId": "ms_koerperlotion.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kokosnuss",
+    "name": "Coconut",
+    "iconId": "ms_kokosnuss.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kondom",
+    "name": "condom",
+    "iconId": "ms_kondom.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-konfituere",
+    "name": "jam",
+    "iconId": "ms_konfituere.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
     "id": "default-product-lamb",
     "name": "Lamb",
     "iconId": "sheep.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lamm",
+    "name": "Lamb",
+    "iconId": "ms_lamm.png",
     "categoryId": "default-category-meat-and-fish",
     "isDefault": true
   },
@@ -469,6 +1092,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-limette",
+    "name": "Lime",
+    "iconId": "ms_limette.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lippen-balsam",
+    "name": "Lip balm",
+    "iconId": "ms_lippen_balsam.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-lipstick",
     "name": "Lipstick",
     "iconId": "lipstick.png",
@@ -476,16 +1113,37 @@
     "isDefault": true
   },
   {
-    "id": "default-product-soap-liquid",
-    "name": "Liquid soap",
-    "iconId": "washing_liquid.png",
+    "id": "default-product-lufterfrischer",
+    "name": "Air freshener",
+    "iconId": "ms_lufterfrischer.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mais",
+    "name": "corn",
+    "iconId": "ms_mais.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-makkaroni",
+    "name": "Macaroni",
+    "iconId": "ms_makkaroni.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
     "id": "default-product-mandarins",
     "name": "Mandarins",
     "iconId": "mandarins.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mango",
+    "name": "mango",
+    "iconId": "ms_mango.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
@@ -511,6 +1169,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-melone",
+    "name": "Melon",
+    "iconId": "ms_melone.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-milk",
     "name": "Milk",
     "iconId": "milk.png",
@@ -518,10 +1183,59 @@
     "isDefault": true
   },
   {
+    "id": "default-product-minced-meat",
+    "name": "Minced meat",
+    "iconId": "minced_meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mineral",
+    "name": "mineral",
+    "iconId": "ms_mineral.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mortadella",
+    "name": "Mortadella",
+    "iconId": "ms_mortadella.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mozzarella",
+    "name": "Mozzarella",
+    "iconId": "ms_mozzarella.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muellbeutel",
+    "name": "Garbage bags",
+    "iconId": "ms_muellbeutel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-muesli",
     "name": "Muesli",
     "iconId": "cereal.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muesliriegel",
+    "name": "Granola bars",
+    "iconId": "ms_muesliriegel.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mundwasser",
+    "name": "Mouthwash",
+    "iconId": "ms_mundwasser.png",
+    "categoryId": "default-category-household",
     "isDefault": true
   },
   {
@@ -546,10 +1260,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-nektarinen",
+    "name": "Nectarines",
+    "iconId": "ms_nektarinen.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-noodles",
     "name": "Noodles",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nuggets",
+    "name": "Nuggets",
+    "iconId": "ms_nuggets.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nutella",
+    "name": "Nutella",
+    "iconId": "ms_nutella.png",
+    "categoryId": "default-category-fruehstueck",
     "isDefault": true
   },
   {
@@ -574,6 +1309,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-olivenoel",
+    "name": "Olive oil",
+    "iconId": "ms_olivenoel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-onions",
     "name": "Onions",
     "iconId": "onion.png",
@@ -588,6 +1330,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-orangensaft",
+    "name": "Orange juice",
+    "iconId": "ms_orangensaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-orangina",
+    "name": "Orangina",
+    "iconId": "ms_orangina.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pads",
     "name": "Pads",
     "iconId": "pads.png",
@@ -598,6 +1354,13 @@
     "id": "default-product-paper-towels",
     "name": "Paper towels",
     "iconId": "toilet_paper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pappteller",
+    "name": "Paper plates",
+    "iconId": "ms_pappteller.png",
     "categoryId": "default-category-household",
     "isDefault": true
   },
@@ -618,8 +1381,15 @@
   {
     "id": "default-product-pasta",
     "name": "Pasta",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pasta-2",
+    "name": "Pasta",
+    "iconId": "ms_pasta.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -651,10 +1421,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-penne",
+    "name": "Penne",
+    "iconId": "ms_penne.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepper",
+    "name": "Bell pepper",
+    "iconId": "pepper.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-peppercorns",
     "name": "Peppercorns",
     "iconId": "jar_spices.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepsi-max",
+    "name": "Pepsi Max",
+    "iconId": "ms_pepsi_max.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -672,10 +1463,24 @@
     "isDefault": true
   },
   {
+    "id": "default-product-pilze",
+    "name": "Mushrooms",
+    "iconId": "ms_pilze.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pineapple",
     "name": "Pineapple",
     "iconId": "pineapple.png",
     "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pistazien",
+    "name": "Pistachios",
+    "iconId": "ms_pistazien.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -714,6 +1519,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-preiselbeeren",
+    "name": "cranberries",
+    "iconId": "ms_preiselbeeren.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pretzels",
     "name": "Pretzels",
     "iconId": "pretzels.png",
@@ -721,10 +1533,52 @@
     "isDefault": true
   },
   {
+    "id": "default-product-pudding",
+    "name": "pudding",
+    "iconId": "ms_pudding.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-puder",
+    "name": "powder",
+    "iconId": "ms_puder.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pumpkin",
     "name": "Pumpkin",
     "iconId": "pumpkin.png",
     "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pute",
+    "name": "Turkey",
+    "iconId": "ms_pute.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-q-tipps",
+    "name": "Q-tips",
+    "iconId": "ms_q_tipps.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-radiergummi",
+    "name": "Eraser",
+    "iconId": "ms_radiergummi.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-raeucherlachs",
+    "name": "Smoked salmon",
+    "iconId": "ms_raeucherlachs.png",
+    "categoryId": "default-category-meat-and-fish",
     "isDefault": true
   },
   {
@@ -742,10 +1596,45 @@
     "isDefault": true
   },
   {
+    "id": "default-product-redbul",
+    "name": "RedBul",
+    "iconId": "ms_redbul.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-reinigungsmittel",
+    "name": "Cleaning products",
+    "iconId": "ms_reinigungsmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rettich",
+    "name": "Radish",
+    "iconId": "ms_rettich.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-rice",
     "name": "Rice",
     "iconId": "rice.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rosewein",
+    "name": "Rose wine",
+    "iconId": "ms_rosewein.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rotwein",
+    "name": "Red wine",
+    "iconId": "ms_rotwein.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -756,10 +1645,24 @@
     "isDefault": true
   },
   {
+    "id": "default-product-sahne",
+    "name": "cream",
+    "iconId": "ms_sahne.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
     "id": "default-product-salami",
     "name": "Salami",
     "iconId": "salami.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salat",
+    "name": "Salad",
+    "iconId": "ms_salat.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -788,6 +1691,41 @@
     "name": "Sausages",
     "iconId": "sausages.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-scampi",
+    "name": "Scampi",
+    "iconId": "ms_scampi.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-schaumbad",
+    "name": "Bubble bath",
+    "iconId": "ms_schaumbad.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-schmerzmittel",
+    "name": "Painkillers",
+    "iconId": "ms_schmerzmittel.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-seife",
+    "name": "soap",
+    "iconId": "ms_seife.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sellerie",
+    "name": "Celery",
+    "iconId": "ms_sellerie.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -840,10 +1778,59 @@
     "isDefault": true
   },
   {
+    "id": "default-product-soap-bar",
+    "name": "Bar soap",
+    "iconId": "soap_bar.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-liquid",
+    "name": "Liquid soap",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-socken",
+    "name": "Socks",
+    "iconId": "ms_socken.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-soda",
     "name": "Soda",
     "iconId": "can.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soda-2",
+    "name": "Soda",
+    "iconId": "ms_soda.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soja",
+    "name": "Soy",
+    "iconId": "ms_soja.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sonnenblumenoel",
+    "name": "sunflower oil",
+    "iconId": "ms_sonnenblumenoel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sonnencreme",
+    "name": "Sunscreen",
+    "iconId": "ms_sonnencreme.png",
+    "categoryId": "default-category-household",
     "isDefault": true
   },
   {
@@ -863,8 +1850,15 @@
   {
     "id": "default-product-spaghetti",
     "name": "Spaghetti",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spargel",
+    "name": "Asparagus",
+    "iconId": "ms_spargel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -875,10 +1869,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-spinat",
+    "name": "Spinach",
+    "iconId": "ms_spinat.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-sponge",
     "name": "Sponge",
     "iconId": "sponge.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sprudel",
+    "name": "bubbly",
+    "iconId": "ms_sprudel.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-stifte",
+    "name": "Pens",
+    "iconId": "ms_stifte.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -889,10 +1904,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-strumpfhose",
+    "name": "Pantyhose",
+    "iconId": "ms_strumpfhose.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-sugar",
     "name": "Sugar",
     "iconId": "sugar_cubes.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-suppe",
+    "name": "Soup",
+    "iconId": "ms_suppe.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-surimi",
+    "name": "Surimi",
+    "iconId": "ms_surimi.png",
+    "categoryId": "default-category-tiefkuehlwaren",
     "isDefault": true
   },
   {
@@ -910,6 +1946,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tagliatelle",
+    "name": "Tagliatelle",
+    "iconId": "ms_tagliatelle.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-tangerines",
     "name": "Tangerines",
     "iconId": "tangerines.png",
@@ -921,6 +1964,20 @@
     "name": "Tea",
     "iconId": "tea.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-teig",
+    "name": "dough",
+    "iconId": "ms_teig.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tesaband",
+    "name": "scotch tape",
+    "iconId": "ms_tesaband.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -938,10 +1995,10 @@
     "isDefault": true
   },
   {
-    "id": "default-product-tomatoes",
-    "name": "Tomatoes",
-    "iconId": "tomatoes.png",
-    "categoryId": "default-category-fruits-and-vegetables",
+    "id": "default-product-tomate",
+    "name": "Tomato",
+    "iconId": "ms_tomate.png",
+    "categoryId": "default-category-sauces-and-spices",
     "isDefault": true
   },
   {
@@ -949,6 +2006,20 @@
     "name": "Tomato paste",
     "iconId": "tomato_paste.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomatoes",
+    "name": "Tomatoes",
+    "iconId": "tomatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tonic",
+    "name": "Tonic",
+    "iconId": "ms_tonic.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -966,6 +2037,41 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tortelini",
+    "name": "Tortelini",
+    "iconId": "ms_tortelini.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tortillas",
+    "name": "Tortillas",
+    "iconId": "ms_tortillas.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-traube",
+    "name": "grape",
+    "iconId": "ms_traube.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-trauben",
+    "name": "Grapes",
+    "iconId": "ms_trauben.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tropisch",
+    "name": "Tropical",
+    "iconId": "ms_tropisch.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-trout",
     "name": "Trout",
     "iconId": "fish.png",
@@ -973,10 +2079,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tuerkei",
+    "name": "Türkiye",
+    "iconId": "ms_tuerkei.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tuetensuppe",
+    "name": "Bag soup",
+    "iconId": "ms_tuetensuppe.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
     "id": "default-product-tuna",
     "name": "Tuna",
     "iconId": "fish.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-unterwaesche",
+    "name": "Underwear",
+    "iconId": "ms_unterwaesche.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -991,6 +2118,20 @@
     "name": "Vinegar",
     "iconId": "bottle_narrow.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vogelfutter",
+    "name": "Bird seed",
+    "iconId": "ms_vogelfutter.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vollmilch",
+    "name": "Whole milk",
+    "iconId": "ms_vollmilch.png",
+    "categoryId": "default-category-molkereiprodukte",
     "isDefault": true
   },
   {
@@ -1015,10 +2156,94 @@
     "isDefault": true
   },
   {
+    "id": "default-product-watte",
+    "name": "cotton wool",
+    "iconId": "ms_watte.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wc-reiniger",
+    "name": "Toilet cleaner",
+    "iconId": "ms_wc_reiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-weichspueler",
+    "name": "Fabric softener",
+    "iconId": "ms_weichspueler.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-weisswein",
+    "name": "White wine",
+    "iconId": "ms_weisswein.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wesson",
+    "name": "Wesson",
+    "iconId": "ms_wesson.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-whisky",
+    "name": "Whiskey",
+    "iconId": "ms_whisky.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wiener-wuerstchen",
+    "name": "Vienna sausages",
+    "iconId": "ms_wiener_wuerstchen.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wild",
+    "name": "Wild",
+    "iconId": "ms_wild.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-windeln",
+    "name": "Diapers",
+    "iconId": "ms_windeln.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-wine",
     "name": "Wine",
     "iconId": "wine.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wischlappen",
+    "name": "Wiping cloth",
+    "iconId": "ms_wischlappen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wodka",
+    "name": "Vodka",
+    "iconId": "ms_wodka.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wuerfelzucker",
+    "name": "Sugar cubes",
+    "iconId": "ms_wuerfelzucker.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -1029,9 +2254,44 @@
     "isDefault": true
   },
   {
+    "id": "default-product-zahnstocher",
+    "name": "Toothpicks",
+    "iconId": "ms_zahnstocher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zeitung",
+    "name": "Newspaper",
+    "iconId": "ms_zeitung.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zigaretten",
+    "name": "Cigarettes",
+    "iconId": "ms_zigaretten.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zitronensaft",
+    "name": "lemon juice",
+    "iconId": "ms_zitronensaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-zucchini",
     "name": "Zucchini",
     "iconId": "zucchini.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zwiebel",
+    "name": "Onion",
+    "iconId": "ms_zwiebel.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   }

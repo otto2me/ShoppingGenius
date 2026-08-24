@@ -1,9 +1,51 @@
 [
   {
+    "id": "default-product-abgepacktes-fleisch",
+    "name": "упакованное мясо",
+    "iconId": "ms_abgepacktes_fleisch.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-abzieher",
+    "name": "съемник",
+    "iconId": "ms_abzieher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-almonds",
     "name": "Миндаль",
     "iconId": "nuts.png",
     "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-aluminiumfolie",
+    "name": "Алюминиевая фольга",
+    "iconId": "ms_aluminiumfolie.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apfel",
+    "name": "Яблоко",
+    "iconId": "ms_apfel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apfelsaft",
+    "name": "Яблочный сок",
+    "iconId": "ms_apfelsaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apotheke",
+    "name": "Аптека",
+    "iconId": "ms_apotheke.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -21,6 +63,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-artischocke",
+    "name": "Артишок",
+    "iconId": "ms_artischocke.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-avocado",
     "name": "Авокадо",
     "iconId": "avocado.png",
@@ -28,10 +77,38 @@
     "isDefault": true
   },
   {
+    "id": "default-product-babynahrung",
+    "name": "детское питание",
+    "iconId": "ms_babynahrung.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-backofen-reiniger",
+    "name": "Очиститель духовки",
+    "iconId": "ms_backofen_reiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-backpapier",
+    "name": "бумага для выпечки",
+    "iconId": "ms_backpapier.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-bacon",
     "name": "Бекон",
     "iconId": "bacon.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bagles",
+    "name": "Бэглс",
+    "iconId": "ms_bagles.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -49,9 +126,16 @@
     "isDefault": true
   },
   {
-    "id": "default-product-soap-bar",
-    "name": "Твердое мыло",
-    "iconId": "soap_bar.png",
+    "id": "default-product-banane",
+    "name": "Банан",
+    "iconId": "ms_banane.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-batterie",
+    "name": "Батарея",
+    "iconId": "ms_batterie.png",
     "categoryId": "default-category-household",
     "isDefault": true
   },
@@ -84,10 +168,10 @@
     "isDefault": true
   },
   {
-    "id": "default-product-pepper",
-    "name": "Болгарский перец",
-    "iconId": "pepper.png",
-    "categoryId": "default-category-fruits-and-vegetables",
+    "id": "default-product-bergkaese",
+    "name": "Горный сыр",
+    "iconId": "ms_bergkaese.png",
+    "categoryId": "default-category-molkereiprodukte",
     "isDefault": true
   },
   {
@@ -98,6 +182,48 @@
     "isDefault": true
   },
   {
+    "id": "default-product-besen",
+    "name": "Метла",
+    "iconId": "ms_besen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-blaubeeren",
+    "name": "Черника",
+    "iconId": "ms_blaubeeren.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bleichmittel",
+    "name": "отбеливатель",
+    "iconId": "ms_bleichmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-blumenkohl",
+    "name": "Цветная капуста",
+    "iconId": "ms_blumenkohl.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bodenreiniger",
+    "name": "Средство для мытья полов",
+    "iconId": "ms_bodenreiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bouillon",
+    "name": "Бульон",
+    "iconId": "ms_bouillon.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-bread",
     "name": "Хлеб",
     "iconId": "bread.png",
@@ -105,9 +231,23 @@
     "isDefault": true
   },
   {
+    "id": "default-product-briefumschlaege",
+    "name": "Конверты",
+    "iconId": "ms_briefumschlaege.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-broccoli",
     "name": "Брокколи",
     "iconId": "broccoli.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-brombeeren",
+    "name": "Ежевика",
+    "iconId": "ms_brombeeren.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
@@ -168,10 +308,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-cd",
+    "name": "компакт-диск",
+    "iconId": "ms_cd.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cereal",
     "name": "Каша",
     "iconId": "cereal.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cerealien",
+    "name": "Крупы",
+    "iconId": "ms_cerealien.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-champignon",
+    "name": "Гриб",
+    "iconId": "ms_champignon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -252,17 +413,17 @@
     "isDefault": true
   },
   {
+    "id": "default-product-corn-beef",
+    "name": "Кукурузная говядина",
+    "iconId": "ms_corn_beef.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cottage-cheese",
     "name": "Творог",
     "iconId": "cottage_cheese.png",
     "categoryId": "default-category-dairy-and-eggs",
-    "isDefault": true
-  },
-  {
-    "id": "default-product-cotton-swabs",
-    "name": "Ватные палочки",
-    "iconId": "cotton_swabs.png",
-    "categoryId": "default-category-health-and-beauty",
     "isDefault": true
   },
   {
@@ -273,10 +434,38 @@
     "isDefault": true
   },
   {
+    "id": "default-product-cotton-swabs",
+    "name": "Ватные палочки",
+    "iconId": "cotton_swabs.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cracker",
+    "name": "Крекеры",
+    "iconId": "ms_cracker.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cream",
     "name": "Крем",
     "iconId": "tube.png",
     "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-croissants",
+    "name": "Круассаны",
+    "iconId": "ms_croissants.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-croutons",
+    "name": "гренки",
+    "iconId": "ms_croutons.png",
+    "categoryId": "default-category-sauces-and-spices",
     "isDefault": true
   },
   {
@@ -291,6 +480,27 @@
     "name": "Дезодорант",
     "iconId": "deodorant.png",
     "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-desinfektionsmittel",
+    "name": "Дезинфицирующее средство",
+    "iconId": "ms_desinfektionsmittel.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-desserts",
+    "name": "Десерты",
+    "iconId": "ms_desserts.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-diet-7-up",
+    "name": "Диета 7-Up",
+    "iconId": "ms_diet_7_up.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -322,6 +532,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-duschbad",
+    "name": "душевая комната",
+    "iconId": "ms_duschbad.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-eggplant",
     "name": "Баклажан",
     "iconId": "eggplant.png",
@@ -336,10 +553,87 @@
     "isDefault": true
   },
   {
+    "id": "default-product-eimer",
+    "name": "ведро",
+    "iconId": "ms_eimer.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eis",
+    "name": "Мороженое",
+    "iconId": "ms_eis.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
     "id": "default-product-energy-drink",
     "name": "Энергетик",
     "iconId": "can.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-entkalker",
+    "name": "Средство для удаления накипи",
+    "iconId": "ms_entkalker.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erdbeeren",
+    "name": "Клубника",
+    "iconId": "ms_erdbeeren.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erdnussbutter",
+    "name": "Арахисовое масло",
+    "iconId": "ms_erdnussbutter.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erfrischer",
+    "name": "Курс повышения квалификации",
+    "iconId": "ms_erfrischer.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-etiketten",
+    "name": "Этикетки",
+    "iconId": "ms_etiketten.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuchtetuch",
+    "name": "Влажная салфетка",
+    "iconId": "ms_feuchtetuch.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuchttuecher",
+    "name": "влажные салфетки",
+    "iconId": "ms_feuchttuecher.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuerzeug",
+    "name": "легче",
+    "iconId": "ms_feuerzeug.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fischfutter",
+    "name": "Рыбный корм",
+    "iconId": "ms_fischfutter.png",
+    "categoryId": "default-category-pet-supplies",
     "isDefault": true
   },
   {
@@ -350,10 +644,45 @@
     "isDefault": true
   },
   {
+    "id": "default-product-fleischbaellchen",
+    "name": "Фрикадельки",
+    "iconId": "ms_fleischbaellchen.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
     "id": "default-product-flour",
     "name": "Мука",
     "iconId": "flour.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fluessigwaschmittel",
+    "name": "Жидкое моющее средство",
+    "iconId": "ms_fluessigwaschmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-frittieroel",
+    "name": "масло для жарки",
+    "iconId": "ms_frittieroel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruchtjoghurt",
+    "name": "Фруктовый йогурт",
+    "iconId": "ms_fruchtjoghurt.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruehlingszwiebel",
+    "name": "Зеленый лук",
+    "iconId": "ms_fruehlingszwiebel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -371,10 +700,66 @@
     "isDefault": true
   },
   {
+    "id": "default-product-garnele",
+    "name": "Креветки",
+    "iconId": "ms_garnele.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gemischte-fruechte",
+    "name": "Смешанные фрукты",
+    "iconId": "ms_gemischte_fruechte.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-geriebener-kaese",
+    "name": "Тертый сыр",
+    "iconId": "ms_geriebener_kaese.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-geschenkpapier",
+    "name": "Упаковочная бумага",
+    "iconId": "ms_geschenkpapier.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-gift",
     "name": "Подарок",
     "iconId": "gift.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gin",
+    "name": "Джин",
+    "iconId": "ms_gin.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-glasreiniger",
+    "name": "Очиститель стекол",
+    "iconId": "ms_glasreiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gluehlampe",
+    "name": "Лампа накаливания",
+    "iconId": "ms_gluehlampe.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gnogi",
+    "name": "Гноги",
+    "iconId": "ms_gnogi.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -385,6 +770,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-grapefruit",
+    "name": "Грейпфрут",
+    "iconId": "ms_grapefruit.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grapefruitsaft",
+    "name": "Грейпфрутовый сок",
+    "iconId": "ms_grapefruitsaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-grapes",
     "name": "Виноград",
     "iconId": "grapes.png",
@@ -392,10 +791,17 @@
     "isDefault": true
   },
   {
-    "id": "default-product-minced-meat",
-    "name": "Фарш",
-    "iconId": "minced_meat.png",
-    "categoryId": "default-category-meat-and-fish",
+    "id": "default-product-gruene-bohnen",
+    "name": "Зеленая фасоль",
+    "iconId": "ms_gruene_bohnen.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gruene-oliven",
+    "name": "Зеленые оливки",
+    "iconId": "ms_gruene_oliven.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -413,6 +819,69 @@
     "isDefault": true
   },
   {
+    "id": "default-product-hamburger",
+    "name": "Гамбургеры",
+    "iconId": "ms_hamburger.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hamburgers",
+    "name": "Гамбургеры",
+    "iconId": "ms_hamburgers.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hamburgersbroetchen",
+    "name": "Булочки для гамбургеров",
+    "iconId": "ms_hamburgersbroetchen.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handcreme",
+    "name": "Крем для рук",
+    "iconId": "ms_handcreme.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handfeger",
+    "name": "Ручная кисть",
+    "iconId": "ms_handfeger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handseife",
+    "name": "Мыло для рук",
+    "iconId": "ms_handseife.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handtuecher",
+    "name": "Полотенца",
+    "iconId": "ms_handtuecher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hefe",
+    "name": "Дрожжи",
+    "iconId": "ms_hefe.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hoeschen",
+    "name": "трусики",
+    "iconId": "ms_hoeschen.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-honey",
     "name": "Мёд",
     "iconId": "honey.png",
@@ -420,9 +889,44 @@
     "isDefault": true
   },
   {
+    "id": "default-product-hot-sauce",
+    "name": "Острый соус",
+    "iconId": "ms_hot_sauce.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hotdog",
+    "name": "Хот-дог",
+    "iconId": "ms_hotdog.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-huhn",
+    "name": "курица",
+    "iconId": "ms_huhn.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
     "id": "default-product-ice-cream",
     "name": "Мороженое",
     "iconId": "ice_cream.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-itunes-karte",
+    "name": "Карта iTunes",
+    "iconId": "ms_itunes_karte.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-jalopenos",
+    "name": "Халопенос",
+    "iconId": "ms_jalopenos.png",
     "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
@@ -441,10 +945,87 @@
     "isDefault": true
   },
   {
+    "id": "default-product-kaffee",
+    "name": "Кофе",
+    "iconId": "ms_kaffee.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaffeefilter",
+    "name": "Кофейный фильтр",
+    "iconId": "ms_kaffeefilter.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kakao",
+    "name": "какао",
+    "iconId": "ms_kakao.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kalbfleisch",
+    "name": "Телятина",
+    "iconId": "ms_kalbfleisch.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaninchen",
+    "name": "Кролик",
+    "iconId": "ms_kaninchen.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kartoffelpueree",
+    "name": "Картофельное пюре",
+    "iconId": "ms_kartoffelpueree.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaugummi",
+    "name": "Жевательная резинка",
+    "iconId": "ms_kaugummi.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kerzen",
+    "name": "Свечи",
+    "iconId": "ms_kerzen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-ketchup",
     "name": "Кетчуп",
     "iconId": "ketchup.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kinder",
+    "name": "Дети",
+    "iconId": "ms_kinder.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kinderduschgel",
+    "name": "Детский гель для душа",
+    "iconId": "ms_kinderduschgel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kirschtomate",
+    "name": "Помидоры черри",
+    "iconId": "ms_kirschtomate.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -455,9 +1036,51 @@
     "isDefault": true
   },
   {
+    "id": "default-product-koerper",
+    "name": "тело",
+    "iconId": "ms_koerper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-koerperlotion",
+    "name": "Лосьон для тела",
+    "iconId": "ms_koerperlotion.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kokosnuss",
+    "name": "Кокос",
+    "iconId": "ms_kokosnuss.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kondom",
+    "name": "презерватив",
+    "iconId": "ms_kondom.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-konfituere",
+    "name": "варенье",
+    "iconId": "ms_konfituere.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
     "id": "default-product-lamb",
     "name": "Баранина",
     "iconId": "sheep.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lamm",
+    "name": "Ягненок",
+    "iconId": "ms_lamm.png",
     "categoryId": "default-category-meat-and-fish",
     "isDefault": true
   },
@@ -469,6 +1092,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-limette",
+    "name": "Лайм",
+    "iconId": "ms_limette.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lippen-balsam",
+    "name": "Бальзам для губ",
+    "iconId": "ms_lippen_balsam.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-lipstick",
     "name": "Губная помада",
     "iconId": "lipstick.png",
@@ -476,16 +1113,37 @@
     "isDefault": true
   },
   {
-    "id": "default-product-soap-liquid",
-    "name": "Жидкое мыло",
-    "iconId": "washing_liquid.png",
+    "id": "default-product-lufterfrischer",
+    "name": "Освежитель воздуха",
+    "iconId": "ms_lufterfrischer.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mais",
+    "name": "кукуруза",
+    "iconId": "ms_mais.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-makkaroni",
+    "name": "Макароны",
+    "iconId": "ms_makkaroni.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
     "id": "default-product-mandarins",
     "name": "Мандарины",
     "iconId": "mandarins.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mango",
+    "name": "манго",
+    "iconId": "ms_mango.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
@@ -511,6 +1169,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-melone",
+    "name": "Дыня",
+    "iconId": "ms_melone.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-milk",
     "name": "Молоко",
     "iconId": "milk.png",
@@ -518,10 +1183,59 @@
     "isDefault": true
   },
   {
+    "id": "default-product-minced-meat",
+    "name": "Фарш",
+    "iconId": "minced_meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mineral",
+    "name": "минерал",
+    "iconId": "ms_mineral.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mortadella",
+    "name": "Мортаделла",
+    "iconId": "ms_mortadella.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mozzarella",
+    "name": "Моцарелла",
+    "iconId": "ms_mozzarella.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muellbeutel",
+    "name": "Мешки для мусора",
+    "iconId": "ms_muellbeutel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-muesli",
     "name": "Мюсли",
     "iconId": "cereal.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muesliriegel",
+    "name": "батончики мюсли",
+    "iconId": "ms_muesliriegel.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mundwasser",
+    "name": "Ополаскиватель для рта",
+    "iconId": "ms_mundwasser.png",
+    "categoryId": "default-category-household",
     "isDefault": true
   },
   {
@@ -546,10 +1260,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-nektarinen",
+    "name": "Нектарины",
+    "iconId": "ms_nektarinen.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-noodles",
     "name": "Лапша",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nuggets",
+    "name": "Наггетсы",
+    "iconId": "ms_nuggets.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nutella",
+    "name": "Нутелла",
+    "iconId": "ms_nutella.png",
+    "categoryId": "default-category-fruehstueck",
     "isDefault": true
   },
   {
@@ -574,6 +1309,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-olivenoel",
+    "name": "Оливковое масло",
+    "iconId": "ms_olivenoel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-onions",
     "name": "Лук",
     "iconId": "onion.png",
@@ -588,6 +1330,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-orangensaft",
+    "name": "Апельсиновый сок",
+    "iconId": "ms_orangensaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-orangina",
+    "name": "Оранжина",
+    "iconId": "ms_orangina.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pads",
     "name": "Прокладки",
     "iconId": "pads.png",
@@ -598,6 +1354,13 @@
     "id": "default-product-paper-towels",
     "name": "Бумажные полотенца",
     "iconId": "toilet_paper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pappteller",
+    "name": "Бумажные тарелки",
+    "iconId": "ms_pappteller.png",
     "categoryId": "default-category-household",
     "isDefault": true
   },
@@ -618,8 +1381,15 @@
   {
     "id": "default-product-pasta",
     "name": "Макароны",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pasta-2",
+    "name": "макароны",
+    "iconId": "ms_pasta.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -651,10 +1421,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-penne",
+    "name": "Пенне",
+    "iconId": "ms_penne.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepper",
+    "name": "Болгарский перец",
+    "iconId": "pepper.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-peppercorns",
     "name": "Черный перец",
     "iconId": "jar_spices.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepsi-max",
+    "name": "Пепси Макс",
+    "iconId": "ms_pepsi_max.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -672,10 +1463,24 @@
     "isDefault": true
   },
   {
+    "id": "default-product-pilze",
+    "name": "Грибы",
+    "iconId": "ms_pilze.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pineapple",
     "name": "Ананас",
     "iconId": "pineapple.png",
     "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pistazien",
+    "name": "Фисташки",
+    "iconId": "ms_pistazien.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -714,6 +1519,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-preiselbeeren",
+    "name": "клюква",
+    "iconId": "ms_preiselbeeren.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pretzels",
     "name": "Брецель",
     "iconId": "pretzels.png",
@@ -721,10 +1533,52 @@
     "isDefault": true
   },
   {
+    "id": "default-product-pudding",
+    "name": "пудинг",
+    "iconId": "ms_pudding.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-puder",
+    "name": "порошок",
+    "iconId": "ms_puder.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pumpkin",
     "name": "Тыква",
     "iconId": "pumpkin.png",
     "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pute",
+    "name": "Турция",
+    "iconId": "ms_pute.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-q-tipps",
+    "name": "Q-советы",
+    "iconId": "ms_q_tipps.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-radiergummi",
+    "name": "Ластик",
+    "iconId": "ms_radiergummi.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-raeucherlachs",
+    "name": "Копченый лосось",
+    "iconId": "ms_raeucherlachs.png",
+    "categoryId": "default-category-meat-and-fish",
     "isDefault": true
   },
   {
@@ -742,10 +1596,45 @@
     "isDefault": true
   },
   {
+    "id": "default-product-redbul",
+    "name": "РедБул",
+    "iconId": "ms_redbul.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-reinigungsmittel",
+    "name": "Чистящие средства",
+    "iconId": "ms_reinigungsmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rettich",
+    "name": "Редис",
+    "iconId": "ms_rettich.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-rice",
     "name": "Рис",
     "iconId": "rice.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rosewein",
+    "name": "Розовое вино",
+    "iconId": "ms_rosewein.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rotwein",
+    "name": "Красное вино",
+    "iconId": "ms_rotwein.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -756,10 +1645,24 @@
     "isDefault": true
   },
   {
+    "id": "default-product-sahne",
+    "name": "крем",
+    "iconId": "ms_sahne.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
     "id": "default-product-salami",
     "name": "Салями",
     "iconId": "salami.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salat",
+    "name": "Салат",
+    "iconId": "ms_salat.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -788,6 +1691,41 @@
     "name": "Сосиски",
     "iconId": "sausages.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-scampi",
+    "name": "Креветки с чесночным соусом",
+    "iconId": "ms_scampi.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-schaumbad",
+    "name": "Пенная ванна",
+    "iconId": "ms_schaumbad.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-schmerzmittel",
+    "name": "Обезболивающие",
+    "iconId": "ms_schmerzmittel.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-seife",
+    "name": "мыло",
+    "iconId": "ms_seife.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sellerie",
+    "name": "Сельдерей",
+    "iconId": "ms_sellerie.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -840,10 +1778,59 @@
     "isDefault": true
   },
   {
+    "id": "default-product-soap-bar",
+    "name": "Твердое мыло",
+    "iconId": "soap_bar.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-liquid",
+    "name": "Жидкое мыло",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-socken",
+    "name": "Носки",
+    "iconId": "ms_socken.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-soda",
     "name": "Газировка",
     "iconId": "can.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soda-2",
+    "name": "Газировка",
+    "iconId": "ms_soda.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soja",
+    "name": "соевый",
+    "iconId": "ms_soja.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sonnenblumenoel",
+    "name": "подсолнечное масло",
+    "iconId": "ms_sonnenblumenoel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sonnencreme",
+    "name": "солнцезащитный крем",
+    "iconId": "ms_sonnencreme.png",
+    "categoryId": "default-category-household",
     "isDefault": true
   },
   {
@@ -863,8 +1850,15 @@
   {
     "id": "default-product-spaghetti",
     "name": "Спагетти",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spargel",
+    "name": "Спаржа",
+    "iconId": "ms_spargel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -875,10 +1869,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-spinat",
+    "name": "Шпинат",
+    "iconId": "ms_spinat.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-sponge",
     "name": "Губка",
     "iconId": "sponge.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sprudel",
+    "name": "игристый",
+    "iconId": "ms_sprudel.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-stifte",
+    "name": "Ручки",
+    "iconId": "ms_stifte.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -889,10 +1904,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-strumpfhose",
+    "name": "Колготки",
+    "iconId": "ms_strumpfhose.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-sugar",
     "name": "Сахар",
     "iconId": "sugar_cubes.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-suppe",
+    "name": "Суп",
+    "iconId": "ms_suppe.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-surimi",
+    "name": "Сурими",
+    "iconId": "ms_surimi.png",
+    "categoryId": "default-category-tiefkuehlwaren",
     "isDefault": true
   },
   {
@@ -910,6 +1946,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tagliatelle",
+    "name": "Тальятелле",
+    "iconId": "ms_tagliatelle.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-tangerines",
     "name": "Мандарины",
     "iconId": "tangerines.png",
@@ -921,6 +1964,20 @@
     "name": "Чай",
     "iconId": "tea.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-teig",
+    "name": "тесто",
+    "iconId": "ms_teig.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tesaband",
+    "name": "скотч",
+    "iconId": "ms_tesaband.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -938,10 +1995,10 @@
     "isDefault": true
   },
   {
-    "id": "default-product-tomatoes",
-    "name": "Помидоры",
-    "iconId": "tomatoes.png",
-    "categoryId": "default-category-fruits-and-vegetables",
+    "id": "default-product-tomate",
+    "name": "Помидор",
+    "iconId": "ms_tomate.png",
+    "categoryId": "default-category-sauces-and-spices",
     "isDefault": true
   },
   {
@@ -949,6 +2006,20 @@
     "name": "Томатная паста",
     "iconId": "tomato_paste.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomatoes",
+    "name": "Помидоры",
+    "iconId": "tomatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tonic",
+    "name": "Тоник",
+    "iconId": "ms_tonic.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -966,6 +2037,41 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tortelini",
+    "name": "Тортелини",
+    "iconId": "ms_tortelini.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tortillas",
+    "name": "Тортильи",
+    "iconId": "ms_tortillas.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-traube",
+    "name": "виноград",
+    "iconId": "ms_traube.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-trauben",
+    "name": "Виноград",
+    "iconId": "ms_trauben.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tropisch",
+    "name": "Тропический",
+    "iconId": "ms_tropisch.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-trout",
     "name": "Форель",
     "iconId": "fish.png",
@@ -973,10 +2079,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tuerkei",
+    "name": "Турция",
+    "iconId": "ms_tuerkei.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tuetensuppe",
+    "name": "Сумочный суп",
+    "iconId": "ms_tuetensuppe.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
     "id": "default-product-tuna",
     "name": "Тунец",
     "iconId": "fish.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-unterwaesche",
+    "name": "Нижнее белье",
+    "iconId": "ms_unterwaesche.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -991,6 +2118,20 @@
     "name": "Уксус",
     "iconId": "bottle_narrow.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vogelfutter",
+    "name": "Семена птиц",
+    "iconId": "ms_vogelfutter.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vollmilch",
+    "name": "Цельное молоко",
+    "iconId": "ms_vollmilch.png",
+    "categoryId": "default-category-molkereiprodukte",
     "isDefault": true
   },
   {
@@ -1015,10 +2156,94 @@
     "isDefault": true
   },
   {
+    "id": "default-product-watte",
+    "name": "вата",
+    "iconId": "ms_watte.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wc-reiniger",
+    "name": "Очиститель туалета",
+    "iconId": "ms_wc_reiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-weichspueler",
+    "name": "Кондиционер для белья",
+    "iconId": "ms_weichspueler.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-weisswein",
+    "name": "Белое вино",
+    "iconId": "ms_weisswein.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wesson",
+    "name": "Вессон",
+    "iconId": "ms_wesson.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-whisky",
+    "name": "Виски",
+    "iconId": "ms_whisky.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wiener-wuerstchen",
+    "name": "Венские колбаски",
+    "iconId": "ms_wiener_wuerstchen.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wild",
+    "name": "Дикий",
+    "iconId": "ms_wild.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-windeln",
+    "name": "Подгузники",
+    "iconId": "ms_windeln.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-wine",
     "name": "Вино",
     "iconId": "wine.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wischlappen",
+    "name": "Протирочная ткань",
+    "iconId": "ms_wischlappen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wodka",
+    "name": "водка",
+    "iconId": "ms_wodka.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wuerfelzucker",
+    "name": "Кубики сахара",
+    "iconId": "ms_wuerfelzucker.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -1029,9 +2254,44 @@
     "isDefault": true
   },
   {
+    "id": "default-product-zahnstocher",
+    "name": "Зубочистки",
+    "iconId": "ms_zahnstocher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zeitung",
+    "name": "Газета",
+    "iconId": "ms_zeitung.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zigaretten",
+    "name": "Сигареты",
+    "iconId": "ms_zigaretten.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zitronensaft",
+    "name": "лимонный сок",
+    "iconId": "ms_zitronensaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-zucchini",
     "name": "Кабачок",
     "iconId": "zucchini.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zwiebel",
+    "name": "Лук",
+    "iconId": "ms_zwiebel.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   }

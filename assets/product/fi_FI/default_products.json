@@ -1,9 +1,51 @@
 [
   {
+    "id": "default-product-abgepacktes-fleisch",
+    "name": "pakattu liha",
+    "iconId": "ms_abgepacktes_fleisch.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-abzieher",
+    "name": "vedin",
+    "iconId": "ms_abzieher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-almonds",
     "name": "Almonds",
     "iconId": "nuts.png",
     "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-aluminiumfolie",
+    "name": "Alumiinifolio",
+    "iconId": "ms_aluminiumfolie.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apfel",
+    "name": "Apple",
+    "iconId": "ms_apfel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apfelsaft",
+    "name": "Omenamehu",
+    "iconId": "ms_apfelsaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-apotheke",
+    "name": "Apteekki",
+    "iconId": "ms_apotheke.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -21,6 +63,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-artischocke",
+    "name": "Artisokka",
+    "iconId": "ms_artischocke.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-avocado",
     "name": "Avocado",
     "iconId": "avocado.png",
@@ -28,10 +77,38 @@
     "isDefault": true
   },
   {
+    "id": "default-product-babynahrung",
+    "name": "vauvan ruokaa",
+    "iconId": "ms_babynahrung.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-backofen-reiniger",
+    "name": "Uunin puhdistusaine",
+    "iconId": "ms_backofen_reiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-backpapier",
+    "name": "leivinpaperi",
+    "iconId": "ms_backpapier.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-bacon",
     "name": "Bacon",
     "iconId": "bacon.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bagles",
+    "name": "Laukut",
+    "iconId": "ms_bagles.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -49,9 +126,16 @@
     "isDefault": true
   },
   {
-    "id": "default-product-soap-bar",
-    "name": "Bar soap",
-    "iconId": "soap_bar.png",
+    "id": "default-product-banane",
+    "name": "Banaani",
+    "iconId": "ms_banane.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-batterie",
+    "name": "Akku",
+    "iconId": "ms_batterie.png",
     "categoryId": "default-category-household",
     "isDefault": true
   },
@@ -84,10 +168,10 @@
     "isDefault": true
   },
   {
-    "id": "default-product-pepper",
-    "name": "Bell pepper",
-    "iconId": "pepper.png",
-    "categoryId": "default-category-fruits-and-vegetables",
+    "id": "default-product-bergkaese",
+    "name": "Vuoristojuusto",
+    "iconId": "ms_bergkaese.png",
+    "categoryId": "default-category-molkereiprodukte",
     "isDefault": true
   },
   {
@@ -98,6 +182,48 @@
     "isDefault": true
   },
   {
+    "id": "default-product-besen",
+    "name": "Luuta",
+    "iconId": "ms_besen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-blaubeeren",
+    "name": "Mustikat",
+    "iconId": "ms_blaubeeren.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bleichmittel",
+    "name": "Valkaisuaine",
+    "iconId": "ms_bleichmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-blumenkohl",
+    "name": "Kukkakaali",
+    "iconId": "ms_blumenkohl.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bodenreiniger",
+    "name": "Lattian puhdistusaine",
+    "iconId": "ms_bodenreiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-bouillon",
+    "name": "Bouillon",
+    "iconId": "ms_bouillon.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-bread",
     "name": "Bread",
     "iconId": "bread.png",
@@ -105,9 +231,23 @@
     "isDefault": true
   },
   {
+    "id": "default-product-briefumschlaege",
+    "name": "Kirjekuoret",
+    "iconId": "ms_briefumschlaege.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-broccoli",
     "name": "Broccoli",
     "iconId": "broccoli.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-brombeeren",
+    "name": "Karhunvatukat",
+    "iconId": "ms_brombeeren.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
@@ -168,10 +308,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-cd",
+    "name": "CD-levy",
+    "iconId": "ms_cd.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cereal",
     "name": "Cereal",
     "iconId": "cereal.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cerealien",
+    "name": "Viljat",
+    "iconId": "ms_cerealien.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-champignon",
+    "name": "sieni",
+    "iconId": "ms_champignon.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -252,17 +413,17 @@
     "isDefault": true
   },
   {
+    "id": "default-product-corn-beef",
+    "name": "Maissi naudanlihaa",
+    "iconId": "ms_corn_beef.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cottage-cheese",
     "name": "Cottage Cheese",
     "iconId": "cottage_cheese.png",
     "categoryId": "default-category-dairy-and-eggs",
-    "isDefault": true
-  },
-  {
-    "id": "default-product-cotton-swabs",
-    "name": "Cotton swabs",
-    "iconId": "cotton_swabs.png",
-    "categoryId": "default-category-health-and-beauty",
     "isDefault": true
   },
   {
@@ -273,10 +434,38 @@
     "isDefault": true
   },
   {
+    "id": "default-product-cotton-swabs",
+    "name": "Cotton swabs",
+    "iconId": "cotton_swabs.png",
+    "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-cracker",
+    "name": "Keksit",
+    "iconId": "ms_cracker.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
     "id": "default-product-cream",
     "name": "Cream",
     "iconId": "tube.png",
     "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-croissants",
+    "name": "Croissanteja",
+    "iconId": "ms_croissants.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-croutons",
+    "name": "krutonkeja",
+    "iconId": "ms_croutons.png",
+    "categoryId": "default-category-sauces-and-spices",
     "isDefault": true
   },
   {
@@ -291,6 +480,27 @@
     "name": "Deodorant",
     "iconId": "deodorant.png",
     "categoryId": "default-category-health-and-beauty",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-desinfektionsmittel",
+    "name": "Desinfiointiaine",
+    "iconId": "ms_desinfektionsmittel.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-desserts",
+    "name": "Jälkiruoat",
+    "iconId": "ms_desserts.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-diet-7-up",
+    "name": "Ruokavalio 7-Up",
+    "iconId": "ms_diet_7_up.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -322,6 +532,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-duschbad",
+    "name": "suihkuhuone",
+    "iconId": "ms_duschbad.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-eggplant",
     "name": "Eggplant",
     "iconId": "eggplant.png",
@@ -336,10 +553,87 @@
     "isDefault": true
   },
   {
+    "id": "default-product-eimer",
+    "name": "ämpäri",
+    "iconId": "ms_eimer.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-eis",
+    "name": "jäätelöä",
+    "iconId": "ms_eis.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
     "id": "default-product-energy-drink",
     "name": "Energy drink",
     "iconId": "can.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-entkalker",
+    "name": "Kalkinpoistoaine",
+    "iconId": "ms_entkalker.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erdbeeren",
+    "name": "Mansikoita",
+    "iconId": "ms_erdbeeren.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erdnussbutter",
+    "name": "Maapähkinävoita",
+    "iconId": "ms_erdnussbutter.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-erfrischer",
+    "name": "Päivitys",
+    "iconId": "ms_erfrischer.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-etiketten",
+    "name": "Tarrat",
+    "iconId": "ms_etiketten.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuchtetuch",
+    "name": "Kosteuspyyhe",
+    "iconId": "ms_feuchtetuch.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuchttuecher",
+    "name": "kosteuspyyhkeet",
+    "iconId": "ms_feuchttuecher.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-feuerzeug",
+    "name": "kevyempi",
+    "iconId": "ms_feuerzeug.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fischfutter",
+    "name": "Kalaruokaa",
+    "iconId": "ms_fischfutter.png",
+    "categoryId": "default-category-pet-supplies",
     "isDefault": true
   },
   {
@@ -350,10 +644,45 @@
     "isDefault": true
   },
   {
+    "id": "default-product-fleischbaellchen",
+    "name": "Lihapullat",
+    "iconId": "ms_fleischbaellchen.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
     "id": "default-product-flour",
     "name": "Flour",
     "iconId": "flour.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fluessigwaschmittel",
+    "name": "Nestemäinen pesuaine",
+    "iconId": "ms_fluessigwaschmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-frittieroel",
+    "name": "paistoöljyä",
+    "iconId": "ms_frittieroel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruchtjoghurt",
+    "name": "Hedelmäjogurtti",
+    "iconId": "ms_fruchtjoghurt.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-fruehlingszwiebel",
+    "name": "Kevätsipuli",
+    "iconId": "ms_fruehlingszwiebel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -371,10 +700,66 @@
     "isDefault": true
   },
   {
+    "id": "default-product-garnele",
+    "name": "Katkarapu",
+    "iconId": "ms_garnele.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gemischte-fruechte",
+    "name": "Sekoitettuja hedelmiä",
+    "iconId": "ms_gemischte_fruechte.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-geriebener-kaese",
+    "name": "juustoraastetta",
+    "iconId": "ms_geriebener_kaese.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-geschenkpapier",
+    "name": "Käärepaperi",
+    "iconId": "ms_geschenkpapier.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-gift",
     "name": "Gift",
     "iconId": "gift.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gin",
+    "name": "Gin",
+    "iconId": "ms_gin.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-glasreiniger",
+    "name": "Lasinpuhdistusaine",
+    "iconId": "ms_glasreiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gluehlampe",
+    "name": "Hehkulamppu",
+    "iconId": "ms_gluehlampe.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gnogi",
+    "name": "Gnogi",
+    "iconId": "ms_gnogi.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -385,6 +770,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-grapefruit",
+    "name": "Greippi",
+    "iconId": "ms_grapefruit.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-grapefruitsaft",
+    "name": "Greippimehu",
+    "iconId": "ms_grapefruitsaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-grapes",
     "name": "Grapes",
     "iconId": "grapes.png",
@@ -392,10 +791,17 @@
     "isDefault": true
   },
   {
-    "id": "default-product-minced-meat",
-    "name": "Minced meat",
-    "iconId": "minced_meat.png",
-    "categoryId": "default-category-meat-and-fish",
+    "id": "default-product-gruene-bohnen",
+    "name": "Vihreät pavut",
+    "iconId": "ms_gruene_bohnen.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-gruene-oliven",
+    "name": "Vihreät oliivit",
+    "iconId": "ms_gruene_oliven.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -413,6 +819,69 @@
     "isDefault": true
   },
   {
+    "id": "default-product-hamburger",
+    "name": "Hampurilaiset",
+    "iconId": "ms_hamburger.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hamburgers",
+    "name": "Hampurilaiset",
+    "iconId": "ms_hamburgers.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hamburgersbroetchen",
+    "name": "Hampurilaispullat",
+    "iconId": "ms_hamburgersbroetchen.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handcreme",
+    "name": "Käsivoide",
+    "iconId": "ms_handcreme.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handfeger",
+    "name": "Käsiharja",
+    "iconId": "ms_handfeger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handseife",
+    "name": "Käsisaippua",
+    "iconId": "ms_handseife.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-handtuecher",
+    "name": "Pyyhkeet",
+    "iconId": "ms_handtuecher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hefe",
+    "name": "Hiiva",
+    "iconId": "ms_hefe.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hoeschen",
+    "name": "pikkuhousut",
+    "iconId": "ms_hoeschen.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-honey",
     "name": "Honey",
     "iconId": "honey.png",
@@ -420,9 +889,44 @@
     "isDefault": true
   },
   {
+    "id": "default-product-hot-sauce",
+    "name": "Kuuma kastike",
+    "iconId": "ms_hot_sauce.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-hotdog",
+    "name": "Hot dog",
+    "iconId": "ms_hotdog.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-huhn",
+    "name": "kanaa",
+    "iconId": "ms_huhn.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
     "id": "default-product-ice-cream",
     "name": "Ice Cream",
     "iconId": "ice_cream.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-itunes-karte",
+    "name": "iTunes-kortti",
+    "iconId": "ms_itunes_karte.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-jalopenos",
+    "name": "Jalopenos",
+    "iconId": "ms_jalopenos.png",
     "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
@@ -441,10 +945,87 @@
     "isDefault": true
   },
   {
+    "id": "default-product-kaffee",
+    "name": "Kahvi",
+    "iconId": "ms_kaffee.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaffeefilter",
+    "name": "Kahvin suodatin",
+    "iconId": "ms_kaffeefilter.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kakao",
+    "name": "Kaakao",
+    "iconId": "ms_kakao.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kalbfleisch",
+    "name": "Vasikanliha",
+    "iconId": "ms_kalbfleisch.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaninchen",
+    "name": "Kani",
+    "iconId": "ms_kaninchen.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kartoffelpueree",
+    "name": "Perunamuusia",
+    "iconId": "ms_kartoffelpueree.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kaugummi",
+    "name": "Purukumi",
+    "iconId": "ms_kaugummi.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kerzen",
+    "name": "Kynttilät",
+    "iconId": "ms_kerzen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-ketchup",
     "name": "Ketchup",
     "iconId": "ketchup.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kinder",
+    "name": "Lapset",
+    "iconId": "ms_kinder.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kinderduschgel",
+    "name": "Lasten suihkugeeli",
+    "iconId": "ms_kinderduschgel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kirschtomate",
+    "name": "Kirsikkatomaatti",
+    "iconId": "ms_kirschtomate.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -455,9 +1036,51 @@
     "isDefault": true
   },
   {
+    "id": "default-product-koerper",
+    "name": "kehon",
+    "iconId": "ms_koerper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-koerperlotion",
+    "name": "Vartalovoide",
+    "iconId": "ms_koerperlotion.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kokosnuss",
+    "name": "Kookos",
+    "iconId": "ms_kokosnuss.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-kondom",
+    "name": "kondomi",
+    "iconId": "ms_kondom.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-konfituere",
+    "name": "hilloa",
+    "iconId": "ms_konfituere.png",
+    "categoryId": "default-category-fruehstueck",
+    "isDefault": true
+  },
+  {
     "id": "default-product-lamb",
     "name": "Lamb",
     "iconId": "sheep.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lamm",
+    "name": "Lammas",
+    "iconId": "ms_lamm.png",
     "categoryId": "default-category-meat-and-fish",
     "isDefault": true
   },
@@ -469,6 +1092,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-limette",
+    "name": "Lime",
+    "iconId": "ms_limette.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-lippen-balsam",
+    "name": "Huulivoide",
+    "iconId": "ms_lippen_balsam.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-lipstick",
     "name": "Lipstick",
     "iconId": "lipstick.png",
@@ -476,16 +1113,37 @@
     "isDefault": true
   },
   {
-    "id": "default-product-soap-liquid",
-    "name": "Liquid soap",
-    "iconId": "washing_liquid.png",
+    "id": "default-product-lufterfrischer",
+    "name": "Ilmanraikastin",
+    "iconId": "ms_lufterfrischer.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mais",
+    "name": "maissi",
+    "iconId": "ms_mais.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-makkaroni",
+    "name": "Makaroni",
+    "iconId": "ms_makkaroni.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
     "id": "default-product-mandarins",
     "name": "Mandarins",
     "iconId": "mandarins.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mango",
+    "name": "mango",
+    "iconId": "ms_mango.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
@@ -511,6 +1169,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-melone",
+    "name": "Meloni",
+    "iconId": "ms_melone.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-milk",
     "name": "Milk",
     "iconId": "milk.png",
@@ -518,10 +1183,59 @@
     "isDefault": true
   },
   {
+    "id": "default-product-minced-meat",
+    "name": "Minced meat",
+    "iconId": "minced_meat.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mineral",
+    "name": "mineraali",
+    "iconId": "ms_mineral.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mortadella",
+    "name": "Mortadella",
+    "iconId": "ms_mortadella.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mozzarella",
+    "name": "Mozzarella",
+    "iconId": "ms_mozzarella.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muellbeutel",
+    "name": "Roskapussit",
+    "iconId": "ms_muellbeutel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
     "id": "default-product-muesli",
     "name": "Muesli",
     "iconId": "cereal.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-muesliriegel",
+    "name": "Granola-patukat",
+    "iconId": "ms_muesliriegel.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-mundwasser",
+    "name": "Suuvesi",
+    "iconId": "ms_mundwasser.png",
+    "categoryId": "default-category-household",
     "isDefault": true
   },
   {
@@ -546,10 +1260,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-nektarinen",
+    "name": "Nektariinit",
+    "iconId": "ms_nektarinen.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-noodles",
     "name": "Noodles",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nuggets",
+    "name": "Nuggets",
+    "iconId": "ms_nuggets.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-nutella",
+    "name": "Nutella",
+    "iconId": "ms_nutella.png",
+    "categoryId": "default-category-fruehstueck",
     "isDefault": true
   },
   {
@@ -574,6 +1309,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-olivenoel",
+    "name": "Oliiviöljy",
+    "iconId": "ms_olivenoel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-onions",
     "name": "Onions",
     "iconId": "onion.png",
@@ -588,6 +1330,20 @@
     "isDefault": true
   },
   {
+    "id": "default-product-orangensaft",
+    "name": "Appelsiinimehu",
+    "iconId": "ms_orangensaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-orangina",
+    "name": "Orangina",
+    "iconId": "ms_orangina.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pads",
     "name": "Pads",
     "iconId": "pads.png",
@@ -598,6 +1354,13 @@
     "id": "default-product-paper-towels",
     "name": "Paper towels",
     "iconId": "toilet_paper.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pappteller",
+    "name": "Paperilevyt",
+    "iconId": "ms_pappteller.png",
     "categoryId": "default-category-household",
     "isDefault": true
   },
@@ -618,8 +1381,15 @@
   {
     "id": "default-product-pasta",
     "name": "Pasta",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pasta-2",
+    "name": "Pasta",
+    "iconId": "ms_pasta.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -651,10 +1421,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-penne",
+    "name": "Penne",
+    "iconId": "ms_penne.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepper",
+    "name": "Bell pepper",
+    "iconId": "pepper.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-peppercorns",
     "name": "Peppercorns",
     "iconId": "jar_spices.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pepsi-max",
+    "name": "Pepsi Max",
+    "iconId": "ms_pepsi_max.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -672,10 +1463,24 @@
     "isDefault": true
   },
   {
+    "id": "default-product-pilze",
+    "name": "Sienet",
+    "iconId": "ms_pilze.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pineapple",
     "name": "Pineapple",
     "iconId": "pineapple.png",
     "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pistazien",
+    "name": "Pistaasipähkinät",
+    "iconId": "ms_pistazien.png",
+    "categoryId": "default-category-snacks-and-bakery",
     "isDefault": true
   },
   {
@@ -714,6 +1519,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-preiselbeeren",
+    "name": "karpaloita",
+    "iconId": "ms_preiselbeeren.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pretzels",
     "name": "Pretzels",
     "iconId": "pretzels.png",
@@ -721,10 +1533,52 @@
     "isDefault": true
   },
   {
+    "id": "default-product-pudding",
+    "name": "vanukas",
+    "iconId": "ms_pudding.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-puder",
+    "name": "jauhe",
+    "iconId": "ms_puder.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-pumpkin",
     "name": "Pumpkin",
     "iconId": "pumpkin.png",
     "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-pute",
+    "name": "Turkki",
+    "iconId": "ms_pute.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-q-tipps",
+    "name": "Q-vinkkejä",
+    "iconId": "ms_q_tipps.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-radiergummi",
+    "name": "Pyyhekumi",
+    "iconId": "ms_radiergummi.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-raeucherlachs",
+    "name": "Savustettua lohta",
+    "iconId": "ms_raeucherlachs.png",
+    "categoryId": "default-category-meat-and-fish",
     "isDefault": true
   },
   {
@@ -742,10 +1596,45 @@
     "isDefault": true
   },
   {
+    "id": "default-product-redbul",
+    "name": "RedBul",
+    "iconId": "ms_redbul.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-reinigungsmittel",
+    "name": "Puhdistustuotteet",
+    "iconId": "ms_reinigungsmittel.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rettich",
+    "name": "Retiisi",
+    "iconId": "ms_rettich.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-rice",
     "name": "Rice",
     "iconId": "rice.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rosewein",
+    "name": "Ruusuviini",
+    "iconId": "ms_rosewein.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-rotwein",
+    "name": "Punaviini",
+    "iconId": "ms_rotwein.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -756,10 +1645,24 @@
     "isDefault": true
   },
   {
+    "id": "default-product-sahne",
+    "name": "kerma",
+    "iconId": "ms_sahne.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
     "id": "default-product-salami",
     "name": "Salami",
     "iconId": "salami.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-salat",
+    "name": "Salaatti",
+    "iconId": "ms_salat.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -788,6 +1691,41 @@
     "name": "Sausages",
     "iconId": "sausages.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-scampi",
+    "name": "Scampi",
+    "iconId": "ms_scampi.png",
+    "categoryId": "default-category-tiefkuehlwaren",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-schaumbad",
+    "name": "Vaahtokylpy",
+    "iconId": "ms_schaumbad.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-schmerzmittel",
+    "name": "Kipulääkkeet",
+    "iconId": "ms_schmerzmittel.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-seife",
+    "name": "saippuaa",
+    "iconId": "ms_seife.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sellerie",
+    "name": "Selleri",
+    "iconId": "ms_sellerie.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -840,10 +1778,59 @@
     "isDefault": true
   },
   {
+    "id": "default-product-soap-bar",
+    "name": "Bar soap",
+    "iconId": "soap_bar.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soap-liquid",
+    "name": "Liquid soap",
+    "iconId": "washing_liquid.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-socken",
+    "name": "Sukat",
+    "iconId": "ms_socken.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-soda",
     "name": "Soda",
     "iconId": "can.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soda-2",
+    "name": "sooda",
+    "iconId": "ms_soda.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-soja",
+    "name": "Soija",
+    "iconId": "ms_soja.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sonnenblumenoel",
+    "name": "auringonkukkaöljy",
+    "iconId": "ms_sonnenblumenoel.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sonnencreme",
+    "name": "Aurinkosuojavoide",
+    "iconId": "ms_sonnencreme.png",
+    "categoryId": "default-category-household",
     "isDefault": true
   },
   {
@@ -863,8 +1850,15 @@
   {
     "id": "default-product-spaghetti",
     "name": "Spaghetti",
-    "iconId": "pasta.png",
+    "iconId": "ms_pasta.png",
     "categoryId": "default-category-grain-products",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-spargel",
+    "name": "Parsa",
+    "iconId": "ms_spargel.png",
+    "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   },
   {
@@ -875,10 +1869,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-spinat",
+    "name": "Pinaatti",
+    "iconId": "ms_spinat.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
     "id": "default-product-sponge",
     "name": "Sponge",
     "iconId": "sponge.png",
     "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-sprudel",
+    "name": "kuplivaa",
+    "iconId": "ms_sprudel.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-stifte",
+    "name": "Kynät",
+    "iconId": "ms_stifte.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -889,10 +1904,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-strumpfhose",
+    "name": "Sukkahousut",
+    "iconId": "ms_strumpfhose.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-sugar",
     "name": "Sugar",
     "iconId": "sugar_cubes.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-suppe",
+    "name": "Keitto",
+    "iconId": "ms_suppe.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-surimi",
+    "name": "Surimi",
+    "iconId": "ms_surimi.png",
+    "categoryId": "default-category-tiefkuehlwaren",
     "isDefault": true
   },
   {
@@ -910,6 +1946,13 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tagliatelle",
+    "name": "Tagliatelle",
+    "iconId": "ms_tagliatelle.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
     "id": "default-product-tangerines",
     "name": "Tangerines",
     "iconId": "tangerines.png",
@@ -921,6 +1964,20 @@
     "name": "Tea",
     "iconId": "tea.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-teig",
+    "name": "taikinaa",
+    "iconId": "ms_teig.png",
+    "categoryId": "default-category-molkereiprodukte",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tesaband",
+    "name": "teippiä",
+    "iconId": "ms_tesaband.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -938,10 +1995,10 @@
     "isDefault": true
   },
   {
-    "id": "default-product-tomatoes",
-    "name": "Tomatoes",
-    "iconId": "tomatoes.png",
-    "categoryId": "default-category-fruits-and-vegetables",
+    "id": "default-product-tomate",
+    "name": "Tomaatti",
+    "iconId": "ms_tomate.png",
+    "categoryId": "default-category-sauces-and-spices",
     "isDefault": true
   },
   {
@@ -949,6 +2006,20 @@
     "name": "Tomato paste",
     "iconId": "tomato_paste.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tomatoes",
+    "name": "Tomatoes",
+    "iconId": "tomatoes.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tonic",
+    "name": "Tonic",
+    "iconId": "ms_tonic.png",
+    "categoryId": "default-category-drinks",
     "isDefault": true
   },
   {
@@ -966,6 +2037,41 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tortelini",
+    "name": "Tortelini",
+    "iconId": "ms_tortelini.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tortillas",
+    "name": "Tortillat",
+    "iconId": "ms_tortillas.png",
+    "categoryId": "default-category-snacks-and-bakery",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-traube",
+    "name": "rypäleen",
+    "iconId": "ms_traube.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-trauben",
+    "name": "Rypäleet",
+    "iconId": "ms_trauben.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tropisch",
+    "name": "Trooppinen",
+    "iconId": "ms_tropisch.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-trout",
     "name": "Trout",
     "iconId": "fish.png",
@@ -973,10 +2079,31 @@
     "isDefault": true
   },
   {
+    "id": "default-product-tuerkei",
+    "name": "Turkki",
+    "iconId": "ms_tuerkei.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-tuetensuppe",
+    "name": "Pussikeitto",
+    "iconId": "ms_tuetensuppe.png",
+    "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
     "id": "default-product-tuna",
     "name": "Tuna",
     "iconId": "fish.png",
     "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-unterwaesche",
+    "name": "Alusvaatteet",
+    "iconId": "ms_unterwaesche.png",
+    "categoryId": "default-category-diverses",
     "isDefault": true
   },
   {
@@ -991,6 +2118,20 @@
     "name": "Vinegar",
     "iconId": "bottle_narrow.png",
     "categoryId": "default-category-sauces-and-spices",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vogelfutter",
+    "name": "Linnun siemen",
+    "iconId": "ms_vogelfutter.png",
+    "categoryId": "default-category-pet-supplies",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-vollmilch",
+    "name": "Täysmaito",
+    "iconId": "ms_vollmilch.png",
+    "categoryId": "default-category-molkereiprodukte",
     "isDefault": true
   },
   {
@@ -1015,10 +2156,94 @@
     "isDefault": true
   },
   {
+    "id": "default-product-watte",
+    "name": "puuvillaa",
+    "iconId": "ms_watte.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wc-reiniger",
+    "name": "WC:n puhdistusaine",
+    "iconId": "ms_wc_reiniger.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-weichspueler",
+    "name": "Pehmennysaine",
+    "iconId": "ms_weichspueler.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-weisswein",
+    "name": "Valkoviini",
+    "iconId": "ms_weisswein.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wesson",
+    "name": "Wesson",
+    "iconId": "ms_wesson.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-whisky",
+    "name": "Viski",
+    "iconId": "ms_whisky.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wiener-wuerstchen",
+    "name": "Wienin makkarat",
+    "iconId": "ms_wiener_wuerstchen.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wild",
+    "name": "Villi",
+    "iconId": "ms_wild.png",
+    "categoryId": "default-category-meat-and-fish",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-windeln",
+    "name": "Vaipat",
+    "iconId": "ms_windeln.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
     "id": "default-product-wine",
     "name": "Wine",
     "iconId": "wine.png",
     "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wischlappen",
+    "name": "Pyyhkivä liina",
+    "iconId": "ms_wischlappen.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wodka",
+    "name": "Vodka",
+    "iconId": "ms_wodka.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-wuerfelzucker",
+    "name": "Sokerikuutiot",
+    "iconId": "ms_wuerfelzucker.png",
+    "categoryId": "default-category-lebensmittelgeschaeft",
     "isDefault": true
   },
   {
@@ -1029,9 +2254,44 @@
     "isDefault": true
   },
   {
+    "id": "default-product-zahnstocher",
+    "name": "Hammastikkuja",
+    "iconId": "ms_zahnstocher.png",
+    "categoryId": "default-category-household",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zeitung",
+    "name": "Sanomalehti",
+    "iconId": "ms_zeitung.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zigaretten",
+    "name": "Savukkeet",
+    "iconId": "ms_zigaretten.png",
+    "categoryId": "default-category-diverses",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zitronensaft",
+    "name": "sitruunamehua",
+    "iconId": "ms_zitronensaft.png",
+    "categoryId": "default-category-drinks",
+    "isDefault": true
+  },
+  {
     "id": "default-product-zucchini",
     "name": "Zucchini",
     "iconId": "zucchini.png",
+    "categoryId": "default-category-fruits-and-vegetables",
+    "isDefault": true
+  },
+  {
+    "id": "default-product-zwiebel",
+    "name": "Sipuli",
+    "iconId": "ms_zwiebel.png",
     "categoryId": "default-category-fruits-and-vegetables",
     "isDefault": true
   }

@@ -1,3 +1,27 @@
 [
-
+  {
+    "id": "default-category-diverses",
+    "changeListVersion": 1,
+    "isDeleted": false
+  },
+  {
+    "id": "default-category-fruehstueck",
+    "changeListVersion": 1,
+    "isDeleted": false
+  },
+  {
+    "id": "default-category-lebensmittelgeschaeft",
+    "changeListVersion": 1,
+    "isDeleted": false
+  },
+  {
+    "id": "default-category-molkereiprodukte",
+    "changeListVersion": 1,
+    "isDeleted": false
+  },
+  {
+    "id": "default-category-tiefkuehlwaren",
+    "changeListVersion": 1,
+    "isDeleted": false
+  }
 ]
