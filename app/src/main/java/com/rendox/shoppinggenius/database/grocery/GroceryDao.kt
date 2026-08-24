@@ -98,6 +98,9 @@ interface GroceryDao {
         listId: String
     )
 
+    @Query("DELETE FROM GroceryEntity WHERE groceryListId = :listId")
+    suspend fun deleteGroceriesFromList(listId: String)
+
     @Query("SELECT COUNT(productId) FROM GroceryEntity WHERE groceryListId = :listId")
     fun getNumOfGroceriesInList(listId: String): Flow<Int>
 

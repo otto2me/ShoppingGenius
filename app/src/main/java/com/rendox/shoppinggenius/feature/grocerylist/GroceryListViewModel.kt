@@ -15,6 +15,7 @@ import com.rendox.shoppinggenius.data.grocery.GroceryRepository
 import com.rendox.shoppinggenius.data.grocerylist.GroceryListRepository
 import com.rendox.shoppinggenius.data.product.ProductRepository
 import com.rendox.shoppinggenius.data.userpreferences.UserPreferencesRepository
+import com.rendox.shoppinggenius.feature.share.GroceryListShareManager
 import com.rendox.shoppinggenius.model.Grocery
 import com.rendox.shoppinggenius.network.di.Dispatcher
 import com.rendox.shoppinggenius.network.di.ShoppingGeniusDispatchers
@@ -55,6 +56,7 @@ class GroceryListViewModel @AssistedInject constructor(
     private val userPreferencesRepository: UserPreferencesRepository,
     private val productRepository: ProductRepository,
     private val categoryRepository: CategoryRepository,
+    private val groceryListShareManager: GroceryListShareManager,
     @Dispatcher(ShoppingGeniusDispatchers.Default) private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
@@ -118,6 +120,10 @@ class GroceryListViewModel @AssistedInject constructor(
 
     private val _scrollUpEventFlow = MutableStateFlow<UiEvent<Unit>?>(null)
     val scrollUpEventFlow = _scrollUpEventFlow.asStateFlow()
+
+    private val _shareListTextEventFlow =
+        MutableStateFlow<UiEvent<GroceryListShareManager.ShareContent>?>(null)
+    val shareListTextEventFlow = _shareListTextEventFlow.asStateFlow()
 
     val useListViewForGroceriesFlow = userPreferencesRepository.userPreferencesFlow
         .map { it.useListViewForGroceries }
@@ -312,6 +318,28 @@ class GroceryListViewModel @AssistedInject constructor(
 
         is GroceryListsUiIntent.OnNavigateToCategoryScreen ->
             onNavigateToCategoryScreen(intent.categoryId)
+
+        GroceryListsUiIntent.OnShareGroceryList ->
+            shareCurrentList()
+    }
+
+    private fun shareCurrentList() {
+        viewModelScope.launch {
+            val groceries = groceriesInList.first()
+            val listName = openedGroceryListName?.text?.trim().orEmpty()
+            val shareContent = groceryListShareManager.buildShareContent(
+                listName = listName,
+                groceries = groceries
+            )
+            _shareListTextEventFlow.update {
+                object : UiEvent<GroceryListShareManager.ShareContent> {
+                    override val data = shareContent
+                    override fun onConsumed() {
+                        _shareListTextEventFlow.update { null }
+                    }
+                }
+            }
+        }
     }
 
     fun onCategoryScreenGroceryClick(grocery: Grocery) {

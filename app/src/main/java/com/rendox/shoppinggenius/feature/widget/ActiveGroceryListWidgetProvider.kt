@@ -66,9 +66,8 @@ class ActiveGroceryListWidgetProvider : AppWidgetProvider() {
             views.setRemoteAdapter(R.id.widget_grocery_list, serviceIntent)
 
             val launchIntent = Intent(context, MainActivity::class.java)
-                .setAction(Intent.ACTION_VIEW)
+                .setAction(Intent.ACTION_MAIN)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .setData(Uri.parse("ShoppingGenius://widget/$appWidgetId"))
             val pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             val launchPendingIntent = PendingIntent.getActivity(
                 context,
@@ -104,4 +103,3 @@ class ActiveGroceryListWidgetProvider : AppWidgetProvider() {
         }
     }
 }
-

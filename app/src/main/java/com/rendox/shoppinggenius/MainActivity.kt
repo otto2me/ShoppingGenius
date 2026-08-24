@@ -1,10 +1,13 @@
 package com.rendox.shoppinggenius
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -30,9 +33,11 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.rendox.shoppinggenius.feature.share.GroceryListShareManager
 import com.rendox.shoppinggenius.model.DarkThemeConfig
 import com.rendox.shoppinggenius.ui.theme.ShoppingGeniusTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -42,11 +47,17 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels()
 
+    @Inject
+    lateinit var groceryListShareManager: GroceryListShareManager
+
+    private var lastHandledImportUri: String? = null
+
     @SuppressLint("SourceLockedOrientationActivity")
     @OptIn(ExperimentalComposeUiApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+        maybeImportSharedList(intent)
 
         var uiState: MainActivityUiState? by mutableStateOf(null)
         lifecycleScope.launch {
@@ -123,6 +134,61 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        maybeImportSharedList(intent)
+    }
+
+    private fun maybeImportSharedList(intent: Intent?) {
+        val data = intent?.extractImportUri() ?: return
+        if (!data.isImportUri()) return
+        val uriText = "${intent.action}:$data"
+        if (uriText == lastHandledImportUri) return
+        lastHandledImportUri = uriText
+
+        lifecycleScope.launch {
+            when (val result = groceryListShareManager.importFromUri(data)) {
+                is GroceryListShareManager.ImportResult.Success -> {
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.import_grocery_list_success, result.listName),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+                is GroceryListShareManager.ImportResult.Error -> {
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.import_grocery_list_failed),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun Intent.extractImportUri(): Uri? {
+        return when (action) {
+            Intent.ACTION_VIEW -> data
+            Intent.ACTION_SEND -> {
+                @Suppress("DEPRECATION")
+                getParcelableExtra(Intent.EXTRA_STREAM)
+            }
+
+            else -> null
+        }
+    }
+
+    private fun Uri.isImportUri(): Boolean {
+        return when {
+            scheme == "content" || scheme == "file" -> true
+            scheme == "https" && host == "shoppinggenius.app" && pathSegments.firstOrNull() == "i" -> true
+            scheme == "shoppinggenius" && host == "import" -> true
+            else -> false
         }
     }
 }

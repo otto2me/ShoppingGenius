@@ -115,6 +115,11 @@ class GroceryRepositoryImpl @Inject constructor(
         ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
+    override suspend fun removeGroceriesFromList(listId: String) {
+        groceryDao.deleteGroceriesFromList(listId)
+        ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
+    }
+
     override suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long): Int {
         val deletedCount = groceryDao.deleteOldCompletedGroceries(beforeTimestampMs)
         if (deletedCount > 0) {

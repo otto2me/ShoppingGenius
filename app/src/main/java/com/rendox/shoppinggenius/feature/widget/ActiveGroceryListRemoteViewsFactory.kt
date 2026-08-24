@@ -69,9 +69,7 @@ class ActiveGroceryListRemoteViewsFactory(
             setFloat(R.id.widget_item_root, "setAlpha", if (item.purchased) 0.6f else 1f)
             setOnClickFillInIntent(
                 R.id.widget_item_root,
-                Intent(Intent.ACTION_VIEW).setData(
-                    android.net.Uri.parse("ShoppingGenius://widget/item/${item.productId}")
-                )
+                Intent()
             )
         }
     }
@@ -86,7 +84,3 @@ class ActiveGroceryListRemoteViewsFactory(
 
     override fun hasStableIds(): Boolean = true
 }
-
-
-
-

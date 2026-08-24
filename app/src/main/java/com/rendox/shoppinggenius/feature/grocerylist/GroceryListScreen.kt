@@ -1,6 +1,9 @@
 package com.rendox.shoppinggenius.feature.grocerylist
 
 import androidx.activity.compose.BackHandler
+import android.content.Intent
+import android.content.ClipData
+import androidx.core.content.FileProvider
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
@@ -49,10 +52,12 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -62,6 +67,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberStandardBottomSheetState
@@ -103,6 +109,8 @@ import com.rendox.shoppinggenius.feature.addgrocery.rememberAddGroceryBottomShee
 import com.rendox.shoppinggenius.feature.editgrocery.EditGroceryBottomSheet
 import com.rendox.shoppinggenius.feature.editgrocery.EditGroceryUiIntent
 import com.rendox.shoppinggenius.feature.editgrocery.EditGroceryViewModel
+import com.rendox.shoppinggenius.feature.share.GroceryListShareManager
+import com.rendox.shoppinggenius.feature.share.SHARE_FILE_MIME_TYPE
 import com.rendox.shoppinggenius.model.Category
 import com.rendox.shoppinggenius.model.Grocery
 import com.rendox.shoppinggenius.model.ShoppingGeniusColorScheme
@@ -144,6 +152,11 @@ fun GroceryListRoute(
     val scrollUpEvent by groceryListViewModel.scrollUpEventFlow.collectAsStateWithLifecycle()
     val useListViewForGroceries by groceryListViewModel.useListViewForGroceriesFlow.collectAsStateWithLifecycle()
     val favoriteGroceries by groceryListViewModel.favoriteGroceriesFlow.collectAsStateWithLifecycle()
+    val shareListTextEvent by groceryListViewModel.shareListTextEventFlow.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    var pendingShareContent by remember {
+        mutableStateOf<GroceryListShareManager.ShareContent?>(null)
+    }
 
     ObserveUiEvent(closeGroceryListScreenEvent) {
         navigateBack()
@@ -153,6 +166,73 @@ fun GroceryListRoute(
     }
     ObserveUiEvent(navigateToCategoryScreenEvent) {
         navigateToCategoryScreenSafely()
+    }
+    ObserveUiEvent(shareListTextEvent) { shareText ->
+        pendingShareContent = shareText
+    }
+
+    pendingShareContent?.let { shareContent ->
+        AlertDialog(
+            onDismissRequest = { pendingShareContent = null },
+            title = { Text(text = stringResource(R.string.share_grocery_list_title)) },
+            text = { Text(text = stringResource(R.string.share_grocery_list_mode_description)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    val shareDir = File(context.cacheDir, "shared_lists").apply { mkdirs() }
+                    val shareFile = File(shareDir, shareContent.fileName)
+                    shareFile.writeText(shareContent.fileContent, Charsets.UTF_8)
+                    val shareFileUri = FileProvider.getUriForFile(
+                        context,
+                        "${context.packageName}.fileprovider",
+                        shareFile
+                    )
+                    val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                        type = SHARE_FILE_MIME_TYPE
+                        putExtra(Intent.EXTRA_TEXT, shareContent.text)
+                        putExtra(Intent.EXTRA_SUBJECT, shareContent.fileName)
+                        putExtra(Intent.EXTRA_STREAM, shareFileUri)
+                        clipData = ClipData.newUri(
+                            context.contentResolver,
+                            shareContent.fileName,
+                            shareFileUri
+                        )
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    }
+                    context.startActivity(
+                        Intent.createChooser(
+                            sendIntent,
+                            context.getString(R.string.share_grocery_list_with_file)
+                        )
+                    )
+                    pendingShareContent = null
+                }) {
+                    Text(text = stringResource(R.string.share_grocery_list_with_file))
+                }
+            },
+            dismissButton = {
+                Row {
+                    TextButton(onClick = {
+                        val textIntent = Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_TEXT, shareContent.text)
+                            putExtra(Intent.EXTRA_SUBJECT, shareContent.fileName)
+                        }
+                        context.startActivity(
+                            Intent.createChooser(
+                                textIntent,
+                                context.getString(R.string.share_grocery_list_text_only)
+                            )
+                        )
+                        pendingShareContent = null
+                    }) {
+                        Text(text = stringResource(R.string.share_grocery_list_text_only))
+                    }
+                    TextButton(onClick = { pendingShareContent = null }) {
+                        Text(text = stringResource(R.string.close))
+                    }
+                }
+            }
+        )
     }
 
     val addBottomSheetState = rememberStandardBottomSheetState()
@@ -357,6 +437,9 @@ private fun GroceryListScreen(
                 },
                 onEditGroceryListToggle = {
                     onGroceryListUiIntent(GroceryListsUiIntent.OnEditGroceryListToggle(it))
+                },
+                onShareGroceryList = {
+                    onGroceryListUiIntent(GroceryListsUiIntent.OnShareGroceryList)
                 }
             )
 
@@ -446,7 +529,8 @@ private fun GroceryListTopBar(
     onUpdateGroceryListName: (TextFieldValue) -> Unit,
     onNavigationIconClicked: () -> Unit = {},
     onDeleteGroceryList: () -> Unit = {},
-    onEditGroceryListToggle: (Boolean) -> Unit = {}
+    onEditGroceryListToggle: (Boolean) -> Unit = {},
+    onShareGroceryList: () -> Unit = {}
 ) {
     Column(modifier = modifier) {
         val toolbarEnterTransition = remember {
@@ -525,6 +609,12 @@ private fun GroceryListTopBar(
                     }
                 },
                 actions = {
+                    IconButton(onClick = onShareGroceryList) {
+                        Icon(
+                            imageVector = Icons.Default.Share,
+                            contentDescription = stringResource(R.string.share_grocery_list_title)
+                        )
+                    }
                     IconButton(onClick = onDeleteGroceryList) {
                         Icon(
                             imageVector = Icons.Default.Delete,

@@ -97,6 +97,12 @@
     <string name="car_app_no_products">No products available.</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="share_grocery_list_title">Share list</string>
+    <string name="share_grocery_list_mode_description">Choose how you want to share this list.</string>
+    <string name="share_grocery_list_with_file">Share with import file</string>
+    <string name="share_grocery_list_text_only">Share text only</string>
+    <string name="import_grocery_list_success">List imported: %1$s</string>
+    <string name="import_grocery_list_failed">Could not import shared list.</string>
     <string name="back">Back</string>
     <string name="settings">Settings</string>
     <string name="list_editor">List Editor</string>
