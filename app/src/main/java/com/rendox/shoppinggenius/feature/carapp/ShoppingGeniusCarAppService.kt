@@ -5,6 +5,7 @@ import androidx.car.app.Session
 import androidx.car.app.validation.HostValidator
 import com.rendox.shoppinggenius.data.grocery.GroceryRepository
 import com.rendox.shoppinggenius.data.grocerylist.GroceryListRepository
+import com.rendox.shoppinggenius.data.product.ProductRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -21,11 +22,14 @@ class ShoppingGeniusCarAppService : CarAppService() {
     @Inject
     lateinit var groceryRepository: GroceryRepository
 
+    @Inject
+    lateinit var productRepository: ProductRepository
+
     override fun createHostValidator(): HostValidator =
         // Für Produktion: HostValidator.Builder(applicationContext).addAllowedHosts(...).build()
         HostValidator.ALLOW_ALL_HOSTS_VALIDATOR
 
     override fun onCreateSession(): Session =
-        ShoppingGeniusSession(groceryListRepository, groceryRepository)
+        ShoppingGeniusSession(groceryListRepository, groceryRepository, productRepository)
 }
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.rendox.shoppinggenius.R
 import com.rendox.shoppinggenius.data.grocery.GroceryRepository
 import com.rendox.shoppinggenius.data.grocerylist.GroceryListRepository
+import com.rendox.shoppinggenius.data.product.ProductRepository
 import com.rendox.shoppinggenius.model.GroceryList
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -22,7 +23,8 @@ import kotlinx.coroutines.launch
 class GroceryListsScreen(
     carContext: CarContext,
     private val groceryListRepository: GroceryListRepository,
-    private val groceryRepository: GroceryRepository
+    private val groceryRepository: GroceryRepository,
+    private val productRepository: ProductRepository
 ) : Screen(carContext) {
 
     private var groceryLists: List<GroceryList> = emptyList()
@@ -39,27 +41,33 @@ class GroceryListsScreen(
     }
 
     override fun onGetTemplate(): Template {
+        if (isLoading) {
+            return ListTemplate.Builder()
+                .setTitle(carContext.getString(R.string.app_name))
+                .setHeaderAction(Action.APP_ICON)
+                .setLoading(true)
+                .build()
+        }
+
         val listBuilder = ItemList.Builder()
 
-        if (!isLoading) {
-            if (groceryLists.isEmpty()) {
-                listBuilder.setNoItemsMessage(carContext.getString(R.string.car_app_no_lists))
-            } else {
-                groceryLists.forEach { list ->
-                    listBuilder.addItem(
-                        Row.Builder()
-                            .setTitle(list.name)
-                            .addText(
-                                carContext.getString(R.string.car_app_item_count, list.numOfGroceries)
+        if (groceryLists.isEmpty()) {
+            listBuilder.setNoItemsMessage(carContext.getString(R.string.car_app_no_lists))
+        } else {
+            groceryLists.forEach { list ->
+                listBuilder.addItem(
+                    Row.Builder()
+                        .setTitle(list.name)
+                        .addText(
+                            carContext.getString(R.string.car_app_item_count, list.numOfGroceries)
+                        )
+                        .setOnClickListener {
+                            screenManager.push(
+                                GroceryItemsScreen(carContext, list, groceryRepository, productRepository)
                             )
-                            .setOnClickListener {
-                                screenManager.push(
-                                    GroceryItemsScreen(carContext, list, groceryRepository)
-                                )
-                            }
-                            .build()
-                    )
-                }
+                        }
+                        .build()
+                )
             }
         }
 
@@ -67,7 +75,7 @@ class GroceryListsScreen(
             .setTitle(carContext.getString(R.string.app_name))
             .setHeaderAction(Action.APP_ICON)
             .setSingleList(listBuilder.build())
-            .setLoading(isLoading)
+            .setLoading(false)
             .build()
     }
 }
