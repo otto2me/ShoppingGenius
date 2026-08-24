@@ -1,18 +1,23 @@
 package com.rendox.shoppinggenius.feature.carapp
 
+import android.graphics.BitmapFactory
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
 import androidx.car.app.model.Action
+import androidx.car.app.model.CarIcon
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.Row
 import androidx.car.app.model.SearchTemplate
 import androidx.car.app.model.Template
+import androidx.core.graphics.drawable.IconCompat
 import androidx.lifecycle.lifecycleScope
 import com.rendox.shoppinggenius.R
 import com.rendox.shoppinggenius.data.grocery.GroceryRepository
 import com.rendox.shoppinggenius.data.product.ProductRepository
 import com.rendox.shoppinggenius.model.GroceryList
+import com.rendox.shoppinggenius.model.IconReference
 import com.rendox.shoppinggenius.model.Product
+import java.io.File
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -84,9 +89,12 @@ class ProductPickerScreen(
         } else {
             products.forEach { product ->
                 listBuilder.addItem(
-                    Row.Builder()
-                        .setTitle(product.name)
-                        .setOnClickListener {
+                    Row.Builder().apply {
+                        setTitle(product.name)
+                        toCarIcon(product.icon)?.let { carIcon ->
+                            setImage(carIcon, Row.IMAGE_TYPE_SMALL)
+                        }
+                        setOnClickListener {
                             lifecycleScope.launch {
                                 groceryRepository.addGroceryToList(
                                     productId = product.id,
@@ -96,7 +104,7 @@ class ProductPickerScreen(
                                 screenManager.pop()
                             }
                         }
-                        .build()
+                    }.build()
                 )
             }
         }
@@ -108,6 +116,15 @@ class ProductPickerScreen(
             .setItemList(listBuilder.build())
             .setLoading(false)
             .build()
+    }
+
+    private fun toCarIcon(iconReference: IconReference?): CarIcon? {
+        val filePath = iconReference?.filePath ?: return null
+        val iconFile = File(carContext.filesDir, filePath)
+        if (!iconFile.exists()) return null
+
+        val bitmap = BitmapFactory.decodeFile(iconFile.absolutePath) ?: return null
+        return CarIcon.Builder(IconCompat.createWithBitmap(bitmap)).build()
     }
 
     private companion object {

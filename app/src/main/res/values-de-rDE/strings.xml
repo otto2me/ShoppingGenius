@@ -78,6 +78,13 @@
     <string name="widget_no_items">Keine Einträge in dieser Liste</string>
     <!-- General -->
     <string name="done">Fertig</string>
+    <!-- Android Auto / Automotive OS -->
+    <string name="car_app_no_lists">Noch keine Einkaufslisten.</string>
+    <string name="car_app_no_items">Diese Liste ist leer.</string>
+    <string name="car_app_item_count">%d Einträge</string>
+    <string name="car_app_add_item">Eintrag hinzufügen</string>
+    <string name="car_app_search_hint">Produkte suchen</string>
+    <string name="car_app_no_products">Keine Produkte verfügbar.</string>
     <string name="delete">Löschen</string>
     <string name="edit">Bearbeiten</string>
     <string name="back">Zurück</string>

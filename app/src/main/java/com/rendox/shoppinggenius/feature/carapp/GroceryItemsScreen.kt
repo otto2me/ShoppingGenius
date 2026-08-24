@@ -1,20 +1,25 @@
 package com.rendox.shoppinggenius.feature.carapp
 
+import android.graphics.BitmapFactory
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
 import androidx.car.app.model.Action
 import androidx.car.app.model.ActionStrip
+import androidx.car.app.model.CarIcon
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.ListTemplate
 import androidx.car.app.model.Row
 import androidx.car.app.model.Template
 import androidx.car.app.model.Toggle
+import androidx.core.graphics.drawable.IconCompat
 import androidx.lifecycle.lifecycleScope
 import com.rendox.shoppinggenius.R
 import com.rendox.shoppinggenius.data.grocery.GroceryRepository
 import com.rendox.shoppinggenius.data.product.ProductRepository
 import com.rendox.shoppinggenius.model.Grocery
 import com.rendox.shoppinggenius.model.GroceryList
+import com.rendox.shoppinggenius.model.IconReference
+import java.io.File
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -88,6 +93,10 @@ class GroceryItemsScreen(
                         .build()
                     )
 
+                toCarIcon(grocery.icon)?.let { carIcon ->
+                    rowBuilder.setImage(carIcon, Row.IMAGE_TYPE_SMALL)
+                }
+
                 // Kategorie oder Beschreibung als Untertitel (max. 1 Zeile)
                 val subtitle = grocery.category?.name
                     ?: grocery.description?.takeIf { it.isNotBlank() }
@@ -104,6 +113,15 @@ class GroceryItemsScreen(
             .setActionStrip(ActionStrip.Builder().addAction(addItemAction).build())
             .setLoading(false)
             .build()
+    }
+
+    private fun toCarIcon(iconReference: IconReference?): CarIcon? {
+        val filePath = iconReference?.filePath ?: return null
+        val iconFile = File(carContext.filesDir, filePath)
+        if (!iconFile.exists()) return null
+
+        val bitmap = BitmapFactory.decodeFile(iconFile.absolutePath) ?: return null
+        return CarIcon.Builder(IconCompat.createWithBitmap(bitmap)).build()
     }
 }
 
