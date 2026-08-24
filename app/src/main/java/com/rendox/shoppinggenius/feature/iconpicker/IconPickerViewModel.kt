@@ -112,8 +112,20 @@ class IconPickerViewModel @Inject constructor(
     fun onIntent(intent: IconPickerIntent) = viewModelScope.launch {
         when (intent) {
             is IconPickerIntent.OnPickIcon -> {
-                _uiStateFlow.update { it.copy(previewIcon = intent.iconReference) }
+                // Lokales Icon direkt übernehmen; ggf. pendingRemoteIconRef verwerfen
+                _uiStateFlow.update {
+                    it.copy(
+                        previewIcon = intent.iconReference,
+                        pendingRemoteIconRef = null
+                    )
+                }
                 onPickIcon(intent.iconReference.uniqueFileName)
+            }
+
+            is IconPickerIntent.OnConfirmRemoteIcon -> {
+                val pending = _uiStateFlow.value.pendingRemoteIconRef ?: return@launch
+                _uiStateFlow.update { it.copy(pendingRemoteIconRef = null) }
+                onPickIcon(pending.uniqueFileName)
             }
 
             is IconPickerIntent.OnUpdateSearchQuery ->
@@ -121,7 +133,7 @@ class IconPickerViewModel @Inject constructor(
 
             is IconPickerIntent.OnClearSearchQuery -> searchQuery = ""
             is IconPickerIntent.OnRemoveIcon -> {
-                _uiStateFlow.update { it.copy(previewIcon = null) }
+                _uiStateFlow.update { it.copy(previewIcon = null, pendingRemoteIconRef = null) }
                 onPickIcon(null)
             }
             is IconPickerIntent.OnDeleteIcon -> {
@@ -142,13 +154,14 @@ class IconPickerViewModel @Inject constructor(
                     _uiStateFlow.update {
                         it.copy(
                             previewIcon = iconRef,
+                            pendingRemoteIconRef = iconRef,   // wartet auf Bestätigung
                             remoteImportInProgress = false,
                             importingImageUrl = null,
                             remoteImportSucceeded = true,
                             remoteImportEventId = it.remoteImportEventId + 1
                         )
                     }
-                    onPickIcon(iconRef.uniqueFileName)
+                    // onPickIcon() wird NICHT hier aufgerufen – erst nach Bestätigung
                 } else {
                     _uiStateFlow.update {
                         it.copy(

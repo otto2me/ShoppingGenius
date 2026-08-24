@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Search
@@ -119,7 +120,9 @@ fun IconPickerScreen(
         IconPickerTopAppBar(
             modifier = Modifier.fillMaxWidth(),
             onLeadingIconClick = navigateBack,
-            onTrailingIconClick = { onIntent(IconPickerIntent.OnRemoveIcon) }
+            onTrailingIconClick = { onIntent(IconPickerIntent.OnRemoveIcon) },
+            confirmButtonShown = uiState.pendingRemoteIconRef != null,
+            onConfirmClick = { onIntent(IconPickerIntent.OnConfirmRemoteIcon) }
         )
         uiState.product?.let { product ->
             val overviewIcon = uiState.previewIcon ?: product.icon
@@ -178,7 +181,9 @@ fun IconPickerScreen(
 private fun IconPickerTopAppBar(
     modifier: Modifier = Modifier,
     onLeadingIconClick: () -> Unit,
-    onTrailingIconClick: () -> Unit
+    onTrailingIconClick: () -> Unit,
+    confirmButtonShown: Boolean = false,
+    onConfirmClick: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -201,16 +206,26 @@ private fun IconPickerTopAppBar(
             text = stringResource(id = R.string.icon_picker_screen_title),
             style = MaterialTheme.typography.titleLarge
         )
-        IconButton(
+        androidx.compose.foundation.layout.Row(
             modifier = Modifier
                 .padding(end = TopAppBarActionsHorizontalPadding)
-                .align(Alignment.CenterEnd),
-            onClick = onTrailingIconClick
+                .align(Alignment.CenterEnd)
         ) {
-            Icon(
-                imageVector = Icons.Default.Delete,
-                contentDescription = stringResource(R.string.delete)
-            )
+            if (confirmButtonShown) {
+                IconButton(onClick = onConfirmClick) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = stringResource(R.string.done),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+            IconButton(onClick = onTrailingIconClick) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = stringResource(R.string.delete)
+                )
+            }
         }
     }
 }

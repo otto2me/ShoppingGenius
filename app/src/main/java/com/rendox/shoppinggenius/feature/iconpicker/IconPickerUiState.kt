@@ -15,5 +15,7 @@ data class IconPickerUiState(
     val remoteImportInProgress: Boolean = false,
     val importingImageUrl: String? = null,
     val remoteImportSucceeded: Boolean? = null,
-    val remoteImportEventId: Long = 0L
+    val remoteImportEventId: Long = 0L,
+    /** Heruntergeladenes DDG-Icon das noch auf Bestätigung wartet (noch nicht gespeichert). */
+    val pendingRemoteIconRef: IconReference? = null
 )

@@ -76,10 +76,19 @@ class CategoryIconPickerViewModel @Inject constructor(
 
     fun onIntent(intent: IconPickerIntent) = viewModelScope.launch {
         when (intent) {
-            is IconPickerIntent.OnPickIcon ->
+            is IconPickerIntent.OnPickIcon -> {
+                _uiStateFlow.update { it.copy(pendingRemoteIconRef = null) }
                 categoryRepository.updateCategoryIcon(categoryId, intent.iconReference.uniqueFileName)
-            is IconPickerIntent.OnRemoveIcon ->
+            }
+            is IconPickerIntent.OnConfirmRemoteIcon -> {
+                val pending = _uiStateFlow.value.pendingRemoteIconRef ?: return@launch
+                _uiStateFlow.update { it.copy(pendingRemoteIconRef = null) }
+                categoryRepository.updateCategoryIcon(categoryId, pending.uniqueFileName)
+            }
+            is IconPickerIntent.OnRemoveIcon -> {
+                _uiStateFlow.update { it.copy(pendingRemoteIconRef = null) }
                 categoryRepository.updateCategoryIcon(categoryId, null)
+            }
             is IconPickerIntent.OnUpdateSearchQuery ->
                 searchQuery = intent.query
             is IconPickerIntent.OnClearSearchQuery ->
@@ -99,15 +108,17 @@ class CategoryIconPickerViewModel @Inject constructor(
                     fallbackImageUrl = intent.fallbackImageUrl
                 )
                 if (iconRef != null) {
-                    categoryRepository.updateCategoryIcon(categoryId, iconRef.uniqueFileName)
                     _uiStateFlow.update {
                         it.copy(
+                            previewIcon = iconRef,
+                            pendingRemoteIconRef = iconRef,   // wartet auf Bestätigung
                             remoteImportInProgress = false,
                             importingImageUrl = null,
                             remoteImportSucceeded = true,
                             remoteImportEventId = it.remoteImportEventId + 1
                         )
                     }
+                    // categoryRepository.updateCategoryIcon() wird NICHT hier aufgerufen
                 } else {
                     _uiStateFlow.update {
                         it.copy(

@@ -8,6 +8,8 @@ sealed interface IconPickerIntent {
         val imageUrl: String,
         val fallbackImageUrl: String? = null
     ) : IconPickerIntent
+    /** Bestätigt das ausgewählte DDG-Bild und speichert es als Icon. */
+    data object OnConfirmRemoteIcon : IconPickerIntent
     data class OnUpdateSearchQuery(val query: String) : IconPickerIntent
     data object OnClearSearchQuery : IconPickerIntent
     data object OnRemoveIcon : IconPickerIntent
