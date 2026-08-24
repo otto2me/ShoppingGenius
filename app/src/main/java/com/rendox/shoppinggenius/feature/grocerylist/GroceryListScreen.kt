@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -32,6 +33,7 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -54,7 +56,6 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
@@ -622,7 +623,7 @@ private fun GroceryListItemsList(
         modifier = modifier,
         state = lazyListState,
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         // Workaround: verhindert unerwartetes Verhalten beim ersten klickbaren Listen-Element.
         item(key = "DummyListHeader", contentType = "Dummy") {
@@ -659,15 +660,15 @@ private fun GroceryListItemsList(
         }
 
         groceryGroups.forEachIndexed { groupIndex, group ->
-            if (group.titleId != null) {
+            if (group.titleId != null || !group.title.isNullOrBlank()) {
                 item(
                     key = "ListTitle$groupIndex",
                     contentType = "Title"
                 ) {
                     Text(
-                        modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
-                        text = stringResource(id = R.string.purchased_groceries_group_title),
-                        style = MaterialTheme.typography.titleMedium
+                        modifier = Modifier.padding(top = 12.dp, bottom = 4.dp),
+                        text = group.title ?: stringResource(id = group.titleId!!),
+                        style = MaterialTheme.typography.titleSmall
                     )
                 }
             }
@@ -828,49 +829,50 @@ private fun GroceryListRowItem(
         },
         shape = RoundedCornerShape(GroceryItemRounding)
     ) {
-        ListItem(
-            modifier = Modifier.combinedClickable(
-                onClick = onClick,
-                onLongClick = onLongClick
-            ),
-            headlineContent = {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 42.dp)
+                .combinedClickable(
+                    onClick = onClick,
+                    onLongClick = onLongClick
+                )
+                .padding(start = 8.dp, end = 4.dp, top = 2.dp, bottom = 2.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                modifier = Modifier.size(28.dp),
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                shape = MaterialTheme.shapes.small
+            ) {
+                GroceryIcon(
+                    modifier = Modifier.padding(3.dp),
+                    groceryName = grocery.name,
+                    iconFile = iconFile
+                )
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = grocery.name,
+                    style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-            },
-            supportingContent = {
                 grocery.description?.takeIf { it.isNotBlank() }?.let {
                     Text(
                         text = it,
+                        style = MaterialTheme.typography.bodySmall,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
-            },
-            leadingContent = {
-                Surface(
-                    modifier = Modifier
-                        .padding(end = 4.dp)
-                        .size(36.dp),
-                    color = MaterialTheme.colorScheme.surfaceContainer,
-                    shape = MaterialTheme.shapes.small
-                ) {
-                    GroceryIcon(
-                        modifier = Modifier.padding(4.dp),
-                        groceryName = grocery.name,
-                        iconFile = iconFile
-                    )
-                }
-            },
-            trailingContent = {
-                Checkbox(
-                    checked = grocery.purchased,
-                    onCheckedChange = onCheckedChange
-                )
             }
-        )
+            Checkbox(
+                checked = grocery.purchased,
+                onCheckedChange = onCheckedChange
+            )
+        }
     }
 }
 

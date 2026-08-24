@@ -56,6 +56,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         userPreferencesDataSource.updateUseListViewForGroceries(useListViewForGroceries)
     }
 
+    override suspend fun updateGroupByCategoryInListMode(groupByCategoryInListMode: Boolean) {
+        userPreferencesDataSource.updateGroupByCategoryInListMode(groupByCategoryInListMode)
+    }
+
     override suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int) {
         userPreferencesDataSource.updateWidgetBackgroundOpacityPercent(opacityPercent)
     }

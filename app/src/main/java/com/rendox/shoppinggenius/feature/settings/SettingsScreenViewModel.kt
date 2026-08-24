@@ -128,6 +128,9 @@ class SettingsScreenViewModel @Inject constructor(
             is SettingsScreenIntent.ChangeUseListViewForGroceries ->
                 userPreferencesRepository.updateUseListViewForGroceries(intent.useListViewForGroceries)
 
+            is SettingsScreenIntent.ChangeGroupByCategoryInListMode ->
+                userPreferencesRepository.updateGroupByCategoryInListMode(intent.groupByCategoryInListMode)
+
             is SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent ->
                 userPreferencesRepository.updateWidgetBackgroundOpacityPercent(intent.opacityPercent)
 

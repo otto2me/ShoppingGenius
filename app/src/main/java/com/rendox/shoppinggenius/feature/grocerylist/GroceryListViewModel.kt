@@ -127,6 +127,10 @@ class GroceryListViewModel @AssistedInject constructor(
             initialValue = false
         )
 
+    private val groupByCategoryInListModeFlow = userPreferencesRepository.userPreferencesFlow
+        .map { it.groupByCategoryInListMode }
+        .distinctUntilChanged()
+
     init {
         viewModelScope.launch {
             allProductsFlow
@@ -205,16 +209,13 @@ class GroceryListViewModel @AssistedInject constructor(
         }
         viewModelScope.launch {
             groceriesInList
-                .map { groceries ->
-                    groceries
-                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.name })
-                        .groupBy { it.purchased }
-                        .toSortedMap()
+                .combine(groupByCategoryInListModeFlow) { groceries, groupByCategoryInListMode ->
+                    groceries to groupByCategoryInListMode
                 }
-                .onEach { groups ->
+                .onEach { (groceries, _) ->
                     val groceryListPurchaseState = when {
-                        groups.isEmpty() -> GroceryListPurchaseState.LIST_IS_EMPTY
-                        groups.size == 1 && groups.firstKey() -> GroceryListPurchaseState.SHOPPING_DONE
+                        groceries.isEmpty() -> GroceryListPurchaseState.LIST_IS_EMPTY
+                        groceries.all { it.purchased } -> GroceryListPurchaseState.SHOPPING_DONE
                         else -> GroceryListPurchaseState.LIST_IS_FULL
                     }
                     _groceryListPurchaseStateFlow.update { groceryListPurchaseState }
@@ -232,19 +233,52 @@ class GroceryListViewModel @AssistedInject constructor(
                         else -> {}
                     }
                 }
-                .map { groups ->
-                    groups.map { group ->
-                        val purchased = group.key
-                        val titleId =
-                            if (purchased) R.string.purchased_groceries_group_title else null
-                        val sortedGroceries = if (purchased) {
-                            group.value.sortedByDescending { it.purchasedLastModified }
-                        } else {
-                            group.value.sortedWith(
-                                compareBy(nullsLast()) { it.category?.sortingPriority }
+                .map { (groceries, groupByCategoryInListMode) ->
+                    val purchasedGroceries = groceries
+                        .filter { it.purchased }
+                        .sortedByDescending { it.purchasedLastModified }
+                    val unpurchasedGroceries = groceries
+                        .filterNot { it.purchased }
+                        .sortedWith(
+                            compareBy<Grocery> { it.category?.sortingPriority ?: Long.MAX_VALUE }
+                                .thenBy(String.CASE_INSENSITIVE_ORDER) { it.name }
+                        )
+
+                    buildList {
+                        if (groupByCategoryInListMode) {
+                            unpurchasedGroceries
+                                .groupBy { it.category?.id }
+                                .forEach { (_, categoryGroceries) ->
+                                    val category = categoryGroceries.firstOrNull()?.category
+                                    add(
+                                        GroceryGroup(
+                                            titleId = if (category == null) {
+                                                R.string.custom_category_title
+                                            } else {
+                                                null
+                                            },
+                                            title = category?.name,
+                                            groceries = categoryGroceries
+                                        )
+                                    )
+                                }
+                        } else if (unpurchasedGroceries.isNotEmpty()) {
+                            add(
+                                GroceryGroup(
+                                    titleId = null,
+                                    groceries = unpurchasedGroceries
+                                )
                             )
                         }
-                        GroceryGroup(titleId, sortedGroceries)
+
+                        if (purchasedGroceries.isNotEmpty()) {
+                            add(
+                                GroceryGroup(
+                                    titleId = R.string.purchased_groceries_group_title,
+                                    groceries = purchasedGroceries
+                                )
+                            )
+                        }
                     }
                 }
                 .flowOn(defaultDispatcher)

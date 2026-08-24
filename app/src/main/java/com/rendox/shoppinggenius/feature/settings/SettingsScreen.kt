@@ -300,6 +300,17 @@ private fun SettingsScreen(
                         )
                     }
                     item {
+                        AnimatedVisibility(visible = uiState.userPreferences.useListViewForGroceries) {
+                            GroupByCategoryInListModeSetting(
+                                groupByCategoryInListMode =
+                                    uiState.userPreferences.groupByCategoryInListMode,
+                                onGroupByCategoryInListModeChanged = {
+                                    onIntent(SettingsScreenIntent.ChangeGroupByCategoryInListMode(it))
+                                }
+                            )
+                        }
+                    }
+                    item {
                         WidgetBackgroundOpacitySetting(
                             opacityPercent = uiState.userPreferences.widgetBackgroundOpacityPercent,
                             onOpacityPercentChanged = {
@@ -691,6 +702,33 @@ private fun GroceryListViewModeSetting(
             Switch(
                 checked = useListViewForGroceries,
                 onCheckedChange = onUseListViewForGroceriesChanged
+            )
+        }
+    )
+}
+
+@Composable
+private fun GroupByCategoryInListModeSetting(
+    modifier: Modifier = Modifier,
+    groupByCategoryInListMode: Boolean,
+    onGroupByCategoryInListModeChanged: (Boolean) -> Unit
+) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(start = 40.dp)
+            .clickable { onGroupByCategoryInListModeChanged(!groupByCategoryInListMode) },
+        title = stringResource(R.string.settings_group_by_category_in_list_mode_title),
+        description = stringResource(R.string.settings_group_by_category_in_list_mode_description),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_swap_vert_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            Switch(
+                checked = groupByCategoryInListMode,
+                onCheckedChange = onGroupByCategoryInListModeChanged
             )
         }
     )

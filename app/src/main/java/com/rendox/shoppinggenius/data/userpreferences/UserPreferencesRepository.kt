@@ -14,6 +14,7 @@ interface UserPreferencesRepository {
     suspend fun updateUseSystemAccentColor(useSystemAccentColor: Boolean)
     suspend fun updateOpenLastViewedList(openLastViewedList: Boolean)
     suspend fun updateUseListViewForGroceries(useListViewForGroceries: Boolean)
+    suspend fun updateGroupByCategoryInListMode(groupByCategoryInListMode: Boolean)
     suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int)
     suspend fun updateSelectedTheme(selectedTheme: ShoppingGeniusColorScheme)
     suspend fun updateSelectedLanguageTag(selectedLanguageTag: String?)

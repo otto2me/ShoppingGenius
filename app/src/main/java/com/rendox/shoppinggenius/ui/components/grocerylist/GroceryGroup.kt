@@ -5,5 +5,6 @@ import com.rendox.shoppinggenius.model.Grocery
 
 data class GroceryGroup(
     @StringRes val titleId: Int?,
+    val title: String? = null,
     val groceries: List<Grocery>
 )
