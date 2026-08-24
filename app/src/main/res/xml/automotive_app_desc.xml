@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Deklariert diese App als Template-basierte App für Android Auto -->
+<automotiveApp>
+    <uses name="template"/>
+</automotiveApp>
+

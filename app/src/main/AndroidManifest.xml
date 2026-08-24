@@ -24,6 +24,11 @@
             android:name="autoStoreLocales"
             android:value="true" />
 
+        <!-- Android Auto: App-Typ (template-basiert) -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -54,6 +59,20 @@
             android:name=".feature.widget.ActiveGroceryListRemoteViewsService"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             android:exported="false" />
+
+        <!-- Android Auto / Automotive OS: Car App Service -->
+        <service
+            android:name=".feature.carapp.ShoppingGeniusCarAppService"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="androidx.car.app.CarAppService" />
+                <category android:name="androidx.car.app.category.POI" />
+            </intent-filter>
+            <meta-data
+                android:name="androidx.car.app.minCarApiLevel"
+                android:value="1" />
+        </service>
     </application>
 
 </manifest>

@@ -82,6 +82,11 @@
     <string name="widget_no_items">No items in this list</string>
     <!-- General -->
     <string name="done">Done</string>
+
+    <!-- Android Auto / Automotive OS -->
+    <string name="car_app_no_lists">No shopping lists yet.</string>
+    <string name="car_app_no_items">This list is empty.</string>
+    <string name="car_app_item_count">%d items</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="back">Back</string>
