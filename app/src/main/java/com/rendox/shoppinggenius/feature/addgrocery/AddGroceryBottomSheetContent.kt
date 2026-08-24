@@ -1,5 +1,10 @@
 package com.rendox.shoppinggenius.feature.addgrocery
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.speech.RecognizerIntent
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -18,6 +23,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -33,9 +39,12 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import com.rendox.shoppinggenius.R
 import com.rendox.shoppinggenius.model.Category
 import com.rendox.shoppinggenius.model.Grocery
@@ -145,6 +154,21 @@ private fun BottomSheetHeader(
     onSearchQueryChanged: (String) -> Unit,
     clearSearchQuery: () -> Unit
 ) {
+    val context = LocalContext.current
+    val speechResultLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { activityResult ->
+        if (activityResult.resultCode == Activity.RESULT_OK) {
+            val spokenText = activityResult.data
+                ?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                ?.firstOrNull()
+                ?.trim()
+            if (!spokenText.isNullOrEmpty()) {
+                onSearchQueryChanged(spokenText)
+            }
+        }
+    }
+
     Row(
         modifier = Modifier
             .padding(horizontal = 16.dp)
@@ -167,6 +191,36 @@ private fun BottomSheetHeader(
             },
             clearSearchInputButtonIsShown = clearSearchInputButtonIsShown,
             onClearSearchInputClicked = clearSearchQuery,
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                            putExtra(
+                                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+                            )
+                            putExtra(
+                                RecognizerIntent.EXTRA_PROMPT,
+                                context.getString(R.string.add_grocery_voice_input_prompt)
+                            )
+                        }
+                        try {
+                            speechResultLauncher.launch(intent)
+                        } catch (_: ActivityNotFoundException) {
+                            Toast.makeText(
+                                context,
+                                context.getString(R.string.add_grocery_voice_input_not_available),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_mic_24),
+                        contentDescription = stringResource(R.string.add_grocery_voice_input_description)
+                    )
+                }
+            },
             keyboardActions = KeyboardActions(
                 onDone = { onKeyboardDone() }
             ),

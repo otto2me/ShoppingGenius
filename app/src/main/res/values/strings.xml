@@ -10,6 +10,9 @@
     <string name="add_grocery_search_field_placeholder_collapsed">Add a grocery</string>
     <string name="add_grocery_search_field_placeholder_expanded">e.g. bread</string>
     <string name="add_grocery_search_field_trailing_icon_description">Clear text in search bar</string>
+    <string name="add_grocery_voice_input_description">Voice input</string>
+    <string name="add_grocery_voice_input_prompt">Speak item name</string>
+    <string name="add_grocery_voice_input_not_available">Voice input is not available on this device.</string>
     <string name="add_grocery_refine_item_options_title">Refine Â«%sÂ»</string>
     <string name="add_grocery_edit_item_button_title">Enter item details</string>
     <!-- EditGrocery -->

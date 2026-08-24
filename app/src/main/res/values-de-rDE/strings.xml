@@ -9,6 +9,9 @@
     <string name="add_grocery_search_field_placeholder_collapsed">Lebensmittel hinzufügen</string>
     <string name="add_grocery_search_field_placeholder_expanded">z.B. Brot</string>
     <string name="add_grocery_search_field_trailing_icon_description">Text in der Suchleiste löschen</string>
+    <string name="add_grocery_voice_input_description">Spracheingabe</string>
+    <string name="add_grocery_voice_input_prompt">Produktnamen sprechen</string>
+    <string name="add_grocery_voice_input_not_available">Spracheingabe ist auf diesem Gerät nicht verfügbar.</string>
     <string name="add_grocery_refine_item_options_title">Verfeinere Â«%sÂ»</string>
     <string name="add_grocery_edit_item_button_title">Details eingeben</string>
     <!-- EditGrocery -->

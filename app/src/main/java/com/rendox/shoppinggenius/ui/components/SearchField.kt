@@ -2,6 +2,7 @@ package com.rendox.shoppinggenius.ui.components
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
@@ -35,6 +36,7 @@ fun SearchField(
     onSearchQueryChanged: (String) -> Unit,
     placeholder: @Composable () -> Unit,
     leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
     clearSearchInputButtonIsShown: Boolean,
     onClearSearchInputClicked: () -> Unit,
     keyboardActions: KeyboardActions = KeyboardActions.Default
@@ -81,7 +83,8 @@ fun SearchField(
         clearSearchInputButtonIsShown = clearSearchInputButtonIsShown,
         onClearSearchInputClicked = onClearSearchInputClicked,
         keyboardActions = keyboardActions,
-        leadingIcon = leadingIcon
+        leadingIcon = leadingIcon,
+        trailingIcon = trailingIcon
     )
 }
 
@@ -92,6 +95,7 @@ fun SearchField(
     onSearchQueryChanged: (TextFieldValue) -> Unit,
     placeholder: @Composable () -> Unit,
     leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
     clearSearchInputButtonIsShown: Boolean,
     onClearSearchInputClicked: () -> Unit,
     keyboardActions: KeyboardActions = KeyboardActions.Default
@@ -116,13 +120,16 @@ fun SearchField(
         trailingIcon = {
             val contentDescription =
                 stringResource(R.string.add_grocery_search_field_trailing_icon_description)
-            if (clearSearchInputButtonIsShown) {
-                IconButton(onClick = onClearSearchInputClicked) {
-                    Icon(
-                        imageVector = Icons.Default.Clear,
-                        contentDescription = contentDescription
-                    )
+            Row {
+                if (clearSearchInputButtonIsShown) {
+                    IconButton(onClick = onClearSearchInputClicked) {
+                        Icon(
+                            imageVector = Icons.Default.Clear,
+                            contentDescription = contentDescription
+                        )
+                    }
                 }
+                trailingIcon?.invoke()
             }
         },
         leadingIcon = leadingIcon
