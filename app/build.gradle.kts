@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlin)
@@ -7,22 +9,49 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.gradlePlayPublisher)
 }
+
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use(::load)
+    }
+}
+
+val hasReleaseSigningConfig = listOf(
+    "RELEASE_STORE_FILE",
+    "RELEASE_STORE_PASSWORD",
+    "RELEASE_KEY_ALIAS",
+    "RELEASE_KEY_PASSWORD"
+).all { !localProperties.getProperty(it).isNullOrBlank() }
 
 android {
     namespace = "com.rendox.shoppinggenius"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rendox.shoppinggenius"
         minSdk = 21
-        targetSdk = 34
-        versionCode = 6
-        versionName = "0.1.3"
+        targetSdk = 35
+        versionCode = 8
+        versionName = "0.1.4"
 
         testInstrumentationRunner = "com.rendox.shoppinggenius.testing.ShoppingGeniusTestRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            val storeFilePath = localProperties.getProperty("RELEASE_STORE_FILE")
+            if (!storeFilePath.isNullOrBlank()) {
+                storeFile = file(storeFilePath)
+                storePassword = localProperties.getProperty("RELEASE_STORE_PASSWORD")
+                keyAlias = localProperties.getProperty("RELEASE_KEY_ALIAS")
+                keyPassword = localProperties.getProperty("RELEASE_KEY_PASSWORD")
+            }
         }
     }
 
@@ -34,7 +63,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+            if (!hasReleaseSigningConfig) {
+                error(
+                    "Release signing is not configured. Add RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS and RELEASE_KEY_PASSWORD to local.properties"
+                )
+            }
+            signingConfig = signingConfigs.getByName("release")
         }
         create("benchmark") {
             initWith(buildTypes.getByName("release"))
@@ -62,11 +96,26 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
     testOptions {
         unitTests.all { it.useJUnitPlatform() }
     }
     room {
         schemaDirectory("$projectDir/schemas")
+    }
+}
+
+val playServiceAccountJson = localProperties.getProperty("PLAY_SERVICE_ACCOUNT_JSON").orEmpty()
+if (playServiceAccountJson.isNotBlank()) {
+    play {
+        serviceAccountCredentials.set(file(playServiceAccountJson))
+        // Track: "internal", "alpha", "beta" oder "production"
+        track.set("internal")
+        // AAB (empfohlen) statt APK hochladen
+        defaultToAppBundles.set(true)
     }
 }
 

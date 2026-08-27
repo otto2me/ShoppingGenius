@@ -8,3 +8,16 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Log- und Validator-Ausgaben
+aa_validator_*.txt
+build_*.txt
+build_out*.txt
+build_output*.txt
+install_*.txt
+pkgflags_*.txt
+info_log.txt
+full_debug_log.txt
+classpath_info.txt
+all_tasks.txt
+
