@@ -38,6 +38,9 @@
     <string name="settings_use_system_accent_color">Ð’Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸ Ð°ÐºÑ†ÐµÐ½Ñ‚Ð½Ð¸Ð¹ ÐºÐ¾Ð»Ñ–Ñ€ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¸</string>
     <string name="settings_preferences">ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ</string>
     <string name="settings_open_last_viewed_list">Ð’Ñ–Ð´ÐºÑ€Ð¸Ð²Ð°Ñ‚Ð¸ Ð¾ÑÑ‚Ð°Ð½Ð½Ñ–Ð¹ Ð¿ÐµÑ€ÐµÐ³Ð»ÑÐ½ÑƒÑ‚Ð¸Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº</string>
+    <string name="settings_auto_delete_completed_title">Автовидалення виконаних товарів</string>
+    <string name="settings_auto_delete_completed_description">Автоматично видаляти виконані товари через %1$d год.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d год</string>
     <string name="settings_default_list">Ð’Ñ–Ð´ÐºÑ€Ð¸Ð²Ð°Ñ‚Ð¸ ÑÐ¿Ð¸ÑÐ¾Ðº Ð·Ð° Ð·Ð°Ð¼Ð¾Ð²Ñ‡ÑƒÐ²Ð°Ð½Ð½ÑÐ¼</string>
     <string name="settings_default_list_unspecified">ÐÐµ Ð²ÐºÐ°Ð·Ð°Ð½Ð¸Ð¹</string>
     <string name="settings_reorder_categories_title">Ð¡Ð¾Ñ€Ñ‚ÑƒÐ²Ð°Ñ‚Ð¸ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ñ—</string>

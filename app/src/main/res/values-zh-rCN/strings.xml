@@ -35,6 +35,9 @@
     <string name="settings_use_system_accent_color">Use System Accent Color</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_open_last_viewed_list">Open Last Viewed List</string>
+    <string name="settings_auto_delete_completed_title">自动删除已完成项目</string>
+    <string name="settings_auto_delete_completed_description">在 %1$d 小时后自动移除已完成的项目。</string>
+    <string name="settings_auto_delete_completed_hours">%1$d 小时</string>
     <string name="settings_default_list">Open Default List</string>
     <string name="settings_default_list_unspecified">Undefined</string>
     <string name="settings_reorder_categories_title">Reorder Categories</string>

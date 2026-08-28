@@ -47,6 +47,9 @@
     <string name="settings_group_by_category_in_list_mode_description">Sortiert offene Einträge nach Kategorie und zeigt Kategorien als Überschrift.</string>
     <string name="settings_widget_background_opacity_title">Widget-Hintergrund Deckkraft</string>
     <string name="settings_widget_background_opacity_description">Widget-Transparenz anpassen (%1$d%% Deckkraft).</string>
+    <string name="settings_auto_delete_completed_title">Erledigte Einträge automatisch löschen</string>
+    <string name="settings_auto_delete_completed_description">Erledigte Einträge automatisch nach %1$d Stunden entfernen.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d Stunden</string>
     <string name="settings_default_list">Standardliste öffnen</string>
     <string name="settings_default_list_unspecified">Undefiniert</string>
     <string name="settings_reorder_categories_title">Kategorien neu sortieren</string>

@@ -36,6 +36,9 @@
     <string name="settings_use_system_accent_color">Use System Accent Color</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_open_last_viewed_list">Open Last Viewed List</string>
+    <string name="settings_auto_delete_completed_title">Slet gennemførte varer automatisk</string>
+    <string name="settings_auto_delete_completed_description">Fjern automatisk gennemførte varer efter %1$d timer.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d timer</string>
     <string name="settings_default_list">Open Default List</string>
     <string name="settings_default_list_unspecified">Undefined</string>
     <string name="settings_reorder_categories_title">Reorder Categories</string>

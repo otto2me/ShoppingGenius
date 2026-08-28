@@ -36,6 +36,9 @@
     <string name="settings_use_system_accent_color">Utiliser les couleurs du systÃ¨me</string>
     <string name="settings_preferences">PrÃ©fÃ©rences</string>
     <string name="settings_open_last_viewed_list">Ouvrir la derniÃ¨re liste vue</string>
+    <string name="settings_auto_delete_completed_title">Suppression automatique des articles complétés</string>
+    <string name="settings_auto_delete_completed_description">Supprimer automatiquement les articles complétés après %1$d heures.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d heures</string>
     <string name="settings_default_list">Ouvrir la liste par dÃ©faut</string>
     <string name="settings_default_list_unspecified">Non dÃ©fini</string>
     <string name="settings_reorder_categories_title">RÃ©organiser les catÃ©gories</string>

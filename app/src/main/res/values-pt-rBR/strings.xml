@@ -36,6 +36,9 @@
     <string name="settings_use_system_accent_color">Usar modo de cor padrÃ£o do sistema</string>
     <string name="settings_preferences">PreferÃªncias</string>
     <string name="settings_open_last_viewed_list">Abrir a Ãºltima lista visualizada</string>
+    <string name="settings_auto_delete_completed_title">Excluir itens concluídos automaticamente</string>
+    <string name="settings_auto_delete_completed_description">Remover automaticamente os itens concluídos após %1$d horas.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d horas</string>
     <string name="settings_default_list">Abrir Lista PadrÃ£o</string>
     <string name="settings_default_list_unspecified">NÃ£o definido</string>
     <string name="settings_reorder_categories_title">Reordenar Categorias</string>

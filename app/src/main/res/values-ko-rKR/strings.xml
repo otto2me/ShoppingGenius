@@ -35,6 +35,9 @@
     <string name="settings_use_system_accent_color">Use System Accent Color</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_open_last_viewed_list">Open Last Viewed List</string>
+    <string name="settings_auto_delete_completed_title">완료된 항목 자동 삭제</string>
+    <string name="settings_auto_delete_completed_description">%1$d시간 후 완료된 항목을 자동으로 제거합니다.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d시간</string>
     <string name="settings_default_list">Open Default List</string>
     <string name="settings_default_list_unspecified">Undefined</string>
     <string name="settings_reorder_categories_title">Reorder Categories</string>

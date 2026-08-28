@@ -36,6 +36,9 @@
     <string name="settings_use_system_accent_color">Sistem Vurgu Rengini Kullan</string>
     <string name="settings_preferences">Tercihler</string>
     <string name="settings_open_last_viewed_list">Son GÃ¶rÃ¼len Listeyi AÃ§</string>
+    <string name="settings_auto_delete_completed_title">Tamamlanan Öğeleri Otomatik Sil</string>
+    <string name="settings_auto_delete_completed_description">Tamamlanan öğeleri %1$d saat sonra otomatik olarak kaldır.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d saat</string>
     <string name="settings_default_list">VarsayÄ±lan Listeyi AÃ§</string>
     <string name="settings_default_list_unspecified">TanÄ±msÄ±z</string>
     <string name="settings_reorder_categories_title">Kategorileri Yeniden DÃ¼zenle</string>

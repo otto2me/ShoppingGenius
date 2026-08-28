@@ -40,6 +40,9 @@
     <string name="settings_use_system_accent_color">Ø§Ø³ØªØ®Ø¯Ù… Ù„ÙˆÙ† ØªÙ…ÙŠÙŠØ² Ø§Ù„Ù†Ø¸Ø§Ù…</string>
     <string name="settings_preferences">Ø§Ù„ØªÙØ¶ÙŠÙ„Ø§Øª</string>
     <string name="settings_open_last_viewed_list">ÙØªØ­ Ù‚Ø§��¦Ù…Ø© Ø¢Ø®Ø± Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„Ù…Ø¹Ø±ÙˆØ¶Ø©</string>
+    <string name="settings_auto_delete_completed_title">الحذف التلقائي للعناصر المكتملة</string>
+    <string name="settings_auto_delete_completed_description">إزالة العناصر المكتملة تلقائيًا بعد %1$d ساعة.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d ساعة</string>
     <string name="settings_default_list">ÙØªØ­ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠØ©</string>
     <string name="settings_default_list_unspecified">ØºÙŠØ± Ù…Ø­Ø¯Ø¯</string>
     <string name="settings_reorder_categories_title">Ø¥Ø¹Ø§Ø¯Ø© ØªØ±ØªÙŠØ¨ Ø§Ù„ÙØ¦Ø§Øª</string>

@@ -36,6 +36,9 @@
     <string name="settings_use_system_accent_color">Usa Colore Accento Di Sistema</string>
     <string name="settings_preferences">Preferenze</string>
     <string name="settings_open_last_viewed_list">Apri Lista Ultimi Visualizzati</string>
+    <string name="settings_auto_delete_completed_title">Elimina automaticamente gli articoli completati</string>
+    <string name="settings_auto_delete_completed_description">Rimuovi automaticamente gli articoli completati dopo %1$d ore.</string>
+    <string name="settings_auto_delete_completed_hours">%1$d ore</string>
     <string name="settings_default_list">Apri Elenco Predefinito</string>
     <string name="settings_default_list_unspecified">Non definito</string>
     <string name="settings_reorder_categories_title">Riordina Categorie</string>
