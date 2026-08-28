@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Shopping Genius</string>
     <!-- GroceryListScreen -->
@@ -13,7 +13,7 @@
     <string name="add_grocery_voice_input_description">Voice input</string>
     <string name="add_grocery_voice_input_prompt">Speak item name</string>
     <string name="add_grocery_voice_input_not_available">Voice input is not available on this device.</string>
-    <string name="add_grocery_refine_item_options_title">Refine Â«%sÂ»</string>
+    <string name="add_grocery_refine_item_options_title">Refine «%s»</string>
     <string name="add_grocery_edit_item_button_title">Enter item details</string>
     <!-- EditGrocery -->
     <string name="edit_grocery_item_description_placeholder">Quantity, description</string>
@@ -68,8 +68,12 @@
     <string name="email_link_title">Email Developer</string>
     <string name="email_link_description">Reach out to the developer for friendly feedback, suggestions, or any other input you have in mind.</string>
     <string name="settings_credits">Credits</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_version_description">Version %1$s (Build %2$d)</string>
     <string name="settings_image_by_freepik_title">Image by pch.vector on Freepik</string>
     <string name="settings_image_by_freepik_description">The image displayed on grocery list screen was created by pch.vector</string>
+    <string name="settings_categories_editor">Categories Editor</string>
+    <string name="settings_categories_editor_description">Reorder and manage your shopping categories. Drag to rearrange them to match your favorite store layout.</string>
     <!-- IconPickerScreen -->
     <string name="icon_picker_screen_title">Choose icon</string>
     <string name="icon_picker_search_field_placeholder">Search an icon</string>

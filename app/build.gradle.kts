@@ -34,8 +34,8 @@ android {
         applicationId = "com.rendox.shoppinggenius"
         minSdk = 21
         targetSdk = 35
-        versionCode = 10
-        versionName = "0.1.6"
+        versionCode = 11
+        versionName = "0.1.7"
 
         testInstrumentationRunner = "com.rendox.shoppinggenius.testing.ShoppingGeniusTestRunner"
         vectorDrawables {
@@ -105,6 +105,15 @@ android {
     }
     room {
         schemaDirectory("$projectDir/schemas")
+    }
+}
+
+androidComponents {
+    // Keep local default builds stable; benchmark variants can be re-enabled explicitly.
+    beforeVariants(selector().withBuildType("benchmark")) { variantBuilder ->
+        if (!providers.gradleProperty("enableBenchmark").isPresent) {
+            variantBuilder.enable = false
+        }
     }
 }
 

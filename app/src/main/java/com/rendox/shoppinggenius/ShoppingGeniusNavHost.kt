@@ -44,11 +44,6 @@ fun ShoppingGeniusNavHost(
                 if (navController.currentDestination?.route == GROCERY_LISTS_DASHBOARD_ROUTE) {
                     navController.navigateToSettings()
                 }
-            },
-            navigateToListenScreen = {
-                if (navController.currentDestination?.route == GROCERY_LISTS_DASHBOARD_ROUTE) {
-                    navController.navigateToListen()
-                }
             }
         )
         groceryListNestedNavigation(
@@ -75,7 +70,10 @@ fun ShoppingGeniusNavHost(
             }
         )
         settingsScreen(
-            navigateBack = { navController.popBackStack() }
+            navigateBack = { navController.popBackStack() },
+            navigateToListen = {
+                navController.navigateToListen()
+            }
         )
         iconPickerScreen(
             navigateBack = { navController.popBackStack() }

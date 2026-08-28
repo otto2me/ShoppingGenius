@@ -97,7 +97,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun SettingsRoute(
     viewModel: SettingsScreenViewModel = hiltViewModel(),
-    navigateBack: () -> Unit = {}
+    navigateBack: () -> Unit = {},
+    navigateToListen: () -> Unit = {}
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val showDynamicColorNotSupportedMessage by viewModel.showDynamicColorNotSupportedMessage
@@ -138,7 +139,8 @@ fun SettingsRoute(
         onIntent = viewModel::onIntent,
         onExportClick = { exportLauncher.launch("ShoppingGenius_backup.zip") },
         onImportClick = { importLauncher.launch(arrayOf("application/zip", "*/*")) },
-        navigateBack = navigateBack
+        navigateBack = navigateBack,
+        navigateToListen = navigateToListen
     )
 }
 
@@ -151,7 +153,8 @@ private fun SettingsScreen(
     onIntent: (SettingsScreenIntent) -> Unit,
     onExportClick: () -> Unit = {},
     onImportClick: () -> Unit = {},
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
+    navigateToListen: () -> Unit = {}
 ) {
     var isThemeDropdownExpanded by remember { mutableStateOf(false) }
     var isLanguageDropdownExpanded by remember { mutableStateOf(false) }
@@ -342,6 +345,12 @@ private fun SettingsScreen(
                         }
                     }
                     item {
+                        SettingsTitle(
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                            title = stringResource(R.string.settings_categories_editor)
+                        )
+                    }
+                    item {
                         CategoriesOrderSetting(
                             categories = uiState.categories,
                             updateCategories = { categories ->
@@ -349,8 +358,12 @@ private fun SettingsScreen(
                             },
                             onResetCategoriesOrder = {
                                 onIntent(SettingsScreenIntent.OnResetCategoriesOrder)
-                            }
+                            },
+                            navigateToListen = navigateToListen
                         )
+                    }
+                    item {
+                        ListenEditorLink(onClick = navigateToListen)
                     }
                     if (BuildConfig.DEBUG) {
                         item {
@@ -392,6 +405,9 @@ private fun SettingsScreen(
                             modifier = Modifier.padding(start = 16.dp, top = 16.dp),
                             title = stringResource(R.string.settings_credits)
                         )
+                    }
+                    item {
+                        VersionInfo()
                     }
                     item {
                         GitHubLink()
@@ -908,13 +924,34 @@ fun DefaultListSetting(
     )
 }
 
+@Composable
+private fun ListenEditorLink(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(vertical = 6.dp)
+            .fillMaxWidth()
+            .clickable { onClick() },
+        title = stringResource(R.string.list_editor),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_swap_vert_24),
+                contentDescription = null
+            )
+        }
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CategoriesOrderSetting(
     modifier: Modifier = Modifier,
     categories: List<Category>,
     updateCategories: (List<Category>) -> Unit,
-    onResetCategoriesOrder: () -> Unit
+    onResetCategoriesOrder: () -> Unit,
+    navigateToListen: () -> Unit = {}
 ) {
     var bottomSheetIsVisible by remember { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -931,6 +968,7 @@ private fun CategoriesOrderSetting(
             .fillMaxWidth()
             .clickable { bottomSheetIsVisible = true },
         title = stringResource(R.string.settings_reorder_categories_title),
+        description = stringResource(R.string.settings_categories_editor_description),
         icon = {
             Icon(
                 painterResource(id = R.drawable.baseline_swap_vert_24),
@@ -1043,6 +1081,26 @@ private fun BackupImportSetting(
 }
 
 @Composable
+private fun VersionInfo(modifier: Modifier = Modifier) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(top = 16.dp),
+        title = stringResource(R.string.settings_version),
+        description = stringResource(
+            R.string.settings_version_description,
+            BuildConfig.VERSION_NAME,
+            BuildConfig.VERSION_CODE
+        ),
+        icon = {
+            Icon(
+                painterResource(R.drawable.baseline_history_24),
+                contentDescription = null
+            )
+        }
+    )
+}
+
+@Composable
 private fun GitHubLink(modifier: Modifier = Modifier) {
     val uriHandler = LocalUriHandler.current
     CustomIconSetting(
@@ -1129,6 +1187,7 @@ fun PreviewSettingsScreen() {
                 onExportClick = {},
                 onImportClick = {},
                 navigateBack = {},
+                navigateToListen = {},
                 showDynamicColorNotSupportedMessage = null
             )
         }

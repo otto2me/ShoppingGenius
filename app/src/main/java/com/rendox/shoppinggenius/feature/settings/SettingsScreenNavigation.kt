@@ -15,14 +15,18 @@ fun NavController.navigateToSettings(navOptions: (NavOptionsBuilder.() -> Unit) 
     )
 }
 
-fun NavGraphBuilder.settingsScreen(navigateBack: () -> Unit) {
+fun NavGraphBuilder.settingsScreen(
+    navigateBack: () -> Unit,
+    navigateToListen: () -> Unit = {}
+) {
     composable(
         route = SETTINGS_ROUTE,
         enterTransition = { ShoppingGeniusTransition.SlideInVertically },
         exitTransition = { ShoppingGeniusTransition.SlideOutVertically }
     ) {
         SettingsRoute(
-            navigateBack = navigateBack
+            navigateBack = navigateBack,
+            navigateToListen = navigateToListen
         )
     }
 }

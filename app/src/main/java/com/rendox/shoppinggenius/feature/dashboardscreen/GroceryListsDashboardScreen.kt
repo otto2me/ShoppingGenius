@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -40,8 +39,7 @@ import com.rendox.shoppinggenius.ui.theme.TopAppBarActionsHorizontalPadding
 fun GroceryListsDashboardRoute(
     viewModel: GroceryListsDashboardViewModel = hiltViewModel(),
     navigateToGroceryListScreen: (String) -> Unit,
-    navigateToSettingsScreen: () -> Unit,
-    navigateToListenScreen: () -> Unit
+    navigateToSettingsScreen: () -> Unit
 ) {
     val screenState by viewModel.groceryListsFlow.collectAsStateWithLifecycle()
     val navigateToGroceryListEvent by viewModel.navigateToGroceryListEvent.collectAsStateWithLifecycle()
@@ -53,8 +51,7 @@ fun GroceryListsDashboardRoute(
         groceryLists = screenState,
         onIntent = viewModel::onIntent,
         navigateToSettingsScreen = navigateToSettingsScreen,
-        navigateToGroceryListScreen = navigateToGroceryListScreen,
-        navigateToListenScreen = navigateToListenScreen
+        navigateToGroceryListScreen = navigateToGroceryListScreen
     )
 }
 
@@ -63,8 +60,7 @@ fun GroceryListsDashboardScreen(
     groceryLists: List<GroceryList>,
     onIntent: (GroceryListsDashboardUiIntent) -> Unit = {},
     navigateToSettingsScreen: () -> Unit = {},
-    navigateToGroceryListScreen: (String) -> Unit = {},
-    navigateToListenScreen: () -> Unit = {}
+    navigateToGroceryListScreen: (String) -> Unit = {}
 ) {
     var scrollState by rememberSaveable { mutableIntStateOf(0) }
 
@@ -83,14 +79,6 @@ fun GroceryListsDashboardScreen(
                     .align(Alignment.CenterEnd)
                     .padding(end = TopAppBarActionsHorizontalPadding)
             ) {
-                IconButton(
-                    onClick = navigateToListenScreen
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.List,
-                        contentDescription = stringResource(R.string.list_editor)
-                    )
-                }
                 IconButton(
                     onClick = navigateToSettingsScreen
                 ) {
