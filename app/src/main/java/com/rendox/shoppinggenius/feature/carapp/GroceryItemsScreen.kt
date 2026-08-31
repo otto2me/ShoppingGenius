@@ -76,33 +76,29 @@ class GroceryItemsScreen(
         if (groceries.isEmpty()) {
             listBuilder.setNoItemsMessage(carContext.getString(R.string.car_app_no_items))
         } else {
-            groceries.forEach { grocery ->
-                val rowBuilder = Row.Builder()
-                    .setTitle(grocery.name)
-                    .setToggle(
-                        Toggle.Builder { isChecked ->
-                            lifecycleScope.launch {
-                                groceryRepository.updatePurchased(
-                                    productId = grocery.productId,
-                                    listId = groceryList.id,
-                                    purchased = isChecked
-                                )
-                            }
-                        }
-                        .setChecked(grocery.purchased)
-                        .build()
+            val openGroceries = groceries
+                .asSequence()
+                .filter { !it.purchased }
+                .sortedWith(
+                    compareBy<Grocery>(
+                        { it.category?.sortingPriority ?: Long.MAX_VALUE },
+                        { it.name.lowercase() }
                     )
+                )
+                .toList()
+            val completedGroceries = groceries
+                .asSequence()
+                .filter { it.purchased }
+                .sortedByDescending { it.purchasedLastModified }
+                .toList()
 
-                toCarIcon(grocery.icon)?.let { carIcon ->
-                    rowBuilder.setImage(carIcon, Row.IMAGE_TYPE_SMALL)
-                }
-
-                // Kategorie oder Beschreibung als Untertitel (max. 1 Zeile)
-                val subtitle = grocery.category?.name
-                    ?: grocery.description?.takeIf { it.isNotBlank() }
-                subtitle?.let { rowBuilder.addText(it) }
-
-                listBuilder.addItem(rowBuilder.build())
+            if (openGroceries.isNotEmpty()) {
+                addSectionHeader(listBuilder, carContext.getString(R.string.car_app_section_open))
+                openGroceries.forEach { grocery -> addGroceryRow(listBuilder, grocery) }
+            }
+            if (completedGroceries.isNotEmpty()) {
+                addSectionHeader(listBuilder, carContext.getString(R.string.car_app_section_completed))
+                completedGroceries.forEach { grocery -> addGroceryRow(listBuilder, grocery) }
             }
         }
 
@@ -113,6 +109,44 @@ class GroceryItemsScreen(
             .setActionStrip(ActionStrip.Builder().addAction(addItemAction).build())
             .setLoading(false)
             .build()
+    }
+
+    private fun addSectionHeader(
+        listBuilder: ItemList.Builder,
+        title: String
+    ) {
+        listBuilder.addItem(Row.Builder().setTitle(title).build())
+    }
+
+    private fun addGroceryRow(
+        listBuilder: ItemList.Builder,
+        grocery: Grocery
+    ) {
+        val rowBuilder = Row.Builder()
+            .setTitle(grocery.name)
+            .setToggle(
+                Toggle.Builder { isChecked ->
+                    lifecycleScope.launch {
+                        groceryRepository.updatePurchased(
+                            productId = grocery.productId,
+                            listId = groceryList.id,
+                            purchased = isChecked
+                        )
+                    }
+                }
+                .setChecked(grocery.purchased)
+                .build()
+            )
+
+        toCarIcon(grocery.icon)?.let { carIcon ->
+            rowBuilder.setImage(carIcon, Row.IMAGE_TYPE_SMALL)
+        }
+
+        val subtitle = grocery.category?.name
+            ?: grocery.description?.takeIf { it.isNotBlank() }
+        subtitle?.let { rowBuilder.addText(it) }
+
+        listBuilder.addItem(rowBuilder.build())
     }
 
     private fun toCarIcon(iconReference: IconReference?): CarIcon? {

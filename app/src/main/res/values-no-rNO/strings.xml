@@ -78,4 +78,9 @@
     <string name="grocery_list_tab_categories">Kategorier</string>
     <string name="grocery_list_tab_favorites">Favoritter</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favoritt</string>
+
+    <!-- Android Auto / Automotive OS -->
+    <string name="car_app_add_unknown_item">Add "%1$s"</string>
+    <string name="car_app_section_open">Open</string>
+    <string name="car_app_section_completed">Completed</string>
 </resources>

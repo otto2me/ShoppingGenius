@@ -54,8 +54,21 @@ class ProductPickerScreen(
             }
 
             override fun onSearchSubmitted(searchText: String) {
-                searchQuery = searchText
-                invalidate()
+                val submittedText = searchText.trim()
+                searchQuery = submittedText
+                if (submittedText.isBlank()) {
+                    invalidate()
+                    return
+                }
+
+                val exactProduct = allProducts.firstOrNull {
+                    it.name.equals(submittedText, ignoreCase = true)
+                }
+                if (exactProduct != null) {
+                    addExistingProduct(exactProduct)
+                } else {
+                    addCustomProduct(submittedText)
+                }
             }
         }
 
@@ -69,6 +82,9 @@ class ProductPickerScreen(
 
         val listBuilder = ItemList.Builder()
         val query = searchQuery.trim()
+        val hasPerfectMatch = query.isNotBlank() && allProducts.any {
+            it.name.equals(query, ignoreCase = true)
+        }
         val products = if (query.isBlank()) {
             allProducts.take(MAX_PRODUCTS)
         } else {
@@ -79,7 +95,20 @@ class ProductPickerScreen(
                 .toList()
         }
 
-        if (products.isEmpty()) {
+        var hasRows = false
+        if (query.isNotBlank() && !hasPerfectMatch) {
+            listBuilder.addItem(
+                Row.Builder()
+                    .setTitle(carContext.getString(R.string.car_app_add_unknown_item, query))
+                    .setOnClickListener {
+                        addCustomProduct(query)
+                    }
+                    .build()
+            )
+            hasRows = true
+        }
+
+        if (products.isEmpty() && !hasRows) {
             val noItemsMessage = if (query.isBlank()) {
                 carContext.getString(R.string.car_app_search_hint)
             } else {
@@ -95,17 +124,11 @@ class ProductPickerScreen(
                             setImage(carIcon, Row.IMAGE_TYPE_SMALL)
                         }
                         setOnClickListener {
-                            lifecycleScope.launch {
-                                groceryRepository.addGroceryToList(
-                                    productId = product.id,
-                                    listId = groceryList.id,
-                                    purchased = false
-                                )
-                                screenManager.pop()
-                            }
+                            addExistingProduct(product)
                         }
                     }.build()
                 )
+                hasRows = true
             }
         }
 
@@ -116,6 +139,33 @@ class ProductPickerScreen(
             .setItemList(listBuilder.build())
             .setLoading(false)
             .build()
+    }
+
+    private fun addExistingProduct(product: Product) {
+        lifecycleScope.launch {
+            groceryRepository.addGroceryToList(
+                productId = product.id,
+                listId = groceryList.id,
+                purchased = false
+            )
+            screenManager.pop()
+        }
+    }
+
+    private fun addCustomProduct(name: String) {
+        val normalizedName = name.trim()
+        if (normalizedName.isBlank()) return
+
+        lifecycleScope.launch {
+            groceryRepository.insertProductAndGrocery(
+                name = normalizedName,
+                categoryId = null,
+                groceryListId = groceryList.id,
+                description = null,
+                purchased = false
+            )
+            screenManager.pop()
+        }
     }
 
     private fun toCarIcon(iconReference: IconReference?): CarIcon? {

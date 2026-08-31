@@ -97,8 +97,11 @@
     <string name="car_app_no_items">This list is empty.</string>
     <string name="car_app_item_count">%d items</string>
     <string name="car_app_add_item">Add item</string>
+    <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_search_hint">Search products</string>
     <string name="car_app_no_products">No products available.</string>
+    <string name="car_app_section_open">Open</string>
+    <string name="car_app_section_completed">Completed</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="share_grocery_list_title">Share list</string>
