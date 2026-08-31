@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.baselineprofile) apply false
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.gradlePlayPublisher) apply false
+    alias(libs.plugins.firebaseAppDistribution) apply false
 }
 
 val enableBenchmark = gradle.startParameter.projectProperties.containsKey("enableBenchmark")

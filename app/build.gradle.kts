@@ -1,4 +1,5 @@
 import java.util.Properties
+import groovy.json.JsonSlurper
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -10,6 +11,7 @@ plugins {
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.gradlePlayPublisher)
+    alias(libs.plugins.firebaseAppDistribution)
 }
 
 val localProperties = Properties().apply {
@@ -25,6 +27,20 @@ val hasReleaseSigningConfig = listOf(
     "RELEASE_KEY_ALIAS",
     "RELEASE_KEY_PASSWORD"
 ).all { !localProperties.getProperty(it).isNullOrBlank() }
+
+fun readFirebaseAppIdFromConfig(configPath: String): String {
+    if (configPath.isBlank()) return ""
+    val configFile = file(configPath)
+    if (!configFile.exists()) return ""
+
+    return runCatching {
+        val root = JsonSlurper().parse(configFile) as? Map<*, *> ?: return@runCatching ""
+        val firstClient = (root["client"] as? List<*>)
+            ?.firstOrNull() as? Map<*, *> ?: return@runCatching ""
+        val clientInfo = firstClient["client_info"] as? Map<*, *> ?: return@runCatching ""
+        clientInfo["mobilesdk_app_id"] as? String ?: ""
+    }.getOrDefault("")
+}
 
 android {
     namespace = "com.rendox.shoppinggenius"
@@ -126,6 +142,42 @@ if (playServiceAccountJson.isNotBlank()) {
         // AAB (empfohlen) statt APK hochladen
         defaultToAppBundles.set(true)
     }
+}
+
+val firebaseAndroidConfigJson =
+    localProperties.getProperty("FIREBASE_ANDROID_CONFIG_JSON")
+        ?: "C:/Work/keys/google-services-firebase.json"
+val firebaseAppId = localProperties.getProperty("FIREBASE_APP_ID")
+    .orEmpty()
+    .ifBlank { readFirebaseAppIdFromConfig(firebaseAndroidConfigJson) }
+val firebaseServiceAccountJson = localProperties.getProperty("FIREBASE_SERVICE_ACCOUNT_JSON")
+    .orEmpty()
+    .ifBlank { playServiceAccountJson }
+val firebaseArtifactType = localProperties
+    .getProperty("FIREBASE_ARTIFACT_TYPE")
+    .orEmpty()
+    .uppercase()
+    .ifBlank { "APK" }
+val firebaseDistributionGroups = localProperties.getProperty("FIREBASE_GROUPS").orEmpty()
+val firebaseDistributionTesters = localProperties.getProperty("FIREBASE_TESTERS").orEmpty()
+
+if (firebaseAppId.isNotBlank() && firebaseServiceAccountJson.isNotBlank()) {
+    firebaseAppDistribution {
+        appId = firebaseAppId
+        serviceCredentialsFile = firebaseServiceAccountJson
+        artifactType = firebaseArtifactType
+        releaseNotes = "Version ${android.defaultConfig.versionName} (${android.defaultConfig.versionCode})"
+        if (firebaseDistributionGroups.isNotBlank()) {
+            groups = firebaseDistributionGroups
+        }
+        if (firebaseDistributionTesters.isNotBlank()) {
+            testers = firebaseDistributionTesters
+        }
+    }
+} else {
+    logger.lifecycle(
+        "Firebase App Distribution not configured. Set FIREBASE_APP_ID and FIREBASE_SERVICE_ACCOUNT_JSON in local.properties."
+    )
 }
 
 dependencies {

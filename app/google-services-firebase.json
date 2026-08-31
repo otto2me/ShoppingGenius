@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "222358353306",
+    "project_id": "shoppinggenius-9df9c",
+    "storage_bucket": "shoppinggenius-9df9c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222358353306:android:adddce1b76b76396657623",
+        "android_client_info": {
+          "package_name": "com.rendox.shoppinggenius"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2cNDO3T-NFdJfswT_fIJYUroZJmcpu5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
