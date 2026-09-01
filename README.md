@@ -1,10 +1,11 @@
 <h1 align="center" style="font-size:28px; line-height:1"><b>Shopping Genius</b></h1>
 
 <div align="center">
-  <img alt="Shopping Genius logo" src="images/app_logo_rounded_corners.svg" height="150px">
+  <img alt="Shopping Genius app icon" src="images/app-icon.png" height="150px">
 </div>
 
 <br />
+
 
 <br />
 <br />
