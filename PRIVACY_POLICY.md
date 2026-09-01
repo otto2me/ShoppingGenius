@@ -4,6 +4,8 @@ Stand: 2026-09-01
 
 Diese Datenschutzerklaerung gilt fuer die Android-App **Shopping Genius**.
 
+English version: `PRIVACY_POLICY_EN.md`
+
 ## 1) Kurzfassung
 
 - Die App arbeitet grundsaetzlich lokal auf deinem Geraet.
