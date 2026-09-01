@@ -45,7 +45,6 @@
     <string name="settings_reorder_categories_description">Grocery Genius, Ã¼rÃ¼nleri kategorilerine gÃ¶re sÄ±ralar. BunlarÄ± favori maÄŸazanÄ±za gÃ¶re ayarlayabilirsiniz.</string>
     <string name="settings_dynamic_color_not_supported_message">CihazÄ±nÄ±z dinamik rengi desteklemiyor</string>
     <string name="settings_feedback">Geri Bildirim</string>
-    <string name="github_link_description">Kaynak kodu gÃ¶rÃ¼ntÃ¼leyin, katkÄ±da bulunun, hatalarÄ± bildirin ve Ã¶zellik Ã¶nerin.</string>
     <string name="email_link_title">GeliÅŸtiriciye E-posta GÃ¶nder</string>
     <string name="email_link_description">GeliÅŸtiriciyle dostÃ§a geri bildirim, Ã¶neriler veya aklÄ±nÄ±zdaki herhangi bir ÅŸey iÃ§in iletiÅŸime geÃ§in.</string>
     <string name="settings_credits">KatkÄ±da Bulunanlar</string>
@@ -82,4 +81,9 @@
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
+
+    <string name="github_original_project_title">Based on GroceryGenius</string>
+    <string name="github_original_project_description">This app is based on the original project by DanielRendox.</string>
+    <string name="github_fork_project_title">Fork hosted on GitHub</string>
+    <string name="github_fork_project_description">Current fork and active development are hosted at otto2me/ShoppingGenius.</string>
 </resources>

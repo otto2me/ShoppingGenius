@@ -62,8 +62,10 @@
     <string name="settings_duckduckgo_connection_testing">Teste Verbindung...</string>
     <string name="settings_duckduckgo_connection_test_success">Verbindung erfolgreich.</string>
     <string name="settings_duckduckgo_connection_test_failed">Verbindung fehlgeschlagen. DuckDuckGo blockiert Anfragen eventuell gerade oder es besteht keine Internetverbindung.</string>
-    <string name="github_link_title">Basiert auf GitHub</string>
-    <string name="github_link_description">Sieh dir den Quellcode an, trage bei, melde Fehler und schlage neue Funktionen vor.</string>
+    <string name="github_original_project_title">Basiert auf GroceryGenius</string>
+    <string name="github_original_project_description">Diese App basiert auf dem Originalprojekt von DanielRendox.</string>
+    <string name="github_fork_project_title">Fork auf GitHub gehostet</string>
+    <string name="github_fork_project_description">Der aktuelle Fork und die aktive Entwicklung liegen bei otto2me/ShoppingGenius.</string>
     <string name="email_link_title">Entwickler kontaktieren</string>
     <string name="email_link_description">Kontaktieren den Entwickler für freundliche Rückmeldungen, Vorschläge oder alle anderen Ideen, die du im Kopf hast.</string>
     <string name="settings_credits">Credits</string>

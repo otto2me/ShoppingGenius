@@ -47,7 +47,6 @@
     <string name="settings_reorder_categories_description">Grocery Genius ÑÐ¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÑ‚ Ñ‚Ð¾Ð²Ð°Ñ€Ñ‹ Ð¿Ð¾ Ð¸Ñ… ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸ÑÐ¼. Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ ÑƒÐ¿Ð¾Ñ€ÑÐ´Ð¾Ñ‡Ð¸Ñ‚ÑŒ Ð¸Ñ… Ð² ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð¸Ð¸ Ñ Ð²Ð°ÑˆÐ¸Ð¼ Ð»ÑŽÐ±Ð¸Ð¼Ñ‹Ð¼ Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð¾Ð¼.</string>
     <string name="settings_dynamic_color_not_supported_message">Ð’Ð°ÑˆÐµ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾ Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð´Ð¸Ð½Ð°Ð¼Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ñ†Ð²ÐµÑ‚</string>
     <string name="settings_feedback">ÐžÐ±Ñ€Ð°Ñ‚Ð½Ð°Ñ ÑÐ²ÑÐ·ÑŒ</string>
-    <string name="github_link_description">ÐŸÐ¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ð¸ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ ÐºÐ¾Ð´, Ð¿Ð¾Ð¼Ð¾Ñ‡ÑŒ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ñƒ, ÑÐ¾Ð¾Ð±Ñ‰Ð¸Ñ‚ÑŒ Ð¾Ð± Ð¾ÑˆÐ¸Ð±ÐºÐ°Ñ… Ð¸Ð»Ð¸ Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶Ð¸Ñ‚ÑŒÑÑ ÑÐ²Ð¾Ð¸Ð¼Ð¸ Ð¼Ñ‹ÑÐ»ÑÐ¼Ð¸.</string>
     <string name="email_link_title">ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ñ€Ð°Ð·Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÑƒ</string>
     <string name="email_link_description">ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ñ€Ð°Ð·Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÑƒ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð¾Ñ‚Ð·Ñ‹Ð², Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶Ð¸Ñ‚ÑŒ Ñ‡Ñ‚Ð¾-Ñ‚Ð¾ Ð¸Ð»Ð¸ Ð¿Ð¾Ð´ÐµÐ»Ð¸Ñ‚ÑŒÑÑ ÑÐ²Ð¾Ð¸Ð¼Ð¸ Ð¼Ñ‹ÑÐ»ÑÐ¼Ð¸.</string>
     <string name="settings_credits">Ð‘Ð»Ð°Ð³Ð¾Ð´Ð°Ñ€Ð½Ð¾ÑÑ‚Ð¸</string>
@@ -84,4 +83,9 @@
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
+
+    <string name="github_original_project_title">Based on GroceryGenius</string>
+    <string name="github_original_project_description">This app is based on the original project by DanielRendox.</string>
+    <string name="github_fork_project_title">Fork hosted on GitHub</string>
+    <string name="github_fork_project_description">Current fork and active development are hosted at otto2me/ShoppingGenius.</string>
 </resources>

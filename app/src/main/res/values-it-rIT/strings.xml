@@ -45,7 +45,6 @@
     <string name="settings_reorder_categories_description">Grocery Genius ordina gli oggetti per le loro categorie. Puoi organizzarli per abbinare il tuo negozio preferito.</string>
     <string name="settings_dynamic_color_not_supported_message">Il tuo dispositivo non supporta il colore dinamico</string>
     <string name="settings_feedback">Feedback</string>
-    <string name="github_link_description">Visualizza il codice sorgente, contribuisci, segnala bug e suggerisci funzionalitÃ .</string>
     <string name="email_link_title">Invia Email allo sviluppatore</string>
     <string name="email_link_description">Contatta lo sviluppatore per inviare un feedback, suggerimenti o qualsiasi altro input che hai in mente.</string>
     <string name="settings_credits">Crediti</string>
@@ -82,4 +81,9 @@
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
+
+    <string name="github_original_project_title">Based on GroceryGenius</string>
+    <string name="github_original_project_description">This app is based on the original project by DanielRendox.</string>
+    <string name="github_fork_project_title">Fork hosted on GitHub</string>
+    <string name="github_fork_project_description">Current fork and active development are hosted at otto2me/ShoppingGenius.</string>
 </resources>

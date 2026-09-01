@@ -410,7 +410,10 @@ private fun SettingsScreen(
                         VersionInfo()
                     }
                     item {
-                        GitHubLink()
+                        OriginalProjectLink()
+                    }
+                    item {
+                        ForkProjectLink()
                     }
                     item {
                         FreepikAttribution()
@@ -1101,14 +1104,32 @@ private fun VersionInfo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun GitHubLink(modifier: Modifier = Modifier) {
+private fun OriginalProjectLink(modifier: Modifier = Modifier) {
     val uriHandler = LocalUriHandler.current
     CustomIconSetting(
         modifier = modifier
             .padding(top = 16.dp)
-            .clickable { uriHandler.openUri("https://github.com/DanielRendox/ShoppingGenius") },
-        title = stringResource(R.string.github_link_title),
-        description = stringResource(R.string.github_link_description),
+            .clickable { uriHandler.openUri(ORIGINAL_PROJECT_URL) },
+        title = stringResource(R.string.github_original_project_title),
+        description = stringResource(R.string.github_original_project_description),
+        icon = {
+            Icon(
+                painter = painterResource(R.drawable.github_mark),
+                contentDescription = null
+            )
+        }
+    )
+}
+
+@Composable
+private fun ForkProjectLink(modifier: Modifier = Modifier) {
+    val uriHandler = LocalUriHandler.current
+    CustomIconSetting(
+        modifier = modifier
+            .padding(top = 8.dp)
+            .clickable { uriHandler.openUri(FORK_PROJECT_URL) },
+        title = stringResource(R.string.github_fork_project_title),
+        description = stringResource(R.string.github_fork_project_description),
         icon = {
             Icon(
                 painter = painterResource(R.drawable.github_mark),
@@ -1144,6 +1165,8 @@ private fun EmailLink(modifier: Modifier = Modifier) {
     )
 }
 
+private const val ORIGINAL_PROJECT_URL = "https://github.com/DanielRendox/GroceryGenius"
+private const val FORK_PROJECT_URL = "https://github.com/otto2me/ShoppingGenius"
 private const val FREEPIK_ATTRIBUTION_LINK = "https://www.freepik.com/free-vector/" +
     "tiny-family-grocery-bag-with-healthy-food-parents-kids-fresh-vegetables-flat-illustration_12291304.htm"
 
