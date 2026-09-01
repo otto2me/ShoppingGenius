@@ -24,6 +24,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 @HiltViewModel
 class SettingsScreenViewModel @Inject constructor(
@@ -37,6 +39,8 @@ class SettingsScreenViewModel @Inject constructor(
     private val duckDuckGoImageSearchService: DuckDuckGoImageSearchService,
     private val backupRestoreManager: BackupRestoreManager
 ) : ViewModel() {
+
+    private val languageSwitchMutex = Mutex()
 
     private val _uiStateFlow = MutableStateFlow(SettingsScreenState())
     val uiStateFlow = _uiStateFlow.asStateFlow()
@@ -91,12 +95,22 @@ class SettingsScreenViewModel @Inject constructor(
             }
 
             is SettingsScreenIntent.ChangeLanguage -> {
-                _uiStateFlow.update { it.copy(isLoading = true) }
-                appLocaleManager.applyLanguageTag(intent.languageTag)
-                userPreferencesRepository.updateSelectedLanguageTag(intent.languageTag)
-                changeListVersionsDataSource.updateChangeListVersion { ChangeListVersions() }
-                syncLocalizedData()
-                _uiStateFlow.update { it.copy(isLoading = false) }
+                languageSwitchMutex.withLock {
+                    val currentLanguageTag =
+                        userPreferencesRepository.userPreferencesFlow.first().selectedLanguageTag
+                    if (currentLanguageTag == intent.languageTag) return@withLock
+
+                    _uiStateFlow.update { it.copy(isLoading = true) }
+                    try {
+                        // Persist and sync first; applying locale may recreate activities.
+                        userPreferencesRepository.updateSelectedLanguageTag(intent.languageTag)
+                        changeListVersionsDataSource.updateChangeListVersion { ChangeListVersions() }
+                        syncLocalizedData()
+                        appLocaleManager.applyLanguageTag(intent.languageTag)
+                    } finally {
+                        _uiStateFlow.update { it.copy(isLoading = false) }
+                    }
+                }
             }
 
             is SettingsScreenIntent.ChangeColorScheme ->
