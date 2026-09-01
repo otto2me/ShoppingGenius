@@ -6,20 +6,6 @@
 
 <br />
 
-<div align="center">
-
-[<img src="images/banners/banner_github.png"
-      alt="Get it on GitHub"
-      height="80">](https://github.com/DanielRendox/ShoppingGenius/releases)
-[<img src="images/banners/banner_izzy_on_droid.png"
-      alt="Get it on IzzyOnDroid"
-      height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.rendox.ShoppingGenius)
-[<img src="images/banners/banner_google_play.png"
-      alt="Get it on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=com.rendox.ShoppingGenius)
-
-</div>
-
 <br />
 <br />
 
