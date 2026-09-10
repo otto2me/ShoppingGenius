@@ -27,17 +27,17 @@ val hasReleaseSigningConfig = listOf(
 ).all { !localProperties.getProperty(it).isNullOrBlank() }
 
 android {
-    namespace = "com.rendox.shoppinggenius"
+    namespace = "com.shoppinggenius.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.rendox.shoppinggenius"
+        applicationId = "com.shoppinggenius.app"
         minSdk = 21
         targetSdk = 35
-        versionCode = 17
-        versionName = "0.2.3"
+        versionCode = 18
+        versionName = "0.3.0"
 
-        testInstrumentationRunner = "com.rendox.shoppinggenius.testing.ShoppingGeniusTestRunner"
+        testInstrumentationRunner = "com.shoppinggenius.app.testing.ShoppingGeniusTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }

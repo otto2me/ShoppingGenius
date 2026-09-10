@@ -108,7 +108,7 @@
             android:label="@string/widget_active_list_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.rendox.shoppinggenius.widget.REFRESH" />
+                <action android:name="com.shoppinggenius.app.widget.REFRESH" />
             </intent-filter>
 
             <meta-data

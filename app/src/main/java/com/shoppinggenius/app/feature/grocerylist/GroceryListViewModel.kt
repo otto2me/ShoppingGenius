@@ -1,0 +1,450 @@
+package com.shoppinggenius.app.feature.grocerylist
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.shoppinggenius.app.R
+import com.shoppinggenius.app.data.category.CategoryRepository
+import com.shoppinggenius.app.data.grocery.CompletedGroceriesAutoDeletePolicy
+import com.shoppinggenius.app.data.grocery.GroceryRepository
+import com.shoppinggenius.app.data.grocerylist.GroceryListRepository
+import com.shoppinggenius.app.data.product.ProductRepository
+import com.shoppinggenius.app.data.userpreferences.UserPreferencesRepository
+import com.shoppinggenius.app.feature.share.GroceryListShareManager
+import com.shoppinggenius.app.model.Grocery
+import com.shoppinggenius.app.network.di.Dispatcher
+import com.shoppinggenius.app.network.di.ShoppingGeniusDispatchers
+import com.shoppinggenius.app.ui.components.grocerylist.GroceryGroup
+import com.shoppinggenius.app.ui.helpers.UiEvent
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+@HiltViewModel(assistedFactory = GroceryListViewModel.Factory::class)
+class GroceryListViewModel @AssistedInject constructor(
+    @Assisted val openedGroceryListId: String,
+    private val groceryRepository: GroceryRepository,
+    private val groceryListRepository: GroceryListRepository,
+    private val userPreferencesRepository: UserPreferencesRepository,
+    private val productRepository: ProductRepository,
+    private val categoryRepository: CategoryRepository,
+    private val groceryListShareManager: GroceryListShareManager,
+    @Dispatcher(ShoppingGeniusDispatchers.Default) private val defaultDispatcher: CoroutineDispatcher
+) : ViewModel() {
+
+    private var lastPersistedListName: String? = null
+
+    var openedGroceryListName by mutableStateOf<TextFieldValue?>(null)
+        private set
+
+    private val openedGroceryListNameFlow =
+        snapshotFlow { openedGroceryListName?.text }.mapNotNull { it }
+
+    private val _groceryGroupsFlow = MutableStateFlow<List<GroceryGroup>?>(null)
+    val groceryGroupsFlow = _groceryGroupsFlow.asStateFlow()
+
+    private val _closeGroceryListScreenEvent = MutableStateFlow<UiEvent<Unit>?>(null)
+    val closeGroceryListScreenEvent = _closeGroceryListScreenEvent.asStateFlow()
+
+    private val _groceryListEditModeIsEnabledFlow = MutableStateFlow(false)
+    val groceryListEditModeIsEnabledFlow = _groceryListEditModeIsEnabledFlow.asStateFlow()
+
+    val categoriesFlow = categoryRepository.getAllCategories()
+        .map { categories -> categories.sortedBy { it.sortingPriority } }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
+
+    private val openedCategoryIdFlow = MutableStateFlow<String?>(null)
+    val openedCategoryFlow = openedCategoryIdFlow
+        .flatMapLatest { categoryId ->
+            categoryId?.let { categoryRepository.getCategoryById(it) } ?: flowOf(null)
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
+
+    private val _openedCategoryGroceriesFlow = MutableStateFlow(emptyList<Grocery>())
+    val openedCategoryGroceriesFlow = _openedCategoryGroceriesFlow.asStateFlow()
+
+    private val _favoriteGroceriesFlow = MutableStateFlow(emptyList<Grocery>())
+    val favoriteGroceriesFlow = _favoriteGroceriesFlow.asStateFlow()
+
+    private val groceriesInList = groceryRepository.getGroceriesFromList(openedGroceryListId)
+    private val allProductsFlow = productRepository.getAllProducts()
+        .map { products -> products.sortedBy { product -> product.name } }
+    private val categoryProductsFlow = openedCategoryIdFlow
+        .flatMapLatest { categoryId ->
+            productRepository.getProductsByCategory(categoryId)
+        }
+        .map { it.sortedBy { product -> product.name } }
+
+    private val _navigateToCategoryScreenEvent = MutableStateFlow<UiEvent<Unit>?>(null)
+    val navigateToCategoryScreenEvent = _navigateToCategoryScreenEvent.asStateFlow()
+
+    private val _groceryListPurchaseStateFlow =
+        MutableStateFlow(GroceryListPurchaseState.LIST_IS_FULL)
+    val groceryListPurchaseStateFlow = _groceryListPurchaseStateFlow.asStateFlow()
+
+    private val _scrollUpEventFlow = MutableStateFlow<UiEvent<Unit>?>(null)
+    val scrollUpEventFlow = _scrollUpEventFlow.asStateFlow()
+
+    private val _shareListTextEventFlow =
+        MutableStateFlow<UiEvent<GroceryListShareManager.ShareContent>?>(null)
+    val shareListTextEventFlow = _shareListTextEventFlow.asStateFlow()
+
+    val useListViewForGroceriesFlow = userPreferencesRepository.userPreferencesFlow
+        .map { it.useListViewForGroceries }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
+
+    private val groupByCategoryInListModeFlow = userPreferencesRepository.userPreferencesFlow
+        .map { it.groupByCategoryInListMode }
+        .distinctUntilChanged()
+
+    init {
+        viewModelScope.launch {
+            allProductsFlow
+                .combine(groceriesInList) { products, groceriesFromList ->
+                    products
+                        .filter { it.isFavorite }
+                        .map { product ->
+                            val groceryFromList = groceriesFromList.find { it.productId == product.id }
+                            Grocery(
+                                productId = product.id,
+                                name = product.name,
+                                purchased = groceryFromList?.purchased ?: true,
+                                icon = product.icon,
+                                category = product.category,
+                                productIsDefault = product.isDefault,
+                                isFavorite = product.isFavorite
+                            )
+                        }
+                }
+                .collectLatest { groceries ->
+                    _favoriteGroceriesFlow.update { groceries }
+                }
+        }
+        viewModelScope.launch {
+            userPreferencesRepository.userPreferencesFlow
+                .map { it.autoDeleteCompletedAfterHours }
+                .distinctUntilChanged()
+                .collectLatest { autoDeleteAfterHours ->
+                    while (true) {
+                        val cutoffTimestampMs = CompletedGroceriesAutoDeletePolicy.cutoffTimestampMs(
+                            nowMs = System.currentTimeMillis(),
+                            autoDeleteAfterHours = autoDeleteAfterHours
+                        )
+                        groceryRepository.deleteOldCompletedGroceries(cutoffTimestampMs)
+                        delay(60_000L)
+                    }
+                }
+        }
+        viewModelScope.launch {
+            categoryProductsFlow
+                .combine(groceriesInList) { products, groceriesFromList ->
+                    products.map { product ->
+                        val groceryFromList = groceriesFromList.find { it.productId == product.id }
+                        Grocery(
+                            productId = product.id,
+                            name = product.name,
+                            purchased = groceryFromList?.purchased ?: true,
+                            icon = product.icon,
+                            category = product.category,
+                            productIsDefault = product.isDefault,
+                            isFavorite = product.isFavorite
+                        )
+                    }
+                }.collectLatest { groceries ->
+                    _openedCategoryGroceriesFlow.update { groceries }
+                }
+        }
+        viewModelScope.launch {
+            userPreferencesRepository.updateLastOpenedListId(openedGroceryListId)
+            val openedGroceryList =
+                groceryListRepository.getGroceryListById(openedGroceryListId).first()
+            if (openedGroceryList != null && openedGroceryList.name.isNotEmpty()) {
+                openedGroceryListName = TextFieldValue(openedGroceryList.name)
+                lastPersistedListName = openedGroceryList.name
+            } else {
+                openedGroceryListName = TextFieldValue("")
+                lastPersistedListName = ""
+                _groceryListEditModeIsEnabledFlow.update { true }
+            }
+
+            openedGroceryListNameFlow
+                .debounce(800)
+                .collect { listName ->
+                    persistListNameIfChanged(listName.trim())
+                }
+        }
+        viewModelScope.launch {
+            groceriesInList
+                .combine(groupByCategoryInListModeFlow) { groceries, groupByCategoryInListMode ->
+                    groceries to groupByCategoryInListMode
+                }
+                .onEach { (groceries, _) ->
+                    val groceryListPurchaseState = when {
+                        groceries.isEmpty() -> GroceryListPurchaseState.LIST_IS_EMPTY
+                        groceries.all { it.purchased } -> GroceryListPurchaseState.SHOPPING_DONE
+                        else -> GroceryListPurchaseState.LIST_IS_FULL
+                    }
+                    _groceryListPurchaseStateFlow.update { groceryListPurchaseState }
+                    when (groceryListPurchaseState) {
+                        GroceryListPurchaseState.LIST_IS_EMPTY,
+                        GroceryListPurchaseState.SHOPPING_DONE -> _scrollUpEventFlow.update {
+                            object : UiEvent<Unit> {
+                                override val data = Unit
+                                override fun onConsumed() {
+                                    _scrollUpEventFlow.update { null }
+                                }
+                            }
+                        }
+
+                        else -> {}
+                    }
+                }
+                .map { (groceries, groupByCategoryInListMode) ->
+                    val purchasedGroceries = groceries
+                        .filter { it.purchased }
+                        .sortedByDescending { it.purchasedLastModified }
+                    val unpurchasedGroceries = groceries
+                        .filterNot { it.purchased }
+                        .sortedWith(
+                            compareBy<Grocery> { it.category?.sortingPriority ?: Long.MAX_VALUE }
+                                .thenBy(String.CASE_INSENSITIVE_ORDER) { it.name }
+                        )
+
+                    buildList {
+                        if (groupByCategoryInListMode) {
+                            unpurchasedGroceries
+                                .groupBy { it.category?.id }
+                                .forEach { (_, categoryGroceries) ->
+                                    val category = categoryGroceries.firstOrNull()?.category
+                                    add(
+                                        GroceryGroup(
+                                            titleId = if (category == null) {
+                                                R.string.custom_category_title
+                                            } else {
+                                                null
+                                            },
+                                            title = category?.name,
+                                            groceries = categoryGroceries
+                                        )
+                                    )
+                                }
+                        } else if (unpurchasedGroceries.isNotEmpty()) {
+                            add(
+                                GroceryGroup(
+                                    titleId = null,
+                                    groceries = unpurchasedGroceries
+                                )
+                            )
+                        }
+
+                        if (purchasedGroceries.isNotEmpty()) {
+                            add(
+                                GroceryGroup(
+                                    titleId = R.string.purchased_groceries_group_title,
+                                    groceries = purchasedGroceries
+                                )
+                            )
+                        }
+                    }
+                }
+                .flowOn(defaultDispatcher)
+                .collectLatest { groceryGroups ->
+                    _groceryGroupsFlow.update { groceryGroups }
+                }
+        }
+    }
+
+    fun onIntent(intent: GroceryListsUiIntent) = when (intent) {
+        is GroceryListsUiIntent.OnGroceryItemClick ->
+            toggleItemPurchased(intent.item)
+
+        is GroceryListsUiIntent.UpdateGroceryListName -> {
+            openedGroceryListName = intent.name
+            val trimmedName = intent.name.text.trim()
+            if (trimmedName.isNotEmpty()) {
+                saveGroceryListNameImmediately(trimmedName)
+            }
+            Unit
+        }
+
+        is GroceryListsUiIntent.OnDeleteGroceryList ->
+            deleteGroceryList()
+
+        is GroceryListsUiIntent.OnKeyboardHidden ->
+            onKeyboardHidden()
+
+        is GroceryListsUiIntent.OnEditGroceryListToggle ->
+            onEditGroceryListToggle(intent.editModeIsEnabled)
+
+        is GroceryListsUiIntent.OnNavigateToCategoryScreen ->
+            onNavigateToCategoryScreen(intent.categoryId)
+
+        GroceryListsUiIntent.OnShareGroceryList ->
+            shareCurrentList()
+    }
+
+    private fun shareCurrentList() {
+        viewModelScope.launch {
+            val groceries = groceriesInList.first()
+            val listName = openedGroceryListName?.text?.trim().orEmpty()
+            val shareContent = groceryListShareManager.buildShareContent(
+                listName = listName,
+                groceries = groceries
+            )
+            _shareListTextEventFlow.update {
+                object : UiEvent<GroceryListShareManager.ShareContent> {
+                    override val data = shareContent
+                    override fun onConsumed() {
+                        _shareListTextEventFlow.update { null }
+                    }
+                }
+            }
+        }
+    }
+
+    fun onCategoryScreenGroceryClick(grocery: Grocery) {
+        viewModelScope.launch {
+            val groceryIsAlreadyInList =
+                groceriesInList.first().any { it.productId == grocery.productId }
+            if (groceryIsAlreadyInList) {
+                groceryRepository.updatePurchased(
+                    productId = grocery.productId,
+                    listId = openedGroceryListId,
+                    purchased = !grocery.purchased
+                )
+            } else {
+                groceryRepository.addGroceryToList(
+                    productId = grocery.productId,
+                    listId = openedGroceryListId,
+                    description = grocery.description,
+                    purchased = !grocery.purchased
+                )
+            }
+        }
+    }
+
+    private fun toggleItemPurchased(item: Grocery) {
+        viewModelScope.launch {
+            groceryRepository.updatePurchased(
+                productId = item.productId,
+                listId = openedGroceryListId,
+                purchased = !item.purchased
+            )
+        }
+    }
+
+    private fun onKeyboardHidden() {
+        val name = openedGroceryListName?.text
+        if (name?.isNotEmpty() == true) {
+            val trimmedName = name.trim()
+            openedGroceryListName = TextFieldValue(trimmedName)
+            saveGroceryListNameImmediately(trimmedName)
+            _groceryListEditModeIsEnabledFlow.update { false }
+        }
+    }
+
+    private fun deleteGroceryList() {
+        viewModelScope.launch {
+            groceryListRepository.deleteGroceryListById(openedGroceryListId)
+            _closeGroceryListScreenEvent.update {
+                object : UiEvent<Unit> {
+                    override val data = Unit
+                    override fun onConsumed() {
+                        _closeGroceryListScreenEvent.update { null }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun onEditGroceryListToggle(editModeIsEnabled: Boolean) {
+        val listName = openedGroceryListName
+        if (editModeIsEnabled && listName != null) {
+            val nameLength = listName.text.length
+            openedGroceryListName = listName.copy(
+                selection = TextRange(nameLength, nameLength)
+            )
+        } else if (!editModeIsEnabled) {
+            val trimmedName = listName?.text?.trim().orEmpty()
+            openedGroceryListName = listName?.copy(text = trimmedName)
+            if (trimmedName.isNotEmpty()) {
+                saveGroceryListNameImmediately(trimmedName)
+            }
+        }
+        _groceryListEditModeIsEnabledFlow.update { editModeIsEnabled }
+    }
+
+    private fun saveGroceryListNameImmediately(name: String) {
+        viewModelScope.launch {
+            persistListNameIfChanged(name)
+        }
+    }
+
+    private suspend fun persistListNameIfChanged(name: String) {
+        if (lastPersistedListName == name) return
+        groceryListRepository.updateGroceryListName(
+            listId = openedGroceryListId,
+            name = name
+        )
+        lastPersistedListName = name
+    }
+
+    private fun onNavigateToCategoryScreen(categoryId: String?) {
+        viewModelScope.launch {
+            openedCategoryIdFlow.update { categoryId }
+            _navigateToCategoryScreenEvent.update {
+                object : UiEvent<Unit> {
+                    override val data = Unit
+                    override fun onConsumed() {
+                        _navigateToCategoryScreenEvent.update { null }
+                    }
+                }
+            }
+        }
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(openedGroceryListId: String): GroceryListViewModel
+    }
+}
