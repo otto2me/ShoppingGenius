@@ -28,13 +28,13 @@ val hasReleaseSigningConfig = listOf(
 
 android {
     namespace = "com.shoppinggenius.app"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.shoppinggenius.app"
         minSdk = 21
-        targetSdk = 35
-        versionCode = 18
+        targetSdk = 36
+        versionCode = 19
         versionName = "0.3.0"
 
         testInstrumentationRunner = "com.shoppinggenius.app.testing.ShoppingGeniusTestRunner"
