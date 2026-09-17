@@ -12,7 +12,7 @@ data class BackupData(
     val customIcons: List<BackupIcon> = emptyList()
 ) {
     companion object {
-        const val BACKUP_VERSION = 1
+        const val BACKUP_VERSION = 2
         const val MANIFEST_FILE = "backup.json"
         const val ICONS_DIR = "icons"
     }
@@ -22,7 +22,8 @@ data class BackupData(
 data class BackupGroceryList(
     val id: String,
     val name: String,
-    val sortingPriority: Long
+    val sortingPriority: Long,
+    val type: String = "SHOPPING"
 )
 
 @JsonClass(generateAdapter = true)
@@ -41,7 +42,9 @@ data class BackupProduct(
     val isDefault: Boolean,
     val isFavorite: Boolean,
     val iconFileName: String?,
-    val categoryId: String?
+    val categoryId: String?,
+    val showInCatalog: Boolean = true,
+    val ownerGroceryListId: String? = null
 )
 
 @JsonClass(generateAdapter = true)

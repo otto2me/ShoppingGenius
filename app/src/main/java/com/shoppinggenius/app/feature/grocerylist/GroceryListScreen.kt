@@ -113,6 +113,7 @@ import com.shoppinggenius.app.feature.share.GroceryListShareManager
 import com.shoppinggenius.app.feature.share.SHARE_FILE_MIME_TYPE
 import com.shoppinggenius.app.model.Category
 import com.shoppinggenius.app.model.Grocery
+import com.shoppinggenius.app.model.GroceryListType
 import com.shoppinggenius.app.model.ShoppingGeniusColorScheme
 import com.shoppinggenius.app.ui.components.BottomSheetDragHandle
 import com.shoppinggenius.app.ui.components.DeleteConfirmationDialog
@@ -153,6 +154,7 @@ fun GroceryListRoute(
     val useListViewForGroceries by groceryListViewModel.useListViewForGroceriesFlow.collectAsStateWithLifecycle()
     val favoriteGroceries by groceryListViewModel.favoriteGroceriesFlow.collectAsStateWithLifecycle()
     val shareListTextEvent by groceryListViewModel.shareListTextEventFlow.collectAsStateWithLifecycle()
+    val groceryListType by groceryListViewModel.openedGroceryListTypeFlow.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var pendingShareContent by remember {
         mutableStateOf<GroceryListShareManager.ShareContent?>(null)
@@ -263,6 +265,7 @@ fun GroceryListRoute(
         onGroceryListUiIntent = groceryListViewModel::onIntent,
         scaffoldState = scaffoldState,
         addGroceryBottomSheetState = addGroceryBottomSheetState,
+        groceryListType = groceryListType,
         showEditGroceryBottomSheet = {
             editGroceryIdState.value = it
             editGroceryScreenIsVisible = true
@@ -327,6 +330,7 @@ private fun GroceryListScreen(
     groceryGroups: List<GroceryGroup>?,
     searchQuery: String,
     addGroceryUiState: AddGroceryUiState,
+    groceryListType: GroceryListType = GroceryListType.SHOPPING,
     groceryListName: TextFieldValue? = TextFieldValue(""),
     scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     addGroceryBottomSheetState: AddGroceryBottomSheetState = rememberAddGroceryBottomSheetState(),
@@ -346,6 +350,13 @@ private fun GroceryListScreen(
     onFavoriteGroceryClick: (Grocery) -> Unit = {}
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(GroceryListTab.ITEMS) }
+    val isTodoList = groceryListType == GroceryListType.TODO
+
+    LaunchedEffect(isTodoList) {
+        if (isTodoList) {
+            selectedTab = GroceryListTab.ITEMS
+        }
+    }
 
     val imeIsVisible = WindowInsets.isImeVisible
     LaunchedEffect(imeIsVisible) {
@@ -379,6 +390,7 @@ private fun GroceryListScreen(
                     .fillMaxWidth()
                     .height(LocalConfiguration.current.screenHeightDp * 0.75F.dp)
                     .navigationBarsPadding(),
+                isTodoList = isTodoList,
                 searchQuery = searchQuery,
                 contentType = addGroceryUiState.bottomSheetContentType,
                 clearSearchQueryButtonIsShown = addGroceryUiState.clearSearchQueryButtonIsShown,
@@ -443,12 +455,14 @@ private fun GroceryListScreen(
                 }
             )
 
-            GroceryListTabs(
-                selectedTab = selectedTab,
-                onTabSelected = { selectedTab = it }
-            )
+            if (!isTodoList) {
+                GroceryListTabs(
+                    selectedTab = selectedTab,
+                    onTabSelected = { selectedTab = it }
+                )
+            }
 
-            if (groceryGroups != null && categories != null) {
+            if (groceryGroups != null && (isTodoList || categories != null)) {
                 key(selectedTab) {
                     when (selectedTab) {
                         GroceryListTab.ITEMS -> {
@@ -456,6 +470,7 @@ private fun GroceryListScreen(
                                 GroceryListItemsList(
                                     modifier = Modifier.fillMaxSize(),
                                     groceryGroups = groceryGroups,
+                                    isTodoList = isTodoList,
                                     groceryListPurchaseState = groceryListPurchaseState,
                                     scrollUpEvent = scrollUpEvent,
                                     onGroceryClick = {
@@ -486,7 +501,7 @@ private fun GroceryListScreen(
                         GroceryListTab.CATEGORIES -> {
                             CategoriesList(
                                 modifier = Modifier.fillMaxSize(),
-                                categories = categories,
+                                categories = categories.orEmpty(),
                                 onCategoryItemClick = navigateToCategoryScreen
                             )
                         }
@@ -697,6 +712,7 @@ private fun GroceryGrid(
 private fun GroceryListItemsList(
     modifier: Modifier = Modifier,
     groceryGroups: List<GroceryGroup>,
+    isTodoList: Boolean = false,
     groceryListPurchaseState: GroceryListPurchaseState,
     scrollUpEvent: UiEvent<Unit>? = null,
     onGroceryClick: (Grocery) -> Unit,
@@ -736,8 +752,12 @@ private fun GroceryListItemsList(
                         modifier = Modifier.padding(16.dp),
                         text = stringResource(
                             id = when (groceryListPurchaseState) {
-                                GroceryListPurchaseState.SHOPPING_DONE -> R.string.shopping_done_title
-                                GroceryListPurchaseState.LIST_IS_EMPTY -> R.string.empty_grocery_list_title
+                                GroceryListPurchaseState.SHOPPING_DONE -> {
+                                    if (isTodoList) R.string.todo_done_title else R.string.shopping_done_title
+                                }
+                                GroceryListPurchaseState.LIST_IS_EMPTY -> {
+                                    if (isTodoList) R.string.empty_todo_list_title else R.string.empty_grocery_list_title
+                                }
                                 else -> throw IllegalStateException()
                             }
                         ),

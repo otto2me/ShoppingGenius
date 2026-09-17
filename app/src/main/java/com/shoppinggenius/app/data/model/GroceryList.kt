@@ -6,5 +6,6 @@ import com.shoppinggenius.app.model.GroceryList
 fun GroceryList.asEntity() = GroceryListEntity(
     id = id,
     name = name,
-    sortingPriority = sortingPriority
+    sortingPriority = sortingPriority,
+    type = type
 )

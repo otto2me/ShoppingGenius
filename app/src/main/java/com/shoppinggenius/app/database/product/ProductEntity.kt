@@ -26,7 +26,8 @@ import com.shoppinggenius.app.database.groceryicon.IconEntity
     ],
     indices = [
         Index(value = ["iconFileName"]),
-        Index(value = ["categoryId"])
+        Index(value = ["categoryId"]),
+        Index(value = ["ownerGroceryListId"])
     ]
 )
 data class ProductEntity(
@@ -35,5 +36,7 @@ data class ProductEntity(
     val isDefault: Boolean,
     val isFavorite: Boolean,
     val iconFileName: String?,
-    val categoryId: String?
+    val categoryId: String?,
+    val showInCatalog: Boolean = true,
+    val ownerGroceryListId: String? = null
 )

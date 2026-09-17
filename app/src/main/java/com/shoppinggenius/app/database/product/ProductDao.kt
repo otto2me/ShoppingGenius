@@ -1,5 +1,4 @@
-package com.shoppinggenius.app.database.product
-
+﻿package com.shoppinggenius.app.database.product
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -8,18 +7,14 @@ import androidx.room.Upsert
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.shoppinggenius.app.database.groceryicon.IconEntity
 import kotlinx.coroutines.flow.Flow
-
 @Dao
 abstract class ProductDao {
     @Insert
     abstract suspend fun insertProduct(product: ProductEntity)
-
     @Insert
     abstract suspend fun insertProducts(products: List<ProductEntity>)
-
     @Upsert
     abstract suspend fun upsertProducts(products: List<ProductEntity>)
-
     @Query(
         """
         SELECT
@@ -39,7 +34,6 @@ abstract class ProductDao {
         """
     )
     abstract fun getProductById(productId: String): Flow<CombinedProduct?>
-
     @Query(
         """
         SELECT 
@@ -56,10 +50,10 @@ abstract class ProductDao {
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
         WHERE product.categoryId = :categoryId
-    """
+          AND product.showInCatalog = 1
+        """
     )
     protected abstract fun getProductsByCategoryId(categoryId: String): Flow<List<CombinedProduct>>
-
     @Query(
         """
         SELECT 
@@ -76,10 +70,10 @@ abstract class ProductDao {
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
         WHERE product.categoryId IS NULL
-    """
+          AND product.showInCatalog = 1
+        """
     )
     protected abstract fun getProductsWithoutCategory(): Flow<List<CombinedProduct>>
-
     fun getProductsByCategory(categoryId: String?): Flow<List<CombinedProduct>> {
         return if (categoryId == null) {
             getProductsWithoutCategory()
@@ -87,7 +81,6 @@ abstract class ProductDao {
             getProductsByCategoryId(categoryId)
         }
     }
-
     @Query(
         """
         SELECT
@@ -103,11 +96,11 @@ abstract class ProductDao {
         FROM ProductEntity product
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
+        WHERE product.showInCatalog = 1
         ORDER BY category.sortingPriority ASC, LOWER(product.name) ASC
-    """
+        """
     )
     abstract fun getAllProducts(): Flow<List<CombinedProduct>>
-
     @Query(
         """
         SELECT 
@@ -124,10 +117,10 @@ abstract class ProductDao {
         LEFT JOIN CategoryEntity category ON product.categoryId = category.id
         LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
         WHERE LOWER(product.name) LIKE LOWER(:name)
-    """
+          AND product.showInCatalog = 1
+        """
     )
     abstract suspend fun getProductsByName(name: String): List<CombinedProduct>
-
     /**
      * This function returns only those icons, which have an associated product name
      * that contains one or more given keywords. The search is designed to match whole words
@@ -163,43 +156,72 @@ abstract class ProductDao {
             FROM ProductEntity product
             LEFT JOIN CategoryEntity category ON product.categoryId = category.id
             LEFT JOIN IconEntity icon ON product.iconFileName = icon.uniqueFileName
-            WHERE $searchCondition
+            WHERE product.showInCatalog = 1
+              AND ($searchCondition)
             GROUP BY icon.uniqueFileName
             ORDER BY $orderCondition DESC, LENGTH(product.name) ASC
         """
         return getProductsByRawQuery(SimpleSQLiteQuery(queryString))
     }
-
+    @Query(
+        """
+        DELETE FROM ProductEntity
+        WHERE id = :productId
+          AND showInCatalog = 0
+          AND NOT EXISTS (
+              SELECT 1 FROM GroceryEntity grocery
+              WHERE grocery.productId = ProductEntity.id
+          )
+        """
+    )
+    abstract suspend fun deleteLocalOnlyProductIfOrphaned(productId: String)
+    @Query(
+        """
+        DELETE FROM ProductEntity
+        WHERE showInCatalog = 0
+          AND ownerGroceryListId = :groceryListId
+          AND NOT EXISTS (
+              SELECT 1 FROM GroceryEntity grocery
+              WHERE grocery.productId = ProductEntity.id
+          )
+        """
+    )
+    abstract suspend fun deleteOrphanedLocalOnlyProductsByOwnerListId(groceryListId: String)
+    @Query(
+        """
+        DELETE FROM ProductEntity
+        WHERE showInCatalog = 0
+          AND NOT EXISTS (
+              SELECT 1 FROM GroceryEntity grocery
+              WHERE grocery.productId = ProductEntity.id
+          )
+        """
+    )
+    abstract suspend fun deleteAllOrphanedLocalOnlyProducts()
     @RawQuery(observedEntities = [IconEntity::class, ProductEntity::class])
     protected abstract suspend fun getProductsByRawQuery(query: SimpleSQLiteQuery): List<CombinedProduct>
-
     @Query("UPDATE ProductEntity SET categoryId = :categoryId WHERE id = :productId")
     abstract suspend fun updateProductCategory(
         productId: String,
         categoryId: String?
     )
-
     @Query("UPDATE ProductEntity SET iconFileName = :iconId WHERE id = :productId")
     abstract suspend fun updateProductIcon(
         productId: String,
         iconId: String?
     )
-
     @Query("UPDATE ProductEntity SET name = :name WHERE id = :productId")
     abstract suspend fun updateProductName(
         productId: String,
         name: String
     )
-
     @Query("UPDATE ProductEntity SET isFavorite = :isFavorite WHERE id = :productId")
     abstract suspend fun updateProductFavorite(
         productId: String,
         isFavorite: Boolean
     )
-
     @Query("DELETE FROM ProductEntity WHERE id = :productId")
     abstract suspend fun deleteProductById(productId: String)
-
     @Query(
         """
             DELETE FROM ProductEntity
@@ -207,7 +229,6 @@ abstract class ProductDao {
         """
     )
     abstract suspend fun deleteProductsByIds(ids: List<String>)
-
     /**
      * Returns products eligible for backup:
      * - All custom (non-default) products

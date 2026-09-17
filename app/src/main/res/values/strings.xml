@@ -9,12 +9,16 @@
     <!-- AddGrocery -->
     <string name="add_grocery_search_field_placeholder_collapsed">Add a grocery</string>
     <string name="add_grocery_search_field_placeholder_expanded">e.g. bread</string>
+    <string name="add_entry_search_field_placeholder_collapsed">Add an entry</string>
+    <string name="add_entry_search_field_placeholder_expanded">e.g. call the plumber</string>
     <string name="add_grocery_search_field_trailing_icon_description">Clear text in search bar</string>
     <string name="add_grocery_voice_input_description">Voice input</string>
     <string name="add_grocery_voice_input_prompt">Speak item name</string>
+    <string name="add_entry_voice_input_prompt">Speak entry name</string>
     <string name="add_grocery_voice_input_not_available">Voice input is not available on this device.</string>
-    <string name="add_grocery_refine_item_options_title">Refine «%s»</string>
+    <string name="add_grocery_refine_item_options_title">Refine "%s"</string>
     <string name="add_grocery_edit_item_button_title">Enter item details</string>
+    <string name="add_entry_edit_item_button_title">Enter entry details</string>
     <!-- EditGrocery -->
     <string name="edit_grocery_item_description_placeholder">Quantity, description</string>
     <string name="edit_grocery_change_icon_button_title">Change icon</string>
@@ -31,6 +35,11 @@
         <item quantity="other">%d items</item>
     </plurals>
     <string name="add_grocery_list_button_description">Create new grocery list</string>
+    <string name="create_grocery_list_dialog_title">Create list</string>
+    <string name="create_grocery_list_dialog_description">Choose which type of list you want to create.</string>
+    <string name="grocery_list_type_shopping">Shopping list</string>
+    <string name="grocery_list_type_todo">ToDo list</string>
+    <string name="dashboard_todo_badge">ToDo</string>
     <!-- SettingsScreen -->
     <string name="settings_dark_theme_config_system_default">System</string>
     <string name="settings_dark_theme_config_light">Light</string>
@@ -119,6 +128,8 @@
     <string name="grocery_list_tab_items">Items</string>
     <string name="grocery_list_tab_categories">Categories</string>
     <string name="grocery_list_tab_favorites">Favorites</string>
+    <string name="todo_done_title">All done!</string>
+    <string name="empty_todo_list_title">Add your first entry!</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorite</string>
     <string name="category_create_title">Create category</string>
     <string name="category_create_field_label">Category name</string>
@@ -145,4 +156,5 @@
     <string name="sync_work_notification_channel_name">Synchronization</string>
     <string name="sync_work_notification_channel_description">Periodic synchronization of grocery database.</string>
     <string name="sync_work_notification_title">Syncing your groceries</string>
+    <string name="dashboard_item_type_and_count">%1$s - %2$s</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shoppinggenius.app.data.grocerylist.GroceryListRepository
 import com.shoppinggenius.app.model.GroceryList
+import com.shoppinggenius.app.model.GroceryListType
 import com.shoppinggenius.app.ui.helpers.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
@@ -39,17 +40,19 @@ class GroceryListsDashboardViewModel @Inject constructor(
     val navigateToGroceryListEvent = _navigateToGroceryListEvent.asStateFlow()
 
     fun onIntent(intent: GroceryListsDashboardUiIntent) = when (intent) {
-        is GroceryListsDashboardUiIntent.OnAdderItemClick -> createNewGroceryList()
+        is GroceryListsDashboardUiIntent.OnAdderItemClick -> Unit
+        is GroceryListsDashboardUiIntent.OnCreateGroceryList -> createNewGroceryList(intent.type)
         is GroceryListsDashboardUiIntent.OnUpdateGroceryLists -> updateGroceryLists(intent.groceryLists)
     }
 
-    private fun createNewGroceryList() {
+    private fun createNewGroceryList(type: GroceryListType) {
         viewModelScope.launch {
             val groceryListId = UUID.randomUUID().toString()
             groceryListRepository.insertGroceryList(
                 GroceryList(
                     id = groceryListId,
-                    name = ""
+                    name = "",
+                    type = type
                 )
             )
             _navigateToGroceryListEvent.update {

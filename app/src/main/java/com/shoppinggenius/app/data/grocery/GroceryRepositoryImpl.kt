@@ -4,18 +4,22 @@ import android.content.Context
 import com.shoppinggenius.app.data.model.asExternalModel
 import com.shoppinggenius.app.database.grocery.GroceryDao
 import com.shoppinggenius.app.database.grocery.GroceryEntity
+import com.shoppinggenius.app.database.grocerylist.GroceryListDao
 import com.shoppinggenius.app.database.product.ProductDao
 import com.shoppinggenius.app.database.product.ProductEntity
 import com.shoppinggenius.app.feature.widget.ActiveGroceryListWidgetProvider
 import com.shoppinggenius.app.model.Grocery
+import com.shoppinggenius.app.model.GroceryListType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class GroceryRepositoryImpl @Inject constructor(
     @ApplicationContext private val appContext: Context,
     private val groceryDao: GroceryDao,
+    private val groceryListDao: GroceryListDao,
     private val productDao: ProductDao
 ) : GroceryRepository {
     override suspend fun addGroceryToList(
@@ -48,13 +52,19 @@ class GroceryRepositoryImpl @Inject constructor(
         purchasedLastModified: Long,
         isDefault: Boolean
     ) {
+        val listType = groceryListDao.getGroceryListById(groceryListId)
+            .map { it?.type ?: GroceryListType.SHOPPING }
+            .first()
+        val productShouldBeShownInCatalog = listType == GroceryListType.SHOPPING
         val product = ProductEntity(
             id = productId,
             name = name,
             categoryId = categoryId,
             iconFileName = iconId,
             isDefault = isDefault,
-            isFavorite = false
+            isFavorite = false,
+            showInCatalog = productShouldBeShownInCatalog,
+            ownerGroceryListId = groceryListId.takeUnless { productShouldBeShownInCatalog }
         )
         val grocery = GroceryEntity(
             productId = productId,
@@ -112,17 +122,20 @@ class GroceryRepositoryImpl @Inject constructor(
         listId: String
     ) {
         groceryDao.deleteGrocery(productId, listId)
+        productDao.deleteLocalOnlyProductIfOrphaned(productId)
         ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun removeGroceriesFromList(listId: String) {
         groceryDao.deleteGroceriesFromList(listId)
+        productDao.deleteOrphanedLocalOnlyProductsByOwnerListId(listId)
         ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 
     override suspend fun deleteOldCompletedGroceries(beforeTimestampMs: Long): Int {
         val deletedCount = groceryDao.deleteOldCompletedGroceries(beforeTimestampMs)
         if (deletedCount > 0) {
+            productDao.deleteAllOrphanedLocalOnlyProducts()
             ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
         }
         return deletedCount

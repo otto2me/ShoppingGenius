@@ -22,6 +22,7 @@ interface GroceryListDao {
              groceryList.id, 
              groceryList.name, 
              groceryList.sortingPriority, 
+             groceryList.type,
              COUNT(grocery.productId) as numOfGroceries
          FROM GroceryListEntity groceryList
          LEFT JOIN GroceryEntity grocery ON grocery.groceryListId = groceryList.id AND grocery.purchased = 0
@@ -37,6 +38,7 @@ interface GroceryListDao {
             groceryList.id, 
             groceryList.name, 
             groceryList.sortingPriority, 
+            groceryList.type,
             COUNT(grocery.productId) as numOfGroceries
         FROM GroceryListEntity groceryList
         LEFT JOIN GroceryEntity grocery ON grocery.groceryListId = groceryList.id AND grocery.purchased = 0

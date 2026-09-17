@@ -3,6 +3,7 @@ package com.shoppinggenius.app.data.grocerylist
 import android.content.Context
 import com.shoppinggenius.app.data.model.asEntity
 import com.shoppinggenius.app.database.grocerylist.GroceryListDao
+import com.shoppinggenius.app.database.product.ProductDao
 import com.shoppinggenius.app.feature.widget.ActiveGroceryListWidgetProvider
 import com.shoppinggenius.app.model.GroceryList
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -11,7 +12,8 @@ import kotlinx.coroutines.flow.Flow
 
 class GroceryListRepositoryImpl @Inject constructor(
     @ApplicationContext private val appContext: Context,
-    private val groceryListDao: GroceryListDao
+    private val groceryListDao: GroceryListDao,
+    private val productDao: ProductDao
 ) : GroceryListRepository {
     override suspend fun insertGroceryList(groceryList: GroceryList) {
         groceryListDao.insertGroceryList(groceryList.asEntity())
@@ -36,6 +38,7 @@ class GroceryListRepositoryImpl @Inject constructor(
 
     override suspend fun deleteGroceryListById(groceryListId: String) {
         groceryListDao.deleteGroceryListById(groceryListId)
+        productDao.deleteOrphanedLocalOnlyProductsByOwnerListId(groceryListId)
         ActiveGroceryListWidgetProvider.refreshAllWidgets(appContext)
     }
 

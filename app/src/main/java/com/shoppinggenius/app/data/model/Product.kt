@@ -13,7 +13,9 @@ fun Product.asEntity() = ProductEntity(
     categoryId = category?.id,
     iconFileName = icon?.uniqueFileName,
     isDefault = isDefault,
-    isFavorite = isFavorite
+    isFavorite = isFavorite,
+    showInCatalog = true,
+    ownerGroceryListId = null
 )
 
 fun CombinedProduct.asExternalModel() = Product(
@@ -55,5 +57,7 @@ fun ProductNetwork.asEntity() = ProductEntity(
     categoryId = categoryId,
     iconFileName = iconId,
     isDefault = isDefault,
-    isFavorite = false
+    isFavorite = false,
+    showInCatalog = true,
+    ownerGroceryListId = null
 )

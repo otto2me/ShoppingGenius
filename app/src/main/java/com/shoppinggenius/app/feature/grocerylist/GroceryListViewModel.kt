@@ -17,6 +17,7 @@ import com.shoppinggenius.app.data.product.ProductRepository
 import com.shoppinggenius.app.data.userpreferences.UserPreferencesRepository
 import com.shoppinggenius.app.feature.share.GroceryListShareManager
 import com.shoppinggenius.app.model.Grocery
+import com.shoppinggenius.app.model.GroceryListType
 import com.shoppinggenius.app.network.di.Dispatcher
 import com.shoppinggenius.app.network.di.ShoppingGeniusDispatchers
 import com.shoppinggenius.app.ui.components.grocerylist.GroceryGroup
@@ -76,6 +77,14 @@ class GroceryListViewModel @AssistedInject constructor(
 
     private val _groceryListEditModeIsEnabledFlow = MutableStateFlow(false)
     val groceryListEditModeIsEnabledFlow = _groceryListEditModeIsEnabledFlow.asStateFlow()
+
+    val openedGroceryListTypeFlow = groceryListRepository.getGroceryListById(openedGroceryListId)
+        .map { groceryList -> groceryList?.type ?: GroceryListType.SHOPPING }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = GroceryListType.SHOPPING
+        )
 
     val categoriesFlow = categoryRepository.getAllCategories()
         .map { categories -> categories.sortedBy { it.sortingPriority } }

@@ -63,6 +63,7 @@ import kotlin.random.Random
 @Composable
 fun AddGroceryBottomSheetContent(
     modifier: Modifier = Modifier,
+    isTodoList: Boolean = false,
     searchQuery: String,
     clearSearchQueryButtonIsShown: Boolean,
     contentType: AddGroceryBottomSheetContentType,
@@ -96,6 +97,7 @@ fun AddGroceryBottomSheetContent(
 
     Column(modifier = modifier) {
         BottomSheetHeader(
+            isTodoList = isTodoList,
             searchQuery = searchQuery,
             useExpandedPlaceholderText = useExpandedPlaceholderText,
             clearSearchInputButtonIsShown = clearSearchQueryButtonIsShown,
@@ -129,6 +131,7 @@ fun AddGroceryBottomSheetContent(
                     AddGroceryBottomSheetContentType.RefineItemOptions -> {
                         if (previousGrocery != null) {
                             RefineItemOptions(
+                                isTodoList = isTodoList,
                                 groceryName = previousGrocery.name,
                                 onEditGroceryClicked = onEditGroceryClicked
                             )
@@ -142,6 +145,7 @@ fun AddGroceryBottomSheetContent(
 
 @Composable
 private fun BottomSheetHeader(
+    isTodoList: Boolean,
     searchQuery: String,
     useExpandedPlaceholderText: Boolean,
     clearSearchInputButtonIsShown: Boolean,
@@ -183,9 +187,21 @@ private fun BottomSheetHeader(
             placeholder = {
                 Text(
                     text = if (useExpandedPlaceholderText) {
-                        stringResource(R.string.add_grocery_search_field_placeholder_expanded)
+                        stringResource(
+                            if (isTodoList) {
+                                R.string.add_entry_search_field_placeholder_expanded
+                            } else {
+                                R.string.add_grocery_search_field_placeholder_expanded
+                            }
+                        )
                     } else {
-                        stringResource(R.string.add_grocery_search_field_placeholder_collapsed)
+                        stringResource(
+                            if (isTodoList) {
+                                R.string.add_entry_search_field_placeholder_collapsed
+                            } else {
+                                R.string.add_grocery_search_field_placeholder_collapsed
+                            }
+                        )
                     }
                 )
             },
@@ -201,7 +217,13 @@ private fun BottomSheetHeader(
                             )
                             putExtra(
                                 RecognizerIntent.EXTRA_PROMPT,
-                                context.getString(R.string.add_grocery_voice_input_prompt)
+                                context.getString(
+                                    if (isTodoList) {
+                                        R.string.add_entry_voice_input_prompt
+                                    } else {
+                                        R.string.add_grocery_voice_input_prompt
+                                    }
+                                )
                             )
                         }
                         try {
@@ -288,6 +310,7 @@ private fun SearchResults(
 @Composable
 private fun RefineItemOptions(
     modifier: Modifier = Modifier,
+    isTodoList: Boolean = false,
     groceryName: String,
     onEditGroceryClicked: () -> Unit
 ) {
@@ -315,7 +338,13 @@ private fun RefineItemOptions(
                 contentDescription = null
             )
             Text(
-                text = stringResource(R.string.add_grocery_edit_item_button_title),
+                text = stringResource(
+                    if (isTodoList) {
+                        R.string.add_entry_edit_item_button_title
+                    } else {
+                        R.string.add_grocery_edit_item_button_title
+                    }
+                ),
                 style = MaterialTheme.typography.bodySmall
             )
         }

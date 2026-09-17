@@ -1,11 +1,12 @@
-package com.shoppinggenius.app.feature.dashboardscreen.recyclerview
-
+﻿package com.shoppinggenius.app.feature.dashboardscreen.recyclerview
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -27,14 +28,13 @@ import androidx.compose.ui.unit.dp
 import androidx.recyclerview.widget.RecyclerView
 import com.shoppinggenius.app.R
 import com.shoppinggenius.app.model.GroceryList
+import com.shoppinggenius.app.model.GroceryListType
 import com.shoppinggenius.app.ui.theme.ShoppingGeniusTheme
-
 class DashboardItemViewHolder(
     private val composeView: ComposeView,
     private val onDrag: (RecyclerView.ViewHolder) -> Unit,
     private val onViewClicked: (String) -> Unit
 ) : RecyclerView.ViewHolder(composeView) {
-
     fun bind(groceryList: GroceryList) {
         composeView.setContent {
             ListItem(
@@ -48,7 +48,6 @@ class DashboardItemViewHolder(
         }
     }
 }
-
 @Composable
 private fun ListItem(
     modifier: Modifier = Modifier,
@@ -56,6 +55,10 @@ private fun ListItem(
     onDrag: () -> Unit = {},
     onClick: () -> Unit = {}
 ) = ElevatedCard(modifier = modifier) {
+    val listTypeLabel = when (list.type) {
+        GroceryListType.SHOPPING -> stringResource(R.string.grocery_list_type_shopping)
+        GroceryListType.TODO -> stringResource(R.string.grocery_list_type_todo)
+    }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,6 +66,20 @@ private fun ListItem(
             .padding(16.dp)
     ) {
         Column(modifier = Modifier.padding(end = 50.dp)) {
+            if (list.type == GroceryListType.TODO) {
+                Surface(
+                    color = MaterialTheme.colorScheme.tertiaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                    shape = MaterialTheme.shapes.small
+                ) {
+                    Text(
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        text = stringResource(R.string.dashboard_todo_badge),
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                }
+                Spacer(modifier = Modifier.height(6.dp))
+            }
             Text(
                 modifier = Modifier.padding(bottom = 2.dp),
                 text = list.name,
@@ -71,10 +88,14 @@ private fun ListItem(
                 overflow = TextOverflow.Ellipsis
             )
             Text(
-                text = pluralStringResource(
-                    id = R.plurals.dashboard_item_num_of_groceries_title,
-                    count = list.numOfGroceries,
-                    list.numOfGroceries
+                text = stringResource(
+                    R.string.dashboard_item_type_and_count,
+                    listTypeLabel,
+                    pluralStringResource(
+                        id = R.plurals.dashboard_item_num_of_groceries_title,
+                        count = list.numOfGroceries,
+                        list.numOfGroceries
+                    )
                 )
             )
         }
@@ -96,7 +117,6 @@ private fun ListItem(
         }
     }
 }
-
 @Composable
 @Preview
 private fun PreviewListItem() {

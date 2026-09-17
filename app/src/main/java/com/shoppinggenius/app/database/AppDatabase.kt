@@ -2,6 +2,7 @@ package com.shoppinggenius.app.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.shoppinggenius.app.database.category.CategoryDao
 import com.shoppinggenius.app.database.category.CategoryEntity
 import com.shoppinggenius.app.database.grocery.GroceryDao
@@ -21,8 +22,9 @@ import com.shoppinggenius.app.database.product.ProductEntity
         ProductEntity::class,
         IconEntity::class
     ],
-    version = 3
+    version = 4
 )
+@TypeConverters(GroceryListTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun groceryDao(): GroceryDao

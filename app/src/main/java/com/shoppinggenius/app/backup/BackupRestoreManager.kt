@@ -1,5 +1,4 @@
-package com.shoppinggenius.app.backup
-
+﻿package com.shoppinggenius.app.backup
 import android.content.Context
 import android.net.Uri
 import android.util.Log
@@ -9,6 +8,7 @@ import com.shoppinggenius.app.database.grocery.GroceryEntity
 import com.shoppinggenius.app.database.groceryicon.IconEntity
 import com.shoppinggenius.app.database.grocerylist.GroceryListEntity
 import com.shoppinggenius.app.database.product.ProductEntity
+import com.shoppinggenius.app.model.GroceryListType
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
@@ -19,7 +19,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
 @Singleton
 class BackupRestoreManager @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -27,7 +26,6 @@ class BackupRestoreManager @Inject constructor(
     private val moshi: Moshi
 ) {
     private val adapter by lazy { moshi.adapter(BackupData::class.java) }
-
     suspend fun exportBackup(uri: Uri): Result<Unit> = withContext(Dispatchers.IO) {
         try {
             val groceryLists = database.groceryListDao().getAllGroceryListEntities()
@@ -35,10 +33,14 @@ class BackupRestoreManager @Inject constructor(
             // Export non-default products + default products with favorites or modified icon
             val products = database.productDao().getProductEntitiesForBackup()
             val customIcons = database.iconDao().getCustomIconEntities()
-
             val backupData = BackupData(
                 groceryLists = groceryLists.map {
-                    BackupGroceryList(it.id, it.name, it.sortingPriority)
+                    BackupGroceryList(
+                        id = it.id,
+                        name = it.name,
+                        sortingPriority = it.sortingPriority,
+                        type = it.type.name
+                    )
                 },
                 groceries = groceries.map {
                     BackupGrocery(
@@ -56,19 +58,19 @@ class BackupRestoreManager @Inject constructor(
                         isDefault = it.isDefault,
                         isFavorite = it.isFavorite,
                         iconFileName = it.iconFileName,
-                        categoryId = it.categoryId
+                        categoryId = it.categoryId,
+                        showInCatalog = it.showInCatalog,
+                        ownerGroceryListId = it.ownerGroceryListId
                     )
                 },
                 customIcons = customIcons.map { BackupIcon(it.uniqueFileName, it.filePath) }
             )
-
             context.contentResolver.openOutputStream(uri)?.use { outputStream ->
                 ZipOutputStream(outputStream.buffered()).use { zip ->
                     // Write manifest JSON
                     zip.putNextEntry(ZipEntry(BackupData.MANIFEST_FILE))
                     zip.write(adapter.toJson(backupData).toByteArray(Charsets.UTF_8))
                     zip.closeEntry()
-
                     // Write custom icon files
                     for (icon in customIcons) {
                         val iconFile = File(context.filesDir, icon.filePath)
@@ -82,20 +84,17 @@ class BackupRestoreManager @Inject constructor(
                     }
                 }
             } ?: return@withContext Result.failure(Exception("Cannot open output stream for URI"))
-
             Result.success(Unit)
         } catch (e: Exception) {
             Log.e("BackupRestore", "Export failed", e)
             Result.failure(e)
         }
     }
-
     suspend fun importBackup(uri: Uri): Result<Unit> = withContext(Dispatchers.IO) {
         try {
             val iconsDir = File(context.filesDir, "icons").also { it.mkdirs() }
             var backupData: BackupData? = null
             val iconFiles = mutableMapOf<String, ByteArray>()
-
             context.contentResolver.openInputStream(uri)?.use { inputStream ->
                 ZipInputStream(inputStream.buffered()).use { zip ->
                     var entry = zip.nextEntry
@@ -117,15 +116,12 @@ class BackupRestoreManager @Inject constructor(
                     }
                 }
             } ?: return@withContext Result.failure(Exception("Cannot open input stream for URI"))
-
             val data = backupData
                 ?: return@withContext Result.failure(Exception("Invalid backup file: no manifest found"))
-
             // Write icon files to disk
             for ((fileName, bytes) in iconFiles) {
                 File(iconsDir, fileName).writeBytes(bytes)
             }
-
             // Restore DB in a single transaction (order matters for FK constraints)
             database.withTransaction {
                 // 1. Icons first (products reference them)
@@ -133,7 +129,6 @@ class BackupRestoreManager @Inject constructor(
                 if (icons.isNotEmpty()) {
                     database.iconDao().upsertGroceryIcons(icons)
                 }
-
                 // 2. Products (groceries reference them)
                 val products = data.products.map {
                     ProductEntity(
@@ -142,21 +137,26 @@ class BackupRestoreManager @Inject constructor(
                         isDefault = it.isDefault,
                         isFavorite = it.isFavorite,
                         iconFileName = it.iconFileName,
-                        categoryId = it.categoryId
+                        categoryId = it.categoryId,
+                        showInCatalog = it.showInCatalog,
+                        ownerGroceryListId = it.ownerGroceryListId
                     )
                 }
                 if (products.isNotEmpty()) {
                     database.productDao().upsertProducts(products)
                 }
-
                 // 3. Grocery lists (groceries reference them)
                 val lists = data.groceryLists.map {
-                    GroceryListEntity(it.id, it.name, it.sortingPriority)
+                    GroceryListEntity(
+                        id = it.id,
+                        name = it.name,
+                        sortingPriority = it.sortingPriority,
+                        type = GroceryListType.fromStorageValue(it.type)
+                    )
                 }
                 if (lists.isNotEmpty()) {
                     database.groceryListDao().upsertGroceryLists(lists)
                 }
-
                 // 4. Groceries last (reference both products and lists)
                 val groceries = data.groceries.map {
                     GroceryEntity(
@@ -171,7 +171,6 @@ class BackupRestoreManager @Inject constructor(
                     database.groceryDao().upsertGroceries(groceries)
                 }
             }
-
             Result.success(Unit)
         } catch (e: Exception) {
             Log.e("BackupRestore", "Import failed", e)
@@ -179,5 +178,3 @@ class BackupRestoreManager @Inject constructor(
         }
     }
 }
-
-
