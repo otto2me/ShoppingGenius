@@ -40,13 +40,27 @@ class EditGroceryViewModel @Inject constructor(
     private val _uiStateFlow = MutableStateFlow(EditGroceryUiState())
     val uiStateFlow = _uiStateFlow.asStateFlow()
 
+    var editGroceryName by mutableStateOf(TextFieldValue(""))
+        private set
+    private val editGroceryNameFlow = snapshotFlow { editGroceryName.text }
+
     var editGroceryDescription by mutableStateOf(TextFieldValue(""))
         private set
     private val editGroceryDescriptionFlow = snapshotFlow { editGroceryDescription.text }
 
-    private var updateGroceryJob: Job? = null
+    private var updateGroceryNameJob: Job? = null
+    private var updateGroceryDescriptionJob: Job? = null
+    private var persistedEditGroceryName: String? = null
+    private var persistedEditGroceryDescription: String? = null
 
     init {
+        viewModelScope.launch {
+            editGroceryNameFlow.collectLatest { name ->
+                _uiStateFlow.update {
+                    it.copy(clearEditGroceryNameButtonIsShown = name.isNotEmpty())
+                }
+            }
+        }
         viewModelScope.launch {
             editGroceryDescriptionFlow.collectLatest { description ->
                 _uiStateFlow.update {
@@ -68,6 +82,12 @@ class EditGroceryViewModel @Inject constructor(
     }
 
     fun onIntent(intent: EditGroceryUiIntent) = when (intent) {
+        is EditGroceryUiIntent.OnNameChanged ->
+            editGroceryName = intent.name
+
+        is EditGroceryUiIntent.OnClearName ->
+            editGroceryName = TextFieldValue("")
+
         is EditGroceryUiIntent.OnDescriptionChanged ->
             editGroceryDescription = intent.description
 
@@ -109,31 +129,16 @@ class EditGroceryViewModel @Inject constructor(
                 ).first() ?: return@launch
 
                 if (grocery.productIsDefault) {
-                    // Default products should not be changed so we create a new custom one
-                    val newProductId = UUID.randomUUID().toString()
-                    groceryRepository.insertProductAndGrocery(
-                        name = grocery.name,
-                        iconId = grocery.icon?.uniqueFileName,
-                        productId = newProductId,
-                        categoryId = category?.id,
+                    val editableGrocery = materializeEditableCustomGrocery(
+                        grocery = grocery,
                         groceryListId = compoundGroceryId.groceryListId,
-                        description = grocery.description,
-                        purchased = grocery.purchased,
-                        purchasedLastModified = grocery.purchasedLastModified,
-                        isDefault = false
+                        category = category
                     )
-                    productRepository.updateProductFavorite(
-                        productId = newProductId,
-                        isFavorite = grocery.isFavorite
-                    )
-                    groceryRepository.removeGroceryFromList(
-                        productId = compoundGroceryId.productId,
-                        listId = compoundGroceryId.groceryListId
-                    )
-                    onEditOtherGrocery(
-                        productId = newProductId,
-                        groceryListId = compoundGroceryId.groceryListId
-                    )
+                    persistedEditGroceryName = editableGrocery.name
+                    persistedEditGroceryDescription = editableGrocery.description.orEmpty()
+                    _uiStateFlow.update { uiState ->
+                        uiState.copy(editGrocery = editableGrocery)
+                    }
                 } else {
                     productRepository.updateProductCategory(
                         productId = compoundGroceryId.productId,
@@ -199,11 +204,19 @@ class EditGroceryViewModel @Inject constructor(
 
     private fun onEditProduct(productId: String) {
         compoundGroceryIdFlow.value = null
-        updateGroceryJob?.cancel()
-        updateGroceryJob = null
+        updateGroceryNameJob?.cancel()
+        updateGroceryDescriptionJob?.cancel()
+        updateGroceryDescriptionJob = null
         viewModelScope.launch {
             val product = productRepository.getProductById(productId).first() ?: return@launch
+            val nameLength = product.name.length
+            editGroceryName = TextFieldValue(
+                text = product.name,
+                selection = TextRange(nameLength, nameLength)
+            )
             editGroceryDescription = TextFieldValue("")
+            persistedEditGroceryName = product.name
+            persistedEditGroceryDescription = ""
             _uiStateFlow.update {
                 it.copy(
                     editGrocery = Grocery(
@@ -216,10 +229,13 @@ class EditGroceryViewModel @Inject constructor(
                         productIsDefault = product.isDefault,
                         isFavorite = product.isFavorite
                     ),
+                    clearEditGroceryNameButtonIsShown = product.name.isNotEmpty(),
                     clearEditGroceryDescriptionButtonIsShown = false,
+                    nameCanBeModified = !product.isDefault,
                     showRemoveFromListButton = false
                 )
             }
+            startNameUpdates()
         }
     }
 
@@ -233,34 +249,144 @@ class EditGroceryViewModel @Inject constructor(
                 groceryListId = groceryListId
             )
         }
-        updateGroceryJob?.cancel()
-        updateGroceryJob = viewModelScope.launch {
+        updateGroceryNameJob?.cancel()
+        updateGroceryDescriptionJob?.cancel()
+        viewModelScope.launch {
             val grocery = groceryRepository.getGroceryById(
                 productId = productId,
                 listId = groceryListId
             ).first() ?: return@launch
-            val nameLength = grocery.description?.length ?: 0
-            editGroceryDescription = TextFieldValue(
-                text = grocery.description ?: "",
+            val nameLength = grocery.name.length
+            editGroceryName = TextFieldValue(
+                text = grocery.name,
                 selection = TextRange(nameLength, nameLength)
             )
+            val descriptionLength = grocery.description?.length ?: 0
+            editGroceryDescription = TextFieldValue(
+                text = grocery.description ?: "",
+                selection = TextRange(descriptionLength, descriptionLength)
+            )
+            persistedEditGroceryName = grocery.name
+            persistedEditGroceryDescription = grocery.description.orEmpty()
             _uiStateFlow.update {
                 it.copy(
                     editGrocery = grocery,
+                    clearEditGroceryNameButtonIsShown = grocery.name.isNotEmpty(),
+                    nameCanBeModified = true,
                     showRemoveFromListButton = true
                 )
             }
+            startNameUpdates()
+            startDescriptionUpdates()
+        }
+    }
+
+    private fun startNameUpdates() {
+        updateGroceryNameJob?.cancel()
+        updateGroceryNameJob = viewModelScope.launch {
+            editGroceryNameFlow
+                .debounce(800)
+                .collectLatest { name ->
+                    persistNameIfChanged(name)
+                }
+        }
+    }
+
+    private fun startDescriptionUpdates() {
+        updateGroceryDescriptionJob?.cancel()
+        updateGroceryDescriptionJob = viewModelScope.launch {
             editGroceryDescriptionFlow
                 .debounce(800)
                 .collectLatest { description ->
-                    compoundGroceryIdFlow.value?.let { (productId, groceryListId) ->
-                        groceryRepository.updateDescription(
-                            productId = productId,
-                            listId = groceryListId,
-                            description = description.ifEmpty { null }
-                        )
-                    }
+                    persistDescriptionIfChanged(description)
                 }
         }
+    }
+
+    private suspend fun persistNameIfChanged(rawName: String) {
+        val trimmedName = rawName.trim()
+        val currentGrocery = _uiStateFlow.value.editGrocery ?: return
+        if (!_uiStateFlow.value.nameCanBeModified || trimmedName.isEmpty() || trimmedName == persistedEditGroceryName) {
+            return
+        }
+
+        val updatedGrocery = compoundGroceryIdFlow.value?.let { compoundGroceryId ->
+            if (currentGrocery.productIsDefault) {
+                materializeEditableCustomGrocery(
+                    grocery = currentGrocery,
+                    groceryListId = compoundGroceryId.groceryListId,
+                    name = trimmedName
+                )
+            } else {
+                productRepository.updateProductName(currentGrocery.productId, trimmedName)
+                currentGrocery.copy(name = trimmedName)
+            }
+        } ?: run {
+            if (currentGrocery.productIsDefault) return
+            productRepository.updateProductName(currentGrocery.productId, trimmedName)
+            currentGrocery.copy(name = trimmedName)
+        }
+
+        persistedEditGroceryName = updatedGrocery.name
+        _uiStateFlow.update { uiState ->
+            uiState.copy(editGrocery = updatedGrocery)
+        }
+    }
+
+    private suspend fun persistDescriptionIfChanged(description: String) {
+        if (description == persistedEditGroceryDescription) return
+        compoundGroceryIdFlow.value?.let { (productId, groceryListId) ->
+            groceryRepository.updateDescription(
+                productId = productId,
+                listId = groceryListId,
+                description = description.ifEmpty { null }
+            )
+            persistedEditGroceryDescription = description
+            _uiStateFlow.update { uiState ->
+                uiState.copy(
+                    editGrocery = uiState.editGrocery?.copy(description = description.ifEmpty { null })
+                )
+            }
+        }
+    }
+
+    private suspend fun materializeEditableCustomGrocery(
+        grocery: Grocery,
+        groceryListId: String,
+        name: String = editGroceryName.text.trim().ifEmpty { grocery.name },
+        category: Category? = grocery.category,
+        description: String? = editGroceryDescription.text.ifEmpty { null }
+    ): Grocery {
+        val newProductId = UUID.randomUUID().toString()
+        groceryRepository.insertProductAndGrocery(
+            name = name,
+            iconId = grocery.icon?.uniqueFileName,
+            productId = newProductId,
+            categoryId = category?.id,
+            groceryListId = groceryListId,
+            description = description,
+            purchased = grocery.purchased,
+            purchasedLastModified = grocery.purchasedLastModified,
+            isDefault = false
+        )
+        productRepository.updateProductFavorite(
+            productId = newProductId,
+            isFavorite = grocery.isFavorite
+        )
+        groceryRepository.removeGroceryFromList(
+            productId = grocery.productId,
+            listId = groceryListId
+        )
+        compoundGroceryIdFlow.value = CompoundGroceryId(
+            productId = newProductId,
+            groceryListId = groceryListId
+        )
+        return grocery.copy(
+            productId = newProductId,
+            name = name,
+            description = description,
+            category = category,
+            productIsDefault = false
+        )
     }
 }

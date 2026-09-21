@@ -39,6 +39,7 @@ fun EditGroceryBottomSheet(
     modifier: Modifier = Modifier,
     editBottomSheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
     screenState: EditGroceryUiState,
+    editGroceryName: TextFieldValue,
     editGroceryDescription: TextFieldValue,
     hideBottomSheetOnCompletion: () -> Unit,
     onIntent: (EditGroceryUiIntent) -> Unit,
@@ -60,21 +61,35 @@ fun EditGroceryBottomSheet(
         scrimColor = Color.Transparent,
         dragHandle = { BottomSheetDragHandle() }
     ) {
+        val itemNameFocusRequester = remember { FocusRequester() }
         val itemDescriptionFocusRequester = remember { FocusRequester() }
         val focusManager = LocalFocusManager.current
-        LaunchedEffect(editBottomSheetState.currentValue) {
+        LaunchedEffect(editBottomSheetState.currentValue, screenState.nameCanBeModified, editGroceryDescription.text) {
             if (editBottomSheetState.currentValue == SheetValue.Expanded) {
-                itemDescriptionFocusRequester.requestFocus()
+                when {
+                    screenState.nameCanBeModified && editGroceryDescription.text.isBlank() -> {
+                        itemNameFocusRequester.requestFocus()
+                    }
+                    else -> itemDescriptionFocusRequester.requestFocus()
+                }
             }
         }
         EditGroceryBottomSheetContent(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxSize(),
-            groceryName = screenState.editGrocery?.name ?: "",
+            groceryName = editGroceryName,
             groceryDescription = editGroceryDescription,
             groceryCategoryName = screenState.editGrocery?.category?.name,
+            clearGroceryNameButtonIsShown = screenState.clearEditGroceryNameButtonIsShown,
             clearGroceryDescriptionButtonIsShown = screenState.clearEditGroceryDescriptionButtonIsShown,
+            nameCanBeModified = screenState.nameCanBeModified,
+            onGroceryNameChanged = {
+                onIntent(EditGroceryUiIntent.OnNameChanged(it))
+            },
+            onClearGroceryName = {
+                onIntent(EditGroceryUiIntent.OnClearName)
+            },
             onGroceryDescriptionChanged = {
                 onIntent(EditGroceryUiIntent.OnDescriptionChanged(it))
             },
@@ -86,6 +101,7 @@ fun EditGroceryBottomSheet(
                 focusManager.clearFocus()
             },
             onKeyboardDone = { hideBottomSheet() },
+            itemNameFocusRequester = itemNameFocusRequester,
             itemDescriptionFocusRequester = itemDescriptionFocusRequester,
             onChangeCategoryClick = {
                 categoryPickerIsVisible = true
@@ -165,14 +181,19 @@ private fun EditGroceryBottomSheetContentPreview(
         Surface {
             EditGroceryBottomSheetContent(
                 modifier = Modifier.padding(16.dp),
-                groceryName = "Tea",
+                groceryName = TextFieldValue("Tea"),
                 groceryDescription = TextFieldValue("Green, 32 bags"),
                 groceryCategoryName = "Drinks",
+                clearGroceryNameButtonIsShown = true,
                 clearGroceryDescriptionButtonIsShown = false,
+                nameCanBeModified = true,
+                onGroceryNameChanged = {},
+                onClearGroceryName = {},
                 onGroceryDescriptionChanged = {},
                 onClearGroceryDescription = {},
                 onKeyboardDone = {},
                 onDoneButtonClick = {},
+                itemNameFocusRequester = remember { FocusRequester() },
                 itemDescriptionFocusRequester = remember { FocusRequester() },
                 onChangeCategoryClick = {},
                 onChangeIconClick = {},

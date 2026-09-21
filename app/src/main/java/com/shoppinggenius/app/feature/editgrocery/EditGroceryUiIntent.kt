@@ -4,6 +4,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import com.shoppinggenius.app.model.Category
 
 sealed interface EditGroceryUiIntent {
+    data class OnNameChanged(val name: TextFieldValue) : EditGroceryUiIntent
+    data object OnClearName : EditGroceryUiIntent
     data class OnDescriptionChanged(val description: TextFieldValue) : EditGroceryUiIntent
     data object OnClearDescription : EditGroceryUiIntent
     data class OnCategorySelected(val category: Category) : EditGroceryUiIntent

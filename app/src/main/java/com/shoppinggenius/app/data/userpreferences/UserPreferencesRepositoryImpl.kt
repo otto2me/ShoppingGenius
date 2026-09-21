@@ -60,6 +60,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         userPreferencesDataSource.updateGroupByCategoryInListMode(groupByCategoryInListMode)
     }
 
+    override suspend fun updateUseThreeLineTodoEntries(useThreeLineTodoEntries: Boolean) {
+        userPreferencesDataSource.updateUseThreeLineTodoEntries(useThreeLineTodoEntries)
+    }
+
     override suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int) {
         userPreferencesDataSource.updateWidgetBackgroundOpacityPercent(opacityPercent)
     }

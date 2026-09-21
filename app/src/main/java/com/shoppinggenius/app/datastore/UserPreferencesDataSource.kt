@@ -44,6 +44,8 @@ class UserPreferencesDataSource @Inject constructor(
                 ?: DEFAULT_USER_PREFERENCES.useListViewForGroceries,
             groupByCategoryInListMode = preferences[GROUP_BY_CATEGORY_IN_LIST_MODE_KEY]
                 ?: DEFAULT_USER_PREFERENCES.groupByCategoryInListMode,
+            useThreeLineTodoEntries = preferences[USE_THREE_LINE_TODO_ENTRIES_KEY]
+                ?: DEFAULT_USER_PREFERENCES.useThreeLineTodoEntries,
             widgetBackgroundOpacityPercent =
                 (preferences[WIDGET_BACKGROUND_OPACITY_PERCENT_KEY]
                     ?: DEFAULT_USER_PREFERENCES.widgetBackgroundOpacityPercent)
@@ -103,6 +105,12 @@ class UserPreferencesDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateUseThreeLineTodoEntries(useThreeLineTodoEntries: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[USE_THREE_LINE_TODO_ENTRIES_KEY] = useThreeLineTodoEntries
+        }
+    }
+
     suspend fun updateWidgetBackgroundOpacityPercent(opacityPercent: Int) {
         dataStore.edit { preferences ->
             preferences[WIDGET_BACKGROUND_OPACITY_PERCENT_KEY] = opacityPercent.coerceIn(0, 100)
@@ -140,6 +148,8 @@ class UserPreferencesDataSource @Inject constructor(
         val USE_LIST_VIEW_FOR_GROCERIES_KEY = booleanPreferencesKey("use_list_view_for_groceries")
         val GROUP_BY_CATEGORY_IN_LIST_MODE_KEY =
             booleanPreferencesKey("group_by_category_in_list_mode")
+        val USE_THREE_LINE_TODO_ENTRIES_KEY =
+            booleanPreferencesKey("use_three_line_todo_entries")
         val WIDGET_BACKGROUND_OPACITY_PERCENT_KEY =
             intPreferencesKey("widget_background_opacity_percent")
         val SELECTED_THEME_KEY = intPreferencesKey("selected_theme")

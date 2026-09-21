@@ -196,6 +196,7 @@ fun ListenScreen(
         EditGroceryBottomSheet(
             modifier = Modifier.fillMaxSize(),
             screenState = editGroceryUiState,
+            editGroceryName = editGroceryViewModel.editGroceryName,
             editGroceryDescription = editGroceryViewModel.editGroceryDescription,
             hideBottomSheetOnCompletion = {
                 editProductIdState = null

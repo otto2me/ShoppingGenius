@@ -13,6 +13,8 @@ sealed interface SettingsScreenIntent {
     data class ChangeOpenLastViewedListConfig(val openLastViewedList: Boolean) : SettingsScreenIntent
     data class ChangeUseListViewForGroceries(val useListViewForGroceries: Boolean) : SettingsScreenIntent
     data class ChangeGroupByCategoryInListMode(val groupByCategoryInListMode: Boolean) : SettingsScreenIntent
+    @Suppress("unused")
+    data class ChangeUseThreeLineTodoEntries(val useThreeLineTodoEntries: Boolean) : SettingsScreenIntent
     data class ChangeWidgetBackgroundOpacityPercent(val opacityPercent: Int) : SettingsScreenIntent
     data class ChangeColorScheme(val scheme: ShoppingGeniusColorScheme) : SettingsScreenIntent
     data class ChangeAutoDeleteCompletedAfterHours(val hours: Int) : SettingsScreenIntent

@@ -2,21 +2,29 @@ package com.shoppinggenius.app.feature.editgrocery
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,7 +35,9 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.shoppinggenius.app.R
 import com.shoppinggenius.app.ui.components.SearchField
@@ -37,10 +47,14 @@ import com.shoppinggenius.app.ui.theme.extendedColors
 @Composable
 fun EditGroceryBottomSheetContent(
     modifier: Modifier = Modifier,
-    groceryName: String,
+    groceryName: TextFieldValue,
     groceryDescription: TextFieldValue,
     groceryCategoryName: String?,
+    clearGroceryNameButtonIsShown: Boolean,
     clearGroceryDescriptionButtonIsShown: Boolean,
+    nameCanBeModified: Boolean,
+    onGroceryNameChanged: (TextFieldValue) -> Unit,
+    onClearGroceryName: () -> Unit,
     productCanBeModified: Boolean,
     onGroceryDescriptionChanged: (TextFieldValue) -> Unit,
     onClearGroceryDescription: () -> Unit,
@@ -53,27 +67,58 @@ fun EditGroceryBottomSheetContent(
     showRemoveFromListButton: Boolean = true,
     onRemoveGrocery: () -> Unit,
     onDeleteProduct: () -> Unit,
+    itemNameFocusRequester: FocusRequester,
     itemDescriptionFocusRequester: FocusRequester
 ) {
-    Column(modifier = modifier) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                modifier = Modifier.weight(1F),
-                text = groceryName,
-                style = MaterialTheme.typography.headlineSmall,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+    Column(
+        modifier = modifier.verticalScroll(rememberScrollState())
+    ) {
+        Box(modifier = Modifier.fillMaxWidth()) {
             TextButton(
-                modifier = Modifier.padding(start = 8.dp),
+                modifier = Modifier.align(Alignment.CenterEnd),
                 onClick = onDoneButtonClick
             ) {
                 Text(text = stringResource(R.string.done))
             }
         }
+
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp)
+                .focusRequester(itemNameFocusRequester),
+            value = groceryName,
+            onValueChange = onGroceryNameChanged,
+            label = {
+                Text(text = stringResource(R.string.edit_grocery_name_field_label))
+            },
+            textStyle = MaterialTheme.typography.titleMedium,
+            readOnly = !nameCanBeModified,
+            minLines = if (nameCanBeModified) 3 else 1,
+            maxLines = Int.MAX_VALUE,
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(onDone = { onKeyboardDone() }),
+            trailingIcon = {
+                if (nameCanBeModified && clearGroceryNameButtonIsShown) {
+                    IconButton(onClick = onClearGroceryName) {
+                        Icon(
+                            imageVector = Icons.Filled.Clear,
+                            contentDescription = stringResource(
+                                R.string.add_grocery_search_field_trailing_icon_description
+                            )
+                        )
+                    }
+                }
+            },
+            colors = TextFieldDefaults.colors().copy(
+                disabledIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            )
+        )
 
         SearchField(
             modifier = Modifier
@@ -176,7 +221,7 @@ private fun GrocerySettings(
                 modifier = Modifier.weight(1F),
                 icon = {
                     Icon(
-                        imageVector = Icons.Default.Edit,
+                        imageVector = Icons.Filled.Edit,
                         contentDescription = null
                     )
                 },
@@ -188,9 +233,9 @@ private fun GrocerySettings(
                 icon = {
                     Icon(
                         imageVector = if (isFavorite) {
-                            Icons.Default.Favorite
+                            Icons.Filled.Favorite
                         } else {
-                            Icons.Default.FavoriteBorder
+                            Icons.Filled.FavoriteBorder
                         },
                         contentDescription = null
                     )

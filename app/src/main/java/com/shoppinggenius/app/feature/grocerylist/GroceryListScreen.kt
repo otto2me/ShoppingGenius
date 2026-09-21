@@ -87,7 +87,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
@@ -128,7 +127,6 @@ import com.shoppinggenius.app.ui.helpers.ObserveUiEvent
 import com.shoppinggenius.app.ui.helpers.UiEvent
 import com.shoppinggenius.app.ui.theme.ShoppingGeniusTheme
 import com.shoppinggenius.app.ui.theme.GroceryItemRounding
-import com.shoppinggenius.app.ui.theme.TopAppBarSmallHeight
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -152,6 +150,7 @@ fun GroceryListRoute(
     val groceryListPurchaseState by groceryListViewModel.groceryListPurchaseStateFlow.collectAsStateWithLifecycle()
     val scrollUpEvent by groceryListViewModel.scrollUpEventFlow.collectAsStateWithLifecycle()
     val useListViewForGroceries by groceryListViewModel.useListViewForGroceriesFlow.collectAsStateWithLifecycle()
+    val useThreeLineTodoEntries by groceryListViewModel.useThreeLineTodoEntriesFlow.collectAsStateWithLifecycle()
     val favoriteGroceries by groceryListViewModel.favoriteGroceriesFlow.collectAsStateWithLifecycle()
     val shareListTextEvent by groceryListViewModel.shareListTextEventFlow.collectAsStateWithLifecycle()
     val groceryListType by groceryListViewModel.openedGroceryListTypeFlow.collectAsStateWithLifecycle()
@@ -287,8 +286,8 @@ fun GroceryListRoute(
             )
         },
         groceryListPurchaseState = groceryListPurchaseState,
-        useListViewForGroceries = useListViewForGroceries
-        ,
+        useListViewForGroceries = useListViewForGroceries,
+        useThreeLineTodoEntries = useThreeLineTodoEntries,
         favoriteGroceries = favoriteGroceries,
         onFavoriteGroceryClick = groceryListViewModel::onCategoryScreenGroceryClick
     )
@@ -310,6 +309,7 @@ fun GroceryListRoute(
         EditGroceryBottomSheet(
             modifier = Modifier.fillMaxSize(),
             screenState = editGroceryScreenState,
+            editGroceryName = editGroceryViewModel.editGroceryName,
             editGroceryDescription = editGroceryViewModel.editGroceryDescription,
             editBottomSheetState = editBottomSheetState,
             hideBottomSheetOnCompletion = {
@@ -340,6 +340,7 @@ private fun GroceryListScreen(
     categories: List<Category>? = emptyList(),
     groceryListPurchaseState: GroceryListPurchaseState,
     useListViewForGroceries: Boolean = false,
+    useThreeLineTodoEntries: Boolean = true,
     favoriteGroceries: List<Grocery> = emptyList(),
     scrollUpEvent: UiEvent<Unit>? = null,
     navigateBack: () -> Unit = {},
@@ -471,6 +472,7 @@ private fun GroceryListScreen(
                                     modifier = Modifier.fillMaxSize(),
                                     groceryGroups = groceryGroups,
                                     isTodoList = isTodoList,
+                                    useThreeLineTodoEntries = useThreeLineTodoEntries,
                                     groceryListPurchaseState = groceryListPurchaseState,
                                     scrollUpEvent = scrollUpEvent,
                                     onGroceryClick = {
@@ -713,6 +715,7 @@ private fun GroceryListItemsList(
     modifier: Modifier = Modifier,
     groceryGroups: List<GroceryGroup>,
     isTodoList: Boolean = false,
+    useThreeLineTodoEntries: Boolean = true,
     groceryListPurchaseState: GroceryListPurchaseState,
     scrollUpEvent: UiEvent<Unit>? = null,
     onGroceryClick: (Grocery) -> Unit,
@@ -790,6 +793,8 @@ private fun GroceryListItemsList(
             ) { grocery ->
                 GroceryListRowItem(
                     grocery = grocery,
+                    isTodoList = isTodoList,
+                    useThreeLineTodoEntries = useThreeLineTodoEntries,
                     iconFile = remember(grocery.icon?.filePath) {
                         grocery.icon?.filePath?.let { filePath ->
                             File(context.filesDir, filePath)
@@ -926,6 +931,8 @@ private fun FavoriteGroceriesGrid(
 @Composable
 private fun GroceryListRowItem(
     grocery: Grocery,
+    isTodoList: Boolean,
+    useThreeLineTodoEntries: Boolean,
     iconFile: File?,
     onClick: () -> Unit,
     onCheckedChange: (Boolean) -> Unit,
@@ -963,10 +970,11 @@ private fun GroceryListRowItem(
             }
             Spacer(modifier = Modifier.width(8.dp))
             Column(modifier = Modifier.weight(1f)) {
+                val titleMaxLines = if (isTodoList && useThreeLineTodoEntries) 3 else 1
                 Text(
                     text = grocery.name,
                     style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
+                    maxLines = titleMaxLines,
                     overflow = TextOverflow.Ellipsis
                 )
                 grocery.description?.takeIf { it.isNotBlank() }?.let {

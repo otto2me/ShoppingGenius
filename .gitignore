@@ -21,3 +21,7 @@ full_debug_log.txt
 classpath_info.txt
 all_tasks.txt
 
+/build_output.log
+/release-artifacts/shoppinggenius-app-0.3.0-18-release.aab
+/release-artifacts/shoppinggenius-app-0.3.0-19-release.aab
+/release-artifacts/shoppinggenius-app-0.3.1-20-release.aab

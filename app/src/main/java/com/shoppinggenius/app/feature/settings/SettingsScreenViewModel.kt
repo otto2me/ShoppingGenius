@@ -145,6 +145,9 @@ class SettingsScreenViewModel @Inject constructor(
             is SettingsScreenIntent.ChangeGroupByCategoryInListMode ->
                 userPreferencesRepository.updateGroupByCategoryInListMode(intent.groupByCategoryInListMode)
 
+            is SettingsScreenIntent.ChangeUseThreeLineTodoEntries ->
+                userPreferencesRepository.updateUseThreeLineTodoEntries(intent.useThreeLineTodoEntries)
+
             is SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent ->
                 userPreferencesRepository.updateWidgetBackgroundOpacityPercent(intent.opacityPercent)
 

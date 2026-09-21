@@ -142,6 +142,15 @@ class GroceryListViewModel @AssistedInject constructor(
             initialValue = false
         )
 
+    @Suppress("unused")
+    val useThreeLineTodoEntriesFlow = userPreferencesRepository.userPreferencesFlow
+        .map { it.useThreeLineTodoEntries }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = true
+        )
+
     private val groupByCategoryInListModeFlow = userPreferencesRepository.userPreferencesFlow
         .map { it.groupByCategoryInListMode }
         .distinctUntilChanged()

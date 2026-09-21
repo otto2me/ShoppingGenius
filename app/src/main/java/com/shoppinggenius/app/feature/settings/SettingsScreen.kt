@@ -314,6 +314,14 @@ private fun SettingsScreen(
                         }
                     }
                     item {
+                        TodoListThreeLineSetting(
+                            useThreeLineTodoEntries = uiState.userPreferences.useThreeLineTodoEntries,
+                            onUseThreeLineTodoEntriesChanged = {
+                                onIntent(SettingsScreenIntent.ChangeUseThreeLineTodoEntries(it))
+                            }
+                        )
+                    }
+                    item {
                         WidgetBackgroundOpacitySetting(
                             opacityPercent = uiState.userPreferences.widgetBackgroundOpacityPercent,
                             onOpacityPercentChanged = {
@@ -748,6 +756,33 @@ private fun GroupByCategoryInListModeSetting(
             Switch(
                 checked = groupByCategoryInListMode,
                 onCheckedChange = onGroupByCategoryInListModeChanged
+            )
+        }
+    )
+}
+
+@Composable
+private fun TodoListThreeLineSetting(
+    modifier: Modifier = Modifier,
+    useThreeLineTodoEntries: Boolean,
+    onUseThreeLineTodoEntriesChanged: (Boolean) -> Unit
+) {
+    CustomIconSetting(
+        modifier = modifier
+            .padding(vertical = 6.dp)
+            .clickable { onUseThreeLineTodoEntriesChanged(!useThreeLineTodoEntries) },
+        title = stringResource(R.string.settings_todo_list_three_line_title),
+        description = stringResource(R.string.settings_todo_list_three_line_description),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_history_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            Switch(
+                checked = useThreeLineTodoEntries,
+                onCheckedChange = onUseThreeLineTodoEntriesChanged
             )
         }
     )
