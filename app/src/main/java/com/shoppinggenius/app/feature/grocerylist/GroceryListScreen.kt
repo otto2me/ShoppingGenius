@@ -248,7 +248,10 @@ fun GroceryListRoute(
     LaunchedEffect(addGroceryBottomSheetState.sheetIsFullyExpanded, openedGroceryListId) {
         if (addGroceryBottomSheetState.sheetIsFullyExpanded) {
             addGroceryViewModel.onIntent(
-                AddGroceryUiIntent.OnAddGroceryBottomSheetExpanded(openedGroceryListId)
+                AddGroceryUiIntent.OnAddGroceryBottomSheetExpanded(
+                    groceryListId = openedGroceryListId,
+                    isTodoList = groceryListType == GroceryListType.TODO
+                )
             )
         }
     }

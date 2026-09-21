@@ -33,6 +33,7 @@ class AddGroceryViewModel @Inject constructor(
     val uiStateFlow = _uiStateFlow.asStateFlow()
 
     private val groceryListIdFlow = MutableStateFlow<String?>(null)
+    private var addToTodoList = false
 
     var searchQuery by mutableStateOf("")
         private set
@@ -107,7 +108,7 @@ class AddGroceryViewModel @Inject constructor(
             resetAddGroceryBottomSheet(groceryListIdFlow.value)
 
         is AddGroceryUiIntent.OnAddGroceryBottomSheetExpanded ->
-            resetAddGroceryBottomSheet(intent.groceryListId)
+            resetAddGroceryBottomSheet(intent.groceryListId, intent.isTodoList)
 
         is AddGroceryUiIntent.OnCustomProductClick ->
             addCustomProduct(intent.customProduct)
@@ -115,6 +116,16 @@ class AddGroceryViewModel @Inject constructor(
 
     private fun updateSearchResults(searchQuery: String) {
         viewModelScope.launch {
+            if (addToTodoList) {
+                _uiStateFlow.update { uiState ->
+                    uiState.copy(
+                        customProducts = listOf(Product(name = searchQuery)),
+                        grocerySearchResults = emptyList()
+                    )
+                }
+                return@launch
+            }
+
             val searchResults = productRepository.getProductsByName("%$searchQuery%")
                 .sortedWith(
                     compareBy(
@@ -261,11 +272,16 @@ class AddGroceryViewModel @Inject constructor(
         }
     }
 
-    private fun resetAddGroceryBottomSheet(groceryListId: String?) {
+    private fun resetAddGroceryBottomSheet(groceryListId: String?, isTodoList: Boolean = addToTodoList) {
         groceryListIdFlow.update { groceryListId }
+        addToTodoList = isTodoList
         searchQuery = ""
         _uiStateFlow.update {
-            it.copy(bottomSheetContentType = AddGroceryBottomSheetContentType.Suggestions)
+            it.copy(
+                bottomSheetContentType = AddGroceryBottomSheetContentType.Suggestions,
+                grocerySearchResults = emptyList(),
+                customProducts = emptyList()
+            )
         }
     }
 }

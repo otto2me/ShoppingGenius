@@ -9,6 +9,9 @@ sealed interface AddGroceryUiIntent {
     data object OnSearchFieldKeyboardDone : AddGroceryUiIntent
     data object OnClearSearchQuery : AddGroceryUiIntent
     data object OnAddGroceryBottomSheetCollapsing : AddGroceryUiIntent
-    data class OnAddGroceryBottomSheetExpanded(val groceryListId: String) : AddGroceryUiIntent
+    data class OnAddGroceryBottomSheetExpanded(
+        val groceryListId: String,
+        val isTodoList: Boolean
+    ) : AddGroceryUiIntent
     data class OnCustomProductClick(val customProduct: Product) : AddGroceryUiIntent
 }
