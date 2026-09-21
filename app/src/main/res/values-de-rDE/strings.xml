@@ -53,8 +53,8 @@
     <string name="settings_open_last_viewed_list">Zuletzt angesehene Liste öffnen</string>
     <string name="settings_grocery_list_list_mode_title">Listenansicht für Einträge</string>
     <string name="settings_grocery_list_list_mode_description">Zeigt Einträge kompakt als Liste mit Icon, Name und Checkbox.</string>
-    <string name="settings_group_by_category_in_list_mode_title">In Listenansicht nach Kategorie gruppieren</string>
-    <string name="settings_group_by_category_in_list_mode_description">Sortiert offene Einträge nach Kategorie und zeigt Kategorien als Überschrift.</string>
+    <string name="settings_group_by_category_in_list_mode_title">Einkaufseinträge in der Listenansicht nach Kategorie gruppieren</string>
+    <string name="settings_group_by_category_in_list_mode_description">Sortiert offene Einkaufseinträge nach Kategorie und zeigt Kategorien als Überschrift. Gilt nicht für ToDo-Listen.</string>
     <string name="settings_todo_list_three_line_title">ToDo-Einträge dreizeilig anzeigen</string>
     <string name="settings_todo_list_three_line_description">Zeigt ToDo-Einträge in der Listenansicht auf bis zu drei Zeilen an.</string>
     <string name="settings_widget_background_opacity_title">Widget-Hintergrund Deckkraft</string>

@@ -34,8 +34,8 @@ android {
         applicationId = "com.shoppinggenius.app"
         minSdk = 21
         targetSdk = 36
-        versionCode = 21
-        versionName = "0.4.0"
+        versionCode = 22
+        versionName = "0.4.1"
 
         testInstrumentationRunner = "com.shoppinggenius.app.testing.ShoppingGeniusTestRunner"
         vectorDrawables {

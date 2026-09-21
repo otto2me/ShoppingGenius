@@ -236,7 +236,10 @@ class GroceryListViewModel @AssistedInject constructor(
                 .combine(groupByCategoryInListModeFlow) { groceries, groupByCategoryInListMode ->
                     groceries to groupByCategoryInListMode
                 }
-                .onEach { (groceries, _) ->
+                .combine(openedGroceryListTypeFlow) { (groceries, groupByCategoryInListMode), groceryListType ->
+                    Triple(groceries, groupByCategoryInListMode, groceryListType)
+                }
+                .onEach { (groceries, _, _) ->
                     val groceryListPurchaseState = when {
                         groceries.isEmpty() -> GroceryListPurchaseState.LIST_IS_EMPTY
                         groceries.all { it.purchased } -> GroceryListPurchaseState.SHOPPING_DONE
@@ -257,7 +260,7 @@ class GroceryListViewModel @AssistedInject constructor(
                         else -> {}
                     }
                 }
-                .map { (groceries, groupByCategoryInListMode) ->
+                .map { (groceries, groupByCategoryInListMode, groceryListType) ->
                     val purchasedGroceries = groceries
                         .filter { it.purchased }
                         .sortedByDescending { it.purchasedLastModified }
@@ -269,7 +272,7 @@ class GroceryListViewModel @AssistedInject constructor(
                         )
 
                     buildList {
-                        if (groupByCategoryInListMode) {
+                        if (groupByCategoryInListMode && groceryListType != GroceryListType.TODO) {
                             unpurchasedGroceries
                                 .groupBy { it.category?.id }
                                 .forEach { (_, categoryGroceries) ->

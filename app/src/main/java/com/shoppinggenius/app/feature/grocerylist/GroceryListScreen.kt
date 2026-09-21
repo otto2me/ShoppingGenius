@@ -312,6 +312,8 @@ fun GroceryListRoute(
             editGroceryName = editGroceryViewModel.editGroceryName,
             editGroceryDescription = editGroceryViewModel.editGroceryDescription,
             editBottomSheetState = editBottomSheetState,
+            showChangeCategoryButton = groceryListType != GroceryListType.TODO,
+            showFavoriteButton = groceryListType != GroceryListType.TODO,
             hideBottomSheetOnCompletion = {
                 editGroceryScreenIsVisible = false
             },
