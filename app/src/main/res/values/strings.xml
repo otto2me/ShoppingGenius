@@ -114,6 +114,7 @@
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_search_hint">Search products</string>
     <string name="car_app_no_products">No products available.</string>
+    <string name="car_app_item_already_in_list">This item is already on the list.</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
     <string name="delete">Delete</string>

@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.shoppinggenius.app.R
 import com.shoppinggenius.app.data.grocery.GroceryRepository
 import com.shoppinggenius.app.data.product.ProductRepository
+import com.shoppinggenius.app.model.Grocery
 import com.shoppinggenius.app.model.GroceryList
 import com.shoppinggenius.app.model.IconReference
 import com.shoppinggenius.app.model.Product
@@ -32,15 +33,27 @@ class ProductPickerScreen(
 ) : Screen(carContext) {
 
     private var allProducts: List<Product> = emptyList()
-    private var isLoading = true
+    private var groceries: List<Grocery> = emptyList()
+    private var areProductsLoading = true
+    private var areGroceriesLoading = true
     private var searchQuery: String = ""
+
+    private val isLoading: Boolean
+        get() = areProductsLoading || areGroceriesLoading
 
     init {
         lifecycleScope.launch {
             productRepository.getAllProducts().collectLatest { allProducts ->
                 this@ProductPickerScreen.allProducts = allProducts
                     .sortedBy { it.name.lowercase() }
-                isLoading = false
+                areProductsLoading = false
+                invalidate()
+            }
+        }
+        lifecycleScope.launch {
+            groceryRepository.getGroceriesFromList(groceryList.id).collectLatest { groceries ->
+                this@ProductPickerScreen.groceries = groceries
+                areGroceriesLoading = false
                 invalidate()
             }
         }
@@ -61,8 +74,13 @@ class ProductPickerScreen(
                     return
                 }
 
-                val exactProduct = allProducts.firstOrNull {
-                    it.name.equals(submittedText, ignoreCase = true)
+                if (isDuplicateGroceryName(submittedText, groceries)) {
+                    invalidate()
+                    return
+                }
+
+                val exactProduct = availableProductsForCarApp(allProducts, groceries).firstOrNull {
+                    normalizeGroceryName(it.name) == normalizeGroceryName(submittedText)
                 }
                 if (exactProduct != null) {
                     addExistingProduct(exactProduct)
@@ -82,13 +100,16 @@ class ProductPickerScreen(
 
         val listBuilder = ItemList.Builder()
         val query = searchQuery.trim()
-        val hasPerfectMatch = query.isNotBlank() && allProducts.any {
-            it.name.equals(query, ignoreCase = true)
+        val queryNormalized = normalizeGroceryName(query)
+        val queryAlreadyInList = queryNormalized.isNotEmpty() && isDuplicateGroceryName(query, groceries)
+        val availableProducts = availableProductsForCarApp(allProducts, groceries)
+        val hasPerfectMatch = queryNormalized.isNotEmpty() && availableProducts.any {
+            normalizeGroceryName(it.name) == queryNormalized
         }
         val products = if (query.isBlank()) {
-            allProducts.take(MAX_PRODUCTS)
+            availableProducts.take(MAX_PRODUCTS)
         } else {
-            allProducts
+            availableProducts
                 .asSequence()
                 .filter { it.name.contains(query, ignoreCase = true) }
                 .take(MAX_PRODUCTS)
@@ -96,7 +117,7 @@ class ProductPickerScreen(
         }
 
         var hasRows = false
-        if (query.isNotBlank() && !hasPerfectMatch) {
+        if (query.isNotBlank() && !hasPerfectMatch && !queryAlreadyInList) {
             listBuilder.addItem(
                 Row.Builder()
                     .setTitle(carContext.getString(R.string.car_app_add_unknown_item, query))
@@ -111,6 +132,8 @@ class ProductPickerScreen(
         if (products.isEmpty() && !hasRows) {
             val noItemsMessage = if (query.isBlank()) {
                 carContext.getString(R.string.car_app_search_hint)
+            } else if (queryAlreadyInList) {
+                carContext.getString(R.string.car_app_item_already_in_list)
             } else {
                 carContext.getString(R.string.car_app_no_products)
             }
@@ -128,7 +151,6 @@ class ProductPickerScreen(
                         }
                     }.build()
                 )
-                hasRows = true
             }
         }
 
@@ -142,6 +164,11 @@ class ProductPickerScreen(
     }
 
     private fun addExistingProduct(product: Product) {
+        if (isDuplicateProduct(product, groceries)) {
+            invalidate()
+            return
+        }
+
         lifecycleScope.launch {
             groceryRepository.addGroceryToList(
                 productId = product.id,
@@ -155,6 +182,10 @@ class ProductPickerScreen(
     private fun addCustomProduct(name: String) {
         val normalizedName = name.trim()
         if (normalizedName.isBlank()) return
+        if (isDuplicateGroceryName(normalizedName, groceries)) {
+            invalidate()
+            return
+        }
 
         lifecycleScope.launch {
             groceryRepository.insertProductAndGrocery(
@@ -181,4 +212,40 @@ class ProductPickerScreen(
         const val MAX_PRODUCTS = 120
     }
 }
+
+internal fun availableProductsForCarApp(
+    products: List<Product>,
+    groceries: List<Grocery>
+): List<Product> {
+    val groceryProductIds = groceries.asSequence().map { it.productId }.toSet()
+    val groceryNameKeys = groceries.asSequence().map { normalizeGroceryName(it.name) }.toSet()
+
+    return products
+        .asSequence()
+        .distinctBy { normalizeGroceryName(it.name) }
+        .filterNot { product ->
+            product.id in groceryProductIds || normalizeGroceryName(product.name) in groceryNameKeys
+        }
+        .toList()
+}
+
+internal fun isDuplicateProduct(
+    product: Product,
+    groceries: List<Grocery>
+): Boolean = availableProductsForCarApp(listOf(product), groceries).isEmpty()
+
+internal fun isDuplicateGroceryName(
+    name: String,
+    groceries: List<Grocery>
+): Boolean {
+    val normalizedName = normalizeGroceryName(name)
+    return normalizedName.isNotEmpty() && groceries.any {
+        normalizeGroceryName(it.name) == normalizedName
+    }
+}
+
+internal fun normalizeGroceryName(name: String): String =
+    name.trim().replace(WHITESPACE_REGEX, " ").lowercase()
+
+private val WHITESPACE_REGEX = Regex("\\s+")
 
