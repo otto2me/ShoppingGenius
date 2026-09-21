@@ -9,6 +9,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import java.nio.charset.StandardCharsets
 
 @Singleton
 class DuckDuckGoImageSearchService @Inject constructor() {
@@ -68,9 +69,9 @@ class DuckDuckGoImageSearchService @Inject constructor() {
 
 internal fun extractDuckDuckGoVqd(responseText: String): String? {
     val patterns = listOf(
-        Regex("vqd=\\\"([^\\\"]+)\\\""),
-        Regex("vqd=\\'([^\\']+)\\'"),
-        Regex("vqd=([^&\\\"']+)")
+        Regex("vqd=\"([^\"]+)\""),
+        Regex("vqd='([^']+)'"),
+        Regex("vqd=([^&\"']+)")
     )
     return patterns.firstNotNullOfOrNull { pattern ->
         pattern.find(responseText)?.groupValues?.getOrNull(1)?.takeIf { it.isNotBlank() }
@@ -100,7 +101,7 @@ internal fun parseDuckDuckGoImageResults(responseText: String): List<DuckDuckGoI
 
 private fun HttpURLConnection.useResponseText(): String = try {
     val stream = if (responseCode in 200..299) inputStream else errorStream
-    stream?.bufferedReader()?.use { it.readText() }.orEmpty()
+    stream?.bufferedReader(StandardCharsets.UTF_8)?.use { it.readText() }.orEmpty()
 } finally {
     disconnect()
 }

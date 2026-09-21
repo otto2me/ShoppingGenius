@@ -1,41 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GroceryListScreen -->
     <string name="purchased_groceries_group_title">Zuletzt verwendet</string>
     <string name="grocery_list_name_text_field_placeholder">Name eingeben</string>
     <string name="shopping_done_title">Einkauf erledigt!</string>
-    <string name="empty_grocery_list_title">FÃ¼ge deine ersten Lebensmittel hinzu!</string>
+    <string name="empty_grocery_list_title">Füge deine ersten Lebensmittel hinzu!</string>
     <!-- AddGrocery -->
-    <string name="add_grocery_search_field_placeholder_collapsed">Lebensmittel hinzufÃ¼gen</string>
+    <string name="add_grocery_search_field_placeholder_collapsed">Lebensmittel hinzufügen</string>
     <string name="add_grocery_search_field_placeholder_expanded">z.B. Brot</string>
     <string name="add_entry_search_field_placeholder_collapsed">Eintrag hinzuf&#252;gen</string>
     <string name="add_entry_search_field_placeholder_expanded">z.B. Handwerker anrufen</string>
-    <string name="add_grocery_search_field_trailing_icon_description">Text in der Suchleiste lÃ¶schen</string>
+    <string name="add_grocery_search_field_trailing_icon_description">Text in der Suchleiste löschen</string>
     <string name="add_grocery_voice_input_description">Spracheingabe</string>
     <string name="add_grocery_voice_input_prompt">Produktnamen sprechen</string>
     <string name="add_entry_voice_input_prompt">Eintragsnamen sprechen</string>
-    <string name="add_grocery_voice_input_not_available">Spracheingabe ist auf diesem GerÃ¤t nicht verfÃ¼gbar.</string>
+    <string name="add_grocery_voice_input_not_available">Spracheingabe ist auf diesem Gerät nicht verfügbar.</string>
     <string name="add_grocery_refine_item_options_title">Verfeinere "%s"</string>
     <string name="add_grocery_edit_item_button_title">Details eingeben</string>
     <string name="add_entry_edit_item_button_title">Eintragsdetails eingeben</string>
     <!-- EditGrocery -->
     <string name="edit_grocery_item_description_placeholder">Anzahl, Beschreibung</string>
     <string name="edit_grocery_change_icon_button_title">Icon anpassen</string>
-    <string name="edit_grocery_change_category_button_title">Kategorie Ã¤ndern</string>
+    <string name="edit_grocery_change_category_button_title">Kategorie ändern</string>
     <string name="edit_grocery_remove_item_button_title">Von Liste entfernen</string>
-    <string name="edit_grocery_delete_grocery_button_title">Benutzerdefinierte EintrÃ¤ge lÃ¶schen</string>
-    <string name="select_category_dialog_title">Kategorie auswÃ¤hlen</string>
-    <string name="select_icon_dialog_title">Icon auswÃ¤hlen</string>
+    <string name="edit_grocery_delete_grocery_button_title">Benutzerdefinierte Einträge löschen</string>
+    <string name="select_category_dialog_title">Kategorie auswählen</string>
+    <string name="select_icon_dialog_title">Icon auswählen</string>
     <string name="delete_product_dialog_text">Dieser Eintrag wird von all deinen Einkaufslisten entfernt</string>
-    <string name="delete_grocery_list_dialog_text">Bist du sicher, dass du diese Liste lÃ¶schen mÃ¶chtest?</string>
+    <string name="delete_grocery_list_dialog_text">Bist du sicher, dass du diese Liste löschen möchtest?</string>
     <!-- GroceryListsDashboardScreen -->
     <plurals name="dashboard_item_num_of_groceries_title">
         <item quantity="one">%d Eintrag</item>
-        <item quantity="other">%d EintrÃ¤ge</item>
+        <item quantity="other">%d Einträge</item>
     </plurals>
     <string name="add_grocery_list_button_description">Neue Einkaufsliste erstellen</string>
     <string name="create_grocery_list_dialog_title">Liste erstellen</string>
-    <string name="create_grocery_list_dialog_description">W&#228;hle aus, welchen Listentyp du erstellen m&#246;chtest.</string>
+    <string name="create_grocery_list_dialog_description">Wähle aus, welchen Listentyp du erstellen möchtest.</string>
     <string name="grocery_list_type_shopping">Einkaufsliste</string>
     <string name="grocery_list_type_todo">ToDo-Liste</string>
     <string name="dashboard_todo_badge">ToDo</string>
@@ -49,24 +49,24 @@
     <string name="settings_language_system_default">Systemstandard</string>
     <string name="settings_use_system_accent_color">Systemakzentfarbe verwenden</string>
     <string name="settings_preferences">Voreinstellungen</string>
-    <string name="settings_open_last_viewed_list">Zuletzt angesehene Liste Ã¶ffnen</string>
-    <string name="settings_grocery_list_list_mode_title">Listenansicht fÃ¼r EinkaufseintrÃ¤ge</string>
-    <string name="settings_grocery_list_list_mode_description">Zeigt EintrÃ¤ge kompakt als Liste mit Icon, Name und Checkbox.</string>
+    <string name="settings_open_last_viewed_list">Zuletzt angesehene Liste öffnen</string>
+    <string name="settings_grocery_list_list_mode_title">Listenansicht für Einträge</string>
+    <string name="settings_grocery_list_list_mode_description">Zeigt Einträge kompakt als Liste mit Icon, Name und Checkbox.</string>
     <string name="settings_group_by_category_in_list_mode_title">In Listenansicht nach Kategorie gruppieren</string>
-    <string name="settings_group_by_category_in_list_mode_description">Sortiert offene EintrÃ¤ge nach Kategorie und zeigt Kategorien als Ãœberschrift.</string>
+    <string name="settings_group_by_category_in_list_mode_description">Sortiert offene Einträge nach Kategorie und zeigt Kategorien als Überschrift.</string>
     <string name="settings_widget_background_opacity_title">Widget-Hintergrund Deckkraft</string>
     <string name="settings_widget_background_opacity_description">Widget-Transparenz anpassen (%1$d%% Deckkraft).</string>
-    <string name="settings_auto_delete_completed_title">Erledigte EintrÃ¤ge automatisch lÃ¶schen</string>
-    <string name="settings_auto_delete_completed_description">Erledigte EintrÃ¤ge automatisch nach %1$d Stunden entfernen.</string>
+    <string name="settings_auto_delete_completed_title">Erledigte Einträge automatisch löschen</string>
+    <string name="settings_auto_delete_completed_description">Erledigte Einträge automatisch nach %1$d Stunden entfernen.</string>
     <string name="settings_auto_delete_completed_hours">%1$d Stunden</string>
-    <string name="settings_default_list">Standardliste Ã¶ffnen</string>
+    <string name="settings_default_list">Standardliste öffnen</string>
     <string name="settings_default_list_unspecified">Undefiniert</string>
     <string name="settings_reorder_categories_title">Kategorien neu sortieren</string>
-    <string name="settings_reorder_categories_description">Grocery Genius sortiert Artikel nach ihren Kategorien. Sie kÃ¶nnen sie so ordnen, dass sie Ihrem LieblingsgeschÃ¤ft entsprechen.</string>
-    <string name="settings_dynamic_color_not_supported_message">Dein GerÃ¤t unterstÃ¼tzt keine dynamischen Farben</string>
+    <string name="settings_reorder_categories_description">Grocery Genius sortiert Artikel nach ihren Kategorien. Sie können sie so ordnen, dass sie Ihrem Lieblingsgeschäft entsprechen.</string>
+    <string name="settings_dynamic_color_not_supported_message">Dein Gerät unterstützt keine dynamischen Farben</string>
     <string name="settings_feedback">Feedback</string>
     <string name="settings_duckduckgo_image_search_title">DuckDuckGo-Bildsuche</string>
-    <string name="settings_duckduckgo_image_search_description">Teste, ob DuckDuckGo-Bildtreffer aktuell in der App geladen werden kÃ¶nnen.</string>
+    <string name="settings_duckduckgo_image_search_description">Teste, ob DuckDuckGo-Bildtreffer aktuell in der App geladen werden können.</string>
     <string name="settings_duckduckgo_connection_test_button">Verbindung testen</string>
     <string name="settings_duckduckgo_connection_testing">Teste Verbindung...</string>
     <string name="settings_duckduckgo_connection_test_success">Verbindung erfolgreich.</string>
@@ -76,66 +76,66 @@
     <string name="github_fork_project_title">Fork auf GitHub gehostet</string>
     <string name="github_fork_project_description">Der aktuelle Fork und die aktive Entwicklung liegen bei otto2me/ShoppingGenius.</string>
     <string name="email_link_title">Entwickler kontaktieren</string>
-    <string name="email_link_description">Kontaktieren den Entwickler fÃ¼r freundliche RÃ¼ckmeldungen, VorschlÃ¤ge oder alle anderen Ideen, die du im Kopf hast.</string>
+    <string name="email_link_description">Kontaktiere den Entwickler für freundliche Rückmeldungen, Vorschläge oder alle anderen Ideen, die du im Kopf hast.</string>
     <string name="settings_credits">Credits</string>
     <string name="settings_image_by_freepik_title">Bild von pch.vector auf Freepik</string>
     <string name="settings_image_by_freepik_description">Das Bild, das auf der Einkaufsliste angezeigt wird, wurde von pch.vector erstellt</string>
     <!-- IconPickerScreen -->
-    <string name="icon_picker_screen_title">Symbol wÃ¤hlen</string>
+    <string name="icon_picker_screen_title">Symbol wählen</string>
     <string name="icon_picker_search_field_placeholder">Symbol suchen</string>
     <string name="icon_picker_duckduckgo_images_section_title">DuckDuckGo-Bildtreffer</string>
     <string name="icon_picker_import_success">Icon aktualisiert.</string>
     <string name="icon_picker_import_failed">Dieses Bild konnte nicht importiert werden.</string>
-    <string name="icon_picker_delete_dialog_title">Symbol lÃ¶schen?</string>
+    <string name="icon_picker_delete_dialog_title">Symbol löschen?</string>
     <string name="icon_picker_delete_dialog_message">Dieses Symbol wird dauerhaft entfernt.</string>
-    <string name="icon_picker_delete_confirm">LÃ¶schen</string>
+    <string name="icon_picker_delete_confirm">Löschen</string>
     <string name="icon_picker_delete_cancel">Abbrechen</string>
     <!-- ActiveGroceryListWidget -->
     <string name="widget_active_list_name">Aktive Einkaufsliste</string>
     <string name="widget_active_list_description">Zeigt die aktuell aktive Einkaufsliste als kompakte Liste.</string>
     <string name="widget_active_list_fallback_title">Aktuelle Liste</string>
-    <string name="widget_no_items">Keine EintrÃ¤ge in dieser Liste</string>
+    <string name="widget_no_items">Keine Einträge in dieser Liste</string>
     <!-- General -->
     <string name="done">Fertig</string>
     <!-- Android Auto / Automotive OS -->
     <string name="car_app_no_lists">Noch keine Einkaufslisten.</string>
     <string name="car_app_no_items">Diese Liste ist leer.</string>
-    <string name="car_app_item_count">%d EintrÃ¤ge</string>
-    <string name="car_app_add_item">Eintrag hinzufÃ¼gen</string>
-    <string name="car_app_add_unknown_item">"%1$s" hinzufÃ¼gen</string>
+    <string name="car_app_item_count">%d Einträge</string>
+    <string name="car_app_add_item">Eintrag hinzufügen</string>
+    <string name="car_app_add_unknown_item">"%1$s" hinzufügen</string>
     <string name="car_app_search_hint">Produkte suchen</string>
-    <string name="car_app_no_products">Keine Produkte verfÃ¼gbar.</string>
+    <string name="car_app_no_products">Keine Produkte verfügbar.</string>
     <string name="car_app_section_open">Offen</string>
     <string name="car_app_section_completed">Erledigt</string>
-    <string name="delete">LÃ¶schen</string>
+    <string name="delete">Löschen</string>
     <string name="edit">Bearbeiten</string>
     <string name="share_grocery_list_title">Liste teilen</string>
-    <string name="share_grocery_list_mode_description">WÃ¤hle, wie du diese Liste teilen mÃ¶chtest.</string>
+    <string name="share_grocery_list_mode_description">Wähle, wie du diese Liste teilen möchtest.</string>
     <string name="share_grocery_list_with_file">Mit Import-Datei teilen</string>
     <string name="share_grocery_list_text_only">Nur Text teilen</string>
     <string name="import_grocery_list_success">Liste importiert: %1$s</string>
     <string name="import_grocery_list_failed">Geteilte Liste konnte nicht importiert werden.</string>
-    <string name="back">ZurÃ¼ck</string>
+    <string name="back">Zurück</string>
     <string name="settings">Einstellungen</string>
     <string name="list_editor">Listen-Editor</string>
-    <string name="listen_search_field_placeholder">EintrÃ¤ge suchen</string>
+    <string name="listen_search_field_placeholder">Einträge suchen</string>
     <string name="forward">Weiterleiten</string>
-    <string name="close">SchlieÃŸen</string>
-    <string name="reset">ZurÃ¼cksetzen</string>
+    <string name="close">Schließen</string>
+    <string name="reset">Zurücksetzen</string>
     <string name="retry">Wiederholen</string>
     <!-- Components -->
     <string name="custom_category_title">Benutzerdefinierte Lebensmittel</string>
-    <string name="toggle_dropdown_menu_visibility">Dropdown-MenÃ¼ ein-/ausblenden</string>
+    <string name="toggle_dropdown_menu_visibility">Dropdown-Menü ein-/ausblenden</string>
     <string name="drag_handle">Griff ziehen</string>
     <!-- Notifications -->
     <string name="sync_work_notification_channel_name">Synchronisierung</string>
-    <string name="sync_work_notification_channel_description">RegelmÃ¤ÃŸige Synchronisierung der Lebensmitteldatenbank.</string>
+    <string name="sync_work_notification_channel_description">Regelmäßige Synchronisierung der Lebensmitteldatenbank.</string>
     <string name="sync_work_notification_title">Synchronisieren deiner Lebensmittel</string>
-    <string name="grocery_list_tab_items">EintrÃ¤ge</string>
+    <string name="grocery_list_tab_items">Einträge</string>
     <string name="grocery_list_tab_categories">Kategorien</string>
     <string name="grocery_list_tab_favorites">Favoriten</string>
     <string name="todo_done_title">Alles erledigt!</string>
-    <string name="empty_todo_list_title">F&#252;ge deinen ersten Eintrag hinzu!</string>
+    <string name="empty_todo_list_title">Füge deinen ersten Eintrag hinzu!</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorit</string>
     <string name="category_create_title">Kategorie erstellen</string>
     <string name="category_create_field_label">Kategoriename</string>
@@ -149,6 +149,7 @@
     <string name="settings_backup_export_error">Export fehlgeschlagen</string>
     <string name="settings_backup_import_success">Backup erfolgreich importiert</string>
     <string name="settings_backup_import_error">Import fehlgeschlagen</string>
-    <string name="settings_backup_in_progress">LÃ¤uft\u2026</string>
+    <string name="settings_backup_in_progress">Läuft\u2026</string>
     <string name="dashboard_item_type_and_count">%1$s - %2$s</string>
 </resources>
+

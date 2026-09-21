@@ -11,6 +11,7 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import dagger.hilt.android.qualifiers.ApplicationContext
+import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -31,7 +32,7 @@ class LocalAssetDataLoader @Inject constructor(
         try {
             val json = appContext.assets
                 .open("category/categories_change_list.json")
-                .bufferedReader()
+                .bufferedReader(StandardCharsets.UTF_8)
                 .use { it.readText() }
 
             val type = Types.newParameterizedType(List::class.java, NetworkChangeList::class.java)
@@ -55,7 +56,7 @@ class LocalAssetDataLoader @Inject constructor(
         try {
             val json = appContext.assets
                 .open("product/default_products_change_list.json")
-                .bufferedReader()
+                .bufferedReader(StandardCharsets.UTF_8)
                 .use { it.readText() }
 
             val type = Types.newParameterizedType(List::class.java, NetworkChangeList::class.java)
@@ -71,7 +72,7 @@ class LocalAssetDataLoader @Inject constructor(
         try {
             val json = appContext.assets
                 .open("icons/icons_change_list.json")
-                .bufferedReader()
+                .bufferedReader(StandardCharsets.UTF_8)
                 .use { it.readText() }
 
             val type = Types.newParameterizedType(List::class.java, NetworkChangeList::class.java)
@@ -128,7 +129,7 @@ class LocalAssetDataLoader @Inject constructor(
     private fun <T> readJsonList(assetPath: String, itemClass: Class<T>): List<T> {
         val json = appContext.assets
             .open(assetPath)
-            .bufferedReader()
+            .bufferedReader(StandardCharsets.UTF_8)
             .use { it.readText() }
         val type = Types.newParameterizedType(List::class.java, itemClass)
         val adapter: JsonAdapter<List<T>> = moshi.adapter(type)
