@@ -13,6 +13,7 @@ import com.shoppinggenius.app.data.grocery.GroceryRepository
 import com.shoppinggenius.app.data.grocerylist.GroceryListRepository
 import com.shoppinggenius.app.data.product.ProductRepository
 import com.shoppinggenius.app.model.GroceryList
+import com.shoppinggenius.app.model.GroceryListType
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -54,20 +55,28 @@ class GroceryListsScreen(
         if (groceryLists.isEmpty()) {
             listBuilder.setNoItemsMessage(carContext.getString(R.string.car_app_no_lists))
         } else {
-            groceryLists.forEach { list ->
-                listBuilder.addItem(
-                    Row.Builder()
-                        .setTitle(list.name)
-                        .addText(
-                            carContext.getString(R.string.car_app_item_count, list.numOfGroceries)
-                        )
-                        .setOnClickListener {
-                            screenManager.push(
-                                GroceryItemsScreen(carContext, list, groceryRepository, productRepository)
-                            )
-                        }
-                        .build()
-                )
+            // Separate shopping and todo lists for better visual organization
+            val shoppingLists = groceryLists.filter { it.type == GroceryListType.SHOPPING }
+            val todoLists = groceryLists.filter { it.type == GroceryListType.TODO }
+
+            // Add shopping lists with icon
+            if (shoppingLists.isNotEmpty()) {
+                if (todoLists.isNotEmpty()) {
+                    addSectionHeader(listBuilder, "🛒 " + carContext.getString(R.string.grocery_list_type_shopping))
+                }
+                shoppingLists.forEach { list ->
+                    addListRow(listBuilder, list)
+                }
+            }
+
+            // Add todo lists with icon
+            if (todoLists.isNotEmpty()) {
+                if (shoppingLists.isNotEmpty()) {
+                    addSectionHeader(listBuilder, "✓ " + carContext.getString(R.string.grocery_list_type_todo))
+                }
+                todoLists.forEach { list ->
+                    addListRow(listBuilder, list)
+                }
             }
         }
 
@@ -77,6 +86,32 @@ class GroceryListsScreen(
             .setSingleList(listBuilder.build())
             .setLoading(false)
             .build()
+    }
+
+    private fun addSectionHeader(
+        listBuilder: ItemList.Builder,
+        title: String
+    ) {
+        listBuilder.addItem(Row.Builder().setTitle(title).build())
+    }
+
+    private fun addListRow(
+        listBuilder: ItemList.Builder,
+        list: GroceryList
+    ) {
+        val itemCountText = carContext.getString(R.string.car_app_item_count, list.numOfGroceries)
+        
+        listBuilder.addItem(
+            Row.Builder()
+                .setTitle(list.name)
+                .addText(itemCountText)
+                .setOnClickListener {
+                    screenManager.push(
+                        GroceryItemsScreen(carContext, list, groceryRepository, productRepository)
+                    )
+                }
+                .build()
+        )
     }
 }
 

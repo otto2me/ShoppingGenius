@@ -169,20 +169,35 @@ class ProductPickerScreen(
             }
             listBuilder.setNoItemsMessage(noItemsMessage)
         } else {
-            products.forEach { product ->
-                listBuilder.addItem(
-                    Row.Builder().apply {
-                        setTitle(product.name)
-                        iconLoader.getOrLoad(product.icon)?.let { carIcon ->
-                            setImage(carIcon, Row.IMAGE_TYPE_SMALL)
-                        }
-                        setOnClickListener {
-                            if (!isAddingItem) {
-                                addExistingProduct(product)
+            // Group products by category for better visual organization
+            val productsByCategory = products.groupBy { it.category?.name ?: "Other" }
+            
+            productsByCategory.forEach { (categoryName, categoryProducts) ->
+                // Add category header with icon
+                if (categoryName != "Other" && productsByCategory.size > 1) {
+                    listBuilder.addItem(
+                        Row.Builder()
+                            .setTitle("📁 $categoryName")
+                            .build()
+                    )
+                }
+                
+                // Add products in category
+                categoryProducts.forEach { product ->
+                    listBuilder.addItem(
+                        Row.Builder().apply {
+                            setTitle(product.name)
+                            iconLoader.getOrLoad(product.icon)?.let { carIcon ->
+                                setImage(carIcon, Row.IMAGE_TYPE_SMALL)
                             }
-                        }
-                    }.build()
-                )
+                            setOnClickListener {
+                                if (!isAddingItem) {
+                                    addExistingProduct(product)
+                                }
+                            }
+                        }.build()
+                    )
+                }
             }
         }
 

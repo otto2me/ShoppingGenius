@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
- * Zeigt alle Artikel einer Einkaufsliste.
+ * Zeigt alle Artikel einer Einkaufsliste mit visueller Gruppierung nach Status.
  * Jeder Artikel hat einen Toggle-Schalter zum Abhaken (purchased).
  */
 class GroceryItemsScreen(
@@ -94,12 +94,15 @@ class GroceryItemsScreen(
                 .sortedByDescending { it.purchasedLastModified }
                 .toList()
 
+            // Open items section with shopping icon
             if (openGroceries.isNotEmpty()) {
-                addSectionHeader(listBuilder, carContext.getString(R.string.car_app_section_open))
+                addSectionHeader(listBuilder, "📝 " + carContext.getString(R.string.car_app_section_open))
                 openGroceries.forEach { grocery -> addGroceryRow(listBuilder, grocery) }
             }
+            
+            // Completed items section with checkmark icon
             if (completedGroceries.isNotEmpty()) {
-                addSectionHeader(listBuilder, carContext.getString(R.string.car_app_section_completed))
+                addSectionHeader(listBuilder, "✅ " + carContext.getString(R.string.car_app_section_completed))
                 completedGroceries.forEach { grocery -> addGroceryRow(listBuilder, grocery) }
             }
         }
