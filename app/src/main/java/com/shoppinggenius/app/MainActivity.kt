@@ -2,6 +2,7 @@ package com.shoppinggenius.app
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.content.pm.ActivityInfo
 import android.graphics.Color
@@ -29,7 +30,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -73,14 +73,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         val statusBarLightScrim = ContextCompat.getColor(this, R.color.status_bar_light_scrim)
-
-        if (Build.VERSION.SDK_INT < 23) {
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-            window.statusBarColor = statusBarLightScrim
-            window.navigationBarColor = navBarDarkScrim
-        } else {
-            enableEdgeToEdge()
-        }
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.auto(
+                statusBarLightScrim,
+                statusBarDarkScrim
+            ) { isDarkTheme(resources.configuration) },
+            navigationBarStyle = SystemBarStyle.auto(
+                navBarLightScrim,
+                navBarDarkScrim
+            ) { isDarkTheme(resources.configuration) }
+        )
 
         // app's UI has bottom sheets that don't look good in landscape mode on small screen sizes
         if (resources.configuration.smallestScreenWidthDp < 600) {
@@ -90,29 +92,21 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val useDarkTheme = shouldUseDarkTheme(uiState)
             DisposableEffect(useDarkTheme) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                    enableEdgeToEdge(
-                        statusBarStyle = SystemBarStyle.auto(
-                            Color.TRANSPARENT,
-                            Color.TRANSPARENT
-                        ) { useDarkTheme },
-                        navigationBarStyle = SystemBarStyle.auto(
-                            navBarLightScrim,
-                            navBarDarkScrim
-                        ) { useDarkTheme }
-                    )
-                }
+                enableEdgeToEdge(
+                    statusBarStyle = SystemBarStyle.auto(
+                        statusBarLightScrim,
+                        statusBarDarkScrim
+                    ) { useDarkTheme },
+                    navigationBarStyle = SystemBarStyle.auto(
+                        navBarLightScrim,
+                        navBarDarkScrim
+                    ) { useDarkTheme }
+                )
                 onDispose {}
             }
             LaunchedEffect(useDarkTheme) {
                 if (Build.VERSION.SDK_INT >= 29) {
                     window.isNavigationBarContrastEnforced = false
-                }
-            }
-            LaunchedEffect(useDarkTheme) {
-                if (Build.VERSION.SDK_INT < 23) {
-                    window.statusBarColor =
-                        if (useDarkTheme) Color.TRANSPARENT else statusBarLightScrim
                 }
             }
 
@@ -203,11 +197,17 @@ private fun shouldUseDarkTheme(uiState: MainActivityUiState?): Boolean = when (u
     }
 }
 
+private fun isDarkTheme(configuration: Configuration): Boolean {
+    return (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+}
+
 /**
  * The default light scrim, as defined by androidx and the platform:
  * https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:activity/activity/src/main/java/androidx/activity/EdgeToEdge.kt;l=35-38;drc=27e7d52e8604a080133e8b842db10c89b4482598
  */
 private val navBarLightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
+
+private val statusBarDarkScrim = Color.TRANSPARENT
 
 /**
  * The default dark scrim, as defined by androidx and the platform:

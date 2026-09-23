@@ -366,8 +366,7 @@ private fun SettingsScreen(
                             },
                             onResetCategoriesOrder = {
                                 onIntent(SettingsScreenIntent.OnResetCategoriesOrder)
-                            },
-                            navigateToListen = navigateToListen
+                            }
                         )
                     }
                     item {
@@ -988,8 +987,7 @@ private fun CategoriesOrderSetting(
     modifier: Modifier = Modifier,
     categories: List<Category>,
     updateCategories: (List<Category>) -> Unit,
-    onResetCategoriesOrder: () -> Unit,
-    navigateToListen: () -> Unit = {}
+    onResetCategoriesOrder: () -> Unit
 ) {
     var bottomSheetIsVisible by remember { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)

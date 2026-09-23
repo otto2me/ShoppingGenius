@@ -39,7 +39,7 @@ Current Android config in `app/build.gradle.kts`:
 - **compileSdk:** 36
 - **targetSdk:** 36
 - **minSdk:** 21
-- **current app version:** `0.3.0` (`versionCode` 19)
+- **current app version:** `0.4.2` (`versionCode` 23)
 - **JVM target:** 11
 
 ## Development Setup
