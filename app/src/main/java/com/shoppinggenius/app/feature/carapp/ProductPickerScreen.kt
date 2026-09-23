@@ -1,24 +1,20 @@
 package com.shoppinggenius.app.feature.carapp
 
-import android.graphics.BitmapFactory
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
 import androidx.car.app.model.Action
-import androidx.car.app.model.CarIcon
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.Row
 import androidx.car.app.model.SearchTemplate
 import androidx.car.app.model.Template
-import androidx.core.graphics.drawable.IconCompat
 import androidx.lifecycle.lifecycleScope
 import com.shoppinggenius.app.R
 import com.shoppinggenius.app.data.grocery.GroceryRepository
 import com.shoppinggenius.app.data.product.ProductRepository
 import com.shoppinggenius.app.model.Grocery
 import com.shoppinggenius.app.model.GroceryList
-import com.shoppinggenius.app.model.IconReference
+import com.shoppinggenius.app.model.GroceryListType
 import com.shoppinggenius.app.model.Product
-import java.io.File
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -32,20 +28,34 @@ class ProductPickerScreen(
     private val productRepository: ProductRepository
 ) : Screen(carContext) {
 
+    private val iconLoader = CarAppIconLoader(
+        filesDir = carContext.filesDir,
+        coroutineScope = lifecycleScope,
+        onIconLoaded = ::invalidate
+    )
+
     private var allProducts: List<Product> = emptyList()
     private var groceries: List<Grocery> = emptyList()
     private var areProductsLoading = true
     private var areGroceriesLoading = true
     private var searchQuery: String = ""
+    private var isAddingItem = false
 
     private val isLoading: Boolean
         get() = areProductsLoading || areGroceriesLoading
 
     init {
         lifecycleScope.launch {
-            productRepository.getAllProducts().collectLatest { allProducts ->
-                this@ProductPickerScreen.allProducts = allProducts
-                    .sortedBy { it.name.lowercase() }
+            // Only load products for shopping lists, not for todo lists
+            if (groceryList.type == GroceryListType.SHOPPING) {
+                productRepository.getAllProducts().collectLatest { allProducts ->
+                    this@ProductPickerScreen.allProducts = allProducts
+                        .sortedBy { it.name.lowercase() }
+                    areProductsLoading = false
+                    invalidate()
+                }
+            } else {
+                // For TODO lists, skip product loading
                 areProductsLoading = false
                 invalidate()
             }
@@ -67,6 +77,9 @@ class ProductPickerScreen(
             }
 
             override fun onSearchSubmitted(searchText: String) {
+                // Prevent duplicate submissions when voice recognition sends partial results
+                if (isAddingItem) return
+
                 val submittedText = searchText.trim()
                 searchQuery = submittedText
                 if (submittedText.isBlank()) {
@@ -79,12 +92,19 @@ class ProductPickerScreen(
                     return
                 }
 
-                val exactProduct = availableProductsForCarApp(allProducts, groceries).firstOrNull {
-                    normalizeGroceryName(it.name) == normalizeGroceryName(submittedText)
-                }
-                if (exactProduct != null) {
-                    addExistingProduct(exactProduct)
+                // For shopping lists, try to find an exact product match
+                // For todo lists, always add as custom product
+                if (groceryList.type == GroceryListType.SHOPPING) {
+                    val exactProduct = availableProductsForCarApp(allProducts, groceries).firstOrNull {
+                        normalizeGroceryName(it.name) == normalizeGroceryName(submittedText)
+                    }
+                    if (exactProduct != null) {
+                        addExistingProduct(exactProduct)
+                    } else {
+                        addCustomProduct(submittedText)
+                    }
                 } else {
+                    // For todo lists, always add as custom product
                     addCustomProduct(submittedText)
                 }
             }
@@ -102,7 +122,14 @@ class ProductPickerScreen(
         val query = searchQuery.trim()
         val queryNormalized = normalizeGroceryName(query)
         val queryAlreadyInList = queryNormalized.isNotEmpty() && isDuplicateGroceryName(query, groceries)
-        val availableProducts = availableProductsForCarApp(allProducts, groceries)
+
+        // Only show predefined products for shopping lists, not for todo lists
+        val isShoppingList = groceryList.type == GroceryListType.SHOPPING
+        val availableProducts = if (isShoppingList) {
+            availableProductsForCarApp(allProducts, groceries)
+        } else {
+            emptyList()
+        }
         val hasPerfectMatch = queryNormalized.isNotEmpty() && availableProducts.any {
             normalizeGroceryName(it.name) == queryNormalized
         }
@@ -115,6 +142,7 @@ class ProductPickerScreen(
                 .take(MAX_PRODUCTS)
                 .toList()
         }
+        iconLoader.preload(products.asSequence().map { it.icon }.asIterable())
 
         var hasRows = false
         if (query.isNotBlank() && !hasPerfectMatch && !queryAlreadyInList) {
@@ -122,7 +150,9 @@ class ProductPickerScreen(
                 Row.Builder()
                     .setTitle(carContext.getString(R.string.car_app_add_unknown_item, query))
                     .setOnClickListener {
-                        addCustomProduct(query)
+                        if (!isAddingItem) {
+                            addCustomProduct(query)
+                        }
                     }
                     .build()
             )
@@ -143,11 +173,13 @@ class ProductPickerScreen(
                 listBuilder.addItem(
                     Row.Builder().apply {
                         setTitle(product.name)
-                        toCarIcon(product.icon)?.let { carIcon ->
+                        iconLoader.getOrLoad(product.icon)?.let { carIcon ->
                             setImage(carIcon, Row.IMAGE_TYPE_SMALL)
                         }
                         setOnClickListener {
-                            addExistingProduct(product)
+                            if (!isAddingItem) {
+                                addExistingProduct(product)
+                            }
                         }
                     }.build()
                 )
@@ -169,6 +201,7 @@ class ProductPickerScreen(
             return
         }
 
+        isAddingItem = true
         lifecycleScope.launch {
             groceryRepository.addGroceryToList(
                 productId = product.id,
@@ -187,6 +220,7 @@ class ProductPickerScreen(
             return
         }
 
+        isAddingItem = true
         lifecycleScope.launch {
             groceryRepository.insertProductAndGrocery(
                 name = normalizedName,
@@ -199,14 +233,6 @@ class ProductPickerScreen(
         }
     }
 
-    private fun toCarIcon(iconReference: IconReference?): CarIcon? {
-        val filePath = iconReference?.filePath ?: return null
-        val iconFile = File(carContext.filesDir, filePath)
-        if (!iconFile.exists()) return null
-
-        val bitmap = BitmapFactory.decodeFile(iconFile.absolutePath) ?: return null
-        return CarIcon.Builder(IconCompat.createWithBitmap(bitmap)).build()
-    }
 
     private companion object {
         const val MAX_PRODUCTS = 120

@@ -1,25 +1,20 @@
 package com.shoppinggenius.app.feature.carapp
 
-import android.graphics.BitmapFactory
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
 import androidx.car.app.model.Action
 import androidx.car.app.model.ActionStrip
-import androidx.car.app.model.CarIcon
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.ListTemplate
 import androidx.car.app.model.Row
 import androidx.car.app.model.Template
 import androidx.car.app.model.Toggle
-import androidx.core.graphics.drawable.IconCompat
 import androidx.lifecycle.lifecycleScope
 import com.shoppinggenius.app.R
 import com.shoppinggenius.app.data.grocery.GroceryRepository
 import com.shoppinggenius.app.data.product.ProductRepository
 import com.shoppinggenius.app.model.Grocery
 import com.shoppinggenius.app.model.GroceryList
-import com.shoppinggenius.app.model.IconReference
-import java.io.File
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -33,6 +28,12 @@ class GroceryItemsScreen(
     private val groceryRepository: GroceryRepository,
     private val productRepository: ProductRepository
 ) : Screen(carContext) {
+
+    private val iconLoader = CarAppIconLoader(
+        filesDir = carContext.filesDir,
+        coroutineScope = lifecycleScope,
+        onIconLoaded = ::invalidate
+    )
 
     private val addItemAction = Action.Builder()
         .setTitle(carContext.getString(R.string.car_app_add_item))
@@ -56,6 +57,7 @@ class GroceryItemsScreen(
             groceryRepository.getGroceriesFromList(groceryList.id).collectLatest { items ->
                 groceries = items
                 isLoading = false
+                iconLoader.preload(items.asSequence().map { it.icon }.asIterable())
                 invalidate()
             }
         }
@@ -138,7 +140,7 @@ class GroceryItemsScreen(
                 .build()
             )
 
-        toCarIcon(grocery.icon)?.let { carIcon ->
+        iconLoader.getOrLoad(grocery.icon)?.let { carIcon ->
             rowBuilder.setImage(carIcon, Row.IMAGE_TYPE_SMALL)
         }
 
@@ -147,15 +149,6 @@ class GroceryItemsScreen(
         subtitle?.let { rowBuilder.addText(it) }
 
         listBuilder.addItem(rowBuilder.build())
-    }
-
-    private fun toCarIcon(iconReference: IconReference?): CarIcon? {
-        val filePath = iconReference?.filePath ?: return null
-        val iconFile = File(carContext.filesDir, filePath)
-        if (!iconFile.exists()) return null
-
-        val bitmap = BitmapFactory.decodeFile(iconFile.absolutePath) ?: return null
-        return CarIcon.Builder(IconCompat.createWithBitmap(bitmap)).build()
     }
 }
 
