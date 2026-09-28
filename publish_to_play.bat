@@ -151,17 +151,17 @@ echo [OK] AAB erfolgreich gebaut.
 :: ----------------------------------------------------------
 :: SCHRITT 2: In Play Console hochladen
 :: ----------------------------------------------------------
-echo.
-echo [SCHRITT 2/2] Lade AAB in Play Console hoch (Internal Track) ...
-echo.
+:: echo.
+:: echo [SCHRITT 2/2] Lade AAB in Play Console hoch (Internal Track) ...
+:: echo.
 
-powershell -NoProfile -Command "& '%GRADLEW%' :app:publishReleaseBundle --stacktrace 2>&1 | Tee-Object -FilePath '%LOGFILE%' -Append"
-if ERRORLEVEL 1 (
-    echo.
-    echo [FEHLER] Upload zur Play Console fehlgeschlagen.
-    echo Siehe %LOGFILE% fuer Details.
-    exit /b 1
-)
+:: powershell -NoProfile -Command "& '%GRADLEW%' :app:publishReleaseBundle --stacktrace 2>&1 | Tee-Object -FilePath '%LOGFILE%' -Append"
+:: if ERRORLEVEL 1 (
+::     echo.
+::     echo [FEHLER] Upload zur Play Console fehlgeschlagen.
+::     echo Siehe %LOGFILE% fuer Details.
+::     exit /b 1
+:: )
 
 echo.
 echo ============================================================

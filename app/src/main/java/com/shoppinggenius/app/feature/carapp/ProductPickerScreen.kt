@@ -112,8 +112,8 @@ class ProductPickerScreen(
 
         if (isLoading) {
             // Google Driver Distraction Guidelines: Tastatureingabe nur im Stillstand erlaubt
-            val isKeyboardAllowed = CarAppDrivingStateHelper.shouldEnableKeyboardInput(carContext)
-            
+            val isKeyboardAllowed = CarAppDrivingStateHelper.shouldEnableKeyboardInput()
+
             return SearchTemplate.Builder(searchCallback)
                 .setHeaderAction(Action.BACK)
                 .setSearchHint(carContext.getString(R.string.car_app_search_hint))
@@ -206,8 +206,8 @@ class ProductPickerScreen(
         }
 
         // Google Driver Distraction Guidelines: Tastatureingabe nur im Stillstand erlaubt
-        val isKeyboardAllowed = CarAppDrivingStateHelper.shouldEnableKeyboardInput(carContext)
-        
+        val isKeyboardAllowed = CarAppDrivingStateHelper.shouldEnableKeyboardInput()
+
         return SearchTemplate.Builder(searchCallback)
             .setHeaderAction(Action.BACK)
             .setSearchHint(carContext.getString(R.string.car_app_search_hint))
