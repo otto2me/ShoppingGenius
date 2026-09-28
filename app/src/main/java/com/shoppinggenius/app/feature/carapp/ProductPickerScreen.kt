@@ -111,9 +111,13 @@ class ProductPickerScreen(
         }
 
         if (isLoading) {
+            // Google Driver Distraction Guidelines: Tastatureingabe nur im Stillstand erlaubt
+            val isKeyboardAllowed = CarAppDrivingStateHelper.shouldEnableKeyboardInput(carContext)
+            
             return SearchTemplate.Builder(searchCallback)
                 .setHeaderAction(Action.BACK)
                 .setSearchHint(carContext.getString(R.string.car_app_search_hint))
+                .setShowKeyboardByDefault(isKeyboardAllowed)
                 .setLoading(true)
                 .build()
         }
@@ -201,10 +205,13 @@ class ProductPickerScreen(
             }
         }
 
+        // Google Driver Distraction Guidelines: Tastatureingabe nur im Stillstand erlaubt
+        val isKeyboardAllowed = CarAppDrivingStateHelper.shouldEnableKeyboardInput(carContext)
+        
         return SearchTemplate.Builder(searchCallback)
             .setHeaderAction(Action.BACK)
             .setSearchHint(carContext.getString(R.string.car_app_search_hint))
-            .setShowKeyboardByDefault(true)
+            .setShowKeyboardByDefault(isKeyboardAllowed)
             .setItemList(listBuilder.build())
             .setLoading(false)
             .build()
