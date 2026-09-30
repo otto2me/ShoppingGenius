@@ -1,7 +1,10 @@
 package com.shoppinggenius.app.feature.carapp
 
+import android.os.Handler
+import android.os.Looper
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
+import androidx.car.app.annotations.RequiresCarApi
 import androidx.car.app.model.Action
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.ListTemplate
@@ -16,6 +19,7 @@ import com.shoppinggenius.app.model.GroceryList
 import com.shoppinggenius.app.model.GroceryListType
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.concurrent.Executor
 
 /**
  * Zeigt alle Einkaufslisten als scrollbare Liste im Auto-Bildschirm.
@@ -32,12 +36,31 @@ class GroceryListsScreen(
     private var isLoading = true
 
     init {
+        // Initialisiere Speed-Listener für Google Driver Distraction Guidelines
+        // Dies wird auf dem Main Thread ausgeführt, um sicherzustellen, dass der Listener
+        // im korrekten Thread-Kontext registriert wird
+        initializeSpeedListener()
+
         lifecycleScope.launch {
             groceryListRepository.getAllGroceryLists().collectLatest { lists ->
                 groceryLists = lists
                 isLoading = false
                 invalidate()
             }
+        }
+    }
+
+    @RequiresCarApi(3)
+    private fun initializeSpeedListener() {
+        try {
+            // Erstelle einen Executor, der auf dem Main Thread ausgeführt wird
+            val mainThreadExecutor = Executor { runnable ->
+                Handler(Looper.getMainLooper()).post(runnable)
+            }
+            CarAppDrivingStateHelper.initializeSpeedListener(carContext, mainThreadExecutor)
+        } catch (e: Exception) {
+            // Speed-Listener nicht verfügbar (z.B. auf älterer API)
+            e.printStackTrace()
         }
     }
 
