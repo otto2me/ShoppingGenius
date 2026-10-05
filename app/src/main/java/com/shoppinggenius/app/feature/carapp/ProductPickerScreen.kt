@@ -16,8 +16,10 @@ import com.shoppinggenius.app.model.Grocery
 import com.shoppinggenius.app.model.GroceryList
 import com.shoppinggenius.app.model.GroceryListType
 import com.shoppinggenius.app.model.Product
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Einfache Produktauswahl für Android Auto: Produkt antippen -> zur Einkaufsliste hinzufügen.
@@ -36,6 +38,7 @@ class ProductPickerScreen(
     )
 
     private val restrictionsHelper = CarUxRestrictionsHelper(carContext)
+    private var drivingState = restrictionsHelper.getDrivingState()
 
     private var allProducts: List<Product> = emptyList()
     private var groceries: List<Grocery> = emptyList()
@@ -70,9 +73,20 @@ class ProductPickerScreen(
                 invalidate()
             }
         }
+        lifecycleScope.launch {
+            while (true) {
+                val updatedDrivingState = restrictionsHelper.getDrivingState()
+                if (updatedDrivingState != drivingState) {
+                    drivingState = updatedDrivingState
+                    invalidate()
+                }
+                delay(RESTRICTION_POLL_INTERVAL)
+            }
+        }
     }
 
     override fun onGetTemplate(): Template {
+        val isDriverDistracted = drivingState == CarUxRestrictionsHelper.DrivingState.RESTRICTED
         val searchCallback = object : SearchTemplate.SearchCallback {
             override fun onSearchTextChanged(searchText: String) {
                 searchQuery = searchText
@@ -160,7 +174,7 @@ class ProductPickerScreen(
                 }
             )
 
-            if (restrictionsHelper.isDriverDistracted()) {
+            if (isDriverDistracted) {
                 rowBuilder.addText(carContext.getString(R.string.car_app_voice_only_hint))
             }
 
@@ -207,7 +221,7 @@ class ProductPickerScreen(
                             }
                         )
 
-                        if (restrictionsHelper.isDriverDistracted()) {
+                        if (isDriverDistracted) {
                             addText(carContext.getString(R.string.car_app_voice_only_hint))
                         }
                     }
@@ -219,7 +233,7 @@ class ProductPickerScreen(
         return SearchTemplate.Builder(searchCallback)
             .setHeaderAction(Action.BACK)
             .setSearchHint(carContext.getString(R.string.car_app_search_hint))
-            .setShowKeyboardByDefault(true)
+            .setShowKeyboardByDefault(!isDriverDistracted)
             .setItemList(listBuilder.build())
             .setLoading(false)
             .build()
@@ -266,6 +280,7 @@ class ProductPickerScreen(
 
     private companion object {
         const val MAX_PRODUCTS = 120
+        val RESTRICTION_POLL_INTERVAL = 1.seconds
     }
 }
 

@@ -69,7 +69,7 @@ FIREBASE_ARTIFACT_TYPE=APK
 
 ## Release and Publishing
 
-### Publish to Play Console (internal track)
+### Build release AAB only
 
 Use `publish_to_play.bat` from the project root. It:
 
@@ -77,7 +77,6 @@ Use `publish_to_play.bat` from the project root. It:
 2. Prompts for `versionCode` and `versionName`.
 3. Updates `app/build.gradle.kts` using `tools/update_version.ps1`.
 4. Builds release AAB (`:app:bundleRelease`).
-5. Uploads to Play (`:app:publishReleaseBundle`).
 
 Run:
 
@@ -87,6 +86,8 @@ publish_to_play.bat
 ```
 
 Logs are written to `publish_play_log.txt`.
+
+If you want to upload the bundle to Google Play afterwards, do that manually from the Play Console or via the separate publishing task.
 
 ### Firebase App Distribution (optional)
 

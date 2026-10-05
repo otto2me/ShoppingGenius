@@ -372,22 +372,20 @@ private fun SettingsScreen(
                     item {
                         ListenEditorLink(onClick = navigateToListen)
                     }
-                    if (BuildConfig.DEBUG) {
-                        item {
-                            SettingsTitle(
-                                modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                                title = stringResource(R.string.settings_duckduckgo_image_search_title)
-                            )
-                        }
-                        item {
-                            DebugDuckDuckGoImageSearchSetting(
-                                testInProgress = uiState.duckDuckGoImageSearchTestInProgress,
-                                testSucceeded = uiState.duckDuckGoImageSearchTestSucceeded,
-                                onTestConnection = {
-                                    onIntent(SettingsScreenIntent.OnTestDuckDuckGoImageSearchConnection)
-                                }
-                            )
-                        }
+                    item {
+                        SettingsTitle(
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                            title = stringResource(R.string.settings_duckduckgo_image_search_title)
+                        )
+                    }
+                    item {
+                        DebugDuckDuckGoImageSearchSetting(
+                            testInProgress = uiState.duckDuckGoImageSearchTestInProgress,
+                            testSucceeded = uiState.duckDuckGoImageSearchTestSucceeded,
+                            onTestConnection = {
+                                onIntent(SettingsScreenIntent.OnTestDuckDuckGoImageSearchConnection)
+                            }
+                        )
                     }
                     item {
                         SettingsTitle(

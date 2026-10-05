@@ -16,7 +16,9 @@ import com.shoppinggenius.app.data.product.ProductRepository
 import com.shoppinggenius.app.model.Grocery
 import com.shoppinggenius.app.model.GroceryList
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Zeigt alle Artikel einer Einkaufsliste mit visueller Gruppierung nach Status.
@@ -36,24 +38,23 @@ class GroceryItemsScreen(
     )
 
     private val restrictionsHelper = CarUxRestrictionsHelper(carContext)
+    private var drivingState = restrictionsHelper.getDrivingState()
 
     private val addItemAction: Action
         get() {
             val action = Action.Builder()
                 .setTitle(carContext.getString(R.string.car_app_add_item))
 
-            action.setOnClickListener(
-                ParkedOnlyOnClickListener.create {
-                    screenManager.push(
-                        ProductPickerScreen(
-                            carContext = carContext,
-                            groceryList = groceryList,
-                            groceryRepository = groceryRepository,
-                            productRepository = productRepository
-                        )
+            action.setOnClickListener {
+                screenManager.push(
+                    ProductPickerScreen(
+                        carContext = carContext,
+                        groceryList = groceryList,
+                        groceryRepository = groceryRepository,
+                        productRepository = productRepository
                     )
-                }
-            )
+                )
+            }
 
             return action.build()
         }
@@ -68,6 +69,16 @@ class GroceryItemsScreen(
                 isLoading = false
                 iconLoader.preload(items.asSequence().map { it.icon }.asIterable())
                 invalidate()
+            }
+        }
+        lifecycleScope.launch {
+            while (true) {
+                val updatedDrivingState = restrictionsHelper.getDrivingState()
+                if (updatedDrivingState != drivingState) {
+                    drivingState = updatedDrivingState
+                    invalidate()
+                }
+                delay(RESTRICTION_POLL_INTERVAL)
             }
         }
     }
@@ -136,6 +147,7 @@ class GroceryItemsScreen(
         listBuilder: ItemList.Builder,
         grocery: Grocery
     ) {
+        val isDriverDistracted = drivingState == CarUxRestrictionsHelper.DrivingState.RESTRICTED
         val rowBuilder = Row.Builder()
             .setTitle(grocery.name)
 
@@ -157,12 +169,11 @@ class GroceryItemsScreen(
             }
         )
 
-        if (restrictionsHelper.isDriverDistracted()) {
+        if (isDriverDistracted) {
             rowBuilder.addText(carContext.getString(R.string.car_app_parked_only_hint))
         } else {
             rowBuilder.addText(parkedOnlyActionLabel)
         }
-
         iconLoader.getOrLoad(grocery.icon)?.let { carIcon ->
             rowBuilder.setImage(carIcon, Row.IMAGE_TYPE_SMALL)
         }
@@ -172,6 +183,10 @@ class GroceryItemsScreen(
         subtitle?.let { rowBuilder.addText(it) }
 
         listBuilder.addItem(rowBuilder.build())
+    }
+
+    private companion object {
+        val RESTRICTION_POLL_INTERVAL = 1.seconds
     }
 }
 

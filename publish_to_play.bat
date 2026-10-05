@@ -2,19 +2,19 @@
 setlocal EnableDelayedExpansion
 
 :: ============================================================
-::  GroceryGenius – Release-Build + Upload zur Play Console
-::  Track: internal  |  Artifact: AAB
-::  Voraussetzung: PLAY_SERVICE_ACCOUNT_JSON in local.properties
+::  GroceryGenius – Release-Build (AAB)
+::  Artifact: AAB
 :: ============================================================
 
 set "ROOT=%~dp0"
 set "GRADLEW=%ROOT%gradlew.bat"
 set "LOGFILE=%ROOT%publish_play_log.txt"
 set "BUILD_GRADLE=%ROOT%app\build.gradle.kts"
+set "BUNDLE_PATH=%ROOT%app\build\outputs\bundle\release\app-release.aab"
 
 echo.
 echo ============================================================
-echo  GroceryGenius ^– Play Console Upload
+echo  GroceryGenius ^– Release-AAB Build
 echo ============================================================
 echo  Startzeit: %date% %time%
 echo  Arbeitsverzeichnis: %ROOT%
@@ -134,7 +134,7 @@ echo versionCode: !NEW_CODE!  versionName: !NEW_NAME! >> "%LOGFILE%"
 :: SCHRITT 1: Release-AAB bauen
 :: ----------------------------------------------------------
 echo.
-echo [SCHRITT 1/2] Baue Release-AAB ...
+echo [SCHRITT 1/1] Baue Release-AAB ...
 echo Vollstaendige Ausgabe wird in publish_play_log.txt gespeichert.
 echo.
 
@@ -147,26 +147,11 @@ if ERRORLEVEL 1 (
 )
 echo.
 echo [OK] AAB erfolgreich gebaut.
-
-:: ----------------------------------------------------------
-:: SCHRITT 2: In Play Console hochladen
-:: ----------------------------------------------------------
-echo.
-echo [SCHRITT 2/2] Lade AAB in Play Console hoch (Internal Track) ...
-echo.
-
-powershell -NoProfile -Command "& '%GRADLEW%' :app:publishReleaseBundle --stacktrace 2>&1 | Tee-Object -FilePath '%LOGFILE%' -Append"
-if ERRORLEVEL 1 (
-    echo.
-    echo [FEHLER] Upload zur Play Console fehlgeschlagen.
-    echo Siehe %LOGFILE% fuer Details.
-    exit /b 1
-)
-
 echo.
 echo ============================================================
 echo  [ERFOLG] App v!NEW_NAME! (Code !NEW_CODE!) erfolgreich
-echo  im Internal Track der Play Console veroeffentlicht.
+echo  als Release-AAB gebaut.
+echo  Bundle-Pfad: %BUNDLE_PATH%
 echo  Endzeit: %date% %time%
 echo  Log: %LOGFILE%
 echo ============================================================
