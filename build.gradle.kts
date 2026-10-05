@@ -6,25 +6,8 @@ plugins {
     alias(libs.plugins.roomPlugin) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.androidTest) apply false
-    alias(libs.plugins.baselineprofile) apply false
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.gradlePlayPublisher) apply false
 }
 
-val enableBenchmark = gradle.startParameter.projectProperties.containsKey("enableBenchmark")
-
-if (!enableBenchmark) {
-    allprojects {
-        tasks.configureEach {
-            val taskName = name
-            if (
-                taskName.contains("Benchmark") ||
-                taskName.contains("NonMinified") ||
-                taskName.contains("baselineProfile", ignoreCase = true)
-            ) {
-                enabled = false
-            }
-        }
-    }
-}
 

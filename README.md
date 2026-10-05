@@ -74,9 +74,10 @@ FIREBASE_ARTIFACT_TYPE=APK
 Use `publish_to_play.bat` from the project root. It:
 
 1. Checks required files and config.
-2. Prompts for `versionCode` and `versionName`.
-3. Updates `app/build.gradle.kts` using `tools/update_version.ps1`.
-4. Builds release AAB (`:app:bundleRelease`).
+2. Prompts for the flavor (`standard` or `testing`).
+3. Prompts for `versionCode` and `versionName`.
+4. Updates `app/build.gradle.kts` using `tools/update_version.ps1`.
+5. Builds the selected release AAB.
 
 Run:
 
@@ -88,6 +89,18 @@ publish_to_play.bat
 Logs are written to `publish_play_log.txt`.
 
 If you want to upload the bundle to Google Play afterwards, do that manually from the Play Console or via the separate publishing task.
+
+### Build flavors
+
+- `standard`: driver-distraction logging disabled
+- `testing`: driver-distraction logging enabled (internal Gradle flavor name: `driverTesting`)
+
+Build the testing flavor with:
+
+```bat
+cd C:\Work\Privat\GroceryGenius-develop
+.\gradlew.bat :app:bundleDriverTestingRelease
+```
 
 ### Firebase App Distribution (optional)
 

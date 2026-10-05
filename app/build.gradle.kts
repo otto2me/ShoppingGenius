@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.roomPlugin)
     kotlin("kapt")
     alias(libs.plugins.ksp)
-    alias(libs.plugins.baselineprofile)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.gradlePlayPublisher)
 }
@@ -34,8 +33,8 @@ android {
         applicationId = "com.shoppinggenius.app"
         minSdk = 25
         targetSdk = 36
-        versionCode = 33
-        versionName = "0.4.8"
+        versionCode = 35
+        versionName = "0.4.9"
 
         testInstrumentationRunner = "com.shoppinggenius.app.testing.ShoppingGeniusTestRunner"
         vectorDrawables {
@@ -70,10 +69,17 @@ android {
             }
             signingConfig = signingConfigs.getByName("release")
         }
-        create("benchmark") {
-            initWith(buildTypes.getByName("release"))
-            matchingFallbacks += listOf("release")
-            isDebuggable = false
+    }
+    flavorDimensions += "driverLogging"
+    productFlavors {
+        create("standard") {
+            dimension = "driverLogging"
+            isDefault = true
+            buildConfigField("boolean", "ENABLE_DRIVER_DISTRACTION_LOGGING", "false")
+        }
+        create("driverTesting") {
+            dimension = "driverLogging"
+            buildConfigField("boolean", "ENABLE_DRIVER_DISTRACTION_LOGGING", "true")
         }
     }
     compileOptions {
@@ -105,15 +111,6 @@ android {
     }
     room {
         schemaDirectory("$projectDir/schemas")
-    }
-}
-
-androidComponents {
-    // Keep local default builds stable; benchmark variants can be re-enabled explicitly.
-    beforeVariants(selector().withBuildType("benchmark")) { variantBuilder ->
-        if (!providers.gradleProperty("enableBenchmark").isPresent) {
-            variantBuilder.enable = false
-        }
     }
 }
 
@@ -149,7 +146,6 @@ dependencies {
 
     implementation(libs.com.google.dagger.hilt.android)
     implementation(libs.androidx.profileinstaller)
-    "baselineProfile"(project(":baselineprofile"))
     kapt(libs.com.google.dagger.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.com.google.dagger.hilt.android.testing)

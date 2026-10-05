@@ -2,6 +2,7 @@ package com.shoppinggenius.app.feature.carapp
 
 import android.util.Log
 import androidx.car.app.CarContext
+import com.shoppinggenius.app.BuildConfig
 
 /**
  * Hilfsklasse zur Verwaltung von Driver Distraction Restrictions.
@@ -25,7 +26,16 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
      * @return true wenn Fahrer fährt (Restrictions aktiv), false wenn Auto steht oder der Host
      * keine Runtime-Abfrage der Restrictions erlaubt.
      */
-    fun isDriverDistracted(): Boolean = getDrivingState() == DrivingState.RESTRICTED
+    fun isDriverDistracted(): Boolean {
+        val drivingState = getDrivingState()
+        var distracted = drivingState == DrivingState.RESTRICTED
+        if (BuildConfig.ENABLE_DRIVER_DISTRACTION_LOGGING) {
+            distracted = false;
+            Log.d(TAG, "Driver distraction logging enabled, overriding distracted state to false")
+        }
+        logDebug("isDriverDistracted=$distracted state=$drivingState")
+        return distracted
+    }
 
     /**
      * Prüft, ob Input-Gesten (Touch/Tap) möglich sind.
@@ -50,7 +60,7 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
             } ?: return@withCurrentRestrictions null
 
             val isRestricted = optimizationMethod.invoke(restrictions) as? Boolean ?: return@withCurrentRestrictions null
-            Log.d(TAG, "AAOS driving restrictions active=$isRestricted")
+            logDebug("AAOS driving restrictions active=$isRestricted")
             if (isRestricted) DrivingState.RESTRICTED else DrivingState.PARKED
         }
     }
@@ -61,7 +71,7 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
             val createCarMethod = carClass.methods.firstOrNull {
                 it.name == "createCar" && it.parameterCount == 1
             } ?: return null.also {
-                Log.d(TAG, "android.car.Car#createCar(Context) not available")
+                logDebug("android.car.Car#createCar(Context) not available")
             }
 
             val car = createCarMethod.invoke(null, carContext) ?: return null
@@ -81,7 +91,7 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
                     it.parameterCount == 0 &&
                         (it.name == "getCurrentCarUxRestrictions" || it.name == "getCurrentRestrictions")
                 } ?: return null.also {
-                    Log.d(TAG, "CarUxRestrictionsManager current restriction API not available")
+                    logDebug("CarUxRestrictionsManager current restriction API not available")
                 }
 
                 val restrictions = currentRestrictionsMethod.invoke(manager) ?: return null
@@ -92,8 +102,14 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
                 }?.invoke(car)
             }
         } catch (t: Throwable) {
-            Log.d(TAG, "No AAOS CarUxRestrictionsManager available on this host: ${t.message}")
+            logDebug("No AAOS CarUxRestrictionsManager available on this host: ${t.message}")
             null
+        }
+    }
+
+    private fun logDebug(message: String) {
+        if (BuildConfig.ENABLE_DRIVER_DISTRACTION_LOGGING) {
+            Log.d(TAG, message)
         }
     }
 

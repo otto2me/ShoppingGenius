@@ -10,7 +10,10 @@ set "ROOT=%~dp0"
 set "GRADLEW=%ROOT%gradlew.bat"
 set "LOGFILE=%ROOT%publish_play_log.txt"
 set "BUILD_GRADLE=%ROOT%app\build.gradle.kts"
-set "BUNDLE_PATH=%ROOT%app\build\outputs\bundle\release\app-release.aab"
+set "SELECTED_FLAVOR=standard"
+set "DISPLAY_FLAVOR=standard"
+set "GRADLE_TASK=:app:bundleStandardRelease"
+set "BUNDLE_PATH=%ROOT%app\build\outputs\bundle\standardRelease\app-standard-release.aab"
 
 echo.
 echo ============================================================
@@ -38,16 +41,28 @@ if not exist "%LOCAL_PROPS%" (
     exit /b 1
 )
 
-:: PLAY_SERVICE_ACCOUNT_JSON pruefen
-set "SA_FOUND=0"
-for /f "usebackq tokens=1,* delims==" %%A in ("%LOCAL_PROPS%") do (
-    if "%%A"=="PLAY_SERVICE_ACCOUNT_JSON" set "SA_FOUND=1"
-)
-if "%SA_FOUND%"=="0" (
-    echo [FEHLER] PLAY_SERVICE_ACCOUNT_JSON fehlt in local.properties.
+:: ----------------------------------------------------------
+:: Flavor abfragen
+:: ----------------------------------------------------------
+set "FLAVOR_INPUT="
+set /p "FLAVOR_INPUT=  Flavor waehlen [standard/testing, Enter = standard]: "
+if /i "!FLAVOR_INPUT!"=="" set "SELECTED_FLAVOR=standard"
+if /i "!FLAVOR_INPUT!"=="standard" set "SELECTED_FLAVOR=standard"
+if /i "!FLAVOR_INPUT!"=="testing" set "SELECTED_FLAVOR=driverTesting"
+if /i "!FLAVOR_INPUT!"=="driverTesting" set "SELECTED_FLAVOR=driverTesting"
+
+if /i not "!SELECTED_FLAVOR!"=="standard" if /i not "!SELECTED_FLAVOR!"=="driverTesting" (
+    echo [FEHLER] Ungueltiger Flavor. Erlaubt sind nur standard oder testing.
     exit /b 1
 )
-echo [OK] Service-Account-Konfiguration gefunden.
+
+if /i "!SELECTED_FLAVOR!"=="driverTesting" (
+    set "DISPLAY_FLAVOR=testing"
+    set "GRADLE_TASK=:app:bundleDriverTestingRelease"
+    set "BUNDLE_PATH=%ROOT%app\build\outputs\bundle\driverTestingRelease\app-driver-testing-release.aab"
+)
+
+echo [OK] Verwendeter Flavor: !DISPLAY_FLAVOR!
 
 :: ----------------------------------------------------------
 :: Aktuelle Version aus build.gradle.kts lesen
@@ -128,6 +143,7 @@ echo [OK] build.gradle.kts aktualisiert: versionName = !NEW_NAME! / versionCode 
 
 :: Log-Datei neu starten
 echo Release-Build gestartet am %date% %time% > "%LOGFILE%"
+echo flavor: !DISPLAY_FLAVOR! ^(gradle: !SELECTED_FLAVOR!^) >> "%LOGFILE%"
 echo versionCode: !NEW_CODE!  versionName: !NEW_NAME! >> "%LOGFILE%"
 
 :: ----------------------------------------------------------
@@ -135,10 +151,11 @@ echo versionCode: !NEW_CODE!  versionName: !NEW_NAME! >> "%LOGFILE%"
 :: ----------------------------------------------------------
 echo.
 echo [SCHRITT 1/1] Baue Release-AAB ...
+echo Flavor: !DISPLAY_FLAVOR!
 echo Vollstaendige Ausgabe wird in publish_play_log.txt gespeichert.
 echo.
 
-powershell -NoProfile -Command "& '%GRADLEW%' :app:bundleRelease --stacktrace 2>&1 | Tee-Object -FilePath '%LOGFILE%' -Append"
+powershell -NoProfile -Command "& '%GRADLEW%' !GRADLE_TASK! --stacktrace 2>&1 | Tee-Object -FilePath '%LOGFILE%' -Append"
 if ERRORLEVEL 1 (
     echo.
     echo [FEHLER] Release-Build fehlgeschlagen.
@@ -150,8 +167,8 @@ echo [OK] AAB erfolgreich gebaut.
 echo.
 echo ============================================================
 echo  [ERFOLG] App v!NEW_NAME! (Code !NEW_CODE!) erfolgreich
-echo  als Release-AAB gebaut.
-echo  Bundle-Pfad: %BUNDLE_PATH%
+echo  als Release-AAB gebaut (Flavor: !DISPLAY_FLAVOR!).
+echo  Bundle-Pfad: !BUNDLE_PATH!
 echo  Endzeit: %date% %time%
 echo  Log: %LOGFILE%
 echo ============================================================
