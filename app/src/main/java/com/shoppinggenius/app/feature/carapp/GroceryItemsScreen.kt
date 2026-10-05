@@ -6,9 +6,9 @@ import androidx.car.app.model.Action
 import androidx.car.app.model.ActionStrip
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.ListTemplate
+import androidx.car.app.model.ParkedOnlyOnClickListener
 import androidx.car.app.model.Row
 import androidx.car.app.model.Template
-import androidx.car.app.model.Toggle
 import androidx.lifecycle.lifecycleScope
 import com.shoppinggenius.app.R
 import com.shoppinggenius.app.data.grocery.GroceryRepository
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Zeigt alle Artikel einer Einkaufsliste mit visueller Gruppierung nach Status.
- * Jeder Artikel hat einen Toggle-Schalter zum Abhaken (purchased).
+ * Jeder Artikel kann per geparkter-only Aktion als erledigt/offen markiert werden.
  */
 class GroceryItemsScreen(
     carContext: CarContext,
@@ -35,19 +35,28 @@ class GroceryItemsScreen(
         onIconLoaded = ::invalidate
     )
 
-    private val addItemAction = Action.Builder()
-        .setTitle(carContext.getString(R.string.car_app_add_item))
-        .setOnClickListener {
-            screenManager.push(
-                ProductPickerScreen(
-                    carContext = carContext,
-                    groceryList = groceryList,
-                    groceryRepository = groceryRepository,
-                    productRepository = productRepository
-                )
+    private val restrictionsHelper = CarUxRestrictionsHelper(carContext)
+
+    private val addItemAction: Action
+        get() {
+            val action = Action.Builder()
+                .setTitle(carContext.getString(R.string.car_app_add_item))
+
+            action.setOnClickListener(
+                ParkedOnlyOnClickListener.create {
+                    screenManager.push(
+                        ProductPickerScreen(
+                            carContext = carContext,
+                            groceryList = groceryList,
+                            groceryRepository = groceryRepository,
+                            productRepository = productRepository
+                        )
+                    )
+                }
             )
+
+            return action.build()
         }
-        .build()
 
     private var groceries: List<Grocery> = emptyList()
     private var isLoading = true
@@ -129,19 +138,30 @@ class GroceryItemsScreen(
     ) {
         val rowBuilder = Row.Builder()
             .setTitle(grocery.name)
-            .setToggle(
-                Toggle.Builder { isChecked ->
-                    lifecycleScope.launch {
-                        groceryRepository.updatePurchased(
-                            productId = grocery.productId,
-                            listId = groceryList.id,
-                            purchased = isChecked
-                        )
-                    }
+
+        val parkedOnlyActionLabel = if (grocery.purchased) {
+            carContext.getString(R.string.car_app_mark_open)
+        } else {
+            carContext.getString(R.string.car_app_mark_completed)
+        }
+
+        rowBuilder.setOnClickListener(
+            ParkedOnlyOnClickListener.create {
+                lifecycleScope.launch {
+                    groceryRepository.updatePurchased(
+                        productId = grocery.productId,
+                        listId = groceryList.id,
+                        purchased = !grocery.purchased
+                    )
                 }
-                .setChecked(grocery.purchased)
-                .build()
-            )
+            }
+        )
+
+        if (restrictionsHelper.isDriverDistracted()) {
+            rowBuilder.addText(carContext.getString(R.string.car_app_parked_only_hint))
+        } else {
+            rowBuilder.addText(parkedOnlyActionLabel)
+        }
 
         iconLoader.getOrLoad(grocery.icon)?.let { carIcon ->
             rowBuilder.setImage(carIcon, Row.IMAGE_TYPE_SMALL)

@@ -117,6 +117,10 @@
     <string name="car_app_item_already_in_list">This item is already on the list.</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
+    <string name="car_app_voice_only_hint">Use voice while driving.</string>
+    <string name="car_app_parked_only_hint">Available only while parked.</string>
+    <string name="car_app_mark_completed">Mark as completed</string>
+    <string name="car_app_mark_open">Mark as open</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="share_grocery_list_title">Share list</string>

@@ -5,6 +5,7 @@ import androidx.car.app.Screen
 import androidx.car.app.model.Action
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.ListTemplate
+import androidx.car.app.model.ParkedOnlyOnClickListener
 import androidx.car.app.model.Row
 import androidx.car.app.model.Template
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +31,7 @@ class GroceryListsScreen(
 
     private var groceryLists: List<GroceryList> = emptyList()
     private var isLoading = true
+    private val restrictionsHelper = CarUxRestrictionsHelper(carContext)
 
     init {
         lifecycleScope.launch {
@@ -100,18 +102,24 @@ class GroceryListsScreen(
         list: GroceryList
     ) {
         val itemCountText = carContext.getString(R.string.car_app_item_count, list.numOfGroceries)
-        
-        listBuilder.addItem(
-            Row.Builder()
-                .setTitle(list.name)
-                .addText(itemCountText)
-                .setOnClickListener {
-                    screenManager.push(
-                        GroceryItemsScreen(carContext, list, groceryRepository, productRepository)
-                    )
-                }
-                .build()
+        val rowBuilder = Row.Builder()
+            .setTitle(list.name)
+            .addText(itemCountText)
+
+        rowBuilder.setBrowsable(true)
+        rowBuilder.setOnClickListener(
+            ParkedOnlyOnClickListener.create {
+                screenManager.push(
+                    GroceryItemsScreen(carContext, list, groceryRepository, productRepository)
+                )
+            }
         )
+
+        if (restrictionsHelper.isDriverDistracted()) {
+            rowBuilder.addText(carContext.getString(R.string.car_app_voice_only_hint))
+        }
+
+        listBuilder.addItem(rowBuilder.build())
     }
 }
 

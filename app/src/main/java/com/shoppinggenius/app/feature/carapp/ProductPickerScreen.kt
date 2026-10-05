@@ -4,6 +4,7 @@ import androidx.car.app.CarContext
 import androidx.car.app.Screen
 import androidx.car.app.model.Action
 import androidx.car.app.model.ItemList
+import androidx.car.app.model.ParkedOnlyOnClickListener
 import androidx.car.app.model.Row
 import androidx.car.app.model.SearchTemplate
 import androidx.car.app.model.Template
@@ -33,6 +34,8 @@ class ProductPickerScreen(
         coroutineScope = lifecycleScope,
         onIconLoaded = ::invalidate
     )
+
+    private val restrictionsHelper = CarUxRestrictionsHelper(carContext)
 
     private var allProducts: List<Product> = emptyList()
     private var groceries: List<Grocery> = emptyList()
@@ -146,16 +149,22 @@ class ProductPickerScreen(
 
         var hasRows = false
         if (query.isNotBlank() && !hasPerfectMatch && !queryAlreadyInList) {
-            listBuilder.addItem(
-                Row.Builder()
-                    .setTitle(carContext.getString(R.string.car_app_add_unknown_item, query))
-                    .setOnClickListener {
-                        if (!isAddingItem) {
-                            addCustomProduct(query)
-                        }
+            val rowBuilder = Row.Builder()
+                .setTitle(carContext.getString(R.string.car_app_add_unknown_item, query))
+
+            rowBuilder.setOnClickListener(
+                ParkedOnlyOnClickListener.create {
+                    if (!isAddingItem) {
+                        addCustomProduct(query)
                     }
-                    .build()
+                }
             )
+
+            if (restrictionsHelper.isDriverDistracted()) {
+                rowBuilder.addText(carContext.getString(R.string.car_app_voice_only_hint))
+            }
+
+            listBuilder.addItem(rowBuilder.build())
             hasRows = true
         }
 
@@ -184,19 +193,25 @@ class ProductPickerScreen(
                 
                 // Add products in category
                 categoryProducts.forEach { product ->
-                    listBuilder.addItem(
-                        Row.Builder().apply {
-                            setTitle(product.name)
-                            iconLoader.getOrLoad(product.icon)?.let { carIcon ->
-                                setImage(carIcon, Row.IMAGE_TYPE_SMALL)
-                            }
-                            setOnClickListener {
+                    val rowBuilder = Row.Builder().apply {
+                        setTitle(product.name)
+                        iconLoader.getOrLoad(product.icon)?.let { carIcon ->
+                            setImage(carIcon, Row.IMAGE_TYPE_SMALL)
+                        }
+
+                        setOnClickListener(
+                            ParkedOnlyOnClickListener.create {
                                 if (!isAddingItem) {
                                     addExistingProduct(product)
                                 }
                             }
-                        }.build()
-                    )
+                        )
+
+                        if (restrictionsHelper.isDriverDistracted()) {
+                            addText(carContext.getString(R.string.car_app_voice_only_hint))
+                        }
+                    }
+                    listBuilder.addItem(rowBuilder.build())
                 }
             }
         }
