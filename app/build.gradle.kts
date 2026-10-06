@@ -33,7 +33,7 @@ android {
         applicationId = "com.shoppinggenius.app"
         minSdk = 25
         targetSdk = 36
-        versionCode = 35
+        versionCode = 37
         versionName = "0.4.9"
 
         testInstrumentationRunner = "com.shoppinggenius.app.testing.ShoppingGeniusTestRunner"
