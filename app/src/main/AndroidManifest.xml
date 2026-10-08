@@ -123,7 +123,15 @@
             android:permission="android.permission.BIND_REMOTEVIEWS"
             android:exported="false" />
 
-        <!-- Android Auto / Automotive OS: Car App Service -->
+        <!-- Android Auto / Automotive OS: Car App Service (Messaging Category)
+
+             MESSAGING-Kategorie: Inklusive Einkaufslisten-Verwaltung mit Voice-Input Support.
+
+             Google Driver Distraction Guidelines (DDG) compliance:
+             - Während der Fahrt (Speed > 0): Nur Sprachbedienung, kein Keyboard
+             - Im Stillstand (Speed ≈ 0): Volle Tastatur- und Touch-Interaktivität
+             - Siehe: CarAppDrivingStateHelper.kt
+        -->
         <service
             android:name=".feature.carapp.ShoppingGeniusCarAppService"
             android:exported="true"
