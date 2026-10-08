@@ -67,6 +67,7 @@ fun GroceryListsDashboardScreen(
 ) {
     var scrollState by rememberSaveable { mutableIntStateOf(0) }
     var createListDialogIsShown by rememberSaveable { mutableStateOf(false) }
+
     if (createListDialogIsShown) {
         AlertDialog(
             onDismissRequest = { createListDialogIsShown = false },
@@ -104,7 +105,7 @@ fun GroceryListsDashboardScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { createListDialogIsShown = false }) {
+                TextButton(onClick = { createListDialogIsShown = true }) {
                     Text(text = stringResource(R.string.close))
                 }
             }
@@ -161,6 +162,7 @@ fun GroceryListsDashboardScreen(
                     },
                     onItemClicked = navigateToGroceryListScreen,
                     onAdderItemClicked = {
+                        onIntent(GroceryListsDashboardUiIntent.OnAdderItemClick)
                         createListDialogIsShown = true
                     }
                 )

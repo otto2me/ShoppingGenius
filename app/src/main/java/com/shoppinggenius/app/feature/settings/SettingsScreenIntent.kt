@@ -1,6 +1,7 @@
 package com.shoppinggenius.app.feature.settings
 
 import android.net.Uri
+import com.shoppinggenius.app.feature.carapp.DrivingModeOverrideStore
 import com.shoppinggenius.app.model.Category
 import com.shoppinggenius.app.model.DarkThemeConfig
 import com.shoppinggenius.app.model.ShoppingGeniusColorScheme
@@ -15,6 +16,7 @@ sealed interface SettingsScreenIntent {
     data class ChangeGroupByCategoryInListMode(val groupByCategoryInListMode: Boolean) : SettingsScreenIntent
     @Suppress("unused")
     data class ChangeUseThreeLineTodoEntries(val useThreeLineTodoEntries: Boolean) : SettingsScreenIntent
+    data class ChangeDrivingModeOverride(val mode: DrivingModeOverrideStore.Mode) : SettingsScreenIntent
     data class ChangeWidgetBackgroundOpacityPercent(val opacityPercent: Int) : SettingsScreenIntent
     data class ChangeColorScheme(val scheme: ShoppingGeniusColorScheme) : SettingsScreenIntent
     data class ChangeAutoDeleteCompletedAfterHours(val hours: Int) : SettingsScreenIntent

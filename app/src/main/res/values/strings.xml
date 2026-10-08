@@ -52,6 +52,11 @@
     <string name="settings_use_system_accent_color">Use System Accent Color</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_open_last_viewed_list">Open Last Viewed List</string>
+    <string name="settings_car_driving_mode_title">Car test mode</string>
+    <string name="settings_car_driving_mode_description">Force parked or driving while testing AAOS or DHU.</string>
+    <string name="settings_car_driving_mode_auto">Auto</string>
+    <string name="settings_car_driving_mode_parked">Parked</string>
+    <string name="settings_car_driving_mode_driving">Driving</string>
     <string name="settings_grocery_list_list_mode_title">List View for Grocery Items</string>
     <string name="settings_grocery_list_list_mode_description">Show groceries in a compact list with icon, name, and checkbox.</string>
     <string name="settings_group_by_category_in_list_mode_title">Group shopping items by category in list view</string>
@@ -115,6 +120,9 @@
     <string name="car_app_search_hint">Search products</string>
     <string name="car_app_no_products">No products available.</string>
     <string name="car_app_item_already_in_list">This item is already on the list.</string>
+    <string name="car_app_item_added">Added: %1$s</string>
+    <string name="car_app_voice_input_starting">Voice input is starting…</string>
+    <string name="car_app_voice_input_listening">Listening…</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
     <string name="car_app_voice_only_hint">Use voice while driving.</string>

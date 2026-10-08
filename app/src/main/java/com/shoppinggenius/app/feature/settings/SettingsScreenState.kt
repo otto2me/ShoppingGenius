@@ -4,10 +4,12 @@ import com.shoppinggenius.app.model.Category
 import com.shoppinggenius.app.model.DEFAULT_USER_PREFERENCES
 import com.shoppinggenius.app.model.GroceryList
 import com.shoppinggenius.app.model.UserPreferences
+import com.shoppinggenius.app.feature.carapp.DrivingModeOverrideStore
 import com.shoppinggenius.app.ui.helpers.UiEvent
 
 data class SettingsScreenState(
     val userPreferences: UserPreferences = DEFAULT_USER_PREFERENCES,
+    val drivingModeOverride: DrivingModeOverrideStore.Mode = DrivingModeOverrideStore.Mode.AUTO,
     val groceryLists: List<GroceryList> = emptyList(),
     val categories: List<Category> = emptyList(),
     val duckDuckGoImageSearchTestInProgress: Boolean = false,

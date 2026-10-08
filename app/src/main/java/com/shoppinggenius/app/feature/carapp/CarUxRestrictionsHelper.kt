@@ -1,7 +1,7 @@
 package com.shoppinggenius.app.feature.carapp
 
-import android.util.Log
 import androidx.car.app.CarContext
+import android.util.Log
 import com.shoppinggenius.app.BuildConfig
 
 /**
@@ -28,11 +28,7 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
      */
     fun isDriverDistracted(): Boolean {
         val drivingState = getDrivingState()
-        var distracted = drivingState == DrivingState.RESTRICTED
-        if (BuildConfig.ENABLE_DRIVER_DISTRACTION_LOGGING) {
-            distracted = false;
-            Log.d(TAG, "Driver distraction logging enabled, overriding distracted state to false")
-        }
+        val distracted = drivingState == DrivingState.RESTRICTED
         logDebug("isDriverDistracted=$distracted state=$drivingState")
         return distracted
     }
@@ -54,6 +50,20 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
     }
 
     private fun readDrivingState(): DrivingState? {
+        when (DrivingModeOverrideStore.get(carContext.applicationContext)) {
+            DrivingModeOverrideStore.Mode.PARKED -> {
+                logDebug("Driving state override=PARKED")
+                return DrivingState.PARKED
+            }
+
+            DrivingModeOverrideStore.Mode.DRIVING -> {
+                logDebug("Driving state override=DRIVING")
+                return DrivingState.RESTRICTED
+            }
+
+            DrivingModeOverrideStore.Mode.AUTO -> Unit
+        }
+
         return withCurrentRestrictions { restrictions ->
             val optimizationMethod = restrictions.javaClass.methods.firstOrNull {
                 it.name == "isRequiresDistractionOptimization" && it.parameterCount == 0
@@ -108,7 +118,7 @@ class CarUxRestrictionsHelper(private val carContext: CarContext) {
     }
 
     private fun logDebug(message: String) {
-        if (BuildConfig.ENABLE_DRIVER_DISTRACTION_LOGGING) {
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, message)
         }
     }

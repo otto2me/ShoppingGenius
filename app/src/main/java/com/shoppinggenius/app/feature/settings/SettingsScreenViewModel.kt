@@ -1,5 +1,6 @@
 package com.shoppinggenius.app.feature.settings
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shoppinggenius.app.backup.BackupRestoreManager
@@ -11,11 +12,13 @@ import com.shoppinggenius.app.data.product.ProductRepository
 import com.shoppinggenius.app.data.userpreferences.UserPreferencesRepository
 import com.shoppinggenius.app.datastore.ChangeListVersionsDataSource
 import com.shoppinggenius.app.feature.iconpicker.DuckDuckGoImageSearchService
+import com.shoppinggenius.app.feature.carapp.DrivingModeOverrideStore
 import com.shoppinggenius.app.locale.AppLocaleManager
 import com.shoppinggenius.app.model.ChangeListVersions
 import com.shoppinggenius.app.ui.helpers.UiEvent
 import com.shoppinggenius.app.ui.theme.dynamicColorIsSupported
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,6 +32,7 @@ import kotlinx.coroutines.sync.withLock
 
 @HiltViewModel
 class SettingsScreenViewModel @Inject constructor(
+    @ApplicationContext private val appContext: Context,
     private val userPreferencesRepository: UserPreferencesRepository,
     private val changeListVersionsDataSource: ChangeListVersionsDataSource,
     private val appLocaleManager: AppLocaleManager,
@@ -55,7 +59,8 @@ class SettingsScreenViewModel @Inject constructor(
                     groceryLists = groceryListRepository.getAllGroceryLists().first(),
                     categories = categoryRepository.getAllCategories()
                         .map { categories -> categories.sortedBy { it.sortingPriority } }
-                        .first()
+                        .first(),
+                    drivingModeOverride = DrivingModeOverrideStore.get(appContext)
                 )
             }
             userPreferencesRepository.userPreferencesFlow.collectLatest { userPreferences ->
@@ -147,6 +152,15 @@ class SettingsScreenViewModel @Inject constructor(
 
             is SettingsScreenIntent.ChangeUseThreeLineTodoEntries ->
                 userPreferencesRepository.updateUseThreeLineTodoEntries(intent.useThreeLineTodoEntries)
+
+            is SettingsScreenIntent.ChangeDrivingModeOverride -> {
+                if (intent.mode == DrivingModeOverrideStore.Mode.AUTO) {
+                    DrivingModeOverrideStore.clear(appContext)
+                } else {
+                    DrivingModeOverrideStore.set(appContext, intent.mode)
+                }
+                _uiStateFlow.update { it.copy(drivingModeOverride = intent.mode) }
+            }
 
             is SettingsScreenIntent.ChangeWidgetBackgroundOpacityPercent ->
                 userPreferencesRepository.updateWidgetBackgroundOpacityPercent(intent.opacityPercent)

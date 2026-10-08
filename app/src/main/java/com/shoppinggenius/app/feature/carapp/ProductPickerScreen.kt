@@ -4,7 +4,6 @@ import androidx.car.app.CarContext
 import androidx.car.app.Screen
 import androidx.car.app.model.Action
 import androidx.car.app.model.ItemList
-import androidx.car.app.model.ParkedOnlyOnClickListener
 import androidx.car.app.model.Row
 import androidx.car.app.model.SearchTemplate
 import androidx.car.app.model.Template
@@ -28,14 +27,9 @@ class ProductPickerScreen(
     carContext: CarContext,
     private val groceryList: GroceryList,
     private val groceryRepository: GroceryRepository,
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val preferVoiceInput: Boolean = false
 ) : Screen(carContext) {
-
-    private val iconLoader = CarAppIconLoader(
-        filesDir = carContext.filesDir,
-        coroutineScope = lifecycleScope,
-        onIconLoaded = ::invalidate
-    )
 
     private val restrictionsHelper = CarUxRestrictionsHelper(carContext)
     private var drivingState = restrictionsHelper.getDrivingState()
@@ -86,7 +80,14 @@ class ProductPickerScreen(
     }
 
     override fun onGetTemplate(): Template {
-        val isDriverDistracted = drivingState == CarUxRestrictionsHelper.DrivingState.RESTRICTED
+        val voicePrompt = carContext.getString(
+            if (groceryList.type == GroceryListType.TODO) {
+                R.string.add_entry_voice_input_prompt
+            } else {
+                R.string.add_grocery_voice_input_prompt
+            }
+        )
+
         val searchCallback = object : SearchTemplate.SearchCallback {
             override fun onSearchTextChanged(searchText: String) {
                 searchQuery = searchText
@@ -130,7 +131,8 @@ class ProductPickerScreen(
         if (isLoading) {
             return SearchTemplate.Builder(searchCallback)
                 .setHeaderAction(Action.BACK)
-                .setSearchHint(carContext.getString(R.string.car_app_search_hint))
+                .setSearchHint(if (preferVoiceInput) voicePrompt else carContext.getString(R.string.car_app_search_hint))
+                .setShowKeyboardByDefault(!preferVoiceInput)
                 .setLoading(true)
                 .build()
         }
@@ -139,6 +141,7 @@ class ProductPickerScreen(
         val query = searchQuery.trim()
         val queryNormalized = normalizeGroceryName(query)
         val queryAlreadyInList = queryNormalized.isNotEmpty() && isDuplicateGroceryName(query, groceries)
+        val isRestricted = drivingState == CarUxRestrictionsHelper.DrivingState.RESTRICTED
 
         // Only show predefined products for shopping lists, not for todo lists
         val isShoppingList = groceryList.type == GroceryListType.SHOPPING
@@ -159,24 +162,22 @@ class ProductPickerScreen(
                 .take(MAX_PRODUCTS)
                 .toList()
         }
-        iconLoader.preload(products.asSequence().map { it.icon }.asIterable())
 
         var hasRows = false
         if (query.isNotBlank() && !hasPerfectMatch && !queryAlreadyInList) {
             val rowBuilder = Row.Builder()
                 .setTitle(carContext.getString(R.string.car_app_add_unknown_item, query))
+                .setImage(carContext.defaultCarIcon(R.drawable.shopping_cart), Row.IMAGE_TYPE_ICON)
 
             rowBuilder.setOnClickListener(
-                ParkedOnlyOnClickListener.create {
-                    if (!isAddingItem) {
+                {
+                    if (drivingState == CarUxRestrictionsHelper.DrivingState.RESTRICTED) {
+                        carContext.showDrivingRestrictedToast()
+                    } else if (!isAddingItem) {
                         addCustomProduct(query)
                     }
                 }
             )
-
-            if (isDriverDistracted) {
-                rowBuilder.addText(carContext.getString(R.string.car_app_voice_only_hint))
-            }
 
             listBuilder.addItem(rowBuilder.build())
             hasRows = true
@@ -184,7 +185,7 @@ class ProductPickerScreen(
 
         if (products.isEmpty() && !hasRows) {
             val noItemsMessage = if (query.isBlank()) {
-                carContext.getString(R.string.car_app_search_hint)
+                if (preferVoiceInput) voicePrompt else carContext.getString(R.string.car_app_search_hint)
             } else if (queryAlreadyInList) {
                 carContext.getString(R.string.car_app_item_already_in_list)
             } else {
@@ -209,21 +210,18 @@ class ProductPickerScreen(
                 categoryProducts.forEach { product ->
                     val rowBuilder = Row.Builder().apply {
                         setTitle(product.name)
-                        iconLoader.getOrLoad(product.icon)?.let { carIcon ->
-                            setImage(carIcon, Row.IMAGE_TYPE_SMALL)
-                        }
+                        setImage(carContext.defaultCarIcon(R.drawable.shopping_cart), Row.IMAGE_TYPE_ICON)
 
                         setOnClickListener(
-                            ParkedOnlyOnClickListener.create {
-                                if (!isAddingItem) {
+                            {
+                                if (drivingState == CarUxRestrictionsHelper.DrivingState.RESTRICTED) {
+                                    carContext.showDrivingRestrictedToast()
+                                } else if (!isAddingItem) {
                                     addExistingProduct(product)
                                 }
                             }
                         )
 
-                        if (isDriverDistracted) {
-                            addText(carContext.getString(R.string.car_app_voice_only_hint))
-                        }
                     }
                     listBuilder.addItem(rowBuilder.build())
                 }
@@ -232,8 +230,10 @@ class ProductPickerScreen(
 
         return SearchTemplate.Builder(searchCallback)
             .setHeaderAction(Action.BACK)
-            .setSearchHint(carContext.getString(R.string.car_app_search_hint))
-            .setShowKeyboardByDefault(!isDriverDistracted)
+            .setSearchHint(if (preferVoiceInput) voicePrompt else carContext.getString(R.string.car_app_search_hint))
+            .setShowKeyboardByDefault(
+                !preferVoiceInput && !isRestricted
+            )
             .setItemList(listBuilder.build())
             .setLoading(false)
             .build()
@@ -241,6 +241,9 @@ class ProductPickerScreen(
 
     private fun addExistingProduct(product: Product) {
         if (isDuplicateProduct(product, groceries)) {
+            carContext.showDrivingRestrictedToast(
+                carContext.getString(R.string.car_app_item_already_in_list)
+            )
             invalidate()
             return
         }
@@ -252,6 +255,7 @@ class ProductPickerScreen(
                 listId = groceryList.id,
                 purchased = false
             )
+            carContext.showCarToast("Added: ${product.name}")
             screenManager.pop()
         }
     }
@@ -260,6 +264,9 @@ class ProductPickerScreen(
         val normalizedName = name.trim()
         if (normalizedName.isBlank()) return
         if (isDuplicateGroceryName(normalizedName, groceries)) {
+            carContext.showDrivingRestrictedToast(
+                carContext.getString(R.string.car_app_item_already_in_list)
+            )
             invalidate()
             return
         }
@@ -273,6 +280,7 @@ class ProductPickerScreen(
                 description = null,
                 purchased = false
             )
+            carContext.showCarToast("Added: $normalizedName")
             screenManager.pop()
         }
     }

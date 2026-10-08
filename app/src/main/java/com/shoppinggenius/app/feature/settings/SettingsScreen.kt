@@ -75,6 +75,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shoppinggenius.app.BuildConfig
 import com.shoppinggenius.app.R
+import com.shoppinggenius.app.feature.carapp.DrivingModeOverrideStore
 import com.shoppinggenius.app.feature.settings.categories.recyclerview.CategoriesRecyclerViewAdapter
 import com.shoppinggenius.app.model.AppLanguage
 import com.shoppinggenius.app.model.Category
@@ -159,6 +160,7 @@ private fun SettingsScreen(
     var isThemeDropdownExpanded by remember { mutableStateOf(false) }
     var isLanguageDropdownExpanded by remember { mutableStateOf(false) }
     var isDefaultListDropdownExpanded by remember { mutableStateOf(false) }
+    var isDrivingModeDropdownExpanded by remember { mutableStateOf(false) }
 
     val lazyListState = rememberLazyListState()
 
@@ -293,6 +295,20 @@ private fun SettingsScreen(
                                 onIntent(SettingsScreenIntent.ChangeOpenLastViewedListConfig(it))
                             }
                         )
+                    }
+                    if (BuildConfig.DEBUG) {
+                        item {
+                            DrivingModeSetting(
+                                drivingModeOverride = uiState.drivingModeOverride,
+                                isDropdownExpanded = isDrivingModeDropdownExpanded,
+                                onDrivingModeOverrideChanged = {
+                                    onIntent(SettingsScreenIntent.ChangeDrivingModeOverride(it))
+                                },
+                                onDropdownExpandedChanged = {
+                                    isDrivingModeDropdownExpanded = it
+                                }
+                            )
+                        }
                     }
                     item {
                         GroceryListViewModeSetting(
@@ -953,6 +969,71 @@ fun DefaultListSetting(
                         textAlign = TextAlign.Center
                     )
                     DropDownMenuToggleIcon(expanded = isDefaultListDropdownExpanded)
+                }
+            }
+        }
+     )
+ }
+
+ @Composable
+ private fun DrivingModeSetting(
+    modifier: Modifier = Modifier,
+    drivingModeOverride: DrivingModeOverrideStore.Mode,
+    isDropdownExpanded: Boolean,
+    onDrivingModeOverrideChanged: (DrivingModeOverrideStore.Mode) -> Unit,
+    onDropdownExpandedChanged: (Boolean) -> Unit
+) {
+    val modes = DrivingModeOverrideStore.Mode.entries.toList()
+    val labels = modes.map { mode ->
+        when (mode) {
+            DrivingModeOverrideStore.Mode.AUTO -> stringResource(R.string.settings_car_driving_mode_auto)
+            DrivingModeOverrideStore.Mode.PARKED -> stringResource(R.string.settings_car_driving_mode_parked)
+            DrivingModeOverrideStore.Mode.DRIVING -> stringResource(R.string.settings_car_driving_mode_driving)
+        }
+    }
+    val selectedIndex = remember(drivingModeOverride, modes) {
+        modes.indexOf(drivingModeOverride).let { index -> if (index >= 0) index else 0 }
+    }
+
+    CustomIconSetting(
+        modifier = modifier.padding(vertical = 6.dp),
+        title = stringResource(R.string.settings_car_driving_mode_title),
+        description = stringResource(R.string.settings_car_driving_mode_description),
+        icon = {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_history_24),
+                contentDescription = null
+            )
+        },
+        trailingComponent = {
+            TonalDataInput(
+                onClick = { onDropdownExpandedChanged(!isDropdownExpanded) },
+                indication = null,
+                dropDownMenu = {
+                    LazyDropdownMenu(
+                        expanded = isDropdownExpanded,
+                        onDismissRequest = { onDropdownExpandedChanged(false) },
+                        options = labels,
+                        onOptionSelected = { index ->
+                            onDrivingModeOverrideChanged(modes[index])
+                            onDropdownExpandedChanged(false)
+                        }
+                    )
+                }
+            ) {
+                Row(
+                    modifier = Modifier.padding(vertical = 6.dp, horizontal = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = Modifier.widthIn(min = 56.dp, max = 136.dp),
+                        text = labels[selectedIndex],
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center
+                    )
+                    DropDownMenuToggleIcon(expanded = isDropdownExpanded)
                 }
             }
         }
