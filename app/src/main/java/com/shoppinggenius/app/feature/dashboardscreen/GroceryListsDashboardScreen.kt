@@ -119,7 +119,7 @@ fun GroceryListsDashboardScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 4.dp)
+                .padding(top = 4.dp, bottom = 0.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -138,7 +138,8 @@ fun GroceryListsDashboardScreen(
         }
         AndroidViewBinding(
             modifier = Modifier
-                .fillMaxSize()
+                .weight(1f)
+                .fillMaxWidth()
                 .navigationBarsPadding(),
             factory = { inflater, parent, attachToParent ->
                 val binding = ListRecyclerviewBinding.inflate(inflater, parent, attachToParent)
