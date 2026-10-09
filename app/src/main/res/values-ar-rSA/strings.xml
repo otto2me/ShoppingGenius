@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- GroceryListScreen -->
+    
     <string name="purchased_groceries_group_title">Ù…Ø³ØªØ®Ø¯Ù… Ù…Ø¤Ø®Ø±Ø§</string>
     <string name="grocery_list_name_text_field_placeholder">Ø£Ø¯Ø®Ù„ Ø§Ø³Ù…</string>
     <string name="shopping_done_title">ØªÙ… Ø§Ù„ØªØ³ÙˆÙ‚ !</string>
     <string name="empty_grocery_list_title">Ø£Ø¶Ù Ø¨Ù‚Ø§Ù„ØªÙƒ Ø§Ù„Ø£ÙˆÙ„Ù‰!</string>
-    <!-- AddGrocery -->
+    
     <string name="add_grocery_search_field_placeholder_collapsed">Ø¥Ø¶Ø§ÙØ© Ø¨Ù‚Ø§Ù„Ø©</string>
     <string name="add_grocery_search_field_placeholder_expanded">Ù…Ø«Ù„ Ø§Ù„Ø®Ø¨Ø²</string>
     <string name="add_grocery_search_field_trailing_icon_description">Ù…Ø³Ø­ Ø§Ù„Ù†Øµ ÙÙŠ Ø´Ø±ÙŠØ· Ø§Ù„Ø¨Ø­Ø«</string>
     <string name="add_grocery_refine_item_options_title">ØªØ­Ø³ÙŠÙ† Â«%sÂ»</string>
     <string name="add_grocery_edit_item_button_title">Ø£Ø¯Ø®Ù„ ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø¹Ù†ØµØ±</string>
-    <!-- EditGrocery -->
+    
     <string name="edit_grocery_item_description_placeholder">Ø§Ù„ÙƒÙ…ÙŠØ©ØŒ Ø§Ù„ÙˆØµÙ</string>
     <string name="edit_grocery_change_icon_button_title">ØªØºÙŠÙŠØ± Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
     <string name="edit_grocery_change_category_button_title">ØªØºÙŠÙŠØ± Ø§Ù„ØªØµÙ†ÙŠÙ</string>
@@ -21,7 +21,7 @@
     <string name="select_icon_dialog_title">Ø§Ø®ØªØ± Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
     <string name="delete_product_dialog_text">Ø³ÙŠØªÙ… Ø¥Ø²Ø§Ù„Ø© Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù†ØµØ± Ù…Ù† Ø¬Ù…ÙŠØ¹ Ù‚ÙˆØ§Ø¦Ù… Ø§Ù„Ø¨Ù‚Ø§Ù„Ø© Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ</string>
     <string name="delete_grocery_list_dialog_text">Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ø£Ù†Ùƒ ØªØ±ÙŠØ¯ Ø­Ø°Ù Ù‡Ø°Ù‡ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©ØŸ</string>
-    <!-- GroceryListsDashboardScreen -->
+    
     <plurals name="dashboard_item_num_of_groceries_title">
         <item quantity="zero">%d Ø¹Ù†ØµØ±</item>
         <item quantity="one">%d Ø¹Ù†ØµØ±</item>
@@ -31,7 +31,7 @@
         <item quantity="other">%d Ø¹Ù†Ø§ØµØ±</item>
     </plurals>
     <string name="add_grocery_list_button_description">Ø¥Ù†Ø´Ø§Ø¡ Ù‚Ø§Ø¦Ù…Ø© Ø¨Ù‚Ø§Ù„Ø© Ø¬Ø¯ÙŠØ¯Ø©</string>
-    <!-- SettingsScreen -->
+    
     <string name="settings_dark_theme_config_system_default">Ø§Ù„Ù†Ø¸Ø§Ù…</string>
     <string name="settings_dark_theme_config_light">ÙØ§ØªØ­</string>
     <string name="settings_dark_theme_config_dark">Ø¯Ø§ÙƒÙ†</string>
@@ -54,11 +54,11 @@
     <string name="settings_credits">Ø§Ù„Ù…Ø³Ø§Ù‡Ù…ÙˆÙ†</string>
     <string name="settings_image_by_freepik_title">ØµÙˆØ±Ø© Ø¨ÙˆØ§Ø³Ø·Ø© pch.vector Ø¹Ù„Ù‰ Freepik</string>
     <string name="settings_image_by_freepik_description">Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„Ù…Ø¹Ø±ÙˆØ¶Ø© Ø¹Ù„Ù‰ Ø´Ø§Ø´Ø© Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø¨Ù‚Ø§Ù„Ø© ØªÙ… Ø¥Ù†Ø´Ø§Ø¤Ù‡Ø§ Ø¨ÙˆØ§Ø³Ø·Ø© pch.vector</string>
-    <!-- IconPickerScreen -->
+    
     <string name="icon_picker_screen_title">Ø§Ø®ØªÙŠØ§Ø± Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
     <string name="icon_picker_search_field_placeholder">Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£ÙŠÙ‚ÙˆÙ†Ø©</string>
-    <!-- OnboardingSyncScreen -->
-    <!-- General -->
+    
+    
     <string name="done">ØªÙ…</string>
     <string name="delete">Ø­Ø°Ù</string>
     <string name="edit">ØªØ¹Ø¯ÙŠÙ„</string>
@@ -68,11 +68,11 @@
     <string name="close">Ø¥ØºÙ„Ø§Ù‚</string>
     <string name="reset">Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ø¶Ø¨Ø·</string>
     <string name="retry">Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø©</string>
-    <!-- Components -->
+    
     <string name="custom_category_title">Ø¨Ù‚Ø§Ù„Ø© Ù…Ø®ØµØµØ©</string>
     <string name="toggle_dropdown_menu_visibility">Ø¥Ø¸Ù‡Ø§Ø±/Ø¥Ø®ÙØ§Ø¡ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©</string>
     <string name="drag_handle">Ù…Ù‚Ø¨Ø¶</string>
-    <!-- Notifications -->
+    
     <string name="sync_work_notification_channel_name">Ù…Ø²Ø§Ù…Ù†Ø©</string>
     <string name="sync_work_notification_channel_description">ØªØ²Ø§Ù…Ù† Ø¯ÙˆØ±ÙŠ Ù„Ù‚Ø§Ø¹Ø¯Ø© Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¨Ù‚Ø§Ù„Ø©.</string>
     <string name="sync_work_notification_title">Ù…Ø²Ø§Ù…Ù†Ø© Ø¨Ù‚Ø§Ù„ØªÙƒ</string>
@@ -81,7 +81,7 @@
     <string name="grocery_list_tab_favorites">المفضلة</string>
     <string name="edit_grocery_toggle_favorite_button_title">مفضل</string>
 
-    <!-- Android Auto / Automotive OS -->
+    
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
@@ -90,4 +90,4 @@
     <string name="github_original_project_description">This app is based on the original project by DanielRendox.</string>
     <string name="github_fork_project_title">Fork hosted on GitHub</string>
     <string name="github_fork_project_description">Current fork and active development are hosted at otto2me/ShoppingGenius.</string>
-</resources>
+<string name="car_app_item_added">Added: %1$s</string><string name="car_app_voice_input_starting">Voice input is starting…</string><string name="car_app_voice_input_listening">Listening…</string><string name="car_app_restricted_action">This action is not available while driving.</string></resources>

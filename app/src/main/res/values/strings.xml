@@ -129,6 +129,7 @@
     <string name="car_app_parked_only_hint">Available only while parked.</string>
     <string name="car_app_mark_completed">Mark as completed</string>
     <string name="car_app_mark_open">Mark as open</string>
+    <string name="car_app_restricted_action">This action is not available while driving.</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="share_grocery_list_title">Share list</string>

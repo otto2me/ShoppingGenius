@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- GroceryListScreen -->
+    
     <string name="purchased_groceries_group_title">Recientemente usado</string>
     <string name="grocery_list_name_text_field_placeholder">Introduzca un nombre</string>
     <string name="shopping_done_title">Â¡Compra realizada!</string>
     <string name="empty_grocery_list_title">Â¡AÃ±ade tu primera compra!</string>
-    <!-- AddGrocery -->
+    
     <string name="add_grocery_search_field_placeholder_collapsed">Agregar un supermercado</string>
     <string name="add_grocery_search_field_placeholder_expanded">p. ej. pan</string>
     <string name="add_grocery_search_field_trailing_icon_description">Limpiar texto de la barra de bÃºsqueda</string>
     <string name="add_grocery_refine_item_options_title">Refinar Â«%sÂ»</string>
     <string name="add_grocery_edit_item_button_title">Introduzca los detalles del artÃ­culo</string>
-    <!-- EditGrocery -->
+    
     <string name="edit_grocery_item_description_placeholder">Cantidad, descripciÃ³n</string>
     <string name="edit_grocery_change_icon_button_title">Cambiar icono</string>
     <string name="edit_grocery_change_category_button_title">Cambiar categorÃ­a</string>
@@ -21,18 +21,18 @@
     <string name="select_icon_dialog_title">Seleccione icono</string>
     <string name="delete_product_dialog_text">Este artÃ­culo serÃ¡ borrado de todas sus listas de tiendas</string>
     <string name="delete_grocery_list_dialog_text">Â¿EstÃ¡ seguro que quiere borrar esta lista?</string>
-    <!-- GroceryListsDashboardScreen -->
+    
     <plurals name="dashboard_item_num_of_groceries_title">
         <item quantity="one">%d artÃ­culo</item>
         <item quantity="other">%d artÃ­culos</item>
     </plurals>
     <string name="add_grocery_list_button_description">Crear nueva lista de supermercados</string>
-    <!-- SettingsScreen -->
+    
     <string name="settings_dark_theme_config_system_default">Sistema</string>
     <string name="settings_dark_theme_config_light">Claro</string>
     <string name="settings_dark_theme_config_dark">Oscuro</string>
     <string name="settings_theme">Tema</string>
-    <string name="settings_theme_mode"></string>
+    <string name="settings_theme_mode" />
     <string name="settings_use_system_accent_color">Usar la configuraciÃ³n de color del sistema</string>
     <string name="settings_preferences">Preferencias</string>
     <string name="settings_open_last_viewed_list">Abrir la Ãºltima lista utilizada</string>
@@ -50,11 +50,11 @@
     <string name="settings_credits">CrÃ©ditos</string>
     <string name="settings_image_by_freepik_title">Imagen por pch.vector en Freepik</string>
     <string name="settings_image_by_freepik_description">La imagen que aparece en la pantalla de la lista de alimentos ha sido creada por pch.vector</string>
-    <!-- IconPickerScreen -->
+    
     <string name="icon_picker_screen_title">Elegir icono</string>
     <string name="icon_picker_search_field_placeholder">Buscar un icono</string>
-    <!-- OnboardingSyncScreen -->
-    <!-- General -->
+    
+    
     <string name="done">Hecho</string>
     <string name="delete">Borrar</string>
     <string name="edit">Editar</string>
@@ -64,11 +64,11 @@
     <string name="close">Cerrar</string>
     <string name="reset">Restaurar</string>
     <string name="retry">Reintentar</string>
-    <!-- Components -->
+    
     <string name="custom_category_title">Tienda personalizada</string>
     <string name="toggle_dropdown_menu_visibility">Mostrar/Ocultar menÃº desplegable</string>
     <string name="drag_handle">Cambiar tamaÃ±o</string>
-    <!-- Notifications -->
+    
     <string name="sync_work_notification_channel_name">SincronizaciÃ³n</string>
     <string name="sync_work_notification_channel_description">SincronizaciÃ³n periÃ³dica de la base de datos de supermercados.</string>
     <string name="sync_work_notification_title">Sincronizando los supermercados</string>
@@ -77,7 +77,7 @@
     <string name="grocery_list_tab_favorites">Favoritos</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorito</string>
 
-    <!-- Android Auto / Automotive OS -->
+    
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
@@ -86,4 +86,4 @@
     <string name="github_original_project_description">This app is based on the original project by DanielRendox.</string>
     <string name="github_fork_project_title">Fork hosted on GitHub</string>
     <string name="github_fork_project_description">Current fork and active development are hosted at otto2me/ShoppingGenius.</string>
-</resources>
+<string name="car_app_item_added">Added: %1$s</string><string name="car_app_voice_input_starting">Voice input is starting…</string><string name="car_app_voice_input_listening">Listening…</string><string name="car_app_restricted_action">This action is not available while driving.</string></resources>

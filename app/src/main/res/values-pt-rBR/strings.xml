@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- GroceryListScreen -->
+    
     <string name="purchased_groceries_group_title">Recentemente usado</string>
     <string name="grocery_list_name_text_field_placeholder">Insira um nome</string>
     <string name="shopping_done_title">Compras concluÃ­das!</string>
     <string name="empty_grocery_list_title">Adicione suas primeiras compras!</string>
-    <!-- AddGrocery -->
+    
     <string name="add_grocery_search_field_placeholder_collapsed">Adicionar um item</string>
     <string name="add_grocery_search_field_placeholder_expanded">ex. pÃ£o</string>
     <string name="add_grocery_search_field_trailing_icon_description">Limpar texto na barra de pesquisa</string>
     <string name="add_grocery_refine_item_options_title">Refinar Â«%sÂ»</string>
     <string name="add_grocery_edit_item_button_title">Insira os detalhes do item</string>
-    <!-- EditGrocery -->
+    
     <string name="edit_grocery_item_description_placeholder">Quantidade, descriÃ§Ã£o</string>
     <string name="edit_grocery_change_icon_button_title">Alterar Ã­cone</string>
     <string name="edit_grocery_change_category_button_title">Alterar categoria</string>
@@ -21,13 +21,13 @@
     <string name="select_icon_dialog_title">Escolha um Ã­cone</string>
     <string name="delete_product_dialog_text">Este item serÃ¡ removido de todas as suas listas de compras</string>
     <string name="delete_grocery_list_dialog_text">VocÃª tem certeza que deseja excluir esta lista?</string>
-    <!-- GroceryListsDashboardScreen -->
+    
     <plurals name="dashboard_item_num_of_groceries_title">
         <item quantity="one">%d item</item>
         <item quantity="other">%d itens</item>
     </plurals>
     <string name="add_grocery_list_button_description">Criar nova lista de compras</string>
-    <!-- SettingsScreen -->
+    
     <string name="settings_dark_theme_config_system_default">Sistema</string>
     <string name="settings_dark_theme_config_light">Claro</string>
     <string name="settings_dark_theme_config_dark">Escuro</string>
@@ -50,11 +50,11 @@
     <string name="settings_credits">CrÃ©ditos</string>
     <string name="settings_image_by_freepik_title">Imagem de pch.vector em Freepik</string>
     <string name="settings_image_by_freepik_description">A imagem exibida na tela de lista de compras foi criada por pch.vector</string>
-    <!-- IconPickerScreen -->
+    
     <string name="icon_picker_screen_title">Escolher Ã­cone</string>
     <string name="icon_picker_search_field_placeholder">Procurar um Ã­cone</string>
-    <!-- OnboardingSyncScreen -->
-    <!-- General -->
+    
+    
     <string name="done">ConcluÃ­do</string>
     <string name="delete">Apagar</string>
     <string name="edit">Editar</string>
@@ -64,11 +64,11 @@
     <string name="close">Fechar</string>
     <string name="reset">Redefinir</string>
     <string name="retry">Tentar de novo</string>
-    <!-- Components -->
+    
     <string name="custom_category_title">Itens de compras personalizados</string>
     <string name="toggle_dropdown_menu_visibility">Mostrar/ocultar menu suspenso</string>
     <string name="drag_handle">AlÃ§a de arrastar</string>
-    <!-- Notifications -->
+    
     <string name="sync_work_notification_channel_name">SincronizaÃ§Ã£o</string>
     <string name="sync_work_notification_channel_description">SincronizaÃ§Ã£o periÃ³dica do banco de dados de compras.</string>
     <string name="sync_work_notification_title">Sincronizando suas compras</string>
@@ -77,7 +77,7 @@
     <string name="grocery_list_tab_favorites">Favoritos</string>
     <string name="edit_grocery_toggle_favorite_button_title">Favorito</string>
 
-    <!-- Android Auto / Automotive OS -->
+    
     <string name="car_app_add_unknown_item">Add "%1$s"</string>
     <string name="car_app_section_open">Open</string>
     <string name="car_app_section_completed">Completed</string>
@@ -86,4 +86,4 @@
     <string name="github_original_project_description">This app is based on the original project by DanielRendox.</string>
     <string name="github_fork_project_title">Fork hosted on GitHub</string>
     <string name="github_fork_project_description">Current fork and active development are hosted at otto2me/ShoppingGenius.</string>
-</resources>
+<string name="car_app_item_added">Added: %1$s</string><string name="car_app_voice_input_starting">Voice input is starting…</string><string name="car_app_voice_input_listening">Listening…</string><string name="car_app_restricted_action">This action is not available while driving.</string></resources>

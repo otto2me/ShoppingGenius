@@ -109,12 +109,16 @@
     <string name="car_app_search_hint">Produkte suchen</string>
     <string name="car_app_no_products">Keine Produkte verfügbar.</string>
     <string name="car_app_item_already_in_list">Dieser Eintrag ist bereits auf der Liste.</string>
+    <string name="car_app_item_added">Hinzugefügt: %1$s</string>
+    <string name="car_app_voice_input_starting">Spracheingabe wird gestartet…</string>
+    <string name="car_app_voice_input_listening">Zuhören…</string>
     <string name="car_app_section_open">Offen</string>
     <string name="car_app_section_completed">Erledigt</string>
     <string name="car_app_voice_only_hint">Während der Fahrt Sprache verwenden.</string>
     <string name="car_app_parked_only_hint">Nur im Stand verfügbar.</string>
     <string name="car_app_mark_completed">Als erledigt markieren</string>
     <string name="car_app_mark_open">Als offen markieren</string>
+    <string name="car_app_restricted_action">Diese Aktion ist während der Fahrt nicht verfügbar.</string>
     <string name="delete">Löschen</string>
     <string name="edit">Bearbeiten</string>
     <string name="share_grocery_list_title">Liste teilen</string>
@@ -160,4 +164,3 @@
     <string name="settings_backup_in_progress">Läuft\u2026</string>
     <string name="dashboard_item_type_and_count">%1$s - %2$s</string>
 </resources>
-
