@@ -42,6 +42,10 @@ Current Android config in `app/build.gradle.kts`:
 - **current app version:** `0.4.2` (`versionCode` 23)
 - **JVM target:** 11
 
+The build uses Gradle 9.1.0 and Android Gradle Plugin 9.0.1 and can run on JDK 25.
+Room 2.8.4, AndroidX Hilt 1.3.0, and KSP 2.3.6 provide annotation-processing
+support for Kotlin 2.2.10. The app still targets JVM 11 bytecode.
+
 ## Development Setup
 
 1. Clone the repository and open it in Android Studio.
@@ -169,4 +173,3 @@ Configured sync sources include:
 The project code is licensed under GPL v3. See `LICENSE`.
 
 Icon assets in `assets/icons` (and copies in app assets) are excluded from GPL code licensing terms as documented by the project and may carry separate usage restrictions.
-

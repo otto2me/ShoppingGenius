@@ -1,11 +1,12 @@
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlin)
+    alias(libs.plugins.jetbrainsKotlinCompose)
+    alias(libs.plugins.legacyKapt)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.roomPlugin)
-    kotlin("kapt")
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.gradlePlayPublisher)
@@ -62,12 +63,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            if (!hasReleaseSigningConfig) {
-                error(
-                    "Release signing is not configured. Add RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS and RELEASE_KEY_PASSWORD to local.properties"
-                )
+            if (hasReleaseSigningConfig) {
+                signingConfig = signingConfigs.getByName("release")
             }
-            signingConfig = signingConfigs.getByName("release")
         }
     }
     flavorDimensions += "driverLogging"
@@ -86,16 +84,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
     buildFeatures {
         compose = true
         viewBinding = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -111,6 +103,12 @@ android {
     }
     room {
         schemaDirectory("$projectDir/schemas")
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
@@ -197,4 +195,18 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+val verifyReleaseSigningConfig = tasks.register("verifyReleaseSigningConfig") {
+    doLast {
+        check(hasReleaseSigningConfig) {
+            "Release signing is not configured. Add RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS and RELEASE_KEY_PASSWORD to local.properties"
+        }
+    }
+}
+
+tasks.configureEach {
+    if (name.matches(Regex("(assemble|bundle|package).*Release.*"))) {
+        dependsOn(verifyReleaseSigningConfig)
+    }
 }

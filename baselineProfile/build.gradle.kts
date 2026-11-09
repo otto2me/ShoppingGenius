@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.androidTest)
-    alias(libs.plugins.jetbrainsKotlin)
     alias(libs.plugins.baselineprofile)
 }
 
@@ -11,10 +10,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 
     defaultConfig {
